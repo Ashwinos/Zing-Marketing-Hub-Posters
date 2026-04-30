@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Menu Poster</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      padding: 30px 20px;
+    }
+
+    .poster {
+      width: 430px;
+      height: 570px;
+      background: #1a1a1a;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    }
+
+    .poster::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 3px,
+        rgba(255,255,255,0.012) 3px,
+        rgba(255,255,255,0.012) 6px
+      );
+      z-index: 0;
+    }
+
+    /* ── Red diagonal slashes LEFT ── */
+    .slash-left-1, .slash-left-2, .slash-left-3 {
+      position: absolute;
+      left: -40px;
+      background: #cc1111;
+      z-index: 2;
+    }
+    .slash-left-1 { top: 72px;  width: 130px; height: 32px; transform: skewY(-40deg); }
+    .slash-left-2 { top: 108px; width: 120px; height: 32px; transform: skewY(-40deg); }
+    .slash-left-3 { top: 144px; width: 100px; height: 26px; transform: skewY(-40deg); }
+
+    /* ── Red diagonal slashes RIGHT ── */
+    .slash-right-1, .slash-right-2, .slash-right-3 {
+      position: absolute;
+      right: -40px;
+      background: #cc1111;
+      z-index: 2;
+    }
+    .slash-right-1 { top: 72px;  width: 130px; height: 32px; transform: skewY(-40deg); }
+    .slash-right-2 { top: 108px; width: 120px; height: 32px; transform: skewY(-40deg); }
+    .slash-right-3 { top: 144px; width: 100px; height: 26px; transform: skewY(-40deg); }
+
+    /* ── Halftone dot pattern – bottom left ── */
+    .dot-pattern-bl {
+      position: absolute;
+      bottom: 115px; left: 0;
+      z-index: 1;
+      width: 110px; height: 110px;
+      pointer-events: none;
+    }
+    .dot-pattern-bl svg { width: 100%; height: 100%; display: block; }
+
+    /* ── Halftone dot pattern – top right (replaces tomato) ── */
+    .dot-pattern-tr {
+      position: absolute;
+      top: 0; right: 0;
+      z-index: 1;
+      width: 110px; height: 110px;
+      pointer-events: none;
+    }
+    .dot-pattern-tr svg { width: 100%; height: 100%; display: block; }
+
+    /* ── Logo area ── */
+    .logo-box {
+      width: 34px; height: 34px;
+      background: #cc1111;
+      border-radius: 5px;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      margin: 14px;
+      position: absolute;
+      top: 0; left: 0;
+      z-index: 8;
+    }
+    .logo-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ── FOOD MENU heading ── */
+    .heading-area {
+      position: absolute;
+      top: 46px; left: 0; right: 0;
+      text-align: center;
+      z-index: 3;
+      line-height: 1;
+    }
+    .txt-food {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 76px; color: #ffffff;
+      letter-spacing: 6px; display: block;
+      line-height: 0.9; text-shadow: 4px 4px 0 rgba(0,0,0,0.55);
+    }
+    .txt-menu {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 76px; color: #cc1111;
+      letter-spacing: 6px; display: block;
+      line-height: 0.9; text-shadow: 4px 4px 0 rgba(0,0,0,0.55);
+    }
+
+    /* ── Circular food plate ── */
+    .plate-wrap {
+      position: absolute;
+      top: 120px; left: 50%;
+      transform: translateX(-50%);
+      width: 300px; height: 300px;
+      z-index: 4;
+    }
+    .plate-circle {
+      width: 300px; height: 300px;
+      border-radius: 50%; overflow: hidden;
+      border: 5px solid #1a1a1a;
+      box-shadow: 0 0 0 2px #333, 0 10px 40px rgba(0,0,0,0.8), 0 4px 12px rgba(204,17,17,0.2);
+      background: #222;
+    }
+    .plate-circle img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ── Dark bottom strip ── */
+    .bottom-strip {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 148px; background: #0e0e0e; z-index: 3;
+    }
+
+    /* ── Bottom content ── */
+    .bottom-content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      z-index: 6; text-align: center;
+      padding: 0 24px 16px;
+    }
+    .restaurant-label {
+      font-size: 7px; font-weight: 600; color: #ffffff;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      margin-bottom: 8px; padding-top: 10px;
+    }
+    .red-line { width: 100%; height: 2px; background: #cc1111; margin-bottom: 10px; }
+    .delivery-label {
+      font-size: 7.5px; color: #888;
+      letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 3px;
+    }
+    .phone-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px; color: #ffffff;
+      letter-spacing: 2px; line-height: 1.1; margin-bottom: 3px;
+    }
+    .website-url { font-size: 8px; color: #999; letter-spacing: 0.06em; }
+
+    /* ── Download button ── */
+    .dl-btn {
+      margin-top: 20px;
+      background: #cc1111; color: #fff; border: none;
+      padding: 11px 28px; font-size: 13px; font-weight: 600;
+      border-radius: 6px; cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      display: flex; align-items: center; gap: 9px;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 4px 16px rgba(204,17,17,0.4);
+    }
+    .dl-btn:hover { background: #aa0d0d; transform: translateY(-1px); }
+    .dl-btn:active { transform: translateY(0); }
+    .dl-btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+  </style>
+</head>
+<body>
+
+  <div class="poster" id="menuPoster">
+
+    <!-- Red slashes left -->
+    <div class="slash-left-1"></div>
+    <div class="slash-left-2"></div>
+    <div class="slash-left-3"></div>
+
+    <!-- Red slashes right -->
+    <div class="slash-right-1"></div>
+    <div class="slash-right-2"></div>
+    <div class="slash-right-3"></div>
+
+    <!-- Halftone dot pattern – bottom left -->
+    <div class="dot-pattern-bl">
+      <svg viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="dotFadeBL" cx="0%" cy="100%" r="100%">
+            <stop offset="0%"   stop-color="white" stop-opacity="1"/>
+            <stop offset="60%"  stop-color="white" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="white" stop-opacity="0"/>
+          </radialGradient>
+          <mask id="dotMaskBL">
+            <rect width="110" height="110" fill="url(#dotFadeBL)"/>
+          </mask>
+        </defs>
+        <g mask="url(#dotMaskBL)">
+          <circle cx="10"  cy="100" r="5.5" fill="#cc1111"/>
+          <circle cx="26"  cy="100" r="5.0" fill="#cc1111"/>
+          <circle cx="42"  cy="100" r="4.5" fill="#cc1111"/>
+          <circle cx="58"  cy="100" r="4.0" fill="#cc1111"/>
+          <circle cx="74"  cy="100" r="3.2" fill="#cc1111"/>
+          <circle cx="90"  cy="100" r="2.4" fill="#cc1111"/>
+          <circle cx="106" cy="100" r="1.6" fill="#cc1111"/>
+
+          <circle cx="10"  cy="84" r="5.0" fill="#cc1111"/>
+          <circle cx="26"  cy="84" r="4.5" fill="#cc1111"/>
+          <circle cx="42"  cy="84" r="4.0" fill="#cc1111"/>
+          <circle cx="58"  cy="84" r="3.3" fill="#cc1111"/>
+          <circle cx="74"  cy="84" r="2.6" fill="#cc1111"/>
+          <circle cx="90"  cy="84" r="1.8" fill="#cc1111"/>
+
+          <circle cx="10"  cy="68" r="4.4" fill="#cc1111"/>
+          <circle cx="26"  cy="68" r="3.9" fill="#cc1111"/>
+          <circle cx="42"  cy="68" r="3.3" fill="#cc1111"/>
+          <circle cx="58"  cy="68" r="2.6" fill="#cc1111"/>
+          <circle cx="74"  cy="68" r="1.9" fill="#cc1111"/>
+
+          <circle cx="10"  cy="52" r="3.7" fill="#cc1111"/>
+          <circle cx="26"  cy="52" r="3.1" fill="#cc1111"/>
+          <circle cx="42"  cy="52" r="2.5" fill="#cc1111"/>
+          <circle cx="58"  cy="52" r="1.8" fill="#cc1111"/>
+
+          <circle cx="10"  cy="36" r="2.8" fill="#cc1111"/>
+          <circle cx="26"  cy="36" r="2.2" fill="#cc1111"/>
+          <circle cx="42"  cy="36" r="1.5" fill="#cc1111"/>
+
+          <circle cx="10"  cy="20" r="1.8" fill="#cc1111"/>
+          <circle cx="26"  cy="20" r="1.2" fill="#cc1111"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Halftone dot pattern – top right (replaces tomato, mirrored) -->
+    <div class="dot-pattern-tr">
+      <svg viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- Fade: visible top-right corner, fades toward bottom-left -->
+          <radialGradient id="dotFadeTR" cx="100%" cy="0%" r="100%">
+            <stop offset="0%"   stop-color="white" stop-opacity="1"/>
+            <stop offset="60%"  stop-color="white" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="white" stop-opacity="0"/>
+          </radialGradient>
+          <mask id="dotMaskTR">
+            <rect width="110" height="110" fill="url(#dotFadeTR)"/>
+          </mask>
+        </defs>
+        <g mask="url(#dotMaskTR)">
+          <!-- Row 1 (top) — mirror of bottom-left row 1 -->
+          <circle cx="100" cy="10"  r="5.5" fill="#cc1111"/>
+          <circle cx="84"  cy="10"  r="5.0" fill="#cc1111"/>
+          <circle cx="68"  cy="10"  r="4.5" fill="#cc1111"/>
+          <circle cx="52"  cy="10"  r="4.0" fill="#cc1111"/>
+          <circle cx="36"  cy="10"  r="3.2" fill="#cc1111"/>
+          <circle cx="20"  cy="10"  r="2.4" fill="#cc1111"/>
+          <circle cx="4"   cy="10"  r="1.6" fill="#cc1111"/>
+
+          <!-- Row 2 -->
+          <circle cx="100" cy="26"  r="5.0" fill="#cc1111"/>
+          <circle cx="84"  cy="26"  r="4.5" fill="#cc1111"/>
+          <circle cx="68"  cy="26"  r="4.0" fill="#cc1111"/>
+          <circle cx="52"  cy="26"  r="3.3" fill="#cc1111"/>
+          <circle cx="36"  cy="26"  r="2.6" fill="#cc1111"/>
+          <circle cx="20"  cy="26"  r="1.8" fill="#cc1111"/>
+
+          <!-- Row 3 -->
+          <circle cx="100" cy="42"  r="4.4" fill="#cc1111"/>
+          <circle cx="84"  cy="42"  r="3.9" fill="#cc1111"/>
+          <circle cx="68"  cy="42"  r="3.3" fill="#cc1111"/>
+          <circle cx="52"  cy="42"  r="2.6" fill="#cc1111"/>
+          <circle cx="36"  cy="42"  r="1.9" fill="#cc1111"/>
+
+          <!-- Row 4 -->
+          <circle cx="100" cy="58"  r="3.7" fill="#cc1111"/>
+          <circle cx="84"  cy="58"  r="3.1" fill="#cc1111"/>
+          <circle cx="68"  cy="58"  r="2.5" fill="#cc1111"/>
+          <circle cx="52"  cy="58"  r="1.8" fill="#cc1111"/>
+
+          <!-- Row 5 -->
+          <circle cx="100" cy="74"  r="2.8" fill="#cc1111"/>
+          <circle cx="84"  cy="74"  r="2.2" fill="#cc1111"/>
+          <circle cx="68"  cy="74"  r="1.5" fill="#cc1111"/>
+
+          <!-- Row 6 -->
+          <circle cx="100" cy="90"  r="1.8" fill="#cc1111"/>
+          <circle cx="84"  cy="90"  r="1.2" fill="#cc1111"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Logo -->
+    <div class="logo-box">
+      <img src="https://static.vecteezy.com/system/resources/thumbnails/014/664/003/small_2x/cafe-and-resto-logo-vector.jpg" alt="Logo">
+    </div>
+
+    <!-- FOOD MENU heading -->
+    <div class="heading-area">
+      <span class="txt-food">Delicious</span>
+      <span class="txt-menu">Delicious</span>
+      <span class="txt-menu">Delicious</span>
+      <span class="txt-menu">Delicious</span>
+      <span class="txt-menu">Delicious</span>
+      <span class="txt-menu">Delicious</span>
+      <span class="txt-menu">Delicious</span>
+    </div>
+
+    <!-- Food plate image -->
+    <div class="plate-wrap">
+      <div class="plate-circle">
+        <img
+          src="https://images.unsplash.com/photo-1544025162-d76694265947?w=700&q=85"
+          crossorigin="anonymous"
+          alt="Grilled steak with vegetables"
+        >
+      </div>
+    </div>
+
+    <!-- Dark bottom strip -->
+    <div class="bottom-strip"></div>
+
+    <!-- Bottom content -->
+    <div class="bottom-content">
+      <div class="restaurant-label">www.zatothaicusine.com</div>
+      <div class="red-line"></div>
+      <div class="delivery-label">Order Online</div>
+      <div class="phone-number">ZATO THAI CUSINE</div>
+      <div class="website-url">144, Texas , Unired States | +141 565 856 522</div>
+    </div>
+
+  </div>
+
+  <!-- Download button -->
+  <button class="dl-btn" id="dlBtn" onclick="downloadPoster()">
+    <i class="bi bi-download"></i> Download Poster
+  </button>
+
+  <script>
+    function downloadPoster() {
+      var card = document.getElementById('menuPoster');
+      var btn  = document.getElementById('dlBtn');
+
+      btn.innerHTML = '<i class="bi bi-hourglass-split"></i> Generating...';
+      btn.disabled  = true;
+
+      var exportWidth = 1080;
+      var scale       = exportWidth / card.offsetWidth;
+
+      html2canvas(card, {
+        scale:           scale,
+        backgroundColor: null,
+        logging:         false,
+        useCORS:         true,
+        allowTaint:      true,
+        imageTimeout:    0,
+        onclone: function(clonedDoc) {
+          var imgs = clonedDoc.querySelectorAll('img');
+          return Promise.all(Array.from(imgs).map(function(img) {
+            return new Promise(function(resolve) {
+              if (img.complete) { resolve(); }
+              else { img.onload = resolve; img.onerror = resolve; }
+            });
+          }));
+        }
+      }).then(function(canvas) {
+        var link      = document.createElement('a');
+        link.download = 'food-menu-poster.png';
+        link.href     = canvas.toDataURL('image/png', 1.0);
+        link.click();
+        btn.innerHTML = '<i class="bi bi-download"></i> Download Poster';
+        btn.disabled  = false;
+      }).catch(function(err) {
+        console.error(err);
+        alert('Failed to generate image. Please try again.');
+        btn.innerHTML = '<i class="bi bi-download"></i> Download Poster';
+        btn.disabled  = false;
+      });
+    }
+  </script>
+
+</body>
+</html> 

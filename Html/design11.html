@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delicious Food Menu Poster</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Oswald:wght@700;800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Water+Brush&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      padding: 30px 20px;
+    }
+
+    /* ══════════════════════════════
+       POSTER
+    ══════════════════════════════ */
+    .poster {
+      width: 420px;
+      height: 530px;
+      background: #ffffff;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    }
+
+    /* ══════════════════════════════
+       SVG TEXTURE BACKGROUND
+    ══════════════════════════════ */
+    .texture-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ══════════════════════════════
+       GREEN DIAGONAL BAND
+    ══════════════════════════════ */
+    .green-band {
+      position: absolute;
+      left: -60px;
+      right: -60px;
+      top: 50%;
+      transform: translateY(-50%) rotate(-8deg);
+      height: 145px;
+      background: #5a8a2a;
+      z-index: 2;
+    }
+    .green-band::before,
+    .green-band::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      height: 0;
+      border-top: 2px dashed rgba(255,255,255,0.55);
+    }
+    .green-band::before { top: 7px; }
+    .green-band::after  { bottom: 7px; border-top: none; border-bottom: 2px dashed rgba(255,255,255,0.55); }
+
+    /* ══════════════════════════════
+       LOGO – top left
+    ══════════════════════════════ */
+.logo{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 12px;
+}
+
+.logo img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+    /* ══════════════════════════════
+       HEADER TEXT
+    ══════════════════════════════ */
+    .header-area {
+      position: absolute;
+      top: 72px; left: 0; right: 0;
+      text-align: center;
+      z-index: 5;
+    }
+    .delicious-text {
+      font-family: 'Dancing Script', cursive;
+      font-size: 34px;
+      color: #2a2a2a;
+      line-height: 1.1;
+      display: block;
+    }
+    .food-menu-text {
+       font-family: "Water Brush", cursive;
+      font-size: 62px;
+       font-style: italic;
+      font-weight: 800;
+      color: #5a8a2a;
+      letter-spacing: 3px;
+      line-height: 1;
+      display: block;
+    }
+
+    /* ══════════════════════════════
+       CIRCULAR FOOD IMAGE
+    ══════════════════════════════ */
+    .plate-wrap {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -48%);
+      width: 280px;
+      height: 280px;
+      z-index: 4;
+    }
+    .plate-circle {
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #222;
+      box-shadow:
+        0 8px 30px rgba(0,0,0,0.35),
+        0 0 0 4px rgba(255,255,255,0.6);
+    }
+    .plate-circle img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+
+    /* ══════════════════════════════
+       ARROWS
+    ══════════════════════════════ */
+    .arrow-tl {
+      position: absolute;
+      top: 118px; left: 28px;
+      z-index: 5;
+      width: 55px; height: 55px;
+    }
+    .arrow-tl svg { width: 100%; height: 100%; }
+
+    .arrow-br {
+      position: absolute;
+      bottom: 118px; right: 28px;
+      z-index: 5;
+      width: 55px; height: 55px;
+    }
+    .arrow-br svg { width: 100%; height: 100%; }
+
+    /* ══════════════════════════════
+       BOTTOM AREA
+    ══════════════════════════════ */
+    .bottom-area {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 24px 22px;
+      flex-direction: column;
+      gap: 0;
+    }
+    .bottom-row {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 14px;
+    }
+    .order-btn {
+      background: #5a8a2a;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 7px 16px;
+      border-radius: 4px;
+      border: 2px solid rgba(255,255,255,0.4);
+      white-space: nowrap;
+    }
+    .phone-number {
+      font-family: 'Oswald', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: 1px;
+      text-align: right;
+      width: 100%;
+    }
+    .phone-address {
+      font-size: 8px;
+      font-weight: 400;
+      color: #1a1a1a;
+      letter-spacing: 1px;
+      text-align: right;
+      width: 100%;
+    }
+
+    /* ══════════════════════════════
+       DOWNLOAD BUTTON
+    ══════════════════════════════ */
+    .dl-btn {
+      margin-top: 20px;
+      background: #5a8a2a;
+      color: #fff; border: none;
+      padding: 11px 28px; font-size: 13px; font-weight: 700;
+      border-radius: 6px; cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      display: flex; align-items: center; gap: 9px;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 4px 16px rgba(90,138,42,0.4);
+    }
+    .dl-btn:hover { background: #4a7520; transform: translateY(-1px); }
+    .dl-btn:active { transform: translateY(0); }
+    .dl-btn:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+  </style>
+</head>
+<body>
+
+  <div class="poster" id="menuPoster">
+
+    <!-- SVG Texture Background: Thai silk diamond weave -->
+    <svg class="texture-bg" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Base diamond tile: 24×24 -->
+        <pattern id="diamondTile" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+          <line x1="0"  y1="0"  x2="24" y2="24" stroke="rgba(0,0,0,0.045)" stroke-width="0.7"/>
+          <line x1="24" y1="0"  x2="0"  y2="24" stroke="rgba(0,0,0,0.045)" stroke-width="0.7"/>
+          <circle cx="12" cy="12" r="1.1" fill="rgba(90,138,42,0.10)"/>
+          <circle cx="0"  cy="0"  r="0.8" fill="rgba(0,0,0,0.04)"/>
+          <circle cx="24" cy="0"  r="0.8" fill="rgba(0,0,0,0.04)"/>
+          <circle cx="0"  cy="24" r="0.8" fill="rgba(0,0,0,0.04)"/>
+          <circle cx="24" cy="24" r="0.8" fill="rgba(0,0,0,0.04)"/>
+        </pattern>
+
+        <!-- Overlaid offset diamond lattice: 48×48 -->
+        <pattern id="outerDiamond" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
+          <polygon
+            points="24,2 46,24 24,46 2,24"
+            fill="none"
+            stroke="rgba(90,138,42,0.07)"
+            stroke-width="0.9"/>
+          <polygon
+            points="24,10 38,24 24,38 10,24"
+            fill="none"
+            stroke="rgba(0,0,0,0.04)"
+            stroke-width="0.7"/>
+          <line x1="24" y1="2"  x2="24" y2="10" stroke="rgba(0,0,0,0.035)" stroke-width="0.6"/>
+          <line x1="46" y1="24" x2="38" y2="24" stroke="rgba(0,0,0,0.035)" stroke-width="0.6"/>
+          <line x1="24" y1="46" x2="24" y2="38" stroke="rgba(0,0,0,0.035)" stroke-width="0.6"/>
+          <line x1="2"  y1="24" x2="10" y2="24" stroke="rgba(0,0,0,0.035)" stroke-width="0.6"/>
+          <circle cx="24" cy="24" r="2"   fill="none" stroke="rgba(90,138,42,0.09)" stroke-width="0.8"/>
+          <circle cx="24" cy="24" r="0.8" fill="rgba(90,138,42,0.12)"/>
+        </pattern>
+
+        <!-- Fine crosshatch fill: 8×8 -->
+        <pattern id="hatch" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
+          <line x1="0" y1="8" x2="8" y2="0" stroke="rgba(0,0,0,0.028)" stroke-width="0.5"/>
+        </pattern>
+      </defs>
+
+      <!-- Layer 1: fine crosshatch -->
+      <rect width="100%" height="100%" fill="url(#hatch)"/>
+      <!-- Layer 2: diamond tile -->
+      <rect width="100%" height="100%" fill="url(#diamondTile)"/>
+      <!-- Layer 3: outer diamond lattice -->
+      <rect width="100%" height="100%" fill="url(#outerDiamond)"/>
+    </svg>
+
+    <!-- Green diagonal band -->
+    <div class="green-band"></div>
+
+    <!-- Logo -->
+  <div class="logo">
+  <img src="https://static.vecteezy.com/system/resources/thumbnails/014/664/003/small_2x/cafe-and-resto-logo-vector.jpg" alt="Logo">
+</div>
+
+    <!-- Header text -->
+    <div class="header-area">
+      <span class="food-menu-text">Hot Pick</span>
+    </div>
+
+    <!-- Arrow top-left -->
+    <div class="arrow-tl">
+      <svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 10 10 Q 8 35 30 44"
+          fill="none" stroke="#1a1a1a" stroke-width="2.5"
+          stroke-linecap="round"/>
+        <path d="M 22 44 L 30 44 L 28 36"
+          fill="none" stroke="#1a1a1a" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- Arrow bottom-right -->
+    <div class="arrow-br">
+      <svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 45 10 Q 48 36 25 44"
+          fill="none" stroke="#1a1a1a" stroke-width="2.5"
+          stroke-linecap="round"/>
+        <path d="M 33 44 L 25 44 L 27 36"
+          fill="none" stroke="#1a1a1a" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- Circular food plate -->
+    <div class="plate-wrap">
+      <div class="plate-circle">
+        <img
+          src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=85"
+          crossorigin="anonymous"
+          alt="Delicious food"
+        >
+      </div>
+    </div>
+
+    <!-- Bottom: ORDER NOW + name + address -->
+    <div class="bottom-area">
+      <div class="bottom-row">
+        <div class="order-btn">ORDER NOW</div>
+      </div>
+      <div class="phone-number">ZATO THAI CUISINE</div>
+      <div class="phone-address">www.restaurant.com | +147 555 564 7744 | 144, Texas, USA</div>
+    </div>
+
+  </div><!-- /.poster -->
+
+  <button class="dl-btn" id="dlBtn" onclick="downloadPoster()">
+    &#11015; Download Poster
+  </button>
+
+  <script>
+    function downloadPoster() {
+      var card = document.getElementById('menuPoster');
+      var btn  = document.getElementById('dlBtn');
+      btn.innerHTML = '⏳ Generating...';
+      btn.disabled = true;
+      html2canvas(card, {
+        scale: 1080 / card.offsetWidth,
+        backgroundColor: null,
+        useCORS: true,
+        allowTaint: true,
+        logging: false,
+        imageTimeout: 0,
+        onclone: function(clonedDoc) {
+          var imgs = clonedDoc.querySelectorAll('img');
+          return Promise.all(Array.from(imgs).map(function(img) {
+            return new Promise(function(resolve) {
+              if (img.complete) resolve();
+              else { img.onload = resolve; img.onerror = resolve; }
+            });
+          }));
+        }
+      }).then(function(canvas) {
+        var a = document.createElement('a');
+        a.download = 'zato-thai-menu-poster.png';
+        a.href = canvas.toDataURL('image/png', 1.0);
+        a.click();
+        btn.innerHTML = '⬇ Download Poster';
+        btn.disabled = false;
+      }).catch(function() {
+        alert('Failed. Please try again.');
+        btn.innerHTML = '⬇ Download Poster';
+        btn.disabled = false;
+      });
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Today Special Food Menu Poster</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      padding: 30px 20px;
+    }
+
+    /* ══════════════════════════════
+       POSTER
+    ══════════════════════════════ */
+    .poster {
+      width: 420px;
+      height: 560px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.9), 0 0 40px rgba(0,80,255,0.2);
+      border-radius: 4px;
+    }
+
+    /* ── Deep navy/blue gradient background ── */
+    .bg-base {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, #020818 0%, #041230 30%, #061a45 60%, #020c28 100%);
+      z-index: 0;
+    }
+
+    /* ── Radial blue glow center ── */
+    .bg-glow-center {
+      position: absolute;
+      top: 30%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 420px; height: 420px;
+      background: radial-gradient(circle, rgba(0,80,200,0.55) 0%, rgba(0,40,120,0.3) 40%, transparent 70%);
+      z-index: 1;
+      border-radius: 50%;
+    }
+
+    /* ── Top orange glow ── */
+    .bg-glow-top {
+      position: absolute;
+      top: -60px; left: 50%;
+      transform: translateX(-50%);
+      width: 300px; height: 200px;
+      background: radial-gradient(ellipse, rgba(255,140,0,0.18) 0%, transparent 70%);
+      z-index: 1;
+    }
+
+    /* ── Circular tech ring (background) ── */
+    .tech-ring {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -52%);
+      width: 410px; height: 410px;
+      border-radius: 50%;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .tech-ring svg {
+      width: 100%; height: 100%;
+    }
+
+    /* ── Outer decorative arc lines ── */
+    .outer-ring {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -52%);
+      width: 440px; height: 440px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,100,255,0.2);
+      z-index: 2;
+    }
+    .outer-ring-2 {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -52%);
+      width: 460px; height: 460px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,80,200,0.12);
+      z-index: 2;
+    }
+
+    /* ── Small scattered dots ── */
+    .dots-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .dot {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,160,0,0.7);
+    }
+
+    /* ── Plate / food image ── */
+    .plate-wrap {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -54%);
+      width: 310px; height: 310px;
+      z-index: 5;
+    }
+    .plate-circle {
+      width: 310px; height: 310px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #fff;
+      box-shadow:
+        0 0 0 6px rgba(255,255,255,0.08),
+        0 0 0 12px rgba(0,80,200,0.15),
+        0 15px 50px rgba(0,0,0,0.7);
+    }
+    .plate-circle img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── Plate bottom shadow arc ── */
+    .plate-shadow {
+      position: absolute;
+      bottom: -20px; left: 50%;
+      transform: translateX(-50%);
+      width: 260px; height: 30px;
+      background: radial-gradient(ellipse, rgba(0,0,0,0.6) 0%, transparent 70%);
+      z-index: 4;
+    }
+
+    /* ══════════════════════════════
+       HEADER AREA
+    ══════════════════════════════ */
+    .header-area {
+      position: absolute;
+      bottom: 55px;
+      left: 0; 
+      right: 0;
+      text-align: center;
+      z-index: 8;
+      padding: 0 24px;
+      transform: rotate(-16deg);
+    }
+    .today-text {
+      font-family: 'Dancing Script', cursive;
+      font-size: 32px;
+      color: #fff;
+      line-height: 1;
+      display: block;
+      letter-spacing: 1px;
+    }
+    .special-text {
+      font-family: 'Pacifico', cursive;
+      font-size: 62px;
+      color: #ff8c00;
+      line-height: 0.95;
+      display: block;
+      letter-spacing: 1px;
+      text-shadow: 0 0 30px rgba(255,140,0,0.5), 2px 2px 0 rgba(0,0,0,0.4);
+    }
+    .food-menu-text {
+          font-family: 'Dancing Script', cursive;
+    font-size: 41px;
+    color: #fff;
+    line-height: 1.1;
+    display: block;
+    letter-spacing: 2px;
+    position: relative;
+    top: -26px;
+    left: 77px;
+    }
+
+    /* ══════════════════════════════
+       DISCOUNT BADGE (top-left)
+    ══════════════════════════════ */
+    .discount-badge {
+      position: absolute;
+      top: 20px; left: 16px;
+      z-index: 9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .badge-upto {
+      font-size: 8px;
+      font-weight: 600;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      line-height: 1;
+    }
+    .badge-percent {
+      font-family: 'Poppins', sans-serif;
+      font-size: 42px;
+      font-weight: 900;
+      color: #ff8c00;
+      line-height: 1;
+      text-shadow: 0 0 20px rgba(255,140,0,0.5);
+    }
+    .badge-percent span {
+      font-size: 18px;
+      vertical-align: top;
+      margin-top: 6px;
+      display: inline-block;
+    }
+    .badge-off {
+      font-size: 11px;
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      line-height: 1;
+    }
+    /* Vertical line left of badge */
+    .badge-line {
+      position: absolute;
+      top: 18px; left: 62px;
+      width: 2px; height: 80px;
+      background: linear-gradient(180deg, transparent, #ff8c00, transparent);
+      z-index: 9;
+    }
+
+    /* ══════════════════════════════
+       QR CODE (top-right)
+    ══════════════════════════════ */
+.logo-wrap {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: rgba(255,255,255,0.08);
+  padding: 6px 10px;
+  border-radius: 30px;
+  border: 1px solid rgba(255,140,0,0.5);
+  backdrop-filter: blur(4px);
+}
+
+.top-logo{
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ff8c00;
+}
+
+.restaurant-name{
+  font-size: 8px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
+    .footer-bar {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 58px;
+      background: linear-gradient(90deg, #051535 0%, #071d4a 50%, #051535 100%);
+      border-top: 1px solid rgba(0,100,255,0.2);
+      z-index: 8;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+    }
+
+    .footer-contact {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .footer-contact .fc-label {
+      font-size: 6px;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    .footer-contact .fc-value {
+      font-size: 7.5px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.04em;
+    }
+    .footer-contact .fc-icon {
+      font-size: 14px;
+      color: #ff8c00;
+      margin-bottom: 2px;
+    }
+
+    /* CENTER ORDER NOW button */
+    .order-btn {
+      background: linear-gradient(135deg, #ff8c00 0%, #e65c00 100%);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 10px 22px;
+      border-radius: 30px;
+      border: 2px solid rgba(255,255,255,0.2);
+      box-shadow: 0 4px 20px rgba(255,140,0,0.5), 0 0 0 3px rgba(255,140,0,0.15);
+      white-space: nowrap;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .footer-website {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    .footer-website .fw-icon {
+      font-size: 14px;
+      color: #ff8c00;
+      margin-bottom: 2px;
+    }
+    .footer-website .fw-label {
+      font-size: 6px;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    .footer-website .fw-value {
+      font-size: 7.5px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    /* ══════════════════════════════
+       DOWNLOAD BUTTON
+    ══════════════════════════════ */
+    .dl-btn {
+      margin-top: 22px;
+      background: linear-gradient(135deg, #ff8c00 0%, #e65c00 100%);
+      color: #fff;
+      border: none;
+      padding: 12px 30px;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      letter-spacing: 0.05em;
+      transition: opacity 0.2s, transform 0.1s;
+      box-shadow: 0 4px 20px rgba(255,140,0,0.45);
+    }
+    .dl-btn:hover { opacity: 0.92; transform: translateY(-1px); }
+    .dl-btn:active { transform: translateY(0); }
+    .dl-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .restaurant-details{
+    position: absolute;
+    top: 18px;
+    left: 14px;
+    z-index: 9;
+}
+
+    .restaurant-address{
+    font-size: 8px;
+    font-weight: 400;
+    color: #d7d7d7;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.restaurant-name{
+    font-size: 10px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+  </style>
+</head>
+<body>
+
+  <div class="poster" id="menuPoster">
+
+    <!-- Backgrounds -->
+    <div class="bg-base"></div>
+    <div class="bg-glow-center"></div>
+    <div class="bg-glow-top"></div>
+    <div class="outer-ring"></div>
+    <div class="outer-ring-2"></div>
+
+    <!-- SVG Tech Ring -->
+    <div class="tech-ring">
+      <svg viewBox="0 0 410 410" xmlns="http://www.w3.org/2000/svg">
+        <!-- Main tech circle -->
+        <circle cx="205" cy="205" r="190" fill="none" stroke="rgba(0,100,255,0.35)" stroke-width="1.5" stroke-dasharray="6 4"/>
+        <circle cx="205" cy="205" r="175" fill="none" stroke="rgba(0,80,200,0.2)" stroke-width="1"/>
+        <circle cx="205" cy="205" r="155" fill="none" stroke="rgba(0,100,255,0.15)" stroke-width="0.8"/>
+
+        <!-- Tick marks around outer ring -->
+        <g stroke="rgba(0,120,255,0.5)" stroke-width="1.5">
+          <line x1="205" y1="15" x2="205" y2="25"/>
+          <line x1="205" y1="385" x2="205" y2="395"/>
+          <line x1="15"  y1="205" x2="25"  y2="205"/>
+          <line x1="385" y1="205" x2="395" y2="205"/>
+          <line x1="61"  y1="61"  x2="68"  y2="68"/>
+          <line x1="342" y1="342" x2="349" y2="349"/>
+          <line x1="342" y1="61"  x2="349" y2="68"/>
+          <line x1="61"  y1="342" x2="68"  y2="349"/>
+        </g>
+
+        <!-- Orange arc highlight top -->
+        <path d="M 100 60 A 160 160 0 0 1 310 60" fill="none" stroke="rgba(255,140,0,0.5)" stroke-width="2" stroke-linecap="round"/>
+
+        <!-- Small orange dots on ring -->
+        <circle cx="205" cy="15"  r="3" fill="#ff8c00"/>
+        <circle cx="395" cy="205" r="3" fill="#ff8c00"/>
+        <circle cx="15"  cy="205" r="3" fill="rgba(255,140,0,0.5)"/>
+        <circle cx="205" cy="395" r="3" fill="rgba(255,140,0,0.5)"/>
+
+        <!-- Inner data circles -->
+        <circle cx="205" cy="205" r="140" fill="rgba(0,40,120,0.25)" stroke="rgba(0,80,200,0.3)" stroke-width="1"/>
+      </svg>
+    </div>
+
+    <!-- Scattered decorative dots -->
+    <div class="dots-layer">
+      <div class="dot" style="width:4px;height:4px;top:15%;left:18%;"></div>
+      <div class="dot" style="width:3px;height:3px;top:12%;left:72%;opacity:0.5;"></div>
+      <div class="dot" style="width:5px;height:5px;top:22%;right:22%;opacity:0.6;"></div>
+      <div class="dot" style="width:3px;height:3px;top:68%;left:8%;opacity:0.5;"></div>
+      <div class="dot" style="width:4px;height:4px;top:72%;right:10%;opacity:0.7;"></div>
+      <div class="dot" style="width:3px;height:3px;top:40%;left:5%;background:rgba(0,150,255,0.7);"></div>
+      <div class="dot" style="width:3px;height:3px;top:35%;right:5%;background:rgba(0,150,255,0.7);"></div>
+    </div>
+
+    <!-- Header text -->
+    <div class="header-area">
+      <span class="special-text">Fresh</span>
+      <span class="food-menu-text">Catch</span>
+    </div>
+
+    <!-- Discount badge top-left -->
+    <div class="discount-badge">
+      
+    </div>
+
+    <!-- QR code top-right -->
+     <div class="restaurant-details">
+       <div class="restaurant-name">ZATO THAI CUISINE</div>
+       <div class="restaurant-address">144, Texas, USA</div>
+
+     </div>
+<div class="logo-wrap">
+    <img src="https://static.vecteezy.com/system/resources/thumbnails/014/664/003/small_2x/cafe-and-resto-logo-vector.jpg" alt="Logo" class="top-logo">
+</div>
+
+
+    <!-- Food plate image -->
+    <div class="plate-wrap">
+      <div class="plate-circle">
+        <img
+          src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=85"
+          crossorigin="anonymous"
+          alt="Today's Special Dish"
+        >
+      </div>
+      <div class="plate-shadow"></div>
+    </div>
+
+    <!-- Footer bar -->
+    <div class="footer-bar">
+      <!-- Contact Us -->
+      <div class="footer-contact">
+        <div class="fc-label">Contact Us</div>
+        <div class="fc-value">+1 800 555 0199</div>
+        <!-- <div class="fc-value">144, Texas, USA</div> -->
+      </div>
+
+      <!-- ORDER NOW -->
+      <!-- <div class="order-btn">ORDER NOW</div> -->
+
+      <!-- Visit Our Website -->
+      <div class="footer-website">
+        <div class="fw-label">Visit Our Website</div>
+        <div class="fw-value">www.restaurant.com</div>
+      </div>
+    </div>
+
+  </div><!-- /.poster -->
+
+  <!-- Download Button -->
+  <button class="dl-btn" id="dlBtn" onclick="downloadPoster()">
+    &#11015; Download Poster
+  </button>
+
+  <script>
+    function downloadPoster() {
+      var card = document.getElementById('menuPoster');
+      var btn  = document.getElementById('dlBtn');
+
+      btn.innerHTML = '⏳ Generating...';
+      btn.disabled  = true;
+
+      var exportWidth = 1080;
+      var scale       = exportWidth / card.offsetWidth;
+
+      html2canvas(card, {
+        scale:           scale,
+        backgroundColor: null,
+        logging:         false,
+        useCORS:         true,
+        allowTaint:      true,
+        imageTimeout:    0,
+        onclone: function(clonedDoc) {
+          var imgs = clonedDoc.querySelectorAll('img');
+          return Promise.all(Array.from(imgs).map(function(img) {
+            return new Promise(function(resolve) {
+              if (img.complete) { resolve(); }
+              else { img.onload = resolve; img.onerror = resolve; }
+            });
+          }));
+        }
+      }).then(function(canvas) {
+        var link      = document.createElement('a');
+        link.download = 'today-special-poster.png';
+        link.href     = canvas.toDataURL('image/png', 1.0);
+        link.click();
+        btn.innerHTML = '⬇ Download Poster';
+        btn.disabled  = false;
+      }).catch(function(err) {
+        console.error(err);
+        alert('Failed to generate image. Please try again.');
+        btn.innerHTML = '⬇ Download Poster';
+        btn.disabled  = false;
+      });
+    }
+  </script>
+
+</body>
+</html>
