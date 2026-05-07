@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zato Thai Cuizine Poster</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@1,700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #e8e0d8;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 30px;
+    font-family: sans-serif;
+  }
+  .poster {
+    position: relative;
+    width: 360px;
+    height: 450px; /* 360 * 1.25 = 450 → 4:5 ratio */
+    background: #f5f0ea;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    display: flex;
+    flex-direction: column;
+  }
+  .brand-header {
+   position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    z-index: 10;
+    color: #181616;
+   background: #3633339c; 
+    padding: 0px 8px 0 0px;
+    border-radius: 27px;
+  }
+  .brand-header img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    border-radius: 50%;
+  }
+  .brand-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #ffffff;
+  }
+  .middle {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: stretch;
+  }
+  .food-col {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 52%;
+    z-index: 4;
+    overflow: hidden;
+  }
+  .food-col img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    clip-path: ellipse(90% 100% at 10% 50%);
+  }
+  .overlay-tint {
+    position: absolute;
+    left: 40%; top: 0; right: 0; bottom: 0;
+    background: linear-gradient(to right, transparent 0%, #f5f0ea 30%);
+    z-index: 3;
+    pointer-events: none;
+  }
+  .headline-col {
+    position: absolute;
+    right: -70px;
+    top: 0;
+    bottom: 0;
+    width: 60%;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 16px;
+  }
+  .headline {
+    font-family: 'Anton', sans-serif;
+    font-size: 72px;
+    line-height: 0.91;
+    color: #c97a1a;
+    text-transform: uppercase;
+    text-align: right;
+    letter-spacing: -1px;
+    text-shadow: 3px 3px 0 rgba(0,0,0,0.08);
+    transform: rotate(90deg);
+  }
+  .bottom {
+    background: #f5f0ea;
+    padding: 12px 20px 14px;
+    z-index: 10;
+    text-align: center;
+    border-top: 1.5px solid rgba(180,140,80,0.2);
+  }
+  .price {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 28px;
+    color: #c97a1a;
+    margin-bottom: 3px;
+  }
+  .tagline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-style: italic;
+    font-size: 11px;
+    color: #7a6a58;
+    letter-spacing: 0.3px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  .cta {
+    display: inline-block;
+    background: #c97a1a;
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 7px 24px;
+    border-radius: 30px;
+  }
+  /* Footer */
+  .footer {
+    background: #2b1f0e;
+    padding: 4px 20px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .footer-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #f5f0ea;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+  .footer-icon {
+    width: 12px;
+    height: 12px;
+    fill: #c97a1a;
+    flex-shrink: 0;
+  }
+  .footer-divider {
+    width: 1px;
+    height: 22px;
+    background: rgba(245,240,234,0.2);
+  }
+  .dl-btn {
+    background: #c97a1a;
+    color: #fff;
+    border: none;
+    padding: 11px 30px;
+    font-family: 'Anton', sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(201,122,26,0.45);
+    transition: opacity .2s, transform .15s;
+  }
+  .dl-btn:hover   { opacity: .88; transform: translateY(-2px); }
+  .dl-btn:active  { transform: translateY(0); }
+  .dl-btn:disabled { opacity: .55; cursor: not-allowed; transform: none; }
+</style>
+</head>
+<body>
+
+<div class="poster" id="poster">
+
+  <div class="brand-header">
+    <img src="https://static.vecteezy.com/system/resources/thumbnails/014/664/003/small_2x/cafe-and-resto-logo-vector.jpg" alt="Logo" crossorigin="anonymous">
+    <div class="brand-name">Zato Thai Cuizine</div>
+  </div>
+
+  <div class="middle">
+    <div class="food-col">
+      <img src="/images/image.png">
+    </div>
+    <div class="overlay-tint"></div>
+    <div class="headline-col">
+      <h1 class="headline">Deeply<br>Satisfying</h1>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="price">ZINGER BURGER</div>
+    <div class="tagline">
+      Delicious food that makes you feel good from the inside out. Delicious food that makes you feel good from the inside out.
+    </div>
+    <!-- <div class="cta">Order now!</div> -->
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-item">
+      <svg class="footer-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10
+           10-4.48 10-10S17.52 2 12 2zm6.93 6h-2.95
+           c-.32-1.25-.82-2.43-1.46-3.47A8.03 8.03 0 0 1 18.93 8zM12 4
+           c.83 1.2 1.48 2.57 1.87 4h-3.74C10.52 6.57 11.17 5.2 12 4zM4.26 14
+           a7.93 7.93 0 0 1 0-4h3.08a16.6 16.6 0 0 0 0 4H4.26zm.81 2h2.95
+           c.32 1.25.82 2.43 1.46 3.47A8.03 8.03 0 0 1 5.07 16zM8.02 8H5.07
+           a8.03 8.03 0 0 1 4.41-3.47C8.84 5.57 8.34 6.75 8.02 8zM12 20
+           c-.83-1.2-1.48-2.57-1.87-4h3.74c-.39 1.43-1.04 2.8-1.87 4zm2.3-6H9.7
+           a14.6 14.6 0 0 1 0-4h4.6a14.6 14.6 0 0 1 0 4zm.22 5.47
+           c.64-1.04 1.14-2.22 1.46-3.47h2.95a8.03 8.03 0 0 1-4.41 3.47zM16.66 14
+           a16.6 16.6 0 0 0 0-4h3.08a7.93 7.93 0 0 1 0 4h-3.08z"/>
+</svg>
+      <span>www.zatothaicuizine.com</span>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-item">
+      <svg class="footer-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.33 21 3 13.67 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.21 2.2z"/>
+      </svg>
+      <span>+91 98765 43210</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- <button class="dl-btn" id="dlBtn" onclick="downloadPoster()">⬇ Download Poster</button> -->
+
+<script>
+function downloadPoster() {
+  const card = document.getElementById('poster');
+  const btn  = document.getElementById('dlBtn');
+  btn.textContent = '⏳ Generating…';
+  btn.disabled = true;
+  const scale = 1080 / card.offsetWidth;
+  html2canvas(card, {
+    scale, backgroundColor: null, logging: false,
+    useCORS: true, allowTaint: true, imageTimeout: 0,
+    onclone(clonedDoc) {
+      const imgs = clonedDoc.querySelectorAll('img');
+      return Promise.all([...imgs].map(img =>
+        new Promise(res => {
+          if (img.complete) res();
+          else { img.onload = res; img.onerror = res; }
+        })
+      ));
+    }
+  }).then(canvas => {
+    const a = document.createElement('a');
+    a.download = 'zato-thai-poster.png';
+    a.href = canvas.toDataURL('image/png', 1.0);
+    a.click();
+    btn.textContent = '⬇ Download Poster';
+    btn.disabled = false;
+  }).catch(err => {
+    console.error(err);
+    alert('Download failed – please try again.');
+    btn.textContent = '⬇ Download Poster';
+    btn.disabled = false;
+  });
+}
+</script>
+</body>
+</html>
