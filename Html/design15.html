@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Borcelle Restaurant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #ddd8d0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      padding: 40px 20px;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* ── POSTER SHELL ── */
+    .poster {
+      position: relative;
+      width: 340px;
+      height: 460px;
+      background: #f0ece6;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 16px 50px rgba(0, 0, 0, 0.22);
+    }
+
+    /* Faded background food collage */
+    .bg-collage {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .bg-collage img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.13;
+      filter: grayscale(30%);
+    }
+
+    /* Dot pattern overlays */
+    .dots {
+      position: absolute;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(4, 6px);
+      gap: 5px;
+      pointer-events: none;
+    }
+
+    .dots span {
+      width: 4px;
+      height: 4px;
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 50%;
+      display: block;
+    }
+
+    .dots.tl {
+      top: 60px;
+      left: 14px;
+    }
+
+    .dots.tr {
+      top: 60px;
+      right: 14px;
+    }
+
+    .dots.bl {
+      bottom: 80px;
+      left: 14px;
+    }
+
+    .dots.br {
+      bottom: 80px;
+      right: 14px;
+    }
+
+    /* Brand name */
+    .brand {
+      position: absolute;
+      top: 14px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      color: #444;
+      z-index: 10;
+      text-transform: uppercase;
+    }
+
+    /* ── ARCH PHOTO FRAME ── */
+    .arch-wrap {
+      position: absolute;
+      top: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 220px;
+      height: 250px;
+      z-index: 6;
+      /* arch = rectangle bottom + semicircle top */
+      border-radius: 110px 110px 0 0;
+      overflow: hidden;
+      border: 4px solid #1a1a1a;
+      background: #1a1a1a;
+    }
+
+    .arch-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      display: block;
+    }
+
+    /* ── DARK INFO CARD ── */
+    .info-card {
+      position: absolute;
+      bottom: 52px;
+      left: 18px;
+      right: 18px;
+      background: #1a1a1a;
+      border-radius: 14px;
+      padding: 18px 18px 16px;
+      z-index: 7;
+    }
+
+    /* Price tag */
+    .price-tag {
+      position: absolute;
+      top: -18px;
+      right: 18px;
+      width: 50px;
+      height: 50px;
+      background: #f0ece6;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      border: 2px solid #1a1a1a;
+      overflow: hidden;
+    }
+
+    .price-tag img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .dish-name {
+      font-family: 'Anton', sans-serif;
+      font-size: 26px;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+      padding-right: 80px;
+      /* space for price tag */
+      line-height: 1.1;
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.15);
+      margin-bottom: 10px;
+    }
+
+    .dish-desc {
+      font-size: 10.5px;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.6;
+      margin-bottom: 12px;
+      max-width: 200px;
+    }
+
+    /* Stars */
+    .stars {
+      display: flex;
+      gap: 3px;
+    }
+
+    .stars span {
+      font-size: 8px;
+      color: #f5a623;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .stars span.empty {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 46px;
+    background: #f0ece6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    z-index: 8;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    margin: 0 20px;
+    }
+
+    .f-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 9.5px;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .f-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .f-dot.orange {
+      background: #1a1a1a;
+    }
+
+    .f-dot.green {
+      background: #1a1a1a;
+    }
+
+    .f-dot svg {
+      width: 10px;
+      height: 10px;
+      fill: #fff;
+    }
+
+    /* ── DOWNLOAD BUTTON ── */
+    .dl-btn {
+      background: #1a1a1a;
+      color: #fff;
+      border: none;
+      padding: 12px 36px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 1px;
+      border-radius: 32px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      transition: opacity .2s, transform .15s;
+    }
+
+    .dl-btn:hover {
+      opacity: .85;
+      transform: translateY(-2px);
+    }
+
+    .dl-btn:active {
+      transform: translateY(0);
+    }
+
+    .dl-btn:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+      transform: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="poster" id="poster">
+
+    <!-- BG collage -->
+    <div class="bg-collage">
+      <img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=700&q=60" alt="" crossorigin="anonymous">
+    </div>
+
+    <!-- Dot patterns -->
+    <div class="dots tl">
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <div class="dots tr">
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <div class="dots bl">
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <div class="dots br">
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+    </div>
+
+    <!-- Brand -->
+    <!-- 🔁 Edit brand name -->
+    <div class="brand">Borcelle restaurant</div>
+
+    <!-- Arch food photo -->
+    <div class="arch-wrap">
+      <!-- 🔁 Replace with your food image -->
+      <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=500&q=85" alt="Chicken Tikka"
+        crossorigin="anonymous">
+    </div>
+
+    <!-- Info card -->
+    <div class="info-card">
+
+      <!-- Price tag -->
+      <!-- 🔁 Edit price -->
+      <div class="price-tag">
+        <img
+          src="https://static.vecteezy.com/system/resources/thumbnails/014/664/003/small_2x/cafe-and-resto-logo-vector.jpg"
+          alt="Restaurant Logo" crossorigin="anonymous">
+      </div>
+
+      <!-- Dish name -->
+      <!-- 🔁 Edit dish name -->
+      <div class="dish-name">Chicken Tikka</div>
+
+      <div class="divider"></div>
+
+      <!-- Description -->
+      <!-- 🔁 Edit description -->
+      <div class="dish-desc">
+        Creamy tomato-based curry with tender chicken,
+        enriched with butter, cream, and aromatic Indian
+        spices.
+      </div>
+
+      <!-- Stars: fill/empty -->
+      <!-- 🔁 Edit star count (fill = filled, empty = hollow) -->
+      <div class="stars">
+        <span>Fan Favorite ★</span>
+
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <!-- 🔁 Edit website -->
+      <div class="f-item">
+        
+        www.reallygreatsite.com
+      </div>
+      <!-- 🔁 Edit phone -->
+      <div class="f-item">
+        
+        +123-456-7890
+      </div>
+    </div>
+
+  </div>
+
+  <!-- <button class="dl-btn" id="dlBtn" onclick="downloadPoster()">⬇ Download Poster</button> -->
+
+  <script>
+    function downloadPoster() {
+      const card = document.getElementById('poster');
+      const btn = document.getElementById('dlBtn');
+      btn.textContent = '⏳ Generating…';
+      btn.disabled = true;
+      const scale = 1080 / card.offsetWidth;
+      html2canvas(card, {
+        scale,
+        backgroundColor: null,
+        logging: false,
+        useCORS: true,
+        allowTaint: true,
+        imageTimeout: 0,
+        onclone(clonedDoc) {
+          const imgs = clonedDoc.querySelectorAll('img');
+          return Promise.all([...imgs].map(img =>
+            new Promise(res => {
+              if (img.complete) res();
+              else { img.onload = res; img.onerror = res; }
+            })
+          ));
+        }
+      }).then(canvas => {
+        const a = document.createElement('a');
+        a.download = 'chicken-tikka-poster.png';
+        a.href = canvas.toDataURL('image/png', 1.0);
+        a.click();
+        btn.textContent = '⬇ Download Poster';
+        btn.disabled = false;
+      }).catch(err => {
+        console.error(err);
+        alert('Download failed – please try again.');
+        btn.textContent = '⬇ Download Poster';
+        btn.disabled = false;
+      });
+    }
+  </script>
+
+</body>
+
+</html>
