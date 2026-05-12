@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Healthy Food Promo — Instagram 4:5</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    padding: 48px 20px;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* ─────────────────────────────
+     POSTER  — Instagram 4:5
+     1080 × 1350 px display at 432×540
+  ───────────────────────────────*/
+  .poster {
+    position: relative;
+    width: 432px;
+    height: 540px;   /* 432 × 5/4 = 540 */
+    background: #0c1608;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  /* ── PHOTO ── */
+  .photo-block {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 330px;
+    overflow: hidden;
+  }
+  .photo-block img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    display: block;
+    filter: brightness(0.62) saturate(1.15);
+  }
+  .photo-fade {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 190px;
+    background: linear-gradient(to bottom, transparent 0%, #0c1608 82%);
+  }
+
+  /* ── TOP BAR ── */
+  .top-bar {
+    position: absolute;
+    top: 20px; left: 20px; right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    background: rgba(0,0,0,0.38);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 0.5px solid rgba(255,255,255,0.18);
+    border-radius: 40px;
+    padding: 6px 14px 6px 7px;
+  }
+  .logo-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #8cc63f;
+  }
+  .logo-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+  .logo-name {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.2px;
+  }
+  .logo-sub {
+    font-size: 8px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.48);
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+  }
+
+  
+  /* ── DECO RINGS ── */
+  .ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(140,198,63,0.14);
+    pointer-events: none;
+    z-index: 4;
+  }
+  .ring-1 { width: 170px; height: 170px; top: 238px; right: -50px; }
+  .ring-2 { width: 104px; height: 104px; top: 272px; right: -18px; }
+
+  /* ── MAIN CONTENT ── */
+  .content {
+    position: absolute;
+    bottom: 76px; left: 0; right: 0;
+    padding: 0 24px;
+    z-index: 5;
+  }
+
+  .promo-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .promo-line {
+    height: 1px;
+    width: 28px;
+    background: #8cc63f;
+    flex-shrink: 0;
+  }
+  .promo-text {
+    font-size: 9.5px;
+    font-weight: 600;
+    color: #8cc63f;
+    letter-spacing: 2.8px;
+    text-transform: uppercase;
+  }
+
+  .headline {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 58px;
+    line-height: 0.91;
+    color: #f4ede0;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+  }
+  .headline em {
+    font-style: italic;
+    color: #8cc63f;
+  }
+
+  .desc {
+    font-size: 10.5px;
+    color: rgba(255,255,255,0.46);
+    line-height: 1.72;
+    font-weight: 400;
+    max-width: 230px;
+    margin-bottom: 22px;
+  }
+
+  
+
+  /* ─────────────────────────────
+     FOOTER  — two rows, centered
+  ───────────────────────────────*/
+  .footer {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 68px;
+    background: rgba(255,255,255,0.04);
+    border-top: 0.5px solid rgba(255,255,255,0.07);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 0 16px;
+    z-index: 9;
+  }
+
+  /* Row 1: address centered */
+  .f-address {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: rgba(255,255,255,0.55);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+  }
+  .f-address svg {
+    width: 11px;
+    height: 11px;
+    fill: #8cc63f;
+    flex-shrink: 0;
+  }
+
+  /* Row 2: phone · separator · website */
+  .f-contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .f-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: rgba(255,255,255,0.34);
+    font-size: 8.5px;
+    font-weight: 400;
+    white-space: nowrap;
+    letter-spacing: 0.1px;
+  }
+  .f-item svg {
+    width: 10px;
+    height: 10px;
+    fill: rgba(140,198,63,0.65);
+    flex-shrink: 0;
+  }
+  .f-sep {
+    width: 1px;
+    height: 14px;
+    background: rgba(255,255,255,0.12);
+    flex-shrink: 0;
+  }
+
+  /* ── DOWNLOAD BUTTON ── */
+  .dl-btn {
+    background: #8cc63f;
+    color: #0c1608;
+    border: none;
+    padding: 14px 44px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.8px;
+    border-radius: 40px;
+    cursor: pointer;
+    box-shadow: 0 6px 28px rgba(140,198,63,0.38);
+    transition: opacity .2s, transform .15s;
+  }
+  .dl-btn:hover   { opacity: .88; transform: translateY(-2px); }
+  .dl-btn:active  { transform: translateY(0); }
+  .dl-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+</style>
+</head>
+<body>
+
+<div class="poster" id="poster">
+
+  <!-- PHOTO -->
+  <div class="photo-block">
+    <img
+      src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=90"
+      alt="Fresh healthy food bowl"
+      crossorigin="anonymous"
+    >
+    <div class="photo-fade"></div>
+  </div>
+
+  <!-- DECORATIVE RINGS -->
+  <div class="ring ring-1"></div>
+  <div class="ring ring-2"></div>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+
+    <!-- 🔁 Edit logo -->
+    <div class="logo">
+      <div class="logo-icon">
+        <img
+          src="https://static.vecteezy.com/system/resources/thumbnails/014/664/003/small_2x/cafe-and-resto-logo-vector.jpg"
+          alt="Restaurant Logo"
+          crossorigin="anonymous"
+        >
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">Zato Thai Cuisine</span>
+        
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="content">
+
+    <!-- 🔁 Edit promo label -->
+    <div class="promo-label">
+      <div class="promo-line"></div>
+      <span class="promo-text">Zinger Burger</span>
+    </div>
+
+    <!-- 🔁 Edit headline -->
+    <div class="headline">
+      Richly <br><em>Crafted</em>
+    </div>
+
+    <!-- 🔁 Edit description -->
+    <p class="desc">
+      Good food is the foundation of healthy living —
+      fresh ingredients, natural flavors, and nourishing
+      meals crafted for you every day.
+    </p>
+
+   
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+
+    <!-- Row 1: Address (centered, single line) -->
+    <!-- 🔁 Edit address -->
+    <div class="f-address">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
+      </svg>
+      123 Anywhere Street, Any City, State 00000
+    </div>
+
+    <!-- Row 2: Phone · Website -->
+    <div class="f-contact">
+
+      <!-- 🔁 Edit phone -->
+      <div class="f-item">
+        <svg viewBox="0 0 24 24">
+          <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.33 21 3 13.67 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.21 2.2z"/>
+        </svg>
+        +123-456-7890
+      </div>
+
+      <div class="f-sep"></div>
+
+      <!-- 🔁 Edit website -->
+      <div class="f-item">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+        </svg>
+        www.reallygreatsite.com
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- DOWNLOAD BUTTON -->
+<button class="dl-btn" id="dlBtn" onclick="downloadPoster()">⬇ Download Poster</button>
+
+<script>
+function downloadPoster() {
+  const card = document.getElementById('poster');
+  const btn  = document.getElementById('dlBtn');
+  btn.textContent = '⏳ Generating…';
+  btn.disabled = true;
+
+  /* Output at 1080×1350 (true Instagram 4:5) */
+  const scale = 1080 / card.offsetWidth;
+
+  html2canvas(card, {
+    scale,
+    backgroundColor: '#0c1608',
+    logging: false,
+    useCORS: true,
+    allowTaint: true,
+    imageTimeout: 0,
+    onclone(clonedDoc) {
+      const imgs = clonedDoc.querySelectorAll('img');
+      return Promise.all([...imgs].map(img =>
+        new Promise(res => {
+          if (img.complete) res();
+          else { img.onload = res; img.onerror = res; }
+        })
+      ));
+    }
+  }).then(canvas => {
+    const a = document.createElement('a');
+    a.download = 'healthy-food-instagram-4x5.png';
+    a.href = canvas.toDataURL('image/png', 1.0);
+    a.click();
+    btn.textContent = '⬇ Download Poster';
+    btn.disabled = false;
+  }).catch(err => {
+    console.error(err);
+    alert('Download failed – please try again.');
+    btn.textContent = '⬇ Download Poster';
+    btn.disabled = false;
+  });
+}
+</script>
+
+</body>
+</html>
