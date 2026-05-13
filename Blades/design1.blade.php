@@ -37,10 +37,8 @@
     }
 
   .design1-wrapper .d1-logo img {
-        width: 2rem;
+        width: auto;
         height: 2rem;
-        border-radius: 50%;
-        object-fit: cover;
         display: block;
         flex-shrink: 0;
     }
@@ -258,10 +256,10 @@
 
     {{-- Download button (inside modal column, below card) --}}
     
-  <!--<button type="button" class="d1-download-btn" onclick="downloadDesign1()">-->
-  <!--     <i class="bi bi-download"></i>-->
-  <!--     Download Poster-->
-  <!--  </button> -->
+  {{-- <button type="button" class="d1-download-btn" onclick="downloadDesign1()">
+       <i class="bi bi-download"></i>
+       Download Poster
+    </button>  --}}
 
 </div>{{-- /.design1-wrapper --}}
 

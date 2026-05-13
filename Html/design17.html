@@ -3,370 +3,522 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Healthy Food Promo</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<title>Luxury Restaurant Poster</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  body {
-    background: #c8c0d4;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 24px;
-    padding: 40px 20px;
-  }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-  /* ── POSTER: white, portrait, no border ── */
-  .poster {
-    position: relative;
-    width: 360px;
-    height: 460px;
-    background: #ffffff;
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.20);
-    font-family: 'Montserrat', sans-serif;
-  }
+body{
+  background:#e7e1d9;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:40px;
+  font-family:'Jost',sans-serif;
+}
 
-  /* =====================
-     TOP HALF — PHOTO ZONE
-     ===================== */
+.poster{
+  width:430px;
+  background:#faf7f2;
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(139,104,69,0.15);
+}
 
-  /* Food plate image — fills left ~73% of top, rounded bottom-right */
-  .plate-photo {
-position: absolute;
-    top: 0;
-    left: 113px;
-    width: 268px;
-    height: 200px;
-    overflow: hidden;
-    border-radius: 110px 0;
-    z-index: 3;
-  }
-  .plate-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 25%;
-    display: block;
-  }
+/* =========================
+   BACKGROUND PATTERN
+========================= */
 
-  /* Green ring arc — large circle, only bottom-left quadrant visible */
-  .green-ring {
-position: absolute;
-    top: -55px;
-    right: 103px;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    border: 18px solid #6aaa30;
-    background: #6aaa30;
-    opacity: 0.5;
-    z-index: 2;
-  }
+.poster::before{
+  content:"";
+  position:absolute;
+  inset:0;
 
-  /* Herb strip — right edge, full height of photo zone */
-  .herb-strip {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 76px;
-    height: 210px;
-    overflow: hidden;
-    z-index: 3;
-    border-radius: 0 4px 0 0;
-  }
-  .herb-strip img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-  }
+  background-image:
+  radial-gradient(rgba(139,104,69,0.08) 1px, transparent 1px);
 
-  /* Brand name — sits between plate photo right edge and herb strip */
-  .brand {
-    position: absolute;
-    top: 13px;
-    right: 82px;
-    z-index: 10;
-    font-size: 9px;
-    font-weight: 600;
-    color: #333;
-    letter-spacing: 0.4px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    white-space: nowrap;
-  }
-  .brand-icon {
-    font-size: 12px;
-  }
+  background-size:20px 20px;
 
-  /* =====================
-     LOWER CONTENT ZONE
-     ===================== */
-  .content {
-    position: absolute;
-    top: 200px;
-    left: 0; right: 0; bottom: 42px;
-    padding: 14px 22px 0 22px;
-    background: #fff;
-    z-index: 5;
-  }
+  opacity:.4;
+}
 
-  /* "Special Promo" italic script */
-  .special-promo {
-    font-family: 'Great Vibes', cursive;
-    font-size: 22px;
-    color: #4a8a18;
-    margin-bottom: 0px;
-    font-weight: 400;
-    line-height: 1.1;
-  }
+/* =========================
+   HEADER
+========================= */
 
-  /* "Healthy" — large, light-medium green weight */
-  .h-healthy {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-    font-size: 62px;
-    color: #4a8a18;
-    line-height: 1.0;
-    letter-spacing: -1px;
-  }
+.header{
+  position:relative;
+  z-index:2;
 
-  /* "FOOD" — large, heavy black */
-  .h-food {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    font-size: 62px;
-    color: #1a1a1a;
-    line-height: 0.95;
-    letter-spacing: -1px;
-    margin-bottom: 10px;
-  }
+  background:#2c1f14;
 
-  /* Description + CTA row */
-  .bottom-row {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 10px;
-  }
+  padding:26px 30px 20px;
+}
 
-  /* Green ORDER NOW button */
-  .cta {
-    flex-shrink: 0;
-    background: #4a8a18;
-    color: #fff;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 9px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 9px 14px;
-    border-radius: 3px;
-    white-space: nowrap;
-    align-self: flex-start;
-    margin-top: 2px;
-  }
+.logo-wrap{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
 
-  /* Description paragraph — right of button */
-  .desc {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 8px;
-    color: #555;
-    line-height: 1.7;
-    font-weight: 400;
-    flex: 1;
-    text-align: left;
-    padding-left: 4px;
-  }
+/* logo image */
 
-  /* =====================
-     FOOTER BAR
-     ===================== */
-  .footer {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 40px;
-    background: #3d6e10;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 14px;
-    z-index: 9;
-  }
+.logo-ring{
+  width:58px;
+  height:58px;
 
-  .f-item {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    color: rgba(255,255,255,0.92);
-    font-size: 7.5px;
-    font-weight: 500;
-    letter-spacing: 0.1px;
-    white-space: nowrap;
-  }
-  .f-item svg {
-    width: 9px; height: 9px;
-    fill: rgba(255,255,255,0.85);
-    flex-shrink: 0;
-  }
-  /* small bullet separator */
-  .f-bull {
-    color: rgba(255,255,255,0.4);
-    font-size: 12px;
-    line-height: 1;
-  }
+  border-radius:50%;
+  overflow:hidden;
 
-  /* ── DOWNLOAD BUTTON ── */
-  .dl-btn {
-    background: #4a8a18;
-    color: #fff;
-    border: none;
-    padding: 12px 36px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 1px;
-    border-radius: 32px;
-    cursor: pointer;
-    box-shadow: 0 4px 20px rgba(74,138,24,0.4);
-    transition: opacity .2s, transform .15s;
-  }
-  .dl-btn:hover   { opacity: .88; transform: translateY(-2px); }
-  .dl-btn:active  { transform: translateY(0); }
-  .dl-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+  border:2px solid rgba(210,175,110,0.5);
+
+  flex-shrink:0;
+}
+
+.logo-ring img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.restaurant-name{
+  font-family:'Cormorant Garamond',serif;
+  color:#f4e7d1;
+  font-size:30px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  line-height:1;
+}
+
+.tagline{
+  color:#c9ab7a;
+  font-size:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  margin-top:6px;
+}
+
+.gold-line{
+  margin-top:18px;
+  height:1px;
+
+  background:linear-gradient(
+    to right,
+    transparent,
+    #c9ab7a,
+    transparent
+  );
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero{
+  position:relative;
+  z-index:2;
+
+  padding:32px 30px 28px;
+
+  border-bottom:1px solid rgba(139,104,69,0.15);
+}
+
+.badge{
+  display:inline-block;
+
+  border:1px solid #c9ab7a;
+
+  padding:4px 12px;
+
+  color:#8b6845;
+
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+
+  margin-bottom:18px;
+}
+
+.title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:52px;
+  line-height:.95;
+  color:#2c1f14;
+}
+
+.title em{
+  font-style:italic;
+  color:#8b6845;
+  font-weight:400;
+}
+
+.description{
+  margin-top:18px;
+
+  color:#7a6550;
+
+  font-size:12px;
+  line-height:1.8;
+
+  max-width:300px;
+}
+
+.price-row{
+  margin-top:24px;
+
+  display:flex;
+  align-items:center;
+}
+
+.price{
+  font-family:'Cormorant Garamond',serif;
+  font-size:42px;
+  color:#2c1f14;
+  line-height:1;
+}
+
+.price-label{
+  color:#9c8060;
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-top:4px;
+}
+
+.order-btn{
+  margin-left:auto;
+
+  background:#2c1f14;
+  color:#f4e7d1;
+
+  border:none;
+
+  padding:12px 22px;
+
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+
+  border-left:3px solid #c9ab7a;
+
+  cursor:pointer;
+}
+
+/* =========================
+   RESTAURANT SVG
+========================= */
+
+.food-svg-wrap{
+  position:relative;
+  z-index:2;
+
+  padding:25px 25px 18px;
+
+  border-bottom:1px solid rgba(139,104,69,0.15);
+}
+
+.food-svg-wrap svg{
+  width:100%;
+  display:block;
+}
+
+/* =========================
+   TAGS
+========================= */
+
+.tags{
+  position:relative;
+  z-index:2;
+
+  padding:18px 30px;
+
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+
+  border-bottom:1px solid rgba(139,104,69,0.15);
+}
+
+.tag{
+  border:1px solid #c9ab7a;
+
+  padding:5px 12px;
+
+  color:#8b6845;
+
+  font-size:9px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+.tag.fill{
+  background:#2c1f14;
+  border-color:#2c1f14;
+  color:#d8b682;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+  position:relative;
+  z-index:2;
+
+  background:#2c1f14;
+
+  padding:14px 24px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  gap:10px;
+}
+
+.footer-item{
+  display:flex;
+  align-items:center;
+  gap:6px;
+
+  color:#d2af6e;
+
+  font-size:9px;
+}
+
+.footer-item svg{
+  flex-shrink:0;
+}
+
 </style>
 </head>
+
 <body>
 
-<div class="poster" id="poster">
+<div class="poster">
 
-  <!-- ── PLATE PHOTO ── -->
-  <div class="plate-photo">
-    <!-- 🔁 Replace with your food photo -->
-    <img
-      src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=85"
-      alt="Healthy Food"
-      crossorigin="anonymous"
-    >
-  </div>
+  <!-- HEADER -->
+  <div class="header">
 
-  <!-- ── GREEN RING ARC ── -->
-  <div class="green-ring"></div>
+    <div class="logo-wrap">
 
-  <!-- ── HERB STRIP RIGHT ── -->
-  <div class="herb-strip">
-    <!-- 🔁 Replace with your herb/garnish photo -->
-    <!-- <img
-      src="https://images.unsplash.com/photo-1628556270448-4d4e4148e1b1?w=300&q=80"
-      alt="Herbs"
-      crossorigin="anonymous"
-    > -->
-  </div>
-
-  <!-- ── BRAND ── -->
-  <!-- 🔁 Edit brand name -->
-  <div class="brand">
-    Studio Shodwe
-    <span class="brand-icon">🌿</span>
-  </div>
-
-  <!-- ── CONTENT ── -->
-  <div class="content">
-
-    <!-- 🔁 Edit promo label -->
-    <div class="special-promo">Special Promo</div>
-
-    <!-- 🔁 Edit headline -->
-    <div class="h-healthy">Healthy</div>
-    <div class="h-food">FOOD</div>
-
-    <div class="bottom-row">
-      <!-- CTA button -->
-      <!-- 🔁 Edit button text -->
-      <div class="cta">Order Now</div>
-
-      <!-- Description -->
-      <!-- 🔁 Edit description -->
-      <div class="desc">
-        Good food is the foundation of
-        healthy living—fresh ingredients,
-        natural flavors, and nutritious
-        meals every day.
+      <!-- LOGO IMAGE -->
+      <div class="logo-ring">
+        <img
+          src="https://static.vecteezy.com/system/resources/thumbnails/014/664/003/small_2x/cafe-and-resto-logo-vector.jpg"
+          alt="Restaurant Logo">
       </div>
+
+      <!-- RESTAURANT INFO -->
+      <div>
+        <div class="restaurant-name">
+          Spice Garden
+        </div>
+      </div>
+
+    </div>
+
+    <div class="gold-line"></div>
+
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+
+    <div class="badge">
+      Chef's Special
+    </div>
+
+    <div class="title">
+      Butter <em>Chicken</em><br>
+      Masala
+    </div>
+
+    <div class="description">
+      Slow-cooked tender chicken in a rich,
+      velvety tomato-butter gravy infused
+      with aromatic Indian spices and
+      finished with fresh cream.
+    </div>
+
+    <div class="price-row">
+
+      
+
+      <button class="order-btn">
+        Order Now
+      </button>
+
     </div>
 
   </div>
 
-  <!-- ── FOOTER ── -->
+  <!-- RESTAURANT SVG -->
+  <div class="food-svg-wrap">
+
+    <svg viewBox="0 0 432 120"
+         xmlns="http://www.w3.org/2000/svg">
+
+      <!-- plate -->
+      <ellipse cx="216"
+               cy="80"
+               rx="120"
+               ry="20"
+               fill="none"
+               stroke="#c8a97a"
+               stroke-width="1.2"/>
+
+      <!-- bowl -->
+      <path d="M140 45
+               Q216 105
+               292 45"
+            fill="none"
+            stroke="#2c1f14"
+            stroke-width="3"/>
+
+      <!-- steam -->
+      <path d="M185 20
+               Q175 10
+               185 0"
+            fill="none"
+            stroke="#8b6845"
+            stroke-width="2"
+            stroke-linecap="round"/>
+
+      <path d="M216 25
+               Q206 12
+               216 0"
+            fill="none"
+            stroke="#8b6845"
+            stroke-width="2"
+            stroke-linecap="round"/>
+
+      <path d="M247 20
+               Q237 10
+               247 0"
+            fill="none"
+            stroke="#8b6845"
+            stroke-width="2"
+            stroke-linecap="round"/>
+
+      <!-- spoon -->
+      <line x1="300"
+            y1="20"
+            x2="340"
+            y2="70"
+            stroke="#d2af6e"
+            stroke-width="3"
+            stroke-linecap="round"/>
+
+      <ellipse cx="292"
+               cy="13"
+               rx="10"
+               ry="14"
+               fill="none"
+               stroke="#d2af6e"
+               stroke-width="2"/>
+
+    </svg>
+
+  </div>
+
+  
+
+  <!-- FOOTER -->
   <div class="footer">
-    <!-- 🔁 Edit phone -->
-    <div class="f-item">
-      <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.33 21 3 13.67 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.21 2.2z"/></svg>
-      +123-456-7890
+
+    <div class="footer-item">
+
+      <svg width="11"
+           height="11"
+           viewBox="0 0 11 11"
+           fill="none">
+
+        <path d="M2 1.5C2 1.5 3 1 3.5 2.5C4 4
+        3 4.5 3.5 5.5C4 6.5 5.5 8 6.5 8.5
+        C7.5 9 8 8 8 8L9.5 9C9.5 9 9 10.5
+        7.5 10C5 9 2 5.5 1.5 3.5C1 1.5
+        2 1.5 2 1.5Z"
+        stroke="#d2af6e"
+        stroke-width="0.7"/>
+
+      </svg>
+
+      <span>
+        +91 98765 43210
+      </span>
+
     </div>
-    <!-- 🔁 Edit website -->
-    <div class="f-item">
-      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-      www.reallygreatsite.com
+
+    <div class="footer-item">
+
+      <svg width="11"
+           height="11"
+           viewBox="0 0 11 11"
+           fill="none">
+
+        <rect x="1"
+              y="2.5"
+              width="9"
+              height="6.5"
+              rx="1"
+              stroke="#d2af6e"
+              stroke-width="0.7"/>
+
+        <path d="M1 4L5.5 7L10 4"
+              stroke="#d2af6e"
+              stroke-width="0.7"/>
+
+      </svg>
+
+      <span>
+        spicegarden.com
+      </span>
+
     </div>
-    <!-- <span class="f-bull">•</span> -->
-    <!-- 🔁 Edit address -->
-    <!-- <div class="f-item">
-      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
-      123 Anywhere St, Any City
-    </div> -->
+
+    <div class="footer-item">
+
+      <svg width="11"
+           height="11"
+           viewBox="0 0 11 11"
+           fill="none">
+
+        <path d="M5.5 1
+                 C4 1 3 2.2 3 3.5
+                 C3 5.5 5.5 10 5.5 10
+                 S8 5.5 8 3.5
+                 C8 2.2 7 1 5.5 1Z"
+              stroke="#d2af6e"
+              stroke-width="0.7"/>
+
+        <circle cx="5.5"
+                cy="3.5"
+                r="1"
+                stroke="#d2af6e"
+                stroke-width="0.6"/>
+
+      </svg>
+
+      <span>
+        MG Road, Kozhikode
+      </span>
+
+    </div>
+
   </div>
 
 </div>
-
-<button class="dl-btn" id="dlBtn" onclick="downloadPoster()">⬇ Download Poster</button>
-
-<script>
-function downloadPoster() {
-  const card = document.getElementById('poster');
-  const btn  = document.getElementById('dlBtn');
-  btn.textContent = '⏳ Generating…';
-  btn.disabled = true;
-  const scale = 1080 / card.offsetWidth;
-  html2canvas(card, {
-    scale,
-    backgroundColor: null,
-    logging: false,
-    useCORS: true,
-    allowTaint: true,
-    imageTimeout: 0,
-    onclone(clonedDoc) {
-      const imgs = clonedDoc.querySelectorAll('img');
-      return Promise.all([...imgs].map(img =>
-        new Promise(res => {
-          if (img.complete) res();
-          else { img.onload = res; img.onerror = res; }
-        })
-      ));
-    }
-  }).then(canvas => {
-    const a = document.createElement('a');
-    a.download = 'healthy-food-promo-poster.png';
-    a.href = canvas.toDataURL('image/png', 1.0);
-    a.click();
-    btn.textContent = '⬇ Download Poster';
-    btn.disabled = false;
-  }).catch(err => {
-    console.error(err);
-    alert('Download failed – please try again.');
-    btn.textContent = '⬇ Download Poster';
-    btn.disabled = false;
-  });
-}
-</script>
 
 </body>
 </html>
