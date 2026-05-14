@@ -408,10 +408,10 @@
     </div>{{-- /.design9-card --}}
 
     {{-- Download button --}}
-    <button type="button" class="d9-download-btn" onclick="downloadPoster9()">
-        <i class="bi bi-download"></i>
-        Download Poster
-    </button> 
+    <!--<button type="button" class="d9-download-btn" onclick="downloadPoster9()">-->
+    <!--    <i class="bi bi-download"></i>-->
+    <!--    Download Poster-->
+    <!--</button> -->
 
 </div>{{-- /.design9-wrapper --}}
 

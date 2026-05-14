@@ -83,7 +83,7 @@
         border-radius: 50%;
         object-fit: cover;
         display: block;
-        border: 2px solid {{ $themeColor ?? '#b72e37' }};
+        /* border: 2px solid {{ $themeColor ?? '#b72e37' }}; */
     }
 
     /* ── Body ── */
@@ -279,11 +279,11 @@
 
             {{-- Header --}}
             <div class="d3-header">
-                @if(isset($logourl) && $logourl)
                 <div class="d3-logo">
+                    @if(isset($logourl) && $logourl)
                         <img src="{{ $logourl }}" alt="logo-image" crossorigin="anonymous">
+                    @endif
                 </div>
-                @endif
             </div>
 
             {{-- Body --}}

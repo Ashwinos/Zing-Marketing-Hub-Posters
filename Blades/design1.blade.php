@@ -51,11 +51,12 @@
         flex-shrink: 0;
         padding: 0 0.8rem;
     }
-
+    
     .design1-wrapper .d1-heading1 {
         font-family: "Oswald", sans-serif;
         font-weight: 900;
-        font-size: 18px !important; 
+        /* Fixed px: clamp()/vw are unreliable inside html2canvas (batch + download). Card max-width is 340px. */
+        font-size: 18px !important;
         margin: 0;
         line-height: 1.3;
         color: {{ $bgColor ?? '#feefce' }};
@@ -64,7 +65,7 @@
 
     .design1-wrapper .d1-heading2 {
         font-family: "Oswald", sans-serif;
-        font-size: 36px !important;
+        font-size: 32px !important;
         font-weight: 900;
         line-height: 1.1;
         margin-top: -3px;
@@ -93,12 +94,13 @@
     }
 
     .design1-wrapper .d1-menu-image-inner {
-            width: 170px !important;
-            height: 170px !important; 
-            border-radius: 50%;
-            overflow: hidden;
-            border: 4px solid #fff;
-        }
+        /*width: clamp(150px, 30%, 130px);*/
+        width: 150px !important;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid #fff;
+    }
 
     .design1-wrapper .d1-menu-image-inner img {
         width: 100%;
@@ -113,7 +115,7 @@
     }
 
   .design1-wrapper .d1-description p {
-        font-size: 8px;
+        font-size: 8px !important;
         font-weight: 400;
         text-transform: uppercase;
         color: {{ $footerFontcolor ?? '#b72e37' }};
@@ -130,13 +132,15 @@
     }
 
     .design1-wrapper .d1-restaurant-name {
-        font-size: 11px !important;
+        /*font-size: clamp(8px, 1.8vw, 11px);*/
+        font-size: 8px !important;
         font-weight: 700;
         color: {{ $footerFontcolor ?? '#b72e37' }};
     }
 
     .design1-wrapper .d1-restaurant-address {
-        font-size: 9px !important;
+        /*font-size: clamp(7px, 1.5vw, 9px);*/
+        font-size: 7px !important;
         color: {{ $footerFontcolor ?? '#b72e37' }};
     }
 
@@ -156,11 +160,13 @@
         align-items: center;
         gap: 4px;
         font-weight: 300;
-        font-size: 9px !important;
+        /*font-size: clamp(7px, 1.5vw, 9px);*/
+        font-size: 7px !important;
     }
 
     .design1-wrapper .d1-footer-item i {
-        font-size: 10px !important;
+        /*font-size: clamp(8px, 1.6vw, 10px);*/
+        font-size: 8px !important;
     }
 
     /* ── Download button ── */
@@ -170,7 +176,7 @@
         color: #fff;
         border: none;
         padding: 8px 16px;
-        font-size: 12px;
+        font-size: 12px !important;
         font-weight: 600;
         border-radius: 8px;
         cursor: pointer;
@@ -216,27 +222,27 @@
 
             {{-- Menu image --}}
             <div class="d1-menu-image">
+                @if(isset($menuImageUrl) && $menuImageUrl)
                 <div class="d1-menu-image-inner">
-                    @if(isset($menuImageUrl) && $menuImageUrl)
                         <img src="{{ $menuImageUrl }}" alt="menu-image" class="js-poster-menu-image">
-                    @endif
                 </div>
+                @endif
             </div>
 
             {{-- Description --}}
-            <div class="d1-description">
+           {{-- <div class="d1-description">
                 <p>
                     {{ \Illuminate\Support\Str::limit($menu['description'] ?? '', 150, '...') }}
                 </p>
-            </div>
+            </div> --}}
 
             {{-- Restaurant details --}}
             <div class="d1-restaurant-details">
                 <div class="d1-restaurant-name fw-bold">
-                    {{ @user()->name ?? ' ' }}
+                    {{ @user()->name ?? 'ZATO THAI CUISINE' }}
                 </div>
                 <div class="d1-restaurant-address">
-                    {{ @user()->address ?? ' ' }}
+                    {{ @user()->address ?? '9090 Skillman St, Dallas, TX 75243, USA' }}
                 </div>
             </div>
 
@@ -246,11 +252,11 @@
         <div class="d1-footer">
             <div class="d1-footer-item">
                 <i class="bi bi-telephone-fill"></i>
-                {{ @user()->phone ?? ' ' }}
+                {{ @user()->phone ?? '4692943680' }}
             </div>
             <div class="d1-footer-item">
                 <i class="bi bi-globe"></i>
-                {{ @user()->website_domain ?? ' ' }}
+                {{ @user()->website_domain ?? 'www.zatothaicuisine.site' }}
             </div>
         </div>
 
@@ -258,10 +264,10 @@
 
     {{-- Download button (inside modal column, below card) --}}
     
-  <!--<button type="button" class="d1-download-btn" onclick="downloadDesign1()">-->
-  <!--     <i class="bi bi-download"></i>-->
-  <!--     Download Poster-->
-  <!--  </button> -->
+  {{--  <button type="button" class="d1-download-btn" onclick="downloadDesign1()">
+       <i class="bi bi-download"></i>
+       Download Poster
+    </button> --}}
 
 </div>{{-- /.design1-wrapper --}}
 
