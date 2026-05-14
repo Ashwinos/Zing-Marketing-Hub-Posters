@@ -205,7 +205,7 @@
         position: absolute;
         top: 8px;
         right: 8px;
-        background: rgba(15, 15, 18, 0.9);
+        background: {{ $themeColor ?? '#e2b96f' }};
         color: {{ $bgColor ?? '#e2b96f' }};
         font-size: 6px;
         padding: 4px 10px;

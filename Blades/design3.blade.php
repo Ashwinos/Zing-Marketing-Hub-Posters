@@ -14,11 +14,18 @@
         font-family: 'DM Sans', sans-serif;
     }
 
-    /* ── Card: 4:5 Instagram ratio, fits inside column ── */
+    /* ── Card: 4:5 Instagram ratio ──
+       FIX: Replaced `aspect-ratio: 4/5` with the padding-top hack.
+       padding-top: 125% = 5÷4 ratio, works in ALL headless renderers
+       (wkhtmltoimage, older Puppeteer/WebKit) unlike aspect-ratio.
+    ── */
     .design3-wrapper .design3-card {
         width: 100%;
-        aspect-ratio: 4 / 5;
         max-width: 340px;
+        /* aspect-ratio: 4 / 5; ← REMOVED: breaks backend renderers */
+        height: 0;                  /* FIX: collapse own height */
+        padding-top: 125%;          /* FIX: 5÷4 = 125% → enforces 4:5 ratio */
+        position: relative;         /* FIX: required for absolute children */
         border: none;
         background-color: {{ $bgColor ?? '#fffef9' }};
         box-shadow:
@@ -26,9 +33,6 @@
             0 8px 32px rgba(0,0,0,0.07),
             0 2px 8px rgba(0,0,0,0.04);
         overflow: hidden;
-        position: relative;
-        display: flex;
-        flex-direction: column;
         box-sizing: border-box;
     }
 
@@ -46,6 +50,21 @@
         z-index: 1;
     }
 
+    /* ── Inner layout container ──
+       FIX: Wraps all card content. Must be position:absolute and fill
+       the padded card area so header + body + footer stack correctly.
+       Previously the card itself was a flex column — now this div is.
+    ── */
+    .design3-wrapper .d3-inner {
+        position: absolute;         /* FIX: fill the padded card box */
+        inset: 0;                   /* FIX: top:0; right:0; bottom:0; left:0 */
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+    }
+
     /* ── Header ── */
     .design3-wrapper .d3-header {
         background: transparent;
@@ -55,7 +74,7 @@
         align-items: center;
         position: relative;
         z-index: 2;
-        flex-shrink: 0;
+        flex-shrink: 0;             /* FIX: header must never compress */
     }
 
     .design3-wrapper .d3-logo img {
@@ -75,7 +94,7 @@
         z-index: 2;
         display: flex;
         flex-direction: column;
-        min-height: 0;
+        min-height: 0;              /* FIX: allows body to shrink in flex context */
     }
 
     /* ── Headings ── */
@@ -87,6 +106,7 @@
         color: {{ $footerFontcolor ?? '#b72e37' }};
         letter-spacing: 0.04em;
         margin-bottom: 2px;
+        flex-shrink: 0;
     }
 
     .design3-wrapper .d3-heading2 {
@@ -97,6 +117,7 @@
         color: {{ $themeColor ?? '#b33a06' }};
         margin-bottom: 0.5rem;
         letter-spacing: -0.01em;
+        flex-shrink: 0;
     }
 
     /* ── Divider ── */
@@ -105,7 +126,7 @@
         background: linear-gradient(90deg, {{ $themeColor ?? '#b33a06' }} 0%, {{ $themeColor ?? '#b33a06' }} 60%);
         margin-bottom: 0.5rem;
         opacity: 0.4;
-        flex-shrink: 0;
+        flex-shrink: 0;             /* FIX: divider must never compress */
     }
 
     /* ── Description ── */
@@ -126,19 +147,22 @@
         white-space: normal;
     }
 
-    /* ── Menu Image ── */
+    /* ── Menu Image ──
+       FIX: flex:1 + min-height:0 lets the image fill all remaining
+       space between the fixed header/footer sections without overflow.
+    ── */
     .design3-wrapper .d3-menu-image {
         flex: 1;
+        min-height: 0;              /* FIX: allows flex child to shrink correctly */
         overflow: hidden;
         border-radius: 10px;
         margin-bottom: 0.4rem;
         position: relative;
-        min-height: 0;
     }
 
     .design3-wrapper .d3-menu-image img {
         width: 100%;
-        height: 100%;
+        height: 100%;               /* FIX: explicit 100% fills the flex container */
         object-fit: cover;
         object-position: center;
         display: block;
@@ -146,7 +170,7 @@
 
     /* ── Order Button ── */
     .design3-wrapper .d3-order-now {
-        flex-shrink: 0;
+        flex-shrink: 0;             /* FIX: button must never compress */
         margin-bottom: 0.4rem;
     }
 
@@ -168,7 +192,7 @@
     /* ── Restaurant Details ── */
     .design3-wrapper .d3-restaurant-details {
         text-align: center;
-        flex-shrink: 0;
+        flex-shrink: 0;             /* FIX: must never compress */
         padding-bottom: 0.2rem;
     }
 
@@ -194,7 +218,7 @@
         padding: 0.45rem 1rem;
         position: relative;
         z-index: 2;
-        flex-shrink: 0;
+        flex-shrink: 0;             /* FIX: footer must never compress */
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -250,65 +274,70 @@
 
     <div class="design3-card" id="posterCard3">
 
-        {{-- Header --}}
-        <div class="d3-header">
-            <div class="d3-logo">
+        {{-- FIX: d3-inner wraps all content and fills the padded card area --}}
+        <div class="d3-inner">
+
+            {{-- Header --}}
+            <div class="d3-header">
                 @if(isset($logourl) && $logourl)
-                    <img src="{{ $logourl }}" alt="logo-image" crossorigin="anonymous">
-                @endif
-            </div>
-        </div>
-
-        {{-- Body --}}
-        <div class="d3-body">
-
-            {{-- Headings --}}
-            <div class="d3-heading1">Chef's Choice</div>
-            @if(strlen(@$menu['name']) <= 20)
-            <div class="d3-heading2">{{ @$menu['name'] }}</div>
-            @endif
-
-            {{-- Divider --}}
-            <div class="d3-divider"></div>
-
-            {{-- Description --}}
-            <div class="d3-description">
-                <p>
-                    {{ \Illuminate\Support\Str::limit($menu['description'] ?? '', 150, '...') }}
-                </p>
-            </div>
-
-            {{-- Menu Image --}}
-            <div class="d3-menu-image">
-                @if(isset($menuImageUrl) && $menuImageUrl)
-                    <img src="{{ $menuImageUrl }}" alt="food image" class="js-poster-menu-image">
+                <div class="d3-logo">
+                        <img src="{{ $logourl }}" alt="logo-image" crossorigin="anonymous">
+                </div>
                 @endif
             </div>
 
-            {{-- Order Button --}}
-            <div class="d3-order-now">
-                <button type="button" class="d3-order-btn">Order Now</button>
+            {{-- Body --}}
+            <div class="d3-body">
+
+                {{-- Headings --}}
+                <div class="d3-heading1">Chef's Choice</div>
+                @if(strlen(@$menu['name']) <= 20)
+                <div class="d3-heading2">{{ @$menu['name'] }}</div>
+                @endif
+
+                {{-- Divider --}}
+                <div class="d3-divider"></div>
+
+                {{-- Description --}}
+                <div class="d3-description">
+                    <p>
+                        {{ \Illuminate\Support\Str::limit($menu['description'] ?? '', 150, '...') }}
+                    </p>
+                </div>
+
+                {{-- Menu Image --}}
+                <div class="d3-menu-image">
+                    @if(isset($menuImageUrl) && $menuImageUrl)
+                        <img src="{{ $menuImageUrl }}" alt="food image" class="js-poster-menu-image">
+                    @endif
+                </div>
+
+                {{-- Order Button --}}
+                <div class="d3-order-now">
+                    <button type="button" class="d3-order-btn">Order Now</button>
+                </div>
+
+                {{-- Restaurant Details --}}
+                <div class="d3-restaurant-details">
+                    <div class="d3-restaurant-name">{{ @user()->name ?? ' ' }}</div>
+                    <div class="d3-restaurant-address">{{ @user()->address ?? ' ' }}</div>
+                </div>
+
+            </div>{{-- /.d3-body --}}
+
+            {{-- Footer --}}
+            <div class="d3-footer">
+                <div class="d3-contact-number">
+                    <i class="bi bi-telephone-fill"></i>
+                    {{ @user()->phone ?? ' ' }}
+                </div>
+                <div class="d3-website">
+                    <i class="bi bi-globe"></i>
+                    {{ @user()->website_domain ?? ' ' }}
+                </div>
             </div>
 
-            {{-- Restaurant Details --}}
-            <div class="d3-restaurant-details">
-                <div class="d3-restaurant-name">{{ @user()->name ?? ' ' }}</div>
-                <div class="d3-restaurant-address">{{ @user()->address ?? ' ' }}</div>
-            </div>
-
-        </div>{{-- /.d3-body --}}
-
-        {{-- Footer --}}
-        <div class="d3-footer">
-            <div class="d3-contact-number">
-                <i class="bi bi-telephone-fill"></i>
-                {{ @user()->phone ?? ' ' }}
-            </div>
-            <div class="d3-website">
-                <i class="bi bi-globe"></i>
-                {{ @user()->website_domain ?? ' ' }}
-            </div>
-        </div>
+        </div>{{-- /.d3-inner --}}
 
     </div>{{-- /.design3-card --}}
 
