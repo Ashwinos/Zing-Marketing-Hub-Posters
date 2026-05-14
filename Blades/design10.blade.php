@@ -336,10 +336,10 @@
 
     </div>
 
-    <button type="button" class="design10-download-btn" onclick="downloadPoster10()">
-        <i class="bi bi-download"></i>
-        Download Poster
-    </button>
+    <!--<button type="button" class="design10-download-btn" onclick="downloadPoster10()">-->
+    <!--    <i class="bi bi-download"></i>-->
+    <!--    Download Poster-->
+    <!--</button>-->
 
 </div>
 
