@@ -5,9 +5,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 <style>
-    /* ══════════════════════════════
-       DESIGN10 WRAPPER
-    ══════════════════════════════ */
     .design10-wrapper {
         width: 100%;
         display: flex;
@@ -16,7 +13,6 @@
         font-family: 'Poppins', sans-serif;
     }
 
-    /* ── Card: Instagram square-ish ratio 4/5 ── */
     .design10-wrapper .design10-card {
         width: 100%;
         aspect-ratio: 4 / 5;
@@ -26,13 +22,10 @@
         overflow: hidden;
         position: relative;
         box-sizing: border-box;
-        container-type: inline-size;
+        /* REMOVED container-type: inline-size — breaks html2canvas */
         box-shadow: 0 20px 60px rgba(0,0,0,0.25);
     }
 
-    /* ══════════════════════════════
-       SVG TEXTURE BACKGROUND
-    ══════════════════════════════ */
     .design10-wrapper .design10-texture-bg {
         position: absolute;
         inset: 0;
@@ -41,9 +34,6 @@
         height: 100%;
     }
 
-    /* ══════════════════════════════
-       GREEN DIAGONAL BAND
-    ══════════════════════════════ */
     .design10-wrapper .design10-green-band {
         position: absolute;
         left: -60px;
@@ -70,12 +60,10 @@
         border-bottom: 2px dashed rgba(255,255,255,0.55);
     }
 
-    /* ══════════════════════════════
-       LOGO – top left
-    ══════════════════════════════ */
+    /* FIXED: replaced cqw with px so html2canvas renders correctly */
     .design10-wrapper .design10-logo {
-        width: 10cqw;
-        height: 10cqw;
+        width: 34px;
+        height: 34px;
         border-radius: 50%;
         overflow: hidden;
         display: flex;
@@ -94,9 +82,6 @@
         display: block;
     }
 
-    /* ══════════════════════════════
-       HEADER TEXT
-    ══════════════════════════════ */
     .design10-wrapper .design10-header-area {
         position: absolute;
         top: 6%;
@@ -107,7 +92,7 @@
     }
     .design10-wrapper .design10-food-menu-text {
         font-family: "Water Brush", cursive;
-        font-size: 45PX;
+        font-size: 45px;
         font-style: italic;
         font-weight: 800;
         color: {{ $themeColor ?? '#5a8a2a' }};
@@ -117,9 +102,6 @@
         padding-top: 24px;
     }
 
-    /* ══════════════════════════════
-       CIRCULAR FOOD IMAGE
-    ══════════════════════════════ */
     .design10-wrapper .design10-plate-wrap {
         position: absolute;
         top: 50%;
@@ -144,9 +126,6 @@
         display: block;
     }
 
-    /* ══════════════════════════════
-       ARROWS
-    ══════════════════════════════ */
     .design10-wrapper .design10-arrow-tl {
         position: absolute;
         top: 26%;
@@ -167,9 +146,7 @@
     }
     .design10-wrapper .design10-arrow-br svg { width: 100%; height: 100%; }
 
-    /* ══════════════════════════════
-       BOTTOM AREA
-    ══════════════════════════════ */
+    /* FIXED: removed white-space:nowrap + text-overflow so text never clips in export */
     .design10-wrapper .design10-bottom-area {
         position: absolute;
         bottom: 12px;
@@ -201,7 +178,9 @@
         padding: 1.5% 4%;
         border-radius: 4px;
         border: 2px solid rgba(255,255,255,0.4);
-        white-space: nowrap;
+        /* FIXED: allow wrapping so text is never clipped */
+        white-space: normal;
+        word-break: break-word;
     }
     .design10-wrapper .design10-phone-number {
         font-family: 'Oswald', sans-serif;
@@ -211,9 +190,10 @@
         letter-spacing: 1px;
         text-align: right;
         width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        /* FIXED: allow wrapping instead of ellipsis clip */
+        white-space: normal;
+        word-break: break-word;
+        overflow: visible;
     }
     .design10-wrapper .design10-phone-address {
         font-size: 7px;
@@ -222,12 +202,12 @@
         letter-spacing: 0.05em;
         text-align: right;
         width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        /* FIXED: allow wrapping instead of ellipsis clip */
+        white-space: normal;
+        word-break: break-word;
+        overflow: visible;
     }
 
-    /* ── Download button ── */
     .design10-wrapper .design10-download-btn {
         margin-top: 10px;
         background: {{ $themeColor ?? '#5a8a2a' }};
@@ -255,7 +235,6 @@
 
     <div class="design10-card" id="posterCard10">
 
-        {{-- SVG Texture Background: Thai silk diamond weave --}}
         <svg class="design10-texture-bg" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <pattern id="d10DiamondTile" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
@@ -286,10 +265,8 @@
             <rect width="100%" height="100%" fill="url(#d10OuterDiamond)"/>
         </svg>
 
-        {{-- Diagonal band --}}
         <div class="design10-green-band"></div>
 
-        {{-- Logo --}}
         <div class="design10-logo">
             @if(isset($logourl) && $logourl)
                 <img src="{{ $logourl }}" alt="logo" crossorigin="anonymous">
@@ -298,36 +275,24 @@
             @endif
         </div>
 
-        {{-- Header text --}}
         <div class="design10-header-area">
             <span class="design10-food-menu-text">Crave More</span>
         </div>
 
-        {{-- Arrow top-left --}}
         <div class="design10-arrow-tl">
             <svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
-                <path d="M 10 10 Q 8 35 30 44"
-                    fill="none" stroke="#1a1a1a" stroke-width="2.5"
-                    stroke-linecap="round"/>
-                <path d="M 22 44 L 30 44 L 28 36"
-                    fill="none" stroke="#1a1a1a" stroke-width="2.5"
-                    stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M 10 10 Q 8 35 30 44" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M 22 44 L 30 44 L 28 36" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         </div>
 
-        {{-- Arrow bottom-right --}}
         <div class="design10-arrow-br">
             <svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
-                <path d="M 45 10 Q 48 36 25 44"
-                    fill="none" stroke="#1a1a1a" stroke-width="2.5"
-                    stroke-linecap="round"/>
-                <path d="M 33 44 L 25 44 L 27 36"
-                    fill="none" stroke="#1a1a1a" stroke-width="2.5"
-                    stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M 45 10 Q 48 36 25 44" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M 33 44 L 25 44 L 27 36" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         </div>
 
-        {{-- Circular food plate --}}
         <div class="design10-plate-wrap">
             <div class="design10-plate-circle">
                 @if(isset($menuImageUrl) && $menuImageUrl)
@@ -338,7 +303,6 @@
             </div>
         </div>
 
-        {{-- Bottom: ORDER NOW + name + address --}}
         <div class="design10-bottom-area">
             <div class="design10-bottom-row">
                 <div class="design10-order-btn">ORDER NOW</div>
@@ -347,15 +311,14 @@
             <div class="design10-phone-address">{{ @user()->website_domain ?? ' ' }} | {{ @user()->phone ?? ' ' }} | {{ @user()->address ?? ' ' }}</div>
         </div>
 
-    </div>{{-- /.design10-card --}}
+    </div>
 
-    {{-- Download button --}}
     <button type="button" class="design10-download-btn" onclick="downloadPoster10()">
         <i class="bi bi-download"></i>
         Download Poster
     </button>
 
-</div>{{-- /.design10-wrapper --}}
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 

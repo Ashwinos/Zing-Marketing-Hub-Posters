@@ -88,7 +88,7 @@
         left: 50%;
         transform: translateX(-50%) rotate(-15deg);
         font-family: 'Bebas Neue', sans-serif;
-        font-size: 18cqw;
+        font-size: 62px !important;
         color: #fff;
         letter-spacing: 1px;
         z-index: 4;
@@ -105,7 +105,7 @@
         left: 66%;
         transform: translateX(-50%) rotate(-15deg);
         font-family: "Splash", cursive;
-        font-size: 4.5cqw;
+        font-size: 16px !important;
         color: {{ $bgColor ?? '#fffef9' }};
         z-index: 4;
         white-space: nowrap;
@@ -183,7 +183,7 @@
         padding: 0 4.6%;
         z-index: 5;
         color: {{ $footerFontcolor ?? '#b72e37' }};
-        font-size: 3cqw;
+        font-size: 10px !important;
         font-weight: 400;
     }
 
@@ -204,8 +204,8 @@
     }
 
     .design6-wrapper .d6-logo {
-        width: 8.7cqw;
-        height: 8.7cqw;
+        width: 30px !important;
+        height: 30px !important;
         border-radius: 50%;
         overflow: hidden;
         flex-shrink: 0;
@@ -225,18 +225,18 @@
     }
 
     .design6-wrapper .d6-restaurant-name {
-        font-size: 3.6cqw;
+        font-size: 12px !important;
         font-weight: 700;
         white-space: nowrap;
     }
 
     .design6-wrapper .d6-restaurant-address {
-        font-size: 3cqw;
+        font-size: 10px !important;
         white-space: nowrap;
     }
 
-    .design6-wrapper .d6-phone   { position: absolute; left: 4.6%; bottom: 0; font-size: 3cqw; }
-    .design6-wrapper .d6-website { position: absolute; right: 4.6%; bottom: 0; font-size: 3cqw; }
+    .design6-wrapper .d6-phone   { position: absolute; left: 4.6%; bottom: 0; font-size: 10px !important; }
+    .design6-wrapper .d6-website { position: absolute; right: 4.6%; bottom: 0; font-size: 10px !important; }
 
     /* ── Download button ── */
     .design6-wrapper .d6-download-btn {
