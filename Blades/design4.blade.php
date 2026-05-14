@@ -288,10 +288,10 @@
     </div>{{-- /.design4-card --}}
 
     {{-- Download button --}}
-    <!--<button type="button" class="d4-download-btn" onclick="downloadDesign4()">-->
-    <!--    <i class="bi bi-download"></i>-->
-    <!--   Download Poster-->
-    <!--</button> -->
+    <button type="button" class="d4-download-btn" onclick="downloadDesign4()">
+        <i class="bi bi-download"></i>
+       Download Poster
+    </button> 
 
 </div>{{-- /.design4-wrapper --}}
 
