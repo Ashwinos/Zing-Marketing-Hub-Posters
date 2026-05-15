@@ -1,478 +1,427 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Borcelle Pizza Poster</title>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@1,700&family=Barlow+Condensed:wght@400;600;700;800;900&family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@1,700&family=Barlow+Condensed:wght@400;600;700;800;900&family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-  body {
-    background: #b8b4ac;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    padding: 30px 20px;
-    font-family: 'Barlow Condensed', sans-serif;
-  }
+    <style>
+        /* ══════════════════════════════
+           DESIGN12 WRAPPER
+        ══════════════════════════════ */
+        .design12-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Barlow Condensed', sans-serif;
+        }
 
-  /* ════════════════════════════
-     POSTER  4:5
-  ════════════════════════════ */
-  .poster {
-    position: relative;
-    width: 400px;
-    height: 500px;
-    background: #f5f0e6;
-    overflow: hidden;
-    border-radius: 6px;
-    box-shadow: 0 12px 50px rgba(0,0,0,0.32);
-    display: flex;
-    flex-direction: column;
-  }
+        /* ── Card: 4:5 ratio ── */
+        .design12-wrapper .design12-card {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            max-width: 400px;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            box-sizing: border-box;
+            background: #f5f0e6;
+            border-radius: 6px;
+            box-shadow: 0 12px 50px rgba(0,0,0,0.32);
+            display: flex;
+            flex-direction: column;
+            container-type: inline-size;
+        }
 
-  /* ══════════════════════════════════════
-     TOP SECTION  (main content area)
-  ══════════════════════════════════════ */
-  .top-section {
-    position: relative;
-    flex: 1;
-    display: flex;
-    overflow: hidden;
-  }
+        /* ══════════════════════════════
+           TOP SECTION
+        ══════════════════════════════ */
+        .design12-wrapper .design12-top-section {
+            position: relative;
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+        }
 
-  /* ── RED VERTICAL STRIPE with drips ── */
-  .stripe {
-    position: absolute;
-    top: 0;
-    left: 78px;
-    width: 64px;
-    top: 0;
-    bottom: -32px; /* extend past section so drips don't clip */
-    background: #c93a1a;
-    z-index: 2;
-  }
+        /* ── Vertical stripe ── */
+        .design12-wrapper .design12-stripe {
+            position: absolute;
+            top: 0;
+            left: 19.5%;
+            width: 16%;
+            bottom: -8%;
+            background: {{ $themeColor }};
+            z-index: 2;
+        }
 
-  /* SVG drips — full control over each drop shape */
-  .stripe-drips-svg {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    overflow: visible;
-    z-index: 3;
-  }
+        /* ── Food image ── */
+        .design12-wrapper .design12-food-wrap {
+            position: absolute;
+            top: 10%;
+            left: 2%;
+            width: 84%;
+            height: 54%;
+            overflow: hidden;
+            z-index: 6;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.42);
+            border: 6px solid #fff;
+            flex-shrink: 0;
+        }
+        .design12-wrapper .design12-food-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
 
-  /* ── PIZZA ── */
-  .pizza-wrap {
-    position: absolute;
-    top: 10%;
-    left: 8%;
-    /* transform: translate(50%); */
-    width: 336px;
-    height: 270px;
-    /* border-radius: 50%; */
-    overflow: hidden;
-    z-index: 6;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.42);
-    border: 6px solid #fff;
-    flex-shrink: 0;
-  }
-  .pizza-wrap img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+        /* ── Right column (text area) ── */
+        .design12-wrapper .design12-right-col {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 31.5%;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding-bottom: 4%;
+            z-index: 5;
+        }
 
-  /* ── RIGHT CONTENT ── */
-  .right-col {
-position: absolute;
-    top: -64px;
-    bottom: 0;
-    left: 126px;
-    right: 0;
-    /* padding: 16px 16px 12px 18px; */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    z-index: 5;
-  }
+        /* ── Repeating rotated food name text ── */
+        .design12-wrapper .design12-repeat-text-block {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            overflow: hidden;
+            height: 66%;
+            pointer-events: none;
+        }
+        .design12-wrapper .design12-repeat-line {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 6.8cqw;
+            color: #cbcbcd;
+            line-height: 0.9;
+            transform: rotate(-33deg);
+            opacity: 0.7;
+            white-space: nowrap;
+        }
 
-  /* heading block */
-  .heading-block { margin-bottom: 2px; }
-  .heading-super {
-    font-family: 'Anton', sans-serif;
-    font-size: 38px;
-    color: #c93a1a;
-    text-transform: uppercase;
-    line-height: 0.9;
-    letter-spacing: 0.5px;
-  }
-  .heading-pizza {
- font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 57px;
-    color: #cbcbcd;
-    line-height: 0.9;
-    transform: rotate(-33deg);
-    opacity: 70%;
+        /* ── Badge (Order Now) ── */
+        .design12-wrapper .design12-badge-wrap {
+            padding: 0 4% 0 2%;
+        }
+        .design12-wrapper .design12-badge-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 2.2cqw;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: {{ $themeColor }};
+            display: block;
+        }
+        .design12-wrapper .design12-badge-value {
+            font-family: 'Anton', sans-serif;
+            font-size: 8.5cqw;
+            color: {{ $themeColor }};
+            line-height: 1.0;
+            display: block;
+            text-transform: uppercase;
+        }
 
-  }
+        /* ══════════════════════════════
+           RESTAURANT STRIP – bottom
+        ══════════════════════════════ */
+        .design12-wrapper .design12-restaurant-strip {
+            position: relative;
+            background: {{ $themeColor }};
+            padding: 2.5% 3.5%;
+            display: flex;
+            align-items: center;
+            gap: 2.5%;
+            z-index: 10;
+            flex-shrink: 0;
+        }
 
-  /* cloud badge */
-  .badge-wrap {
-    position: relative;
-   bottom: 160px;
-    left: 0;
-  }
-  .badge {
-    position: relative;
-    color: #c93a1a;
-    border-radius: 14px;
-    padding: 8px 16px 10px;
-    text-align: center;
-    min-width: 100px;
-  }
+        /* ── Logo ── */
+        .design12-wrapper .design12-resto-logo {
+            width: 12cqw;
+            height: 12cqw;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2.5px solid rgba(255,255,255,0.6);
+            flex-shrink: 0;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .design12-wrapper .design12-resto-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 50%;
+        }
 
-  .badge-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: 10.5px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: #c93a1a;
-    position: relative; z-index: 2;
-    display: block;
-  }
-  .badge-value {
-    font-family: 'Anton', sans-serif;
-    font-size: 40px;
-    color: #c93a1a;
-    line-height: 1.05;
-    position: relative; z-index: 2;
-    white-space: nowrap;
-    display: block;
-    text-transform: uppercase;
+        /* ── Info block ── */
+        .design12-wrapper .design12-resto-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0.6%;
+            flex: 1;
+        }
+        .design12-wrapper .design12-resto-name {
+            font-family: 'Anton', sans-serif;
+            font-size: 4cqw;
+            color: #fff;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+        .design12-wrapper .design12-resto-divider {
+            width: 100%;
+            height: 1px;
+            background: rgba(255,255,255,0.35);
+            margin: 1% 0;
+        }
+        .design12-wrapper .design12-resto-contacts {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5%;
+        }
+        .design12-wrapper .design12-contact-row {
+            display: flex;
+            align-items: center;
+            gap: 1.5%;
+        }
+        .design12-wrapper .design12-icon-circle {
+            width: 3.5cqw;
+            height: 3.5cqw;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .design12-wrapper .design12-icon-circle svg {
+            width: 1.8cqw;
+            height: 1.8cqw;
+            fill: #fff;
+        }
+        .design12-wrapper .design12-contact-text {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 2cqw;
+            color: rgba(255,255,255,0.92);
+            letter-spacing: 0.5px;
+        }
 
-  }
+        /* ── Website ── */
+        .design12-wrapper .design12-resto-website {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 1%;
+            flex-shrink: 0;
+        }
+        .design12-wrapper .design12-website-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 1.8cqw;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+        }
+        .design12-wrapper .design12-website-url {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 2cqw;
+            color: #fff;
+            letter-spacing: 0.5px;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-color: rgba(255,255,255,0.4);
+        }
 
-  /* tagline */
-  .tagline {
-    font-family: 'Lato', sans-serif;
-    font-style: italic;
-    font-weight: 700;
-    font-size: 11px;
-    color: #3a1a08;
-    line-height: 1.5;
-  }
+        /* ── Download button ── */
+        .design12-wrapper .design12-download-btn {
+            margin-top: 10px;
+            background: {{ $themeColor }};
+            color: #fff;
+            border: none;
+            padding: 8px 20px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Anton', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: opacity 0.2s, transform 0.15s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+        }
+        .design12-wrapper .design12-download-btn:hover   { opacity: 0.88; transform: translateY(-2px); }
+        .design12-wrapper .design12-download-btn:active  { transform: translateY(0); }
+        .design12-wrapper .design12-download-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+    </style>
 
-  /* ORDER TODAY btn */
-  .order-btn {
-    display: inline-block;
-    background: transparent;
-    border: 2px solid #c93a1a;
-    color: #c93a1a;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 5px 14px;
-    border-radius: 3px;
-    width: fit-content;
-  }
+    <div class="design12-wrapper">
 
-  /* ══════════════════════════════════════
-     RESTAURANT DETAILS  –  bottom strip
-  ══════════════════════════════════════ */
-  .restaurant-strip {
-    position: relative;
-    background: #c93a1a;
-    padding: 10px 14px 10px 14px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    z-index: 10;
-    flex-shrink: 0;
-  }
+        <div class="design12-card" id="posterCard12">
 
-  /* Logo */
-  .resto-logo {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 2.5px solid rgba(255,255,255,0.6);
-    flex-shrink: 0;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .resto-logo img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-    border-radius: 50%;
-  }
+            {{-- ════ TOP MAIN SECTION ════ --}}
+            <div class="design12-top-section">
 
-  /* Name + divider + contacts */
-  .resto-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 3px;
-    flex: 1;
-  }
+                {{-- Red stripe with SVG drips --}}
+                <div class="design12-stripe">
+                    <svg style="position:absolute;bottom:-40px;left:0;width:100%;height:80px;"
+                         viewBox="0 0 64 80" preserveAspectRatio="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0,0 L64,0 L64,20
+                          Q58,20 58,35 Q58,52 52,52 Q46,52 46,35 Q46,20 40,20
+                          Q34,20 34,30 Q34,48 28,48 Q22,48 22,30 Q22,20 16,20
+                          Q10,20 10,42 Q10,58 4,58 Q0,58 0,42 Z"
+                              fill="{{ $themeColor }}"/>
+                    </svg>
+                </div>
 
-  .resto-name {
-    font-family: 'Anton', sans-serif;
-    font-size: 16px;
-    color: #fff;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    line-height: 1;
-  }
+                {{-- Food image --}}
+                <div class="design12-food-wrap">
+                    @if(isset($menuImageUrl) && $menuImageUrl)
+                        <img src="{{ $menuImageUrl }}" alt="{{ @$menu['name'] ?? 'Menu Item' }}" crossorigin="anonymous">
+                    @else
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=90" alt="Menu Item" crossorigin="anonymous">
+                    @endif
+                </div>
 
-  .resto-divider {
-    width: 100%;
-    height: 1px;
-    background: rgba(255,255,255,0.35);
-    margin: 2px 0;
-  }
+                {{-- Right content column --}}
+                <div class="design12-right-col">
 
-  .resto-contacts {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
+                    {{-- Repeating rotated food name --}}
+                    <div class="design12-repeat-text-block">
+                        @php $repeatWord = strtoupper(@$menu['name'] ?? 'DELICIOUS'); @endphp
+                        @for($i = 0; $i < 11; $i++)
+                            <div class="design12-repeat-line">{{ $repeatWord }}</div>
+                        @endfor
+                    </div>
 
-  .resto-contact-row {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
+                    {{-- Order Now badge --}}
+                    <div class="design12-badge-wrap">
+                        <span class="design12-badge-label">Hurry Up!!</span>
+                        <span class="design12-badge-value">Order Now</span>
+                    </div>
 
-  .icon-circle {
-    width: 14px;
-    height: 14px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  .icon-circle svg {
-    width: 7px; height: 7px;
-    fill: #fff;
-  }
+                </div>{{-- /.design12-right-col --}}
 
-  .resto-contact-text {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 600;
-    font-size: 8px;
-    color: rgba(255,255,255,0.92);
-    letter-spacing: 0.5px;
-  }
+            </div>{{-- /.design12-top-section --}}
 
-  /* Website on right */
-  .resto-website {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: center;
-    gap: 3px;
-    flex-shrink: 0;
-  }
-  .website-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 8px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.6);
-  }
-  .website-url {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 8px;
-    color: #fff;
-    letter-spacing: 0.5px;
-    text-decoration: underline;
-    text-underline-offset: 2px;
-    text-decoration-color: rgba(255,255,255,0.4);
-  }
+            {{-- ════ RESTAURANT DETAILS STRIP ════ --}}
+            <div class="design12-restaurant-strip">
 
-  /* ── DOWNLOAD BUTTON ── */
-  .dl-btn {
-    background: #c93a1a;
-    color: #fff;
-    border: none;
-    padding: 11px 30px;
-    font-family: 'Anton', sans-serif;
-    font-size: 15px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    border-radius: 30px;
-    cursor: pointer;
-    box-shadow: 0 4px 20px rgba(201,58,26,0.45);
-    transition: opacity .2s, transform .15s;
-  }
-  .dl-btn:hover   { opacity: .88; transform: translateY(-2px); }
-  .dl-btn:active  { transform: translateY(0); }
-  .dl-btn:disabled { opacity: .55; cursor: not-allowed; transform: none; }
-</style>
-</head>
-<body>
+                {{-- Logo --}}
+                <div class="design12-resto-logo">
+                    @if(isset($logourl) && $logourl)
+                        <img src="{{ $logourl }}" alt="logo" crossorigin="anonymous">
+                    @else
+                        <img src="https://static.vecteezy.com/system/resources/thumbnails/014/664/003/small_2x/cafe-and-resto-logo-vector.jpg" alt="logo" crossorigin="anonymous">
+                    @endif
+                </div>
 
-<div class="poster" id="poster">
+                {{-- Name + contacts --}}
+                <div class="design12-resto-info">
+                    <div class="design12-resto-name">{{ @user()->name ?? ' ' }}</div>
+                    <div class="design12-resto-divider"></div>
+                    <div class="design12-resto-contacts">
 
-  <!-- ════ TOP MAIN SECTION ════ -->
-  <div class="top-section">
+                        <div class="design12-contact-row">
+                            <div class="design12-icon-circle">
+                                <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 1.5 Q2 3 4 5 Q6 7 7.5 8 L8.5 7 Q9 6.5 8.5 6 L7 4.5 Q6.5 4 6 4.5 L5.5 5 Q4.5 4.5 3.5 3 L4 2.5 Q4.5 2 4 1.5 L2.5 0.5 Q2 0 2 1.5Z"/>
+                                </svg>
+                            </div>
+                            <div class="design12-contact-text">{{ @user()->phone ?? ' ' }}</div>
+                        </div>
 
-    <!-- Red stripe with SVG drips -->
-    <div class="stripe">
-      <svg class="stripe-drips-svg" viewBox="0 0 64 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;bottom:-40px;left:0;width:100%;height:80px;">
-        <path d="M0,0 L64,0 L64,20
-          Q58,20 58,35 Q58,52 52,52 Q46,52 46,35 Q46,20 40,20
-          Q34,20 34,30 Q34,48 28,48 Q22,48 22,30 Q22,20 16,20
-          Q10,20 10,42 Q10,58 4,58 Q0,58 0,42 Z" fill="#c93a1a"/>
-      </svg>
-    </div>
+                        <div class="design12-contact-row">
+                            <div class="design12-icon-circle">
+                                <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 0.5 C3 0.5 1.5 2 1.5 3.8 C1.5 6.5 5 9.5 5 9.5 C5 9.5 8.5 6.5 8.5 3.8 C8.5 2 7 0.5 5 0.5Z"/>
+                                    <circle cx="5" cy="3.8" r="1.2" fill="{{ $themeColor }}"/>
+                                </svg>
+                            </div>
+                            <div class="design12-contact-text">{{ @user()->address ?? ' ' }}</div>
+                        </div>
 
-    <!-- Pizza image -->
-    <div class="pizza-wrap">
-      <img
-        src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=90"
-        alt="Pizza"
-        crossorigin="anonymous"
-      >
-    </div>
+                    </div>
+                </div>
 
-    <!-- Right content -->
-    <div class="right-col">
+                {{-- Website --}}
+                <div class="design12-resto-website">
+                    <div class="design12-website-label">Visit Us</div>
+                    <div class="design12-website-url">{{ @user()->website_domain ?? ' ' }}</div>
+                </div>
 
-      <!-- Heading -->
-      <div class="heading-block">
-        <!-- <div class="heading-super">DELICIOUS</div> -->
-        <div class="heading-pizza">DELICIOUS</div>
-        <div class="heading-pizza">DELICIOUS</div>
-        <div class="heading-pizza">DELICIOUS</div>
-        <div class="heading-pizza">DELICIOUS</div>
-        <div class="heading-pizza">DELICIOUS</div>
-        <div class="heading-pizza">DELICIOUS</div>
-        <div class="heading-pizza">DELICIOUS</div>
-        <div class="heading-pizza">DELICIOUS</div>
-        <div class="heading-pizza">DELICIOUS</div>
-        <div class="heading-pizza">DELICIOUS</div>
-        <div class="heading-pizza">DELICIOUS</div>
-      </div>
+            </div>{{-- /.design12-restaurant-strip --}}
 
-      <!-- Badge -->
-      <div class="badge-wrap">
-        <div class="badge">
-          <span class="badge-label">Hurry Up!!</span>
-          <span class="badge-value">Order Now</span>
-        </div>
-      </div>
+        </div>{{-- /.design12-card --}}
 
-     
+        {{-- Download button --}}
+        {{-- <button type="button" class="design12-download-btn" onclick="downloadPoster12()">
+            <i class="bi bi-download"></i>
+            Download Poster
+        </button> --}}
 
-      <!-- CTA -->
+    </div>{{-- /.design12-wrapper --}}
 
-    </div><!-- /.right-col -->
-  </div><!-- /.top-section -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-  <!-- ════ RESTAURANT DETAILS STRIP ════ -->
-  <div class="restaurant-strip">
+    <script>
+        function downloadPoster12() {
+            var card   = document.getElementById('posterCard12');
+            var button = document.querySelector('.design12-download-btn');
 
-    <!-- Logo -->
-    <div class="resto-logo">
-      <img
-        src="https://static.vecteezy.com/system/resources/thumbnails/014/664/003/small_2x/cafe-and-resto-logo-vector.jpg"
-        alt="Restaurant Logo"
-        crossorigin="anonymous"
-      >
-    </div>
+            button.innerHTML = '<i class="bi bi-hourglass-split"></i> Generating...';
+            button.disabled  = true;
 
-    <!-- Name + contacts -->
-    <div class="resto-info">
-      <div class="resto-name">Borcelle &amp; Co.</div>
-      <div class="resto-divider"></div>
-      <div class="resto-contacts">
+            var exportW = 1080;
+            var scale   = exportW / card.offsetWidth;
 
-        <div class="resto-contact-row">
-          <div class="icon-circle">
-            <!-- phone -->
-            <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2 1.5 Q2 3 4 5 Q6 7 7.5 8 L8.5 7 Q9 6.5 8.5 6 L7 4.5 Q6.5 4 6 4.5 L5.5 5 Q4.5 4.5 3.5 3 L4 2.5 Q4.5 2 4 1.5 L2.5 0.5 Q2 0 2 1.5Z"/>
-            </svg>
-          </div>
-          <div class="resto-contact-text">+123-456-7890</div>
-        </div>
+            html2canvas(card, {
+                scale:           scale,
+                backgroundColor: null,
+                logging:         false,
+                useCORS:         true,
+                allowTaint:      true,
+                imageTimeout:    0,
+                onclone: function(clonedDoc) {
+                    var images = clonedDoc.querySelectorAll('img');
+                    return Promise.all(Array.from(images).map(function(img) {
+                        return new Promise(function(resolve) {
+                            if (img.complete) { resolve(); }
+                            else { img.onload = resolve; img.onerror = resolve; }
+                        });
+                    }));
+                }
+            }).then(function(canvas) {
+                var link      = document.createElement('a');
+                link.download = 'menu-poster-instagram.png';
+                link.href     = canvas.toDataURL('image/png', 1.0);
+                link.click();
 
-        <div class="resto-contact-row">
-          <div class="icon-circle">
-            <!-- pin -->
-            <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 0.5 C3 0.5 1.5 2 1.5 3.8 C1.5 6.5 5 9.5 5 9.5 C5 9.5 8.5 6.5 8.5 3.8 C8.5 2 7 0.5 5 0.5Z"/>
-              <circle cx="5" cy="3.8" r="1.2" fill="#c93a1a"/>
-            </svg>
-          </div>
-          <div class="resto-contact-text">123 Anywhere St., Any City, ST 12345</div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Website -->
-    <div class="resto-website">
-      <div class="website-label">Visit Us</div>
-      <div class="website-url">www.borcelle.com</div>
-    </div>
-
-  </div><!-- /.restaurant-strip -->
-
-</div><!-- /.poster -->
-
-<!-- <button class="dl-btn" id="dlBtn" onclick="downloadPoster()">⬇ Download Poster</button> -->
-
-<script>
-function downloadPoster() {
-  const card = document.getElementById('poster');
-  const btn  = document.getElementById('dlBtn');
-  btn.textContent = '⏳ Generating…';
-  btn.disabled = true;
-  const scale = 1080 / card.offsetWidth;
-  html2canvas(card, {
-    scale, backgroundColor: null, logging: false,
-    useCORS: true, allowTaint: true, imageTimeout: 0,
-    onclone(clonedDoc) {
-      const imgs = clonedDoc.querySelectorAll('img');
-      return Promise.all([...imgs].map(img =>
-        new Promise(res => { if (img.complete) res(); else { img.onload = res; img.onerror = res; } })
-      ));
-    }
-  }).then(canvas => {
-    const a = document.createElement('a');
-    a.download = 'borcelle-pizza-poster.png';
-    a.href = canvas.toDataURL('image/png', 1.0);
-    a.click();
-    btn.textContent = '⬇ Download Poster';
-    btn.disabled = false;
-  }).catch(err => {
-    console.error(err);
-    alert('Failed – please try again.');
-    btn.textContent = '⬇ Download Poster';
-    btn.disabled = false;
-  });
-}
-</script>
-</body>
-</html>
+                button.innerHTML = '<i class="bi bi-download"></i> Download Poster';
+                button.disabled  = false;
+            }).catch(function(error) {
+                console.error('Error generating image:', error);
+                alert('Failed to generate image. Please try again.');
+                button.innerHTML = '<i class="bi bi-download"></i> Download Poster';
+                button.disabled  = false;
+            });
+        }
+    </script>
