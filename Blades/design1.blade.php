@@ -4,7 +4,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 <style>
-
     /* ── Wrapper: fills the modal column, no overflow ── */
     .design1-wrapper {
         width: 100%;
@@ -36,11 +35,9 @@
         flex-shrink: 0;
     }
 
-  .design1-wrapper .d1-logo img {
-        width: 2rem;
+    .design1-wrapper .d1-logo img {
+        width: auto;
         height: 2rem;
-        border-radius: 50%;
-        object-fit: cover;
         display: block;
         flex-shrink: 0;
     }
@@ -51,7 +48,7 @@
         flex-shrink: 0;
         padding: 0 0.8rem;
     }
-    
+
     .design1-wrapper .d1-heading1 {
         font-family: "Oswald", sans-serif;
         font-weight: 900;
@@ -114,7 +111,7 @@
         padding: 0 0.3rem;
     }
 
-  .design1-wrapper .d1-description p {
+    .design1-wrapper .d1-description p {
         font-size: 8px !important;
         font-weight: 400;
         text-transform: uppercase;
@@ -161,7 +158,7 @@
         gap: 4px;
         font-weight: 300;
         /*font-size: clamp(7px, 1.5vw, 9px);*/
-        font-size: 7px !important;
+        font-size: 8px !important;
     }
 
     .design1-wrapper .d1-footer-item i {
@@ -194,7 +191,6 @@
     .design1-wrapper .d1-download-btn:active {
         transform: translateY(0);
     }
-
 </style>
 
 <div class="design1-wrapper">
@@ -204,7 +200,7 @@
 
         {{-- Logo --}}
         <div class="d1-logo">
-            @if(isset($logourl) && $logourl)
+            @if (isset($logourl) && $logourl)
                 <img src="{{ $logourl }}" alt="logo">
             @endif
         </div>
@@ -212,7 +208,7 @@
         {{-- Headings --}}
         <div class="d1-headings">
             <div class="d1-heading1">CHEF'S CHOICE</div>
-            @if(strlen(@$menu['name']) <= 20)
+            @if (strlen(@$menu['name']) <= 20)
                 <div class="d1-heading2">{{ @$menu['name'] }}</div>
             @endif
         </div>
@@ -222,27 +218,27 @@
 
             {{-- Menu image --}}
             <div class="d1-menu-image">
-                @if(isset($menuImageUrl) && $menuImageUrl)
-                <div class="d1-menu-image-inner">
+                @if (isset($menuImageUrl) && $menuImageUrl)
+                    <div class="d1-menu-image-inner">
                         <img src="{{ $menuImageUrl }}" alt="menu-image" class="js-poster-menu-image">
-                </div>
+                    </div>
                 @endif
             </div>
 
             {{-- Description --}}
-           {{-- <div class="d1-description">
+            {{-- <div class="d1-description">
                 <p>
-                    {{ \Illuminate\Support\Str::limit($menu['description'] ?? '', 150, '...') }}
+                   {{ \Illuminate\Support\Str::limit($menu['description'] ?? '', 150, '...') }}  
                 </p>
             </div> --}}
 
             {{-- Restaurant details --}}
             <div class="d1-restaurant-details">
                 <div class="d1-restaurant-name fw-bold">
-                    {{ @user()->name ?? 'ZATO THAI CUISINE' }}
+                    {{ @user()->name ?? ' ' }}
                 </div>
                 <div class="d1-restaurant-address">
-                    {{ @user()->address ?? '9090 Skillman St, Dallas, TX 75243, USA' }}
+                    {{ @user()->address ?? ' ' }}
                 </div>
             </div>
 
@@ -252,19 +248,19 @@
         <div class="d1-footer">
             <div class="d1-footer-item">
                 <i class="bi bi-telephone-fill"></i>
-                {{ @user()->phone ?? '4692943680' }}
+                {{ @user()->phone ?? ' ' }}
             </div>
             <div class="d1-footer-item">
                 <i class="bi bi-globe"></i>
-                {{ @user()->website_domain ?? 'www.zatothaicuisine.site' }}
+                {{ @user()->website_domain ?? ' ' }}
             </div>
         </div>
 
     </div>{{-- /.design1-card --}}
 
     {{-- Download button (inside modal column, below card) --}}
-    
-  {{--  <button type="button" class="d1-download-btn" onclick="downloadDesign1()">
+
+    {{--  <button type="button" class="d1-download-btn" onclick="downloadDesign1()">
        <i class="bi bi-download"></i>
        Download Poster
     </button> --}}
@@ -275,11 +271,11 @@
 
 <script>
     function downloadDesign1() {
-        var card   = document.getElementById('posterCard1');
+        var card = document.getElementById('posterCard1');
         var button = document.querySelector('.d1-download-btn');
 
         button.innerHTML = '<i class="bi bi-hourglass-split"></i> Generating...';
-        button.disabled  = true;
+        button.disabled = true;
 
         /*
          * Export at 1080 × 1350 px (Instagram 4:5).
@@ -287,7 +283,7 @@
          * scale = 1080 / card.offsetWidth  →  exact pixel-perfect export.
          */
         var exportW = 1080;
-        var scale   = exportW / card.offsetWidth;
+        var scale = exportW / card.offsetWidth;
 
         html2canvas(card, {
             scale: scale,
@@ -296,28 +292,32 @@
             useCORS: true,
             allowTaint: true,
             imageTimeout: 0,
-            onclone: function (clonedDoc) {
+            onclone: function(clonedDoc) {
                 var images = clonedDoc.querySelectorAll('img');
                 return Promise.all(Array.from(images).map(function(img) {
                     return new Promise(function(resolve) {
-                        if (img.complete) { resolve(); }
-                        else { img.onload = resolve; img.onerror = resolve; }
+                        if (img.complete) {
+                            resolve();
+                        } else {
+                            img.onload = resolve;
+                            img.onerror = resolve;
+                        }
                     });
                 }));
             }
         }).then(function(canvas) {
-            var link    = document.createElement('a');
+            var link = document.createElement('a');
             link.download = 'menu-poster-instagram.png';
-            link.href     = canvas.toDataURL('image/png', 1.0);
+            link.href = canvas.toDataURL('image/png', 1.0);
             link.click();
 
             button.innerHTML = '<i class="bi bi-download"></i> Download Poster';
-            button.disabled  = false;
+            button.disabled = false;
         }).catch(function(error) {
             console.error('Error generating image:', error);
             alert('Failed to generate image. Please try again.');
             button.innerHTML = '<i class="bi bi-download"></i> Download Poster';
-            button.disabled  = false;
+            button.disabled = false;
         });
     }
 </script>

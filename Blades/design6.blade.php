@@ -1,8 +1,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Karantina:wght@300;400;700&family=Splash&display=swap" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Poppins:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Karantina:wght@300;400;700&family=Splash&display=swap"
+    rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 <style>
@@ -121,7 +126,7 @@
 
     /* leaf one:    top:-12/490=-2.4%, right:-40/390=-10.3%, w:111/390=28.5% */
     .design6-wrapper .d6-leaf-one {
-         top: -7.4%;
+        top: -7.4%;
         right: -18.3%;
         width: 37.5%;
         height: auto;
@@ -140,34 +145,34 @@
 
     /* tomato:      bottom:97/490=19.8%, right:2/390=0.5%, w:111/390=28.5% */
     .design6-wrapper .d6-leaf-tomato {
-            bottom: 21.8%;
-            right: 11.5%;
-            width: 28.5%;
-            height: auto;
-            z-index: 10;
+        bottom: 21.8%;
+        right: 11.5%;
+        width: 28.5%;
+        height: auto;
+        z-index: 10;
     }
 
     /* chilli one:  top:240/490=49%, right:35/390=9%, w:60/390=15.4% */
     .design6-wrapper .d6-chilli-one {
-           top: 49%;
-            right: 11%;
-            width: 15.4%;
-            height: auto;
-            transform: rotate(-172deg);
+        top: 49%;
+        right: 11%;
+        width: 15.4%;
+        height: auto;
+        transform: rotate(-172deg);
     }
 
     /* chilli two:  top:-23/490=-4.7%, left:-64/390=-16.4%, w:162/390=41.5% */
     .design6-wrapper .d6-chilli-two {
-            top: -5.7%;
-            left: -20.4%;
-            width: 41.5%;
-            height: auto;
-            transform: rotate(-117deg);
+        top: -5.7%;
+        left: -20.4%;
+        width: 41.5%;
+        height: auto;
+        transform: rotate(-117deg);
     }
 
     /* chilli three: top:130/490=26.5%, left:20/390=5.1%, w:115/390=29.5% */
     .design6-wrapper .d6-chilli-three {
-          top: 26.5%;
+        top: 26.5%;
         left: 2.1%;
         width: 33.5%;
         height: auto;
@@ -204,9 +209,9 @@
     }
 
     .design6-wrapper .d6-logo {
-        width: 30px !important;
-        height: 30px !important;
-        border-radius: 50%;
+        width: auto;
+        height: 2rem !important;
+        /* border-radius: 50%; */
         overflow: hidden;
         flex-shrink: 0;
     }
@@ -214,7 +219,7 @@
     .design6-wrapper .d6-logo img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        /* object-fit: cover; */
         display: block;
     }
 
@@ -235,8 +240,19 @@
         white-space: nowrap;
     }
 
-    .design6-wrapper .d6-phone   { position: absolute; left: 4.6%; bottom: 0; font-size: 10px !important; }
-    .design6-wrapper .d6-website { position: absolute; right: 4.6%; bottom: 0; font-size: 10px !important; }
+    .design6-wrapper .d6-phone {
+        position: absolute;
+        left: 4.6%;
+        bottom: 0;
+        font-size: 10px !important;
+    }
+
+    .design6-wrapper .d6-website {
+        position: absolute;
+        right: 4.6%;
+        bottom: 0;
+        font-size: 10px !important;
+    }
 
     /* ── Download button ── */
     .design6-wrapper .d6-download-btn {
@@ -272,11 +288,11 @@
         {{-- Background Texture --}}
         <img src="{{ asset('img/posters/design6/texxture3.png') }}" class="d6-bg-texture" alt="Background Texture">
 
-        <img src="{{ asset('img/posters/design6/spoon-wooden.png') }}" class="d6-shape d6-leaf-one"     alt="leaf">
+        <img src="{{ asset('img/posters/design6/spoon-wooden.png') }}" class="d6-shape d6-leaf-one" alt="leaf">
         <!--<img src="{{ asset('img/posters/design6/5.png') }}" class="d6-shape d6-leaf-two"     alt="leaf">-->
-        <img src="{{ asset('img/posters/design6/spoon.png') }}" class="d6-shape d6-leaf-tomato"  alt="tomato">
-        <img src="{{ asset('img/posters/design6/spoon-wooden.png') }}" class="d6-shape d6-chilli-one"   alt="chilli">
-        <img src="{{ asset('img/posters/design6/plate-face.png') }}" class="d6-shape d6-chilli-two"   alt="chilli">
+        <img src="{{ asset('img/posters/design6/spoon.png') }}" class="d6-shape d6-leaf-tomato" alt="tomato">
+        <img src="{{ asset('img/posters/design6/spoon-wooden.png') }}" class="d6-shape d6-chilli-one" alt="chilli">
+        <img src="{{ asset('img/posters/design6/plate-face.png') }}" class="d6-shape d6-chilli-two" alt="chilli">
         <img src="{{ asset('img/posters/design6/fork.png') }}" class="d6-shape d6-chilli-three" alt="chilli">
 
         {{-- Dark card background --}}
@@ -284,7 +300,7 @@
 
         {{-- Menu Image (circular) --}}
         <div class="d6-pizza-wrap">
-            @if(isset($menuImageUrl) && $menuImageUrl)
+            @if (isset($menuImageUrl) && $menuImageUrl)
                 <img src="{{ $menuImageUrl }}" alt="{{ @$menu['name'] ?? 'Menu Item' }}" crossorigin="anonymous">
             @else
                 <img src="https://pngimg.com/d/pizza_PNG44095.png" alt="Menu Item">
@@ -297,7 +313,7 @@
 
         {{-- Restaurant details: positioned directly on card --}}
         <div class="d6-restaurant-details">
-            @if(isset($logourl) && $logourl)
+            @if (isset($logourl) && $logourl)
                 <div class="d6-logo">
                     <img src="{{ $logourl }}" alt="logo" crossorigin="anonymous">
                 </div>
@@ -325,10 +341,10 @@
     </div>{{-- /.design6-card --}}
 
     {{-- Download button --}}
-    <!--<button type="button" class="d6-download-btn" onclick="downloadPoster6()">-->
-    <!--    <i class="bi bi-download"></i>-->
-    <!--    Download Poster-->
-    <!--</button> -->
+    {{-- <button type="button" class="d6-download-btn" onclick="downloadPoster6()">
+        <i class="bi bi-download"></i>
+        Download Poster
+    </button> --}}
 
 </div>{{-- /.design6-wrapper --}}
 
@@ -336,14 +352,14 @@
 
 <script>
     function downloadPoster6() {
-        var card   = document.getElementById('posterCard6');
+        var card = document.getElementById('posterCard6');
         var button = document.querySelector('.d6-download-btn');
 
         button.innerHTML = '<i class="bi bi-hourglass-split"></i> Generating...';
-        button.disabled  = true;
+        button.disabled = true;
 
         var exportW = 1080;
-        var scale   = exportW / card.offsetWidth;
+        var scale = exportW / card.offsetWidth;
 
         html2canvas(card, {
             scale: scale,
@@ -352,28 +368,32 @@
             useCORS: true,
             allowTaint: true,
             imageTimeout: 0,
-            onclone: function (clonedDoc) {
+            onclone: function(clonedDoc) {
                 var images = clonedDoc.querySelectorAll('img');
                 return Promise.all(Array.from(images).map(function(img) {
                     return new Promise(function(resolve) {
-                        if (img.complete) { resolve(); }
-                        else { img.onload = resolve; img.onerror = resolve; }
+                        if (img.complete) {
+                            resolve();
+                        } else {
+                            img.onload = resolve;
+                            img.onerror = resolve;
+                        }
                     });
                 }));
             }
         }).then(function(canvas) {
-            var link      = document.createElement('a');
+            var link = document.createElement('a');
             link.download = 'menu-poster-instagram.png';
-            link.href     = canvas.toDataURL('image/png', 1.0);
+            link.href = canvas.toDataURL('image/png', 1.0);
             link.click();
 
             button.innerHTML = '<i class="bi bi-download"></i> Download Poster';
-            button.disabled  = false;
+            button.disabled = false;
         }).catch(function(error) {
             console.error('Error generating image:', error);
             alert('Failed to generate image. Please try again.');
             button.innerHTML = '<i class="bi bi-download"></i> Download Poster';
-            button.disabled  = false;
+            button.disabled = false;
         });
     }
 </script>

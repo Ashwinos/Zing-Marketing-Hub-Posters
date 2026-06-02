@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Greek Cafe Poster</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Cormorant+Garamond:wght@400;600;700&family=Dancing+Script:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 28px;
+            background: #e2d8cd;
+            display: flex;
+            justify-content: center;
+            font-family: sans-serif;
+        }
+
+        :root {
+            --cream: #f0e6d3;
+            --cream2: #ede0cc;
+            --navy: #1a2744;
+            --gold: #c9973a;
+            --gold-lt: #e8c87a;
+            --tb: #3a6ea5;
+            --tb2: #2a5090;
+            --tb3: #1e3d6e;
+            --white: #ffffff;
+        }
+
+        @font-face {
+            font-family: 'Vastile DEMO';
+            src: url('../assets/hz/fonts/VastileDEMO-Regular.woff2') format('woff2'),
+                url('../assets/hz/fonts/VastileDEMO-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* ── Wrapper ── */
+        .design12-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        /* ── Card: arch-top shape ── */
+        .design12-card {
+            width: 340px;
+            aspect-ratio: 3/4;
+            background: var(--cream);
+
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 18px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ── Thin outer tile strips (full height, left & right) ── */
+        .d12-outer-tile {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 13px;
+            z-index: 20;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .d12-outer-tile.left {
+            left: 0;
+        }
+
+        .d12-outer-tile.right {
+            right: 0;
+        }
+
+        /* ── 1. Sky / Arch top (sun ornament area) ── */
+        .d12-sky {
+            flex-shrink: 0;
+            height: 50px;
+            background: linear-gradient(180deg, #c5dce8 0%, #d8eae8 55%, var(--cream) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* ── 2. Headline area ── */
+        .d12-hl-wrap {
+            flex-shrink: 0;
+            background: var(--cream);
+            padding: 12px 28px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* horizontal rule / arch bottom line under sun */
+        .d12-hl-wrap::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 28px;
+            right: 28px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .d12-headline {
+            font-family: 'Playfair Display', serif;
+
+            font-size: 26px;
+            line-height: 1.02;
+            color: var(--navy);
+
+            letter-spacing: 0;
+            margin: 0;
+            font-family: 'Vastile DEMO';
+        }
+
+        /* ── 3. Food image ── */
+        .d12-food {
+            flex: 1;
+            min-height: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .d12-food img,
+        .d12-food-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .d12-food-bg {
+            background: linear-gradient(170deg, #b0a882 0%, #8a7850 60%, #6a5830 100%);
+        }
+
+        /* Olive branch in top-left of image */
+        .d12-olive {
+            position: absolute;
+            top: -6px;
+            left: -4px;
+            width: 105px;
+            z-index: 5;
+        }
+
+        /* ── 4. Tagline ── */
+        .d12-tagline-wrap {
+            flex-shrink: 0;
+            background: var(--cream);
+            padding: 5px 22px 5px;
+            text-align: center;
+            border-top: 1.5px solid rgba(201, 151, 58, 0.4);
+            border-bottom: 2px solid var(--navy);
+        }
+
+        .d12-tagline {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--navy);
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        /* ── 5. INFO SECTION (tile cols flanking center) ── */
+        .d12-info-row {
+            flex-shrink: 0;
+            display: flex;
+            align-items: stretch;
+            background: var(--cream2);
+            min-height: 66px;
+        }
+
+        .d12-tile-col-wide {
+            flex-shrink: 0;
+            width: 72px;
+            overflow: hidden;
+        }
+
+        .d12-info-center {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 6px;
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .d12-r-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            color: var(--navy);
+            letter-spacing: 0.5px;
+            line-height: 1.1;
+            margin: 0 0 2px;
+            font-family: 'Vastile DEMO';
+        }
+
+        .d12-r-addr {
+            font-size: 10px;
+        }
+
+        .d12-r-phone {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 10px;
+        }
+
+        .d12-r-email {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 10px;
+        }
+
+        .d12-r-hours {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 9px;
+            color: var(--navy);
+            margin: 0;
+        }
+
+        /* ── 6. CONTACT SECTION ── */
+        .d12-contact-row {
+            flex-shrink: 0;
+            display: flex;
+            align-items: stretch;
+            background: var(--cream2);
+            min-height: 46px;
+            border-top: 1px solid #000000;
+        }
+
+        .d12-tile-col-narrow {
+            flex-shrink: 0;
+            width: 38px;
+            overflow: hidden;
+        }
+
+        .d12-ct-left {
+            flex: 1;
+            padding: 4px 6px;
+            font-size: 7.5px;
+            line-height: 1.65;
+            color: var(--navy);
+            font-family: Arial, sans-serif;
+            align-items: baseline;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .d12-ct-right {
+            flex-shrink: 0;
+            width: 88px;
+            padding: 4px 5px;
+            font-family: Arial, sans-serif;
+            font-size: 8px;
+            font-weight: 700;
+            line-height: 1.65;
+            color: var(--navy);
+            text-align: right;
+            border-left: 1px solid #000000;
+            align-items: baseline;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ── 7. ZING BAR ── */
+        .d12-zing {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            background: var(--white);
+            min-height: 22px;
+            border-top: 1px solid #ddd;
+            padding: 0;
+        }
+
+        .d12-zing-tile {
+            flex-shrink: 0;
+            width: 38px;
+            height: 22px;
+            overflow: hidden;
+        }
+
+        .d12-zing-center {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-size: 8px;
+            color: #333;
+            font-family: Arial, sans-serif;
+        }
+
+        .d12-zing-logo {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #2a9a4a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5px;
+            font-weight: bold;
+            color: #fff;
+            flex-shrink: 0;
+            border: 1px solid #228a3e;
+        }
+
+        .d12-zing-diamond {
+            flex-shrink: 0;
+            width: 38px;
+            height: 22px;
+            overflow: hidden;
+        }
+
+        /* ── Download button ── */
+        .d12-download-btn {
+            margin-top: 16px;
+            background: #1a2744;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Legacy hidden classes (preserved for Blade/JS compatibility) */
+        .d12-top-header,
+        .d12-headings,
+        .d12-body,
+        .d12-footer,
+        .d12-footer-1,
+        .patterm-design-1,
+        .patterm-design-2,
+        .patterm-design-3,
+        .bg-pattern,
+        .d12-menu-image-inner,
+        .d12-description {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="design12-wrapper">
+        <div class="design12-card" id="posterCard7">
+
+            <!-- ══════ OUTER TILE STRIPS (left & right, full height) ══════ -->
+            <div class="d12-outer-tile left">
+                <svg width="13" height="100%" style="display:block;">
+                    <defs>
+                        <pattern id="ots" x="0" y="0" width="13" height="13" patternUnits="userSpaceOnUse">
+                            <rect width="13" height="13" fill="#3a6ea5" />
+                            <path d="M6.5 1.2 Q6.5 6.5 1.2 6.5 Q6.5 6.5 6.5 11.8 Q6.5 6.5 11.8 6.5 Q6.5 6.5 6.5 1.2Z"
+                                fill="#e8c87a" opacity="0.75" />
+                            <circle cx="6.5" cy="6.5" r="1.6" fill="#fff" opacity="0.65" />
+                        </pattern>
+                    </defs>
+                    <rect width="13" height="100%" fill="url(#ots)" />
+                </svg>
+            </div>
+            <div class="d12-outer-tile right">
+                <svg width="13" height="100%" style="display:block;">
+                    <defs>
+                        <pattern id="ots2" x="0" y="0" width="13" height="13" patternUnits="userSpaceOnUse">
+                            <rect width="13" height="13" fill="#3a6ea5" />
+                            <path d="M6.5 1.2 Q6.5 6.5 1.2 6.5 Q6.5 6.5 6.5 11.8 Q6.5 6.5 11.8 6.5 Q6.5 6.5 6.5 1.2Z"
+                                fill="#e8c87a" opacity="0.75" />
+                            <circle cx="6.5" cy="6.5" r="1.6" fill="#fff" opacity="0.65" />
+                        </pattern>
+                    </defs>
+                    <rect width="13" height="100%" fill="url(#ots2)" />
+                </svg>
+            </div>
+
+
+
+            <!-- ══════ 2. HEADLINE ══════ -->
+            <div class="d12-hl-wrap">
+                <p class="d12-headline">Craving Greek<br>Belair Cafe Food?</p>
+            </div>
+
+            <!-- ══════ 3. FOOD IMAGE ══════ -->
+            <div class="d12-food">
+                <!-- PHP: @if (isset($menuImageUrl) && $menuImageUrl)
+-->
+                <!-- <img src="{{ $menuImageUrl }}" crossorigin="anonymous" alt="menu item"> -->
+                <!--
+@else
+-->
+                <div class="d12-food-bg">
+                    <img src="../assets/hz/images/menu-image-2.jpg" crossorigin="anonymous" alt="menu item">
+                </div>
+                <!--
+@endif -->
+
+
+            </div>
+
+            <!-- ══════ 4. TAGLINE ══════ -->
+            <div class="d12-tagline-wrap">
+                <!-- PHP: @if (!empty($menu['description']))
+-->
+                <!-- <p class="d12-tagline">{{ Str::limit($menu['description'], 55, '...') }}</p> -->
+                <!--
+@else
+-->
+                <p class="d12-tagline">Still haven't tried our delicious Tacos?</p>
+                <!--
+@endif -->
+            </div>
+
+            <!-- ══════ 5. INFO ROW (tile cols flanking restaurant info) ══════ -->
+            <div class="d12-info-row">
+                <!-- Left tile column (2 cols × 2 rows = 4 tiles) -->
+                <div class="d12-tile-col-wide">
+                    <svg width="72" height="100%" viewBox="0 0 72 68" preserveAspectRatio="xMidYMid slice">
+                        <defs>
+                            <!-- Tile A: 8-petal floral -->
+                            <pattern id="tA" x="0" y="0" width="36" height="34"
+                                patternUnits="userSpaceOnUse">
+                                <rect width="36" height="34" fill="#3a6ea5" />
+                                <rect x="1" y="1" width="34" height="32" rx="1.5" fill="#2a5090"
+                                    opacity="0.4" />
+                                <!-- petals -->
+                                <ellipse cx="18" cy="7" rx="4.5" ry="6.5" fill="#e8c87a"
+                                    opacity="0.85" />
+                                <ellipse cx="18" cy="27" rx="4.5" ry="6.5" fill="#e8c87a"
+                                    opacity="0.85" />
+                                <ellipse cx="7" cy="17" rx="6.5" ry="4.5" fill="#e8c87a"
+                                    opacity="0.85" />
+                                <ellipse cx="29" cy="17" rx="6.5" ry="4.5" fill="#e8c87a"
+                                    opacity="0.85" />
+                                <ellipse cx="10" cy="9" rx="4" ry="5.5" fill="#c9973a"
+                                    opacity="0.7" transform="rotate(45 10 9)" />
+                                <ellipse cx="26" cy="9" rx="4" ry="5.5" fill="#c9973a"
+                                    opacity="0.7" transform="rotate(-45 26 9)" />
+                                <ellipse cx="10" cy="25" rx="4" ry="5.5" fill="#c9973a"
+                                    opacity="0.7" transform="rotate(-45 10 25)" />
+                                <ellipse cx="26" cy="25" rx="4" ry="5.5" fill="#c9973a"
+                                    opacity="0.7" transform="rotate(45 26 25)" />
+                                <circle cx="18" cy="17" r="5.5" fill="#fff" opacity="0.92" />
+                                <circle cx="18" cy="17" r="3" fill="#c9973a" />
+                                <rect x="0.5" y="0.5" width="35" height="33" rx="1.5" fill="none"
+                                    stroke="#e8c87a" stroke-width="0.7" />
+                            </pattern>
+                            <!-- Tile B: arabesque diamond -->
+                            <pattern id="tB" x="0" y="34" width="36" height="34"
+                                patternUnits="userSpaceOnUse">
+                                <rect width="36" height="34" fill="#2a5090" />
+                                <rect x="1" y="1" width="34" height="32" rx="1.5" fill="#1e3d6e"
+                                    opacity="0.5" />
+                                <path d="M18 3 L33 17 L18 31 L3 17 Z" fill="none" stroke="#e8c87a"
+                                    stroke-width="1.2" />
+                                <path d="M18 8 L28 17 L18 26 L8 17 Z" fill="#3a6ea5" stroke="#c9973a"
+                                    stroke-width="0.7" />
+                                <circle cx="18" cy="17" r="4.5" fill="#e8c87a" opacity="0.85" />
+                                <circle cx="18" cy="17" r="2" fill="#2a5090" />
+                                <circle cx="3" cy="3" r="2.5" fill="#c9973a" opacity="0.65" />
+                                <circle cx="33" cy="3" r="2.5" fill="#c9973a" opacity="0.65" />
+                                <circle cx="3" cy="31" r="2.5" fill="#c9973a" opacity="0.65" />
+                                <circle cx="33" cy="31" r="2.5" fill="#c9973a" opacity="0.65" />
+                                <rect x="0.5" y="0.5" width="35" height="33" rx="1.5" fill="none"
+                                    stroke="#c9973a" stroke-width="0.7" />
+                            </pattern>
+                        </defs>
+                        <rect width="72" height="34" fill="url(#tA)" />
+                        <rect y="34" width="72" height="34" fill="url(#tB)" />
+                    </svg>
+                </div>
+
+                <!-- Center restaurant info -->
+                <div class="d12-info-center">
+                    <!-- PHP: <div class="d12-r-name">{{ user()->name ?? 'Greek Belair Cafe' }}</div> -->
+                    <div class="d12-r-name">Greek Belair Cafe</div>
+                    <!-- PHP: <div class="d12-r-addr">{{ user()->address ?? '327 5th Ave S...' }}</div> -->
+                    <div class="d12-r-addr">327 5th Ave S, Naples, FL 34102, USA</div>
+                    <div class="d12-r-phone">Phone: (239) 262-1234</div>
+
+                    <div class="d12-r-email">Email: support@greekbelaircafe.com</div>
+
+                </div>
+
+                <!-- Right tile column (2 cols × 2 rows) -->
+                <div class="d12-tile-col-wide">
+                    <svg width="72" height="100%" viewBox="0 0 72 68" preserveAspectRatio="xMidYMid slice">
+                        <defs>
+                            <!-- Tile C: 4-circle clover -->
+                            <pattern id="tC" x="0" y="0" width="36" height="34"
+                                patternUnits="userSpaceOnUse">
+                                <rect width="36" height="34" fill="#3a6ea5" />
+                                <rect x="1" y="1" width="34" height="32" rx="1.5" fill="#2a5090"
+                                    opacity="0.3" />
+                                <circle cx="18" cy="8" r="7" fill="#1e3d6e" />
+                                <circle cx="18" cy="26" r="7" fill="#1e3d6e" />
+                                <circle cx="8" cy="17" r="7" fill="#1e3d6e" />
+                                <circle cx="28" cy="17" r="7" fill="#1e3d6e" />
+                                <circle cx="18" cy="17" r="7" fill="#e8c87a" opacity="0.85" />
+                                <circle cx="18" cy="17" r="3.5" fill="#3a6ea5" />
+                                <circle cx="18" cy="8" r="3" fill="none" stroke="#e8c87a"
+                                    stroke-width="0.8" opacity="0.6" />
+                                <circle cx="18" cy="26" r="3" fill="none" stroke="#e8c87a"
+                                    stroke-width="0.8" opacity="0.6" />
+                                <circle cx="8" cy="17" r="3" fill="none" stroke="#e8c87a"
+                                    stroke-width="0.8" opacity="0.6" />
+                                <circle cx="28" cy="17" r="3" fill="none" stroke="#e8c87a"
+                                    stroke-width="0.8" opacity="0.6" />
+                                <rect x="0.5" y="0.5" width="35" height="33" rx="1.5" fill="none"
+                                    stroke="#e8c87a" stroke-width="0.7" />
+                            </pattern>
+                            <!-- Tile D: star burst -->
+                            <pattern id="tD" x="0" y="34" width="36" height="34"
+                                patternUnits="userSpaceOnUse">
+                                <rect width="36" height="34" fill="#2a5090" />
+                                <rect x="1" y="1" width="34" height="32" rx="1.5" fill="#1e3d6e"
+                                    opacity="0.4" />
+                                <!-- 8-point star -->
+                                <polygon
+                                    points="18,4 20,14 27,8 21,16 31,17 21,18 27,26 20,20 18,30 16,20 9,26 15,18 5,17 15,16 9,8 16,14"
+                                    fill="#c9973a" opacity="0.8" />
+                                <circle cx="18" cy="17" r="5" fill="#e8c87a" opacity="0.9" />
+                                <circle cx="18" cy="17" r="2.5" fill="#2a5090" />
+                                <rect x="0.5" y="0.5" width="35" height="33" rx="1.5" fill="none"
+                                    stroke="#c9973a" stroke-width="0.7" />
+                            </pattern>
+                        </defs>
+                        <rect width="72" height="34" fill="url(#tC)" />
+                        <rect y="34" width="72" height="34" fill="url(#tD)" />
+                    </svg>
+                </div>
+            </div>
+
+
+
+
+            <!-- ══════ HIDDEN LEGACY ELEMENTS (preserved for JS/PHP) ══════ -->
+            <div class="d12-body" style="display:none">
+                <div class="d12-logo" style="display:none"></div>
+                <div class="d12-headings" style="display:none">
+                    <div class="d12-heading1"></div>
+                    <div class="d12-heading2"></div>
+                </div>
+                <div class="d12-description" style="display:none">
+                    <p></p>
+                </div>
+            </div>
+            <div class="d12-footer" style="display:none"></div>
+            <div class="d12-footer-1" style="display:none"></div>
+            <div class="patterm-design-1" style="display:none"></div>
+            <div class="patterm-design-2" style="display:none"></div>
+            <div class="patterm-design-3" style="display:none"></div>
+            <div class="bg-pattern" style="display:none"></div>
+            <div class="d12-menu-image-inner" style="display:none"></div>
+
+        </div><!-- /.design12-card -->
+
+        <button class="d12-download-btn" onclick="downloaddesign12()">
+            <i class="bi bi-download"></i> Download Poster
+        </button>
+    </div><!-- /.design12-wrapper -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        function downloaddesign12() {
+            var card = document.getElementById('posterCard7');
+            var button = document.querySelector('.d12-download-btn');
+            button.innerHTML = '<i class="bi bi-hourglass-split"></i> Generating...';
+            button.disabled = true;
+            var exportW = 1080;
+            var scale = exportW / card.offsetWidth;
+            html2canvas(card, {
+                scale: scale,
+                backgroundColor: null,
+                logging: false,
+                useCORS: true,
+                allowTaint: true,
+                imageTimeout: 0,
+                onclone: function(clonedDoc) {
+                    var images = clonedDoc.querySelectorAll('img');
+                    return Promise.all(Array.from(images).map(function(img) {
+                        return new Promise(function(resolve) {
+                            if (img.complete) {
+                                resolve();
+                            } else {
+                                img.onload = resolve;
+                                img.onerror = resolve;
+                            }
+                        });
+                    }));
+                }
+            }).then(function(canvas) {
+                var link = document.createElement('a');
+                link.download = 'menu-poster-instagram.png';
+                link.href = canvas.toDataURL('image/png', 1.0);
+                link.click();
+                button.innerHTML = '<i class="bi bi-download"></i> Download Poster';
+                button.disabled = false;
+            }).catch(function(error) {
+                console.error('Error:', error);
+                alert('Failed to generate. Please try again.');
+                button.innerHTML = '<i class="bi bi-download"></i> Download Poster';
+                button.disabled = false;
+            });
+        }
+    </script>
+</body>
+
+</html>

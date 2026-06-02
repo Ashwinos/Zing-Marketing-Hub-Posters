@@ -4,7 +4,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 <style>
-
     /* ── Wrapper: fills modal column ── */
     .design4-wrapper {
         width: 100%;
@@ -39,11 +38,11 @@
     }
 
     .design4-wrapper .d4-logo img {
-        width: 2.2rem;
+        width: auto;
         height: 2.2rem;
-        border-radius: 50%;
-        object-fit: cover;
-        display: block;
+        /* border-radius: 50%; */
+        /* object-fit: cover; */
+        /* display: block; */
     }
 
     /* ── Restaurant details ── */
@@ -140,7 +139,7 @@
         /*flex: 1;*/
         position: relative;
         border-top: 4px solid #dca843;
-        /*min-height: 0;*/ 
+        /*min-height: 0;*/
         height: 55%;
         overflow: hidden;
     }
@@ -215,6 +214,7 @@
     .design4-wrapper .d4-download-btn:active {
         transform: translateY(0);
     }
+
     .design4-wrapper .d4-menu-img-bg {
         width: 100%;
         height: 100%;
@@ -223,7 +223,6 @@
         background-repeat: no-repeat;
         border-radius: 0 0 10px 10px;
     }
-
 </style>
 
 <div class="design4-wrapper">
@@ -232,7 +231,7 @@
 
         {{-- Logo --}}
         <div class="d4-logo">
-            @if(isset($logourl) && $logourl)
+            @if (isset($logourl) && $logourl)
                 <img src="{{ $logourl }}" alt="logo" crossorigin="anonymous">
             @endif
         </div>
@@ -250,16 +249,16 @@
         {{-- Body: headings + description + order btn --}}
         <div class="d4-body">
             <div class="d4-heading1">Yummy</div>
-            @if(strlen(@$menu['name']) <= 20)
-            <div class="d4-heading2">{{ @$menu['name'] }}</div>
+            @if (strlen(@$menu['name']) <= 20)
+                <div class="d4-heading2">{{ @$menu['name'] }}</div>
             @endif
         </div>
 
         <div class="d4-description">
             <p>
-                 {{ \Illuminate\Support\Str::limit($menu['description'] ?? '', 150, '...') }}
+                {{ \Illuminate\Support\Str::limit($menu['description'] ?? '', 150, '...') }}
             </p>
-         </div>
+        </div>
 
         <div class="d4-order-now">
             <button type="button" class="d4-order-btn">Order Now</button>
@@ -267,8 +266,9 @@
 
         {{-- Menu image with contact pill overlay --}}
         <div class="d4-menu-image">
-            @if(isset($menuImageUrl) && $menuImageUrl)
-               <div class="d4-menu-img-bg js-poster-menu-image" style="background-image: url('{{ $menuImageUrl }}')"></div>
+            @if (isset($menuImageUrl) && $menuImageUrl)
+                <div class="d4-menu-img-bg js-poster-menu-image" style="background-image: url('{{ $menuImageUrl }}')">
+                </div>
             @endif
 
             <div class="d4-card-contact">
@@ -288,10 +288,10 @@
     </div>{{-- /.design4-card --}}
 
     {{-- Download button --}}
-    <!--<button type="button" class="d4-download-btn" onclick="downloadDesign4()">-->
-    <!--    <i class="bi bi-download"></i>-->
-    <!--   Download Poster-->
-    <!--</button> -->
+    {{-- -<button type="button" class="d4-download-btn" onclick="downloadDesign4()">
+        <i class="bi bi-download"></i>
+       Download Poster
+    </button> --}}
 
 </div>{{-- /.design4-wrapper --}}
 
@@ -299,14 +299,14 @@
 
 <script>
     function downloadDesign4() {
-        var card   = document.getElementById('posterCard4');
+        var card = document.getElementById('posterCard4');
         var button = document.querySelector('.d4-download-btn');
 
         button.innerHTML = '<i class="bi bi-hourglass-split"></i> Generating...';
-        button.disabled  = true;
+        button.disabled = true;
 
         var exportW = 1080;
-        var scale   = exportW / card.offsetWidth;
+        var scale = exportW / card.offsetWidth;
 
         html2canvas(card, {
             scale: scale,
@@ -315,28 +315,32 @@
             useCORS: true,
             allowTaint: false,
             imageTimeout: 15000,
-            onclone: function (clonedDoc) {
+            onclone: function(clonedDoc) {
                 var images = clonedDoc.querySelectorAll('img');
                 return Promise.all(Array.from(images).map(function(img) {
                     return new Promise(function(resolve) {
-                        if (img.complete) { resolve(); }
-                        else { img.onload = resolve; img.onerror = resolve; }
+                        if (img.complete) {
+                            resolve();
+                        } else {
+                            img.onload = resolve;
+                            img.onerror = resolve;
+                        }
                     });
                 }));
             }
         }).then(function(canvas) {
-            var link      = document.createElement('a');
+            var link = document.createElement('a');
             link.download = 'menu-poster-instagram.png';
-            link.href     = canvas.toDataURL('image/png', 1.0);
+            link.href = canvas.toDataURL('image/png', 1.0);
             link.click();
 
             button.innerHTML = '<i class="bi bi-download"></i> Download Poster';
-            button.disabled  = false;
+            button.disabled = false;
         }).catch(function(error) {
             console.error('Error generating image:', error);
             alert('Failed to generate image. Please try again.');
             button.innerHTML = '<i class="bi bi-download"></i> Download Poster';
-            button.disabled  = false;
+            button.disabled = false;
         });
     }
 </script>

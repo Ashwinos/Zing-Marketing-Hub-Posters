@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Poster</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    @font-face {
+      font-family: 'Gummy Twist';
+      src: url('../assets/hz/fonts/GummyTwist-Regular.woff2') format('woff2'),
+        url('../assets/hz/fonts/GummyTwist-Regular.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'PLAYMORE';
+      src: url('../assets/hz/fonts/PLAYMORE-Regular.woff2') format('woff2'),
+        url('../assets/hz/fonts/PLAYMORE-Regular.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+
+
+    body {
+      background: #181818;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 16px;
+      font-family: "Lato", sans-serif;
+    }
+
+    /* ── 340 × 425 px (4:5) ── */
+    #posterCard7 {
+      position: relative;
+      width: 340px;
+      height: 425px;
+      border-radius: 0px;
+      overflow: hidden;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, .65);
+      flex-shrink: 0;
+      background: #263238;
+    }
+
+    /* ════════════════════════════
+   LAYER 0 — full green base
+════════════════════════════ */
+    .bg-green {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+
+
+    }
+
+
+    /* ════════════════════════════
+   LAYER 1 — sun rays
+════════════════════════════ */
+    .rays {
+      position: absolute;
+      inset: 0;
+      width: 340px;
+      height: 425px;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.05;
+    }
+
+    .rays-box {
+      position: absolute;
+      inset: 0;
+      width: 170%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.2;
+      transform: translate(-50%);
+      left: 50%;
+    }
+
+    /* ════════════════════════════
+   LAYER 2 — dark triangle TOP-LEFT
+   (logo corner — exactly like sketch)
+════════════════════════════ */
+    .corner-dark {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: #ffffff;
+      clip-path: polygon(0 0, 27% 0, 0 22%);
+    }
+
+    /* ════════════════════════════════════════════
+   LAYER 5 — BLACK POLYGON  (bottom-right)
+
+   This is the angle shape from your sketch:
+   four vertices forming a quadrilateral with
+   a sharp pointed vertex on the left side.
+
+   Sketch vertices mapped to 340 × 425 px:
+   ① left  peak   → (34%, 57%) = (116 px, 242 px)
+   ② top-right    → (100%,38%) = (340 px, 162 px)
+   ③ bottom-right → (100%,100%)= (340 px, 425 px)
+   ④ bottom-left  → ( 38%,100%)= (129 px, 425 px)
+════════════════════════════════════════════ */
+    /* .black-polygon {
+  position:absolute; inset:0; z-index:5;
+  background:#ffffff;
+  clip-path: polygon(31% 67%, 100% 18%, 100% 100%, 59% 100%);
+      
+} */
+
+    /* ════════════════════════════
+   LAYER 15 — food image ON the polygon
+════════════════════════════ */
+    .food-img {
+      /* position: absolute; */
+      width: 150px;
+      height: 150px;
+      /* left: 50%;
+    
+    top: auto;
+    bottom: 50px;
+    transform: translateX(-50%); */
+      z-index: 15;
+      pointer-events: none;
+      object-fit: cover;
+      filter: drop-shadow(0 16px 34px rgba(0, 0, 0, .85));
+      border-radius: 50%;
+      border: 2px solid white;
+      margin-bottom: 1rem;
+    }
+
+    /* ════════════════════════════
+   LAYER 22 — all text & badges
+════════════════════════════ */
+    .logo-text {
+      position: absolute;
+      top: 11px;
+      left: 12px;
+      z-index: 22;
+      font-family: "Lato", sans-serif;
+      font-weight: 900;
+      font-size: 16px;
+      color: #fff;
+      line-height: 1.1;
+      letter-spacing: 1px;
+    }
+
+    .site-url {
+      position: absolute;
+      top: 14px;
+      right: 12px;
+      z-index: 22;
+      font-size: 10px;
+      color: white;
+    }
+
+    .headlines {
+      position: relative;
+      text-align: center;
+      z-index: 22;
+      padding: 0 8px;
+      padding: 15px;
+    }
+
+    .headlines:after {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 150%;
+      height: 100%;
+      content: '';
+      background: radial-gradient(ellipse at 42% 34%, #92d91f 0%, #6db714 50%, #5aa010 100%);
+      z-index: -1;
+      left: 50%;
+      transform: translateX(-50%);
+      filter: drop-shadow(0 16px 34px rgba(0, 0, 0, .85));
+
+    }
+
+    .central-content {
+      position: relative;
+      z-index: 9;
+      text-align: center;
+      height: 100%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .t-script {
+      font-family: "Lato", sans-serif;
+      font-size: 30px;
+      opacity: 0.8;
+      font-weight: 700;
+      color: #000000;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      text-shadow: 1px 2px 6px rgba(0, 0, 0, .18);
+      font-family: 'PLAYMORE';
+      letter-spacing: 8px;
+    }
+
+    .t-label {
+      font-family: "Lato", sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      color: #000000;
+      letter-spacing: 4.5px;
+      text-transform: uppercase;
+      line-height: 1.25;
+      margin-top: 1px;
+    }
+
+    .t-main {
+      font-family: 'Gummy Twist';
+      font-size: 62px;
+      color: #111;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      line-height: .88;
+      margin-bottom: 0.5rem;
+    }
+
+    .t-sub {
+      font-size: 10px;
+      font-weight: 300;
+      color: #000000;
+      line-height: 1;
+      margin-top: -2px;
+      letter-spacing: 1px;
+      text-shadow: 0 1px 5px rgba(0, 0, 0, .35);
+    }
+
+    /* FREE HOME DELIVERY */
+    .badge-delivery {
+      position: absolute;
+      top: 174px;
+      left: 11px;
+      z-index: 22;
+    }
+
+    .del-text {
+      font-family: "Lato", sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: .3px;
+      line-height: 1.3;
+    }
+
+    .del-text strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    /* 25% OFF starburst */
+    .badge-off-wrap {
+      position: absolute;
+      top: 160px;
+      right: 8px;
+      z-index: 22;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .badge-off {
+      width: 66px;
+      height: 66px;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      clip-path: polygon(50% 0%, 57% 15%, 73% 7%, 72% 24%, 88% 18%, 83% 34%, 100% 36%, 90% 50%, 100% 64%, 83% 66%, 88% 82%, 72% 76%, 73% 93%, 57% 85%, 50% 100%, 43% 85%, 27% 93%, 28% 76%, 12% 82%, 17% 66%, 0% 64%, 10% 50%, 0% 36%, 17% 34%, 12% 18%, 28% 24%, 27% 7%, 43% 15%);
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, .2));
+    }
+
+    .badge-off .pct {
+      font-family: "Lato", sans-serif;
+      font-size: 21px;
+      font-weight: 900;
+      color: #111;
+      line-height: 1;
+    }
+
+    .badge-off .off-lbl {
+      font-family: "Lato", sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      color: #111;
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+
+    /* ORDER NOW + phone */
+    .order-box {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      z-index: 9;
+      padding: 10px 15px;
+      font-size: 10px;
+      color: white;
+    }
+
+    .order-btn {
+
+      background: #6eb614;
+      color: #fff;
+
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      padding: 7px 18px;
+      border-radius: 22px;
+      z-index: 22;
+      box-shadow: 0 4px 14px rgba(110, 182, 20, .45);
+    }
+
+
+    /* Social */
+    .social-row {
+      position: absolute;
+      bottom: 11px;
+      left: 11px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      z-index: 22;
+    }
+
+    .si {
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid rgba(255, 255, 255, .55);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 9.5px;
+    }
+
+    .soc-handle {
+      font-size: 8px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, .82);
+      letter-spacing: .3px;
+      margin-left: 3px;
+    }
+
+    /* Download button */
+    .dl-btn {
+      margin-top: 16px;
+      background: #343a40;
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: "Lato", sans-serif;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background .18s;
+    }
+
+    .dl-btn:hover {
+      background: #495057;
+    }
+
+    .dl-btn:disabled {
+      opacity: .65;
+      cursor: default;
+    }
+
+    .logo-image {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      left: 10px;
+      top: 10px;
+      border: 1px solid white;
+
+    }
+
+    .logo-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      z-index: 9;
+
+      position: relative;
+      object-fit: contain;
+    }
+
+    .white-box-1 {
+      width: 20%;
+      height: 40%;
+      z-index: 9;
+      background: #ffffff;
+      position: absolute;
+      right: 50%;
+      transform: translateX(50%);
+      top: 0;
+      /* filter: drop-shadow(2px 4px 6px black); */
+    }
+
+    .white-box-1:before {
+      width: 30%;
+      height: 100%;
+      z-index: 9;
+      background: #6ab91e;
+      position: absolute;
+      right: 50%;
+      transform: translateX(50%);
+      top: 0;
+      content: '';
+    }
+
+    .white-box-1:after {
+      width: 2px;
+      height: 100%;
+      z-index: 9;
+      background: #ffffff;
+      position: absolute;
+      right: 50%;
+      transform: translateX(50%);
+      top: 0;
+      content: '';
+    }
+
+    .box-content {
+      position: relative;
+      z-index: 9;
+    }
+
+    .address {
+      text-align: center;
+      margin: 0 10px;
+    }
+    .headline-header-footer {
+    font-size: 11px;
+    background: #000000;
+    width: 100%;
+    padding: 5px 10px;
+    color: white;
+}
+  </style>
+</head>
+
+<body>
+
+  <div id="posterCard7">
+    <div class="white-box-1">
+
+    </div>
+    <!-- L0: full green base -->
+    <div class="bg-green"></div>
+    <!-- L1: sun rays on green -->
+    <!-- <svg class="rays" viewBox="0 0 340 425" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#3a7d06" stroke-width="1.35" opacity="0.4">
+      <line x1="170" y1="210" x2="0"   y2="0"/>  <line x1="170" y1="210" x2="34"  y2="0"/>
+      <line x1="170" y1="210" x2="68"  y2="0"/>  <line x1="170" y1="210" x2="102" y2="0"/>
+      <line x1="170" y1="210" x2="136" y2="0"/>  <line x1="170" y1="210" x2="170" y2="0"/>
+      <line x1="170" y1="210" x2="204" y2="0"/>  <line x1="170" y1="210" x2="238" y2="0"/>
+      <line x1="170" y1="210" x2="272" y2="0"/>  <line x1="170" y1="210" x2="306" y2="0"/>
+      <line x1="170" y1="210" x2="340" y2="20"/> <line x1="170" y1="210" x2="340" y2="85"/>
+      <line x1="170" y1="210" x2="340" y2="160"/><line x1="170" y1="210" x2="340" y2="245"/>
+      <line x1="170" y1="210" x2="340" y2="335"/><line x1="170" y1="210" x2="340" y2="425"/>
+      <line x1="170" y1="210" x2="270" y2="425"/><line x1="170" y1="210" x2="200" y2="425"/>
+      <line x1="170" y1="210" x2="130" y2="425"/><line x1="170" y1="210" x2="60"  y2="425"/>
+      <line x1="170" y1="210" x2="0"   y2="425"/><line x1="170" y1="210" x2="0"   y2="340"/>
+      <line x1="170" y1="210" x2="0"   y2="255"/><line x1="170" y1="210" x2="0"   y2="165"/>
+      <line x1="170" y1="210" x2="0"   y2="80"/>
+    </g>
+  </svg> -->
+    <svg class="rays" width="100%" height="100%" viewBox="0 0 680 400" preserveAspectRatio="xMidYMid slice"
+      xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="crosshatch" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+          <line x1="0" y1="0" x2="0" y2="20" stroke="#59AF16" stroke-width="1.2" />
+          <line x1="10" y1="0" x2="10" y2="20" stroke="#59AF16" stroke-width="1.2" />
+          <line x1="0" y1="0" x2="20" y2="0" stroke="#59AF16" stroke-width="1.2" />
+          <line x1="0" y1="10" x2="20" y2="10" stroke="#59AF16" stroke-width="1.2" />
+        </pattern>
+      </defs>
+      <rect x="0" y="0" width="100%" height="100%" fill="url(#crosshatch)" />
+    </svg>
+    <!-- L2: dark corner triangle (top-left / logo) -->
+    <!-- <div class="corner-dark"></div> -->
+
+    <!-- ████████████████████████████████████
+       L5 — BLACK POLYGON
+       The exact shape from your sketch:
+       sharp left vertex → top-right → bottom-right → bottom-left
+  ████████████████████████████████████ -->
+    <div class="black-polygon"></div>
+
+
+
+    <!-- L22: text & badges -->
+    <div class="logo-image">
+      <img src="../assets/hz/images/logo.png" alt="">
+    </div>
+    <div class="site-url">skylinemotions.com</div>
+
+    <div class="central-content">
+      <!-- L15: food image sits ON the black polygon -->
+      <img class="food-img"
+        src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=700&auto=format&fit=crop&q=85"
+        crossorigin="anonymous" alt="Burger">
+      <div class="headlines" style="position: relative;">
+        <svg class="rays-box" width="100%" height="100%" viewBox="0 0 680 400" preserveAspectRatio="xMidYMid slice"
+          xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="crosshatch" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="0" y2="20" stroke="#59AF16" stroke-width="1.2" />
+              <line x1="10" y1="0" x2="10" y2="20" stroke="#59AF16" stroke-width="1.2" />
+              <line x1="0" y1="0" x2="20" y2="0" stroke="#59AF16" stroke-width="1.2" />
+              <line x1="0" y1="10" x2="20" y2="10" stroke="#59AF16" stroke-width="1.2" />
+            </pattern>
+          </defs>
+          <rect x="0" y="0" width="100%" height="100%" fill="url(#crosshatch)" />
+        </svg>
+        <div class="box-content">
+          <p class="t-script">Delicious</p>
+
+          <p class="t-main">BURGER</p>
+          <p class="t-sub">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Labore, voluptatem nesciunt </p>
+
+        </div>
+       
+      </div>
+      <div class="headline-header-footer">
+        777 Main St, Fort Worth, TX 76102, USA (Grace)
+      </div>
+    </div>
+
+    <!-- <div class="badge-delivery">
+   
+    <svg style="display:block;margin-top:5px;width:44px;height:28px;" viewBox="0 0 44 28" fill="none">
+      <path d="M7 26 C9 16 18 8 38 5" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M31 2 L38 5 L35 12"   stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div> -->
+
+    <!-- <div class="badge-off-wrap">
+   
+    <svg style="width:30px;height:22px;margin-top:3px;" viewBox="0 0 30 22" fill="none">
+      <path d="M27 4 C20 3 10 8 5 19"  stroke="white" stroke-width="2" stroke-linecap="round"/>
+      <path d="M9 14 L5 19 L11 21"     stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div> -->
+
+    <div class="order-box">
+      <div class="email-id"> abc@gmail.com </div>
+      
+      <div class="phone-num">000-777-9392</div>
+
+      
+    </div>
+
+
+
+  </div>
+
+  <button type="button" class="d13-download-btn" onclick="downloaddesign13()">
+    <i class="bi bi-download"></i> Download Poster
+  </button>
+  <!-- Remove or keep html2canvas, add this: -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script>
+    /* UNCHANGED from original */
+    function downloaddesign13() {
+      var card = document.getElementById('posterCard7');
+      var button = document.querySelector('.d13-download-btn');
+      button.innerHTML = '<i class="bi bi-hourglass-split"></i> Generating...';
+      button.disabled = true;
+      var exportW = 1080;
+      var scale = exportW / card.offsetWidth;
+      html2canvas(card, {
+        scale: scale,
+        backgroundColor: null,
+        logging: false,
+        useCORS: true,
+        allowTaint: true,
+        imageTimeout: 0,
+        onclone: function (clonedDoc) {
+          var images = clonedDoc.querySelectorAll('img');
+          return Promise.all(Array.from(images).map(function (img) {
+            return new Promise(function (resolve) {
+              if (img.complete) {
+                resolve();
+              } else {
+                img.onload = resolve;
+                img.onerror = resolve;
+              }
+            });
+          }));
+        }
+      }).then(function (canvas) {
+        var link = document.createElement('a');
+        link.download = 'menu-poster-instagram.png';
+        link.href = canvas.toDataURL('image/png', 1.0);
+        link.click();
+        button.innerHTML = '<i class="bi bi-download"></i> Download Poster';
+        button.disabled = false;
+      }).catch(function (error) {
+        console.error('Error:', error);
+        alert('Failed to generate. Please try again.');
+        button.innerHTML = '<i class="bi bi-download"></i> Download Poster';
+        button.disabled = false;
+      });
+    }
+  </script>
+
+</body>
+
+</html>
