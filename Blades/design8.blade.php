@@ -63,29 +63,29 @@ body{
 
     /* ── Logo ── */
     .design8-wrapper .d8-logo {
-        display: flex;
+       display: flex;
         justify-content: center;
-        align-items: center;
-        padding: 3px;
+        /* align-items: center; */
+        /* padding: 3px; */
         flex-shrink: 0;
         margin-bottom: 0.8rem;
-        width: 2.5rem;
-        height: 2.5rem;
+        width: auto;
+        height: 2rem;
         /* filter: drop-shadow(2px 4px 6px black); */
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-        border-radius: 50%;
-        margin: auto;
-        margin-bottom:0.5rem;
+        /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); */
+        /* border-radius: 50%; */
+        /* margin: auto; */
+        margin-bottom: 0.5rem;
         z-index: 9;
     }
 
     .design8-wrapper .d8-logo img {
-        width: 100%;
-        height: 100%;
-        border-radius: var(--radius-logo);
-        object-fit: cover;
-        display: block;
-        border: 2px solid var(--white);
+        /*width: 100%;*/
+        /*height: 100%;*/
+        /*border-radius: var(--radius-logo);*/
+        /*object-fit: cover;*/
+        /*display: block;*/
+        /*border: 2px solid var(--white);*/
     }
 
     /* ── Headings ── */
@@ -335,12 +335,11 @@ body{
         </div>
 
         <div class="d8-header" >
-            <div class="d8-logo">
-                @if(isset($logourl) && $logourl)
-                   <img src="{{ $logourl }}" alt="logo-image" crossorigin="anonymous"> 
-                @endif
-                
-            </div>
+             @if(isset($logourl) && $logourl)
+                <div class="d8-logo">
+                    <img src="{{ $logourl }}" alt="logo-image" crossorigin="anonymous"> 
+                </div>
+             @endif
             <div class="d8-headings">
                 <!--<div class="d8-heading1">Chefs Choice</div>-->
                 @if(strlen(@$menu['name']) <= 20)
@@ -472,9 +471,9 @@ body{
 
     </div>
 
-    <!--<button type="button" class="d8-download-btn" onclick="downloadDesign8()">-->
-    <!--    <i class="bi bi-download"></i> Download Poster-->
-    <!--</button>-->
+    {{--<button type="button" class="d8-download-btn" onclick="downloadDesign8()">
+        <i class="bi bi-download"></i> Download Poster
+    </button>--}}
 
 </div>
 

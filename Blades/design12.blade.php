@@ -1,440 +1,483 @@
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@1,700&family=Barlow+Condensed:wght@400;600;700;800;900&family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
 
-    <style>
-        /* ══════════════════════════════
-        DESIGN11 WRAPPER
-        ══════════════════════════════ */
-        .design11-wrapper {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-family: 'Poppins', sans-serif;
-        }
+<style>
+    .design12-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'Barlow Condensed', sans-serif;
+    }
 
-        /* ── Card: Instagram 4/5 ratio ── */
-        .design11-wrapper .design11-card {
-            width: 100%;
-            aspect-ratio: 4 / 5;
-            max-width: 340px;
-            position: relative;
-            overflow: hidden;
-            flex-shrink: 0;
-            box-sizing: border-box;
-            container-type: inline-size;
-        }
+    /* ── Card: Instagram 4:5 ratio ── */
+    .design12-wrapper .design12-card {
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        max-width: 340px;
+        background: #f5f0e6;
+        overflow: hidden;
+        position: relative;
+        box-sizing: border-box;
+        box-shadow: 0 12px 50px rgba(0, 0, 0, 0.32);
+        display: flex;
+        flex-direction: column;
+    }
 
-        /* ── Deep black gradient background ── */
-        .design11-wrapper .design11-bg-base {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(160deg, #0a0a0a 0%, #111111 30%, #1a1a1a 60%, #080808 100%);
-            z-index: 0;
-        }
+    /* ══════════════════════════════════════
+       TOP SECTION  (main content area)
+    ══════════════════════════════════════ */
+    .design12-wrapper .d12-top-section {
+        position: relative;
+        flex: 1;
+        display: flex;
+        overflow: hidden;
+    }
 
-        /* ── Radial glow center ── */
-        .design11-wrapper .design11-bg-glow-center {
-            position: absolute;
-            top: 30%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%; height: 100%;
-            background: radial-gradient(circle, {{ $themeColor }}38 0%, {{ $themeColor }}1f 40%, transparent 70%);
-            z-index: 1;
-            border-radius: 50%;
-        }
+    /* ── RED VERTICAL STRIPE with drips ── */
+    .design12-wrapper .d12-stripe {
+        position: absolute;
+        top: 0;
+        left: 78px;
+        width: 64px;
+        bottom: -32px;
+        background: {{ $themeColor ?? '#c93a1a' }} ;
+        z-index: 2;
+    }
 
-        /* ── Top glow ── */
-        .design11-wrapper .design11-bg-glow-top {
-            position: absolute;
-            top: -10%; left: 50%;
-            transform: translateX(-50%);
-            width: 70%; height: 35%;
-            background: radial-gradient(ellipse, {{ $themeColor }}2e 0%, transparent 70%);
-            z-index: 1;
-        }
+    .design12-wrapper .d12-stripe-drips-svg {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        overflow: visible;
+        z-index: 3;
+    }
 
-        /* ── Outer decorative arc rings ── */
-        .design11-wrapper .design11-outer-ring {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -52%);
-            width: 103%;
-            height: 83%;
-            border-radius: 50%;
-            border: 1px solid {{ $themeColor }}33;
-            z-index: 2;
-        }
-        .design11-wrapper .design11-outer-ring-2 {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -52%);
-            width: 112%; height: 112%;
-            border-radius: 50%;
-            border: 1px solid {{ $themeColor }}1a;
-            z-index: 2;
-        }
+    /* ── PIZZA / FOOD IMAGE ── */
+    .design12-wrapper .d12-pizza-wrap {
+        position: absolute;
+        top: 15%;
+        left: 8%;
+        width: 84%;
+        height: 55%;
+        overflow: hidden;
+        z-index: 6;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.42);
+        border: 6px solid #fff;
+        flex-shrink: 0;
+    }
 
-        /* ── Scattered dots ── */
-        .design11-wrapper .design11-dots-layer {
-            position: absolute;
-            inset: 0;
-            z-index: 2;
-            pointer-events: none;
-        }
-        .design11-wrapper .design11-dot {
-            position: absolute;
-            border-radius: 50%;
-            background: {{ $themeColor }}b3;
-        }
+    .design12-wrapper .d12-pizza-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
 
-        /* ── Tech ring SVG ── */
-        .design11-wrapper .design11-tech-ring {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -52%);
-            width: 99%; height: 99%;
-            z-index: 2;
-            pointer-events: none;
-        }
-        .design11-wrapper .design11-tech-ring svg {
-            width: 100%; height: 100%;
-        }
+    /* ── RIGHT CONTENT ── */
+    .design12-wrapper .d12-right-col {
+        position: absolute;
+        top: -64px;
+        bottom: 0;
+        left: 126px;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        z-index: 5;
+    }
 
-        /* ── Plate / food image ── */
-        .design11-wrapper .design11-plate-wrap {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -54%);
-            width: 74%;
-            aspect-ratio: 1 / 1;
-            z-index: 5;
-        }
-        .design11-wrapper .design11-plate-circle {
-            width: 100%; height: 100%;
-            border-radius: 50%;
-            overflow: hidden;
-            background: #fff;
-            box-shadow:
-                0 0 0 6px {{ $themeColor }}1a,
-                0 0 0 12px {{ $themeColor }}1f,
-                0 15px 50px rgba(0,0,0,0.85);
-        }
-        .design11-wrapper .design11-plate-circle img {
-            width: 100%; height: 100%;
-            object-fit: cover; display: block;
-        }
-        .design11-wrapper .design11-plate-shadow {
-            position: absolute;
-            bottom: -4%; left: 50%;
-            transform: translateX(-50%);
-            width: 85%; height: 8%;
-            background: radial-gradient(ellipse, rgba(0,0,0,0.6) 0%, transparent 70%);
-            z-index: 4;
-        }
+    /* heading block */
+    .design12-wrapper .d12-heading-block {
+        margin-bottom: 2px;
+    }
 
-        /* ══════════════════════════════
-        HEADER AREA
-        ══════════════════════════════ */
-        .design11-wrapper .design11-header-area {
-            position: absolute;
-            bottom: 6%;
-            left: 0; right: 0;
-            text-align: center;
-            z-index: 8;
-            padding: 0 6%;
-            transform: rotate(-16deg);
-        }
-        .design11-wrapper .design11-special-text {
-            font-family: 'Pacifico', cursive;
-            font-size: 55px;
-            color: {{ $themeColor }};
-            line-height: 0.95;
-            display: block;
-            letter-spacing: 1px;
-            text-shadow: 0 0 30px {{ $themeColor }}80, 2px 2px 0 rgba(0,0,0,0.5);
-        }
-        .design11-wrapper .design11-food-menu-text {
-            font-family: 'Dancing Script', cursive;
-            font-size: 33px;
-            color: #fff;
-            line-height: 1.1;
-            display: block;
-            letter-spacing: 2px;
-            position: relative;
-            transform: translateY(-20px);
-            left: 23%;
-        }
+    .design12-wrapper .d12-heading-pizza {
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        font-size: 57px;
+        color: #cbcbcd;
+        line-height: 0.9;
+        transform: rotate(-33deg);
+        opacity: 70%;
+    }
 
-        /* ══════════════════════════════
-        RESTAURANT DETAILS – top-left
-        ══════════════════════════════ */
-        .design11-wrapper .design11-restaurant-details {
-            position: absolute;
-            top: 2.5%; left: 3.5%;
-            z-index: 9;
-        }
-        .design11-wrapper .design11-restaurant-name {
-            font-size: 2.8cqw;
-            font-weight: 800;
-            color: #fff;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-        .design11-wrapper .design11-restaurant-address {
-            font-size: 2cqw;
-            font-weight: 400;
-            color: #d7d7d7;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
+    /* badge */
+    .design12-wrapper .d12-badge-wrap {
+        position: relative;
+        bottom: 251px;
+        left: 0;
+    }
 
-        /* ══════════════════════════════
-        LOGO WRAP – top-right
-        ══════════════════════════════ */
-        .design11-wrapper .design11-logo-wrap {
-            position: absolute;
-            top: 2.5%; right: 3.5%;
-            z-index: 9;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2%;
-            background: rgba(255,255,255,0.06);
-            padding: 1.5% 3%;
-            border-radius: 30px;
-            border: 1px solid {{ $themeColor }}73;
-            backdrop-filter: blur(4px);
-        }
-        .design11-wrapper .design11-top-logo {
-            width: 8cqw; height: 8cqw;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid {{ $themeColor }};
-        }
+    .design12-wrapper .d12-badge {
+        position: relative;
+        color: {{ $themeColor ?? '#c93a1a' }} !important;
+        border-radius: 14px;
+        padding: 8px 16px 10px;
+        text-align: center;
+        min-width: 100px;
+    }
 
-        /* ══════════════════════════════
-        FOOTER BAR
-        ══════════════════════════════ */
-        .design11-wrapper .design11-footer-bar {
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            height: 8%;
-            background: linear-gradient(90deg, #0a0a0a 0%, #181818 50%, #0a0a0a 100%);
-            border-top: 1px solid {{ $themeColor }}40;
-            z-index: 8;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 4%;
-        }
-        .design11-wrapper .design11-footer-contact {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        .design11-wrapper .design11-footer-contact .design11-fc-label {
-            font-size: 1.6cqw;
-            color: #aaa;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-        }
-        .design11-wrapper .design11-footer-contact .design11-fc-value {
-            font-size: 2cqw;
-            font-weight: 600;
-            color: #fff;
-            letter-spacing: 0.04em;
-        }
-        .design11-wrapper .design11-footer-website {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-        .design11-wrapper .design11-footer-website .design11-fw-label {
-            font-size: 1.6cqw;
-            color: #aaa;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-        }
-        .design11-wrapper .design11-footer-website .design11-fw-value {
-            font-size: 2cqw;
-            font-weight: 600;
-            color: #fff;
-        }
+    .design12-wrapper .d12-badge-label {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 800;
+        font-size: 10.5px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: {{ $themeColor ?? '#c93a1a' }};
+        position: relative;
+        z-index: 2;
+        display: block;
+    }
 
-        /* ── Download button ── */
-        .design11-wrapper .design11-download-btn {
-            margin-top: 10px;
-            background: linear-gradient(135deg, {{ $themeColor }} 0%, {{ $themeColor }}aa 100%);
-            color: #000;
-            border: none;
-            padding: 8px 16px;
-            font-size: 12px;
-            font-weight: 700;
-            border-radius: 6px;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            letter-spacing: 0.04em;
-            transition: opacity 0.2s, transform 0.1s;
-            box-shadow: 0 4px 16px {{ $themeColor }}66;
-        }
-        .design11-wrapper .design11-download-btn:hover   { opacity: 0.92; transform: translateY(-1px); }
-        .design11-wrapper .design11-download-btn:active   { transform: translateY(0); }
-        .design11-wrapper .design11-download-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-    </style>
+    .design12-wrapper .d12-badge-value {
+        font-family: 'Anton', sans-serif;
+        font-size: 40px;
+        color: {{ $themeColor ?? '#c93a1a' }};
+        line-height: 1.05;
+        position: relative;
+        z-index: 2;
+        white-space: nowrap;
+        display: block;
+        text-transform: uppercase;
+    }
 
-    <div class="design11-wrapper">
+    /* ══════════════════════════════════════
+       RESTAURANT DETAILS  –  bottom strip
+    ══════════════════════════════════════ */
+    .design12-wrapper .d12-restaurant-strip {
+        position: relative;
+        background:{{ $themeColor ?? '#c93a1a' }};
+        padding: 10px 14px 10px 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 10;
+        flex-shrink: 0;
+    }
 
-        <div class="design11-card" id="posterCard11">
+    /* Logo */
+    .design12-wrapper .d12-resto-logo {
+        width: auto;
+        height: 2rem;
+        /* border-radius: 50%; */
+        overflow: hidden;
+        border: 2.5px solid rgba(255, 255, 255, 0.6);
+        flex-shrink: 0;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        /* padding: 0; */
+        position: relative;
+        top: 10px;
+        left: 24px;
+    }
 
-            {{-- Backgrounds --}}
-            <div class="design11-bg-base"></div>
-            <div class="design11-bg-glow-center"></div>
-            <div class="design11-bg-glow-top"></div>
-            <div class="design11-outer-ring"></div>
-            <div class="design11-outer-ring-2"></div>
+    .design12-wrapper .d12-resto-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        /*border-radius: 50%;*/
+    }
 
-            {{-- SVG Tech Ring --}}
-            <div class="design11-tech-ring">
-                <svg viewBox="0 0 410 410" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="205" cy="205" r="190" fill="none" stroke="{{ $themeColor }}4d" stroke-width="1.5" stroke-dasharray="6 4"/>
-                    <circle cx="205" cy="205" r="175" fill="none" stroke="{{ $themeColor }}26" stroke-width="1"/>
-                    <circle cx="205" cy="205" r="155" fill="none" stroke="{{ $themeColor }}1a" stroke-width="0.8"/>
+    /* Name + divider + contacts */
+    .design12-wrapper .d12-resto-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 3px;
+        flex: 1;
+    }
 
-                    <g stroke="{{ $themeColor }}80" stroke-width="1.5">
-                        <line x1="205" y1="15"  x2="205" y2="25"/>
-                        <line x1="205" y1="385" x2="205" y2="395"/>
-                        <line x1="15"  y1="205" x2="25"  y2="205"/>
-                        <line x1="385" y1="205" x2="395" y2="205"/>
-                        <line x1="61"  y1="61"  x2="68"  y2="68"/>
-                        <line x1="342" y1="342" x2="349" y2="349"/>
-                        <line x1="342" y1="61"  x2="349" y2="68"/>
-                        <line x1="61"  y1="342" x2="68"  y2="349"/>
-                    </g>
+    .design12-wrapper .d12-resto-name {
+        font-family: 'Anton', sans-serif;
+        font-size: 16px;
+        color: #fff;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        line-height: 1;
+    }
 
-                    <circle cx="205" cy="15"  r="3" fill="{{ $themeColor }}"/>
-                    <circle cx="395" cy="205" r="3" fill="{{ $themeColor }}"/>
-                    <circle cx="15"  cy="205" r="3" fill="{{ $themeColor }}80"/>
-                    <circle cx="205" cy="395" r="3" fill="{{ $themeColor }}80"/>
+    .design12-wrapper .d12-resto-divider {
+        width: 100%;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.35);
+        margin: 2px 0;
+    }
 
-                    <circle cx="205" cy="205" r="140" fill="rgba(20,15,0,0.25)" stroke="{{ $themeColor }}33" stroke-width="1"/>
+    .design12-wrapper .d12-resto-contacts {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .design12-wrapper .d12-resto-contact-row {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .design12-wrapper .d12-icon-circle {
+        width: 14px;
+        height: 14px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .design12-wrapper .d12-icon-circle svg {
+        width: 7px;
+        height: 7px;
+        fill: #fff;
+    }
+
+    .design12-wrapper .d12-resto-contact-text {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 600;
+        font-size: 8px;
+        color: rgba(255, 255, 255, 0.92);
+        letter-spacing: 0.5px;
+    }
+
+    /* Website on right */
+    .design12-wrapper .d12-resto-website {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 3px;
+        flex-shrink: 0;
+    }
+
+    .design12-wrapper .d12-website-label {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 700;
+        font-size: 8px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .design12-wrapper .d12-website-url {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 700;
+        font-size: 8px;
+        color: #fff;
+        letter-spacing: 0.5px;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+        text-decoration-color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* ── Download button ── */
+    .design12-wrapper .d12-download-btn {
+        margin-top: 10px;
+        background: #c93a1a;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        font-size: 12px;
+        font-weight: 600;
+        border-radius: 6px;
+        cursor: pointer;
+        font-family: 'Barlow Condensed', sans-serif;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        letter-spacing: 0.04em;
+        transition: background 0.2s, transform 0.1s;
+        box-shadow: 0 4px 16px rgba(201, 58, 26, 0.4);
+    }
+
+    .design12-wrapper .d12-download-btn:hover {
+        background: #a82f14;
+        transform: translateY(-1px);
+    }
+
+    .design12-wrapper .d12-download-btn:active {
+        transform: translateY(0);
+    }
+
+    .design12-wrapper .d12-download-btn:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none;
+    }
+</style>
+
+<div class="design12-wrapper">
+
+    <div class="design12-card" id="posterCard12">
+
+        {{-- ════ TOP MAIN SECTION ════ --}}
+        <div class="d12-top-section">
+
+            {{-- Red stripe with SVG drips --}}
+            <div class="d12-stripe">
+                <svg class="d12-stripe-drips-svg" viewBox="0 0 64 80" preserveAspectRatio="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style="position:absolute;bottom:67px;left:0;width:100%;height:80px;">
+                    <path d="M0,0 L64,0 L64,20
+                      Q58,20 58,35 Q58,52 52,52 Q46,52 46,35 Q46,20 40,20
+                      Q34,20 34,30 Q34,48 28,48 Q22,48 22,30 Q22,20 16,20
+                      Q10,20 10,42 Q10,58 4,58 Q0,58 0,42 Z" fill="#f5f0e6" />
                 </svg>
             </div>
 
-            {{-- Scattered decorative dots --}}
-            <div class="design11-dots-layer">
-                <div class="design11-dot" style="width:4px;height:4px;top:15%;left:18%;"></div>
-                <div class="design11-dot" style="width:3px;height:3px;top:12%;left:72%;opacity:0.5;"></div>
-                <div class="design11-dot" style="width:5px;height:5px;top:22%;right:22%;opacity:0.6;"></div>
-                <div class="design11-dot" style="width:3px;height:3px;top:68%;left:8%;opacity:0.5;"></div>
-                <div class="design11-dot" style="width:4px;height:4px;top:72%;right:10%;opacity:0.7;"></div>
-                <div class="design11-dot" style="width:3px;height:3px;top:40%;left:5%;background:{{ $themeColor }}99;"></div>
-                <div class="design11-dot" style="width:3px;height:3px;top:35%;right:5%;background:{{ $themeColor }}99;"></div>
-            </div>
-
-            {{-- Restaurant details – top-left --}}
-            <div class="design11-restaurant-details">
-                <div class="design11-restaurant-name">{{ @user()->name ?? ' ' }}</div>
-                <div class="design11-restaurant-address">{{ @user()->address ?? ' ' }}</div>
-            </div>
-
-            {{-- Logo – top-right --}}
-            <div class="design11-logo-wrap">
-                @if(isset($logourl) && $logourl)
-                    <img src="{{ $logourl }}" alt="logo" class="design11-top-logo" crossorigin="anonymous">
-                @else
-                    <img src="https://static.vecteezy.com/system/resources/thumbnails/014/664/003/small_2x/cafe-and-resto-logo-vector.jpg" alt="logo" class="design11-top-logo" crossorigin="anonymous">
+            <div class="d12-resto-logo">
+                @if (isset($logourl) && $logourl)
+                    <img src="{{ $logourl }}" alt="logo" crossorigin="anonymous">
                 @endif
             </div>
 
-            {{-- Header text --}}
-            <div class="design11-header-area">
-                <span class="design11-special-text">Taste </span>
-                <span class="design11-food-menu-text">Perfection</span>
+            {{-- Food image --}}
+            <div class="d12-pizza-wrap">
+                @if (isset($menuImageUrl) && $menuImageUrl)
+                    <img src="{{ $menuImageUrl }}" alt="{{ @$menu['name'] ?? 'Menu Item' }}"
+                        class="js-poster-menu-image" crossorigin="anonymous">
+                @else
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=90" alt="Menu Item"
+                        crossorigin="anonymous">
+                @endif
             </div>
 
-            {{-- Food plate image --}}
-            <div class="design11-plate-wrap">
-                <div class="design11-plate-circle">
-                    @if(isset($menuImageUrl) && $menuImageUrl)
-                        <img src="{{ $menuImageUrl }}" alt="{{ @$menu['name'] ?? 'Menu Item' }}" crossorigin="anonymous">
-                    @else
-                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=85" crossorigin="anonymous" alt="Menu Item">
-                    @endif
+            {{-- Right content --}}
+            <div class="d12-right-col">
+
+                {{-- Heading --}}
+                <div class="d12-heading-block">
+                    <div class="d12-heading-pizza">DELICIOUS</div>
+                    <div class="d12-heading-pizza">DELICIOUS</div>
+                    <div class="d12-heading-pizza">DELICIOUS</div>
+                    <div class="d12-heading-pizza">DELICIOUS</div>
+                    <div class="d12-heading-pizza">DELICIOUS</div>
+                    <div class="d12-heading-pizza">DELICIOUS</div>
+                    <div class="d12-heading-pizza">DELICIOUS</div>
+                    <div class="d12-heading-pizza">DELICIOUS</div>
+                    <div class="d12-heading-pizza">DELICIOUS</div>
+                    <div class="d12-heading-pizza">DELICIOUS</div>
+                    <div class="d12-heading-pizza">DELICIOUS</div>
                 </div>
-                <div class="design11-plate-shadow"></div>
+
+                {{-- Badge --}}
+                <div class="d12-badge-wrap">
+                    <div class="d12-badge">
+                        <span class="d12-badge-label">Hurry Up!!</span>
+                        <span class="d12-badge-value">Order Now</span>
+                    </div>
+                </div>
+
+            </div>{{-- /.d12-right-col --}}
+        </div>{{-- /.d12-top-section --}}
+
+        {{-- ════ RESTAURANT DETAILS STRIP ════ --}}
+        <div class="d12-restaurant-strip">
+
+            {{-- Logo --}}
+
+
+            {{-- Name + contacts --}}
+            <div class="d12-resto-info">
+                <div class="d12-resto-name">{{ @user()->name ?? 'Borcelle &amp; Co.' }}</div>
+                <div class="d12-resto-divider"></div>
+                <div class="d12-resto-contacts">
+
+                    <div class="d12-resto-contact-row">
+                        <div class="d12-icon-circle">
+                            <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M2 1.5 Q2 3 4 5 Q6 7 7.5 8 L8.5 7 Q9 6.5 8.5 6 L7 4.5 Q6.5 4 6 4.5 L5.5 5 Q4.5 4.5 3.5 3 L4 2.5 Q4.5 2 4 1.5 L2.5 0.5 Q2 0 2 1.5Z" />
+                            </svg>
+                        </div>
+                        <div class="d12-resto-contact-text">{{ @user()->phone ?? '+123-456-7890' }}</div>
+                    </div>
+
+                    <div class="d12-resto-contact-row">
+                        <div class="d12-icon-circle">
+                            <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5 0.5 C3 0.5 1.5 2 1.5 3.8 C1.5 6.5 5 9.5 5 9.5 C5 9.5 8.5 6.5 8.5 3.8 C8.5 2 7 0.5 5 0.5Z" />
+                                <circle cx="5" cy="3.8" r="1.2" fill="#c93a1a" />
+                            </svg>
+                        </div>
+                        <div class="d12-resto-contact-text">
+                            {{ @user()->address ?? '123 Anywhere St., Any City, ST 12345' }}</div>
+                    </div>
+
+                </div>
             </div>
 
-            {{-- Footer bar --}}
-            <div class="design11-footer-bar">
-                <div class="design11-footer-contact">
-                    <div class="design11-fc-label">Contact Us</div>
-                    <div class="design11-fc-value">{{ @user()->phone ?? ' ' }}</div>
-                </div>
-                <div class="design11-footer-website">
-                    <div class="design11-fw-label">Visit Our Website</div>
-                    <div class="design11-fw-value">{{ @user()->website_domain ?? ' ' }}</div>
-                </div>
+            {{-- Website --}}
+            <div class="d12-resto-website">
+                <div class="d12-website-label">Visit Us</div>
+                <div class="d12-website-url">{{ @user()->website_domain ?? 'www.borcelle.com' }}</div>
             </div>
 
-        </div>{{-- /.design11-card --}}
+        </div>{{-- /.d12-restaurant-strip --}}
 
-        {{-- Download button --}}
-        {{-- <button type="button" class="design11-download-btn" onclick="downloadPoster11()">
-            <i class="bi bi-download"></i>
-            Download Poster
-        </button> --}}
+    </div>{{-- /.design12-card --}}
 
-    </div>{{-- /.design11-wrapper --}}
+    {{-- Download button --}}
+    {{-- <button type="button" class="d12-download-btn" onclick="downloadDesign12()">
+        Download Poster
+    </button> --}}
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</div>{{-- /.design12-wrapper --}}
 
-    <script>
-        function downloadPoster11() {
-            var card   = document.getElementById('posterCard11');
-            var button = document.querySelector('.design11-download-btn');
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-            button.innerHTML = '<i class="bi bi-hourglass-split"></i> Generating...';
-            button.disabled  = true;
+<script>
+    function downloadDesign12() {
+        var card = document.getElementById('posterCard12');
+        var button = document.querySelector('.d12-download-btn');
 
-            var exportW = 1080;
-            var scale   = exportW / card.offsetWidth;
+        button.innerHTML = 'Generating...';
+        button.disabled = true;
 
-            html2canvas(card, {
-                scale:           scale,
-                backgroundColor: null,
-                logging:         false,
-                useCORS:         true,
-                allowTaint:      true,
-                imageTimeout:    0,
-                onclone: function(clonedDoc) {
-                    var images = clonedDoc.querySelectorAll('img');
-                    return Promise.all(Array.from(images).map(function(img) {
-                        return new Promise(function(resolve) {
-                            if (img.complete) { resolve(); }
-                            else { img.onload = resolve; img.onerror = resolve; }
-                        });
-                    }));
-                }
-            }).then(function(canvas) {
-                var link      = document.createElement('a');
-                link.download = 'menu-poster-instagram.png';
-                link.href     = canvas.toDataURL('image/png', 1.0);
-                link.click();
+        var exportW = 1080;
+        var scale = exportW / card.offsetWidth;
 
-                button.innerHTML = '<i class="bi bi-download"></i> Download Poster';
-                button.disabled  = false;
-            }).catch(function(error) {
-                console.error('Error generating image:', error);
-                alert('Failed to generate image. Please try again.');
-                button.innerHTML = '<i class="bi bi-download"></i> Download Poster';
-                button.disabled  = false;
-            });
-        }
-    </script>
+        html2canvas(card, {
+            scale: scale,
+            backgroundColor: null,
+            logging: false,
+            useCORS: true,
+            allowTaint: true,
+            imageTimeout: 0,
+            onclone: function(clonedDoc) {
+                var images = clonedDoc.querySelectorAll('img');
+                return Promise.all(Array.from(images).map(function(img) {
+                    return new Promise(function(resolve) {
+                        if (img.complete) {
+                            resolve();
+                        } else {
+                            img.onload = resolve;
+                            img.onerror = resolve;
+                        }
+                    });
+                }));
+            }
+        }).then(function(canvas) {
+            var link = document.createElement('a');
+            link.download = 'menu-poster-design12.png';
+            link.href = canvas.toDataURL('image/png', 1.0);
+            link.click();
+
+            button.innerHTML = 'Download Poster';
+            button.disabled = false;
+        }).catch(function(error) {
+            console.error('Error generating image:', error);
+            alert('Failed to generate image. Please try again.');
+            button.innerHTML = 'Download Poster';
+            button.disabled = false;
+        });
+    }
+</script>

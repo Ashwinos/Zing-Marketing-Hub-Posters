@@ -1,10 +1,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 <style>
-
     /* ── Wrapper: fills modal column ── */
     .design3-wrapper {
         width: 100%;
@@ -15,23 +16,23 @@
     }
 
     /* ── Card: 4:5 Instagram ratio ──
-       FIX: Replaced `aspect-ratio: 4/5` with the padding-top hack.
-       padding-top: 125% = 5÷4 ratio, works in ALL headless renderers
-       (wkhtmltoimage, older Puppeteer/WebKit) unlike aspect-ratio.
+       Use aspect-ratio (not padding-top hack). The padding-top + height:0
+       pattern breaks html2canvas onclone: flex children lose height and menu
+       images paint at intrinsic (enlarged) size. Other designs use aspect-ratio.
     ── */
     .design3-wrapper .design3-card {
         width: 100%;
         max-width: 340px;
-        /* aspect-ratio: 4 / 5; ← REMOVED: breaks backend renderers */
-        height: 0;                  /* FIX: collapse own height */
-        padding-top: 125%;          /* FIX: 5÷4 = 125% → enforces 4:5 ratio */
-        position: relative;         /* FIX: required for absolute children */
+        aspect-ratio: 4 / 5;
+        height: auto;
+        padding-top: 0;
+        position: relative;
         border: none;
         background-color: {{ $bgColor ?? '#fffef9' }};
         box-shadow:
             0 0 0 1px rgba(180, 160, 130, 0.2),
-            0 8px 32px rgba(0,0,0,0.07),
-            0 2px 8px rgba(0,0,0,0.04);
+            0 8px 32px rgba(0, 0, 0, 0.07),
+            0 2px 8px rgba(0, 0, 0, 0.04);
         overflow: hidden;
         box-sizing: border-box;
     }
@@ -40,13 +41,13 @@
     .design3-wrapper .design3-card::after {
         content: '';
         position: absolute;
-        top: 0; left: 0; right: 0;
+        top: 0;
+        left: 0;
+        right: 0;
         height: 3px;
-        background: linear-gradient(
-            90deg,
-            {{ $themeColor ?? '#b33a06' }} 0%,
-            rgba(179, 58, 6, 0.15) 100%
-        );
+        background: linear-gradient(90deg,
+                {{ $themeColor ?? '#b33a06' }} 0%,
+                rgba(179, 58, 6, 0.15) 100%);
         z-index: 1;
     }
 
@@ -56,8 +57,10 @@
        Previously the card itself was a flex column — now this div is.
     ── */
     .design3-wrapper .d3-inner {
-        position: absolute;         /* FIX: fill the padded card box */
-        inset: 0;                   /* FIX: top:0; right:0; bottom:0; left:0 */
+        position: absolute;
+        /* FIX: fill the padded card box */
+        inset: 0;
+        /* FIX: top:0; right:0; bottom:0; left:0 */
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -74,16 +77,17 @@
         align-items: center;
         position: relative;
         z-index: 2;
-        flex-shrink: 0;             /* FIX: header must never compress */
+        flex-shrink: 0;
+        /* FIX: header must never compress */
     }
 
     .design3-wrapper .d3-logo img {
-        width: 2rem;
+        width: auto;
         height: 2rem;
-        border-radius: 50%;
+        /* border-radius: 50%; */
         object-fit: cover;
         display: block;
-        border: 2px solid {{ $themeColor ?? '#b72e37' }};
+        /* border: 2px solid #8A3904; */
     }
 
     /* ── Body ── */
@@ -94,7 +98,9 @@
         z-index: 2;
         display: flex;
         flex-direction: column;
-        min-height: 0;              /* FIX: allows body to shrink in flex context */
+        min-height: 0;
+        /* FIX: allows body to shrink in flex context */
+        text-align: start !important;
     }
 
     /* ── Headings ── */
@@ -126,7 +132,8 @@
         background: linear-gradient(90deg, {{ $themeColor ?? '#b33a06' }} 0%, {{ $themeColor ?? '#b33a06' }} 60%);
         margin-bottom: 0.5rem;
         opacity: 0.4;
-        flex-shrink: 0;             /* FIX: divider must never compress */
+        flex-shrink: 0;
+        /* FIX: divider must never compress */
     }
 
     /* ── Description ── */
@@ -152,17 +159,20 @@
        space between the fixed header/footer sections without overflow.
     ── */
     .design3-wrapper .d3-menu-image {
-        flex: 1;
-        min-height: 0;              /* FIX: allows flex child to shrink correctly */
+        flex: 1 1 0;
+        min-height: 0;
         overflow: hidden;
         border-radius: 10px;
         margin-bottom: 0.4rem;
         position: relative;
     }
 
+    /* Absolute fill: reliable in html2canvas clone (percent height on img often fails). */
     .design3-wrapper .d3-menu-image img {
+        position: absolute;
+        inset: 0;
         width: 100%;
-        height: 100%;               /* FIX: explicit 100% fills the flex container */
+        height: 100%;
         object-fit: cover;
         object-position: center;
         display: block;
@@ -170,7 +180,8 @@
 
     /* ── Order Button ── */
     .design3-wrapper .d3-order-now {
-        flex-shrink: 0;             /* FIX: button must never compress */
+        flex-shrink: 0;
+        /* FIX: button must never compress */
         margin-bottom: 0.4rem;
     }
 
@@ -192,7 +203,8 @@
     /* ── Restaurant Details ── */
     .design3-wrapper .d3-restaurant-details {
         text-align: center;
-        flex-shrink: 0;             /* FIX: must never compress */
+        flex-shrink: 0;
+        /* FIX: must never compress */
         padding-bottom: 0.2rem;
     }
 
@@ -218,7 +230,8 @@
         padding: 0.45rem 1rem;
         position: relative;
         z-index: 2;
-        flex-shrink: 0;             /* FIX: footer must never compress */
+        flex-shrink: 0;
+        /* FIX: footer must never compress */
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -267,7 +280,6 @@
     .design3-wrapper .d3-download-btn:active {
         transform: translateY(0);
     }
-
 </style>
 
 <div class="design3-wrapper">
@@ -279,10 +291,10 @@
 
             {{-- Header --}}
             <div class="d3-header">
-                @if(isset($logourl) && $logourl)
-                <div class="d3-logo">
+                @if (isset($logourl) && $logourl)
+                    <div class="d3-logo">
                         <img src="{{ $logourl }}" alt="logo-image" crossorigin="anonymous">
-                </div>
+                    </div>
                 @endif
             </div>
 
@@ -291,8 +303,8 @@
 
                 {{-- Headings --}}
                 <div class="d3-heading1">Chef's Choice</div>
-                @if(strlen(@$menu['name']) <= 20)
-                <div class="d3-heading2">{{ @$menu['name'] }}</div>
+                @if (strlen(@$menu['name']) <= 20)
+                    <div class="d3-heading2">{{ @$menu['name'] }}</div>
                 @endif
 
                 {{-- Divider --}}
@@ -307,7 +319,7 @@
 
                 {{-- Menu Image --}}
                 <div class="d3-menu-image">
-                    @if(isset($menuImageUrl) && $menuImageUrl)
+                    @if (isset($menuImageUrl) && $menuImageUrl)
                         <img src="{{ $menuImageUrl }}" alt="food image" class="js-poster-menu-image">
                     @endif
                 </div>
@@ -353,14 +365,14 @@
 
 <script>
     function downloadDesign3() {
-        var card   = document.getElementById('posterCard3');
+        var card = document.getElementById('posterCard3');
         var button = document.querySelector('.d3-download-btn');
 
         button.innerHTML = '<i class="bi bi-hourglass-split"></i> Generating...';
-        button.disabled  = true;
+        button.disabled = true;
 
         var exportW = 1080;
-        var scale   = exportW / card.offsetWidth;
+        var scale = exportW / card.offsetWidth;
 
         html2canvas(card, {
             scale: scale,
@@ -369,28 +381,32 @@
             useCORS: true,
             allowTaint: false,
             imageTimeout: 15000,
-            onclone: function (clonedDoc) {
+            onclone: function(clonedDoc) {
                 var images = clonedDoc.querySelectorAll('img');
                 return Promise.all(Array.from(images).map(function(img) {
                     return new Promise(function(resolve) {
-                        if (img.complete) { resolve(); }
-                        else { img.onload = resolve; img.onerror = resolve; }
+                        if (img.complete) {
+                            resolve();
+                        } else {
+                            img.onload = resolve;
+                            img.onerror = resolve;
+                        }
                     });
                 }));
             }
         }).then(function(canvas) {
-            var link      = document.createElement('a');
+            var link = document.createElement('a');
             link.download = 'menu-poster-instagram.png';
-            link.href     = canvas.toDataURL('image/png', 1.0);
+            link.href = canvas.toDataURL('image/png', 1.0);
             link.click();
 
             button.innerHTML = '<i class="bi bi-download"></i> Download Poster';
-            button.disabled  = false;
+            button.disabled = false;
         }).catch(function(error) {
             console.error('Error generating image:', error);
             alert('Failed to generate image. Please try again.');
             button.innerHTML = '<i class="bi bi-download"></i> Download Poster';
-            button.disabled  = false;
+            button.disabled = false;
         });
     }
 </script>

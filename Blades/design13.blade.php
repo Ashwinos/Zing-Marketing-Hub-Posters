@@ -4,9 +4,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <style>
-        /* ══════════════════════════════
-           DESIGN13 WRAPPER
-        ══════════════════════════════ */
         .design13-wrapper {
             width: 100%;
             display: flex;
@@ -15,7 +12,6 @@
             font-family: 'Montserrat', sans-serif;
         }
 
-        /* ── Card: 4:5 ratio ── */
         .design13-wrapper .design13-card {
             width: 100%;
             aspect-ratio: 4 / 5;
@@ -25,14 +21,12 @@
             flex-shrink: 0;
             box-sizing: border-box;
             background: #fdfaf4;
-            border-radius: 8px;
             box-shadow: 0 24px 80px rgba(0,0,0,0.55);
             display: flex;
             flex-direction: column;
             container-type: inline-size;
         }
 
-        /* ── Left accent bar ── */
         .design13-wrapper .design13-card::before {
             content: '';
             position: absolute;
@@ -42,7 +36,6 @@
             z-index: 20;
         }
 
-        /* ── Warm paper texture overlay ── */
         .design13-wrapper .design13-card::after {
             content: '';
             position: absolute;
@@ -53,19 +46,37 @@
             pointer-events: none;
         }
 
-        /* ── BG circle behind food ── */
+        /* ── TOP-LEFT LOGO ── */
+        .design13-wrapper .design13-top-logo {
+            position: absolute;
+            top: 4%;
+            left: 5%;
+            width: auto;
+            height: 2rem;
+            z-index: 25;
+            overflow: hidden;
+            border: 2px solid rgba(255,255,255,0.6);
+            background: #fff;
+        }
+
+        .design13-wrapper .design13-top-logo img {
+            width: auto;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
         .design13-wrapper .design13-bg-circle {
             position: absolute;
-            top: -8%;
-            right: -15%;
-            width: 75%;
+            top: -6%;
+            right: -17%;
+            width: 83%;
             aspect-ratio: 1 / 1;
             background: #f0e8d8;
             border-radius: 50%;
             z-index: 2;
         }
 
-        /* ── SVG chevron arrow pattern ── */
         .design13-wrapper .design13-arrow-pattern {
             position: absolute;
             left: 2.5%;
@@ -75,12 +86,11 @@
             z-index: 3;
         }
 
-        /* ── Food image ── */
         .design13-wrapper .design13-food-wrap {
             position: absolute;
-            right: -10%;
-            top: -2%;
-            width: 75%;
+            right: -16%;
+            top: -5%;
+            width: 79%;
             aspect-ratio: 1 / 1;
             z-index: 8;
         }
@@ -94,9 +104,6 @@
             display: block;
         }
 
-        /* ══════════════════════════════
-           TOP CONTENT AREA
-        ══════════════════════════════ */
         .design13-wrapper .design13-top-area {
             position: relative;
             top: 41%;
@@ -132,15 +139,19 @@
 
         .design13-wrapper .design13-headline {
             font-family: 'Anton', sans-serif;
-            font-size: 13.5cqw;
+            font-size: 54px;
             line-height: 0.9;
             color: #1a1a1a;
             text-transform: uppercase;
             margin-bottom: 3.5%;
             max-width: 50%;
+            text-align: start !important;
         }
         .design13-wrapper .design13-headline .design13-accent {
             color: {{ $themeColor }};
+            font-size: 54px;
+            color: #1a1a1a;
+            text-transform: uppercase;
         }
 
         .design13-wrapper .design13-description {
@@ -150,12 +161,9 @@
             line-height: 1.6;
             margin-bottom: 5%;
             font-weight: 400;
-            max-width: 52%;
+            text-align: start !important;
         }
 
-        /* ══════════════════════════════
-           DIVIDER
-        ══════════════════════════════ */
         .design13-wrapper .design13-divider {
             position: relative;
             z-index: 10;
@@ -164,9 +172,6 @@
             margin: 0 2.5% 0 7%;
         }
 
-        /* ══════════════════════════════
-           FOOTER STRIP
-        ══════════════════════════════ */
         .design13-wrapper .design13-footer {
             background: #2c2e2b;
             padding: 3.25% 4.5% 3.25% 7%;
@@ -178,23 +183,6 @@
             gap: 2.5%;
         }
 
-        /* ── Logo ── */
-        .design13-wrapper .design13-footer-logo {
-            width: 10cqw;
-            height: 10cqw;
-            border-radius: 50%;
-            border: 2px solid rgba(201,58,26,0.6);
-            overflow: hidden;
-            flex-shrink: 0;
-            background: #2a1a10;
-        }
-        .design13-wrapper .design13-footer-logo img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* ── Info ── */
         .design13-wrapper .design13-footer-info {
             flex: 1;
             display: flex;
@@ -203,11 +191,14 @@
         }
         .design13-wrapper .design13-footer-name {
             font-family: 'Anton', sans-serif;
-            font-size: 3.5cqw;
+            font-size: 12px !important;
+            font-weight: 500 !important;
             letter-spacing: 2px;
-            color: #fff;
-            text-transform: uppercase;
+            color: #fff !important;
+            text-transform: uppercase !important;
             line-height: 1;
+            letter-spacing: 0.3px !important;
+            text-align: start !important;
         }
         .design13-wrapper .design13-footer-divider {
             width: 100%;
@@ -233,13 +224,11 @@
         }
         .design13-wrapper .design13-footer-text {
             font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 600;
-            font-size: 2.4cqw;
-            color: rgba(255,255,255,0.65);
-            letter-spacing: 0.3px;
+            font-size: 8px !important;
+            color: rgba(255,255,255,0.65) !important;
+            letter-spacing: 0.3px !important;
         }
 
-        /* ── Website ── */
         .design13-wrapper .design13-footer-website {
             display: flex;
             flex-direction: column;
@@ -266,7 +255,6 @@
             text-decoration-color: rgba(87,144,56,0.45);
         }
 
-        /* ── Download button ── */
         .design13-wrapper .design13-download-btn {
             margin-top: 10px;
             background: {{ $themeColor }};
@@ -298,6 +286,14 @@
             {{-- BG circle --}}
             <div class="design13-bg-circle"></div>
 
+            {{-- TOP-LEFT LOGO --}}
+            <div class="design13-top-logo">
+                @if(isset($logourl) && $logourl)
+                    <img src="{{ $logourl }}" alt="logo" crossorigin="anonymous">
+                
+                @endif
+            </div>
+
             {{-- SVG Chevron Arrow Pattern --}}
             <svg class="design13-arrow-pattern" viewBox="0 0 160 520" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
                 <defs>
@@ -325,22 +321,20 @@
             <div class="design13-food-wrap">
                 @if(isset($menuImageUrl) && $menuImageUrl)
                     <img src="{{ $menuImageUrl }}" alt="{{ @$menu['name'] ?? 'Menu Item' }}" crossorigin="anonymous">
-                @else
-                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=90" alt="Menu Item" crossorigin="anonymous">
                 @endif
             </div>
 
             {{-- Left content --}}
             <div class="design13-top-area">
-                <div class="design13-brand-tag">{{ @$menu['tag'] ?? 'Fan Favorite' }}</div>
+                <div class="design13-brand-tag">Fan Favorite</div>
 
                 <h1 class="design13-headline">
                     Taste <br>
-                    <span class="design13-accent">Perfection</span>
+                    Perfection
                 </h1>
 
                 <p class="design13-description">
-                    {{ @$menu['description'] ?? 'Farm-fresh ingredients — crafted with love.' }}
+                    {{ \Illuminate\Support\Str::limit($menu['description'] ?? '', 150, '...') }}
                 </p>
             </div>
 
@@ -349,14 +343,6 @@
 
             {{-- Footer strip --}}
             <div class="design13-footer">
-
-                <div class="design13-footer-logo">
-                    @if(isset($logourl) && $logourl)
-                        <img src="{{ $logourl }}" alt="logo" crossorigin="anonymous">
-                    @else
-                        <img src="https://static.vecteezy.com/system/resources/thumbnails/014/664/003/small_2x/cafe-and-resto-logo-vector.jpg" alt="logo" crossorigin="anonymous">
-                    @endif
-                </div>
 
                 <div class="design13-footer-info">
                     <div class="design13-footer-name">{{ @user()->name ?? ' ' }}</div>
@@ -382,7 +368,6 @@
 
         </div>{{-- /.design13-card --}}
 
-        {{-- Download button --}}
         {{-- <button type="button" class="design13-download-btn" onclick="downloadPoster13()">
             <i class="bi bi-download"></i>
             Download Poster
