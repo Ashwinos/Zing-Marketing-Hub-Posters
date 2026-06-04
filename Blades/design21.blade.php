@@ -20,7 +20,7 @@
         background: #fdf5ea;
         overflow: hidden;
         box-shadow: 0 16px 50px rgba(0, 0, 0, 0.22);
-        outline: 2px dashed {{ $themeColor }};
+        outline: 2px dashed {{ $themeColor }} !important;
         outline-offset: -8px;
         container-type: inline-size;
         box-sizing: border-box;
@@ -103,19 +103,19 @@
     }
 
     /* ── Menu badge ── */
-    .design21-wrapper .d21-menu-badge {
+     .design21-wrapper .d21-menu-badge {
         position: absolute;
-        top: 7cqw;
+        top: 24px;
         left: 50%;
         transform: translateX(-50%);
         z-index: 6;
-        background: {{ $themeColor }};
-        color: #fff;
-        font-size: 1.8cqw;
-        font-weight: 700;
-        letter-spacing: 2.5px;
+        background: {{ $themeColor }} !important;
+        color: #fff !important;
+        font-size: 6px !important;
+        font-weight: 700 !important;
+        letter-spacing: 2.5px !important;
         text-transform: uppercase;
-        padding: 0.8cqw 3cqw;
+        padding: 2.7px 10px !important;
         border-radius: 30px;
         white-space: nowrap;
     }
@@ -145,11 +145,11 @@
         right: 0;
         text-align: center;
         z-index: 6;
-        font-size: 8px;
-        color: #666;
-        line-height: 1.6;
-        padding: 0 9cqw;
-        font-style: italic;
+        font-size: 8px !important;
+        color: #666 !important;
+        line-height: 1.6 !important;
+        padding: 0 9cqw !important;
+        font-style: italic !important;
     }
 
     /* ── Instagram card ── */

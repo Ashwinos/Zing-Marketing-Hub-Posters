@@ -6,13 +6,6 @@
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ol+Chiki:wght@400..700&display=swap" rel="stylesheet">
  <style>
-     /* ================================================================
-   DESIGN 19 – COMPLETE REDESIGN
-   Matches: dark-green poster, central vertical light strip,
-   large golden mandala circles on side panels, gold dividers.
-   ALL original class names, IDs, and JS are preserved.
-   ================================================================ */
-
      :root {
          --g-bg: #14401a;
          --g-dark: #0d2e12;
@@ -22,7 +15,6 @@
          --gold-dk: #9a7420;
          --white: #ffffff;
          --off-wh: #f0ead8;
-         /* legacy aliases */
          --cream: #1e5a28;
          --cream2: #0d2e12;
          --navy: #ffffff;
@@ -56,11 +48,10 @@
          display: flex;
          flex-direction: column;
          align-items: center;
-
          font-family: "Noto Sans Ol Chiki", sans-serif;
      }
 
-     .design19-wrapper .design13-card {
+     .design19-wrapper .design19-card {
          width: 100%;
          max-width: 360px;
          aspect-ratio: 4/5;
@@ -74,7 +65,6 @@
          box-sizing: border-box;
      }
 
-     /* outer edge strips */
      .design19-wrapper .d19-outer-tile {
          position: absolute;
          top: 0;
@@ -84,31 +74,23 @@
          pointer-events: none;
      }
 
-     .design19-wrapper .d19-outer-tile.left {
-         left: 0;
-     }
+     .design19-wrapper .d19-outer-tile.left { left: 0; }
+     .design19-wrapper .d19-outer-tile.right { right: 0; }
 
-     .design19-wrapper .d19-outer-tile.right {
-         right: 0;
-     }
-
-     /* ─── 1. HEADER ─── */
      .design19-wrapper .d19-sky {
-        flex-shrink: 0;
-    height: 74px;
-    background: var(--g-dark);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    position: relative;
-    z-index: 5;
-    width: 100%;
-}
+         flex-shrink: 0;
+         height: 74px;
+         background: var(--g-dark);
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+         gap: 4px;
+         position: relative;
+         z-index: 5;
+         width: 100%;
      }
 
-     /* ─── 2. HL-WRAP (ornamental divider) ─── */
      .design19-wrapper .d19-hl-wrap {
          flex-shrink: 0;
          background: var(--g-dark);
@@ -118,15 +100,9 @@
          z-index: 99;
      }
 
-     .design19-wrapper .d19-hl-wrap::before {
-         display: none;
-     }
+     .design19-wrapper .d19-hl-wrap::before { display: none; }
+     .design19-wrapper .d19-headline { display: none; }
 
-     .design19-wrapper .d19-headline {
-         display: none;
-     }
-
-     /* ─── 3. FOOD SECTION ─── */
      .design19-wrapper .d19-food {
          flex: 1;
          min-height: 0;
@@ -140,7 +116,6 @@
          border: 2px solid white;
      }
 
-     /* Central vertical lighter strip */
      .design19-wrapper .d19-food::before {
          content: '';
          position: absolute;
@@ -148,19 +123,12 @@
          bottom: 0;
          left: 17%;
          right: 17%;
-         background: linear-gradient(180deg,
-                 #2e7838 0%,
-                 #265e30 40%,
-                 #1e5228 70%,
-                 #184a22 100%);
+         background: linear-gradient(180deg, #2e7838 0%, #265e30 40%, #1e5228 70%, #184a22 100%);
          z-index: 1;
-         box-shadow:
-             4px 0 20px rgba(0, 0, 0, 0.35),
-             -4px 0 20px rgba(0, 0, 0, 0.35);
+         box-shadow: 4px 0 20px rgba(0,0,0,0.35), -4px 0 20px rgba(0,0,0,0.35);
          opacity: 0;
      }
 
-     /* Food image (sits on top of strip) */
      .design19-wrapper .d19-food img {
          position: relative;
          z-index: 3;
@@ -181,11 +149,8 @@
          background: linear-gradient(180deg, #2a7035 0%, #0d2e12 100%);
      }
 
-     .design19-wrapper .d19-olive {
-         display: none !important;
-     }
+     .design19-wrapper .d19-olive { display: none !important; }
 
-     /* Mandala layer — behind food image, over green sides */
      .design19-wrapper .d19-mandala-wrap {
          position: absolute;
          inset: 0;
@@ -193,7 +158,6 @@
          pointer-events: none;
      }
 
-     /* ─── 4. TAGLINE / HEADLINE ─── */
      .design19-wrapper .d19-tagline-wrap {
          flex-shrink: 0;
          background: var(--g-dark);
@@ -213,25 +177,18 @@
          opacity: .5;
      }
 
-     .design19-wrapper .d19-tagline-wrap::before {
-         top: 0;
-     }
-
-     .design19-wrapper .d19-tagline-wrap::after {
-         bottom: 0;
-     }
+     .design19-wrapper .d19-tagline-wrap::before { top: 0; }
+     .design19-wrapper .d19-tagline-wrap::after { bottom: 0; }
 
      .design19-wrapper .d19-tagline {
-         font-family: "Noto Sans Ol Chiki", sans-serif;
          font-family: 'Vastile DEMO';
-         font-size: clamp(15px, 5vw, 21px);
+         font-size: 21p !important;
          color: var(--white);
          margin: 0;
          line-height: 1.25;
          letter-spacing: 2.5px;
      }
 
-     /* ─── 5. INFO ROW — collapsed ─── */
      .design19-wrapper .d19-info-row {
          height: 0;
          overflow: hidden;
@@ -239,11 +196,8 @@
      }
 
      .design19-wrapper .d19-tile-col-wide,
-     .design19-wrapper .d19-info-center {
-         display: none;
-     }
+     .design19-wrapper .d19-info-center { display: none; }
 
-     /* ─── 6. CONTACT ROW ─── */
      .design19-wrapper .d19-contact-row {
          flex-shrink: 0;
          display: flex;
@@ -255,26 +209,25 @@
          width: 100%;
          position: relative;
          z-index: 99;
+         flex-direction: column;
+         text-align: center;
+         font-size: 10px;
+         color: white;
+         padding: 10px 0;
      }
 
-     .design19-wrapper .d19-tile-col-narrow {
-         display: none !important;
-     }
-
-     .design19-wrapper .d19-ct-left {
-         display: none !important;
-     }
+     .design19-wrapper .d19-tile-col-narrow { display: none !important; }
+     .design19-wrapper .d19-ct-left { display: none !important; }
 
      .design19-wrapper .d19-ct-right {
          flex: 1;
          padding: 4px 10px;
-         font-size: clamp(8px, 2.2vw, 10px);
+         font-size: 10px !important;
          text-align: center;
          letter-spacing: 2.5px;
          border-left: none;
      }
 
-     /* ─── 7. ZING BAR ─── */
      .design19-wrapper .d19-zing {
          flex-shrink: 0;
          display: flex;
@@ -288,13 +241,8 @@
          z-index: 99;
      }
 
-     .design19-wrapper .d19-zing-tile {
-         display: none;
-     }
-
-     .design19-wrapper .d19-zing-diamond {
-         display: none;
-     }
+     .design19-wrapper .d19-zing-tile { display: none; }
+     .design19-wrapper .d19-zing-diamond { display: none; }
 
      .design19-wrapper .d19-zing-center span {
          flex: 1;
@@ -309,9 +257,6 @@
          text-transform: uppercase;
      }
 
-
-
-     /* download button */
      .design19-wrapper .d19-download-btn {
          margin-top: 16px;
          background-color: var(--btn-bg);
@@ -329,11 +274,8 @@
          transition: opacity .2s;
      }
 
-     .design19-wrapper .d19-download-btn:hover {
-         opacity: .8;
-     }
+     .design19-wrapper .d19-download-btn:hover { opacity: .8; }
 
-     /* legacy hidden */
      .design19-wrapper .d19-top-header,
      .design19-wrapper .d19-headings,
      .design19-wrapper .d19-heading1,
@@ -347,9 +289,7 @@
      .design19-wrapper .patterm-design-3,
      .design19-wrapper .bg-pattern,
      .design19-wrapper .d19-menu-image-inner,
-     .design19-wrapper .d19-description {
-         display: none !important;
-     }
+     .design19-wrapper .d19-description { display: none !important; }
 
      .design19-wrapper .central-box {
          height: 100%;
@@ -378,80 +318,59 @@
      }
 
      .design19-wrapper img.logo {
-             /*width: 100%;*/
-            height: 2rem;
-     }
-
-     .design19-wrapper .d19-contact-row {
-         flex-shrink: 0;
-         display: flex;
-         align-items: center;
-         justify-content: center;
-         background: var(--g-dark);
-         min-height: 30px;
-         border-top: 1px solid rgba(201, 168, 67, .28);
-         width: 100%;
-         flex-direction: column;
-         align-items: center;
-         text-align: center;
-         font-size: 10px;
-         color: white;
-         padding: 10px 0;
+         height: 2rem;
      }
 
      .d19-caption {
          position: absolute;
-         z-index: 9;
-         font-family: 'Snappy Sketch';
-         left: 140px;
-         bottom: 3px;
-         font-size: 35px;
+         z-index: 9 !important;
+         font-family: 'Snappy Sketch' !important;
+         left: 140px !important;
+         bottom: 3px !important;
+         font-size: 35px !important;
          font-weight: 800;
          transform-origin: center;
          filter: drop-shadow(2px 4px 6px black);
-         color: white;
+         color: white !important;
      }
 
      .d19-caption::before {
-             content: '';
-            position: absolute;
-            left: 0;
-            top: 9px;
-            background: #00000087;
-            width: 120%;
-            transform: translateX(-50%);
-            height: 100%;
-            left: 50%;
-            z-index: -1;
-            padding: 19px;
+         content: '';
+         position: absolute;
+         left: 0 !important;
+         top: 9px !important;
+         background: #00000087;
+         width: 120% !important;
+         transform: translateX(-50%) !important;
+         height: 100%;
+         left: 50% !important;
+         z-index: -1;
+         padding: 19px;
      }
-     
+
      .d19-ct-phone span {
          padding: 4px 10px;
-        font-family: "Noto Sans Ol Chiki", sans-serif;
-        font-size: 8px;
-        color: #fff;
-        text-align: center;
-        letter-spacing: 2.5px;
+         font-family: "Noto Sans Ol Chiki", sans-serif;
+         font-size: 8px;
+         color: #fff;
+         text-align: center;
+         letter-spacing: 2.5px;
      }
-     
-     .d19-hl-wrap{
-           background: var(--g-dark);
+
+     .d19-hl-wrap {
+         background: var(--g-dark);
      }
  </style>
 
  <div class="design19-wrapper">
-     <div class="design13-card" id="posterCard7">
+     <div class="design19-card" id="posterCard19">
 
          {{-- Background image --}}
          <div class="bg-img">
-             
-                 
-                 <img src="{{ asset('img/posters/design19/bg11.png') }}" alt="">
-             
+             <img src="{{ asset('img/posters/design19/bg11.png') }}" alt="">
          </div>
 
-         <!-- outer edge gold strips -->
+         {{-- Outer edge gold strips --}}
          <div class="d19-outer-tile left">
              <svg width="10" height="100%" style="display:block">
                  <defs>
@@ -477,19 +396,14 @@
 
          <div class="central-box">
 
-             <!-- ════════════════════════════════════════
-               1. HEADER — logo + brand name
-             ════════════════════════════════════════ -->
+             {{-- 1. HEADER --}}
              <div class="d19-sky">
                  @if(isset($logourl) && $logourl)
                      <img src="{{ $logourl }}" alt="logo" class="logo" crossorigin="anonymous">
-                 
                  @endif
              </div>
 
-             <!-- ════════════════════════════════════════
-               2. HL-WRAP — gold ornamental divider
-             ════════════════════════════════════════ -->
+             {{-- 2. HL-WRAP — gold ornamental divider --}}
              <div class="d19-hl-wrap">
                  <svg width="100%" height="20" viewBox="0 0 320 20" preserveAspectRatio="xMidYMid meet">
                      <line x1="12" y1="10" x2="126" y2="10" stroke="#c9a843" stroke-width=".8" opacity=".6" />
@@ -504,24 +418,16 @@
                  <p class="d19-headline" style="display:none"></p>
              </div>
 
-             <!-- ════════════════════════════════════════
-               3. FOOD SECTION
-             ════════════════════════════════════════ -->
+             {{-- 3. FOOD SECTION --}}
              <div class="d19-food">
                  <div class="d19-caption">Purely Savory</div>
-
                  <div class="d19-mandala-wrap"></div>
-
-                 {{-- Dynamic menu image --}}
                  @if(isset($menuImageUrl) && $menuImageUrl)
                      <img src="{{ $menuImageUrl }}" crossorigin="anonymous" alt="{{ @$menu['name'] ?? 'menu item' }}" class="js-poster-menu-image">
-                 
                  @endif
              </div>
 
-             <!-- ════════════════════════════════════════
-               4. TAGLINE — menu name
-             ════════════════════════════════════════ -->
+             {{-- 4. TAGLINE — menu name --}}
              <div class="d19-tagline-wrap">
                  <svg width="100%" height="16" viewBox="0 0 320 16" style="display:block;margin-bottom:5px">
                      <line x1="12" y1="8" x2="126" y2="8" stroke="#c9a843" stroke-width=".7" opacity=".58" />
@@ -535,7 +441,6 @@
                  <p class="d19-tagline">
                      @if(isset($menu['name']) && strlen($menu['name']) <= 20)
                          {{ $menu['name'] }}
-                     
                      @endif
                  </p>
 
@@ -549,7 +454,7 @@
                  </svg>
              </div>
 
-             <!-- ══ 5. INFO ROW — collapsed (unchanged) ══ -->
+             {{-- 5. INFO ROW — collapsed --}}
              <div class="d19-info-row">
                  <div class="d19-tile-col-wide"></div>
                  <div class="d19-info-center">
@@ -559,7 +464,7 @@
                  <div class="d19-tile-col-wide"></div>
              </div>
 
-             <!-- ══ 6. CONTACT ROW ══ -->
+             {{-- 6. CONTACT ROW --}}
              <div class="d19-contact-row">
                  <div class="d19-tile-col-narrow"></div>
                  <div class="d19-ct-left"></div>
@@ -571,17 +476,16 @@
                  <div class="d19-tile-col-narrow"></div>
              </div>
 
-             <!-- ══ 7. ZING BAR ══ -->
+             {{-- 7. ZING BAR --}}
              <div class="d19-zing">
                  <div class="d19-zing-tile"></div>
                  <div class="d19-zing-center">
-                     
                      <span>{{ @user()->address ?? '' }}</span>
                  </div>
                  <div class="d19-zing-diamond"></div>
              </div>
 
-             <!-- HIDDEN LEGACY (unchanged) -->
+             {{-- HIDDEN LEGACY --}}
              <div class="d19-body" style="display:none">
                  <div class="d19-logo" style="display:none"><img src="" alt="logo" crossorigin="anonymous"></div>
                  <div class="d19-headings" style="display:none">
@@ -605,56 +509,11 @@
              <div class="d19-menu-image-inner" style="display:none"></div>
 
          </div>
-     </div><!-- /.design13-card -->
+     </div>{{-- /.design19-card --}}
 
-     <!--<button type="button" class="d19-download-btn" onclick="downloaddesign13()">-->
-     <!--    <i class="bi bi-download"></i> Download Poster-->
-     <!--</button>-->
+     {{-- <button type="button" class="d19-download-btn" onclick="downloaddesign13()">
+         <i class="bi bi-download"></i> Download Poster
+     </button> --}}
 
- </div><!-- /.design19-wrapper -->
+ </div>{{-- /.design19-wrapper --}}
 
- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
- <script>
-     /* UNCHANGED from original */
-     function downloaddesign13() {
-         var card = document.getElementById('posterCard7');
-         var button = document.querySelector('.d19-download-btn');
-         button.innerHTML = '<i class="bi bi-hourglass-split"></i> Generating...';
-         button.disabled = true;
-         var exportW = 1080;
-         var scale = exportW / card.offsetWidth;
-         html2canvas(card, {
-             scale: scale,
-             backgroundColor: null,
-             logging: false,
-             useCORS: true,
-             allowTaint: true,
-             imageTimeout: 0,
-             onclone: function(clonedDoc) {
-                 var images = clonedDoc.querySelectorAll('img');
-                 return Promise.all(Array.from(images).map(function(img) {
-                     return new Promise(function(resolve) {
-                         if (img.complete) {
-                             resolve();
-                         } else {
-                             img.onload = resolve;
-                             img.onerror = resolve;
-                         }
-                     });
-                 }));
-             }
-         }).then(function(canvas) {
-             var link = document.createElement('a');
-             link.download = 'menu-poster-instagram.png';
-             link.href = canvas.toDataURL('image/png', 1.0);
-             link.click();
-             button.innerHTML = '<i class="bi bi-download"></i> Download Poster';
-             button.disabled = false;
-         }).catch(function(error) {
-             console.error('Error:', error);
-             alert('Failed to generate. Please try again.');
-             button.innerHTML = '<i class="bi bi-download"></i> Download Poster';
-             button.disabled = false;
-         });
-     }
- </script>
