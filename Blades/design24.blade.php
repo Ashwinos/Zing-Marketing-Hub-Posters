@@ -20,7 +20,6 @@
         overflow: hidden;
         position: relative;
         box-sizing: border-box;
-        /* Layered, realistic shadow for a premium print feel */
         box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12), 0 8px 16px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.05);
         container-type: inline-size;
         display: flex;
@@ -29,13 +28,13 @@
         padding: 1.5cqw;
     }
 
-    /* Moroccan tile background (Softened) */
+    /* Moroccan tile background */
     .design24-wrapper .d24-tile-bg {
         position: absolute;
         inset: 0;
         z-index: 0;
         pointer-events: none;
-        opacity: 0.15; /* Reduced opacity for more subtle elegance */
+        opacity: 0.15;
     }
 
     /* Outer border strips */
@@ -70,7 +69,6 @@
         flex-direction: column;
         background: #FDFBF7;
         border: 1px solid {{ $themeColor }}88;
-        box-shadow: inset 0 0 0 4px #FDFBF7, inset 0 0 0 5px {{ $themeColor }}33; /* Double inner border */
         overflow: hidden;
     }
 
@@ -124,7 +122,7 @@
     .design24-wrapper .d24-logo-fallback {
         width: 11cqw;
         height: 11cqw;
-        border-radius: 50%; /* Circle looks more elegant */
+        border-radius: 50%;
         background: #F7F2EC;
         border: 1px solid {{ $themeColor }};
         display: flex;
@@ -179,7 +177,7 @@
         width: 100%;
         aspect-ratio: 5 / 4;
         background: #FDFBF7;
-        padding: 4px; /* Inner white border effect */
+        padding: 4px;
         border: 1px solid {{ $themeColor }}66;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     }
@@ -337,42 +335,76 @@
 <div class="design24-wrapper">
     <div class="design24-card" id="posterCard24">
 
-        {{-- Subtle Zellige tile background --}}
+        {{-- ✦ FIX: Tile background — self-contained <defs>, unique pattern ID --}}
         <svg class="d24-tile-bg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
             <defs>
-                <pattern id="d24ZelligeBg" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
+                <pattern id="d24ZelligeBgSelf" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
                     <rect width="48" height="48" fill="none"/>
                     <path d="M24 4 L28 20 L44 24 L28 28 L24 44 L20 28 L4 24 L20 20 Z" fill="{{ $themeColor }}" opacity="0.3"/>
                     <path d="M24 10 L26 20 L36 24 L26 28 L24 38 L22 28 L12 24 L22 20 Z" fill="#fff" opacity="0.4"/>
                     <circle cx="24" cy="24" r="2.5" fill="{{ $themeColor }}" opacity="0.5"/>
                     <rect x="0.5" y="0.5" width="47" height="47" fill="none" stroke="{{ $themeColor }}" stroke-width="0.3" opacity="0.1"/>
                 </pattern>
-                <pattern id="d24BorderTile" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
-                    <rect width="14" height="14" fill="{{ $themeColor }}"/>
-                    <path d="M7 1.5 Q7 7 1.5 7 Q7 7 7 12.5 Q7 7 12.5 7 Q7 7 7 1.5Z" fill="#F7F2EC" opacity="0.95"/>
-                    <circle cx="7" cy="7" r="1.5" fill="#fff" opacity="0.8"/>
-                </pattern>
             </defs>
-            <rect width="100%" height="100%" fill="url(#d24ZelligeBg)"/>
+            <rect width="100%" height="100%" fill="url(#d24ZelligeBgSelf)"/>
         </svg>
 
-        {{-- Outer frame tile strips --}}
+        {{-- ✦ FIX: Each frame strip SVG carries its own <defs> with a unique pattern ID --}}
         <div class="d24-frame-strip d24-frame-strip--top">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="url(#d24BorderTile)"/></svg>
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="d24BorderTileTop" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
+                        <rect width="14" height="14" fill="{{ $themeColor }}"/>
+                        <path d="M7 1.5 Q7 7 1.5 7 Q7 7 7 12.5 Q7 7 12.5 7 Q7 7 7 1.5Z" fill="#F7F2EC" opacity="0.95"/>
+                        <circle cx="7" cy="7" r="1.5" fill="#fff" opacity="0.8"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#d24BorderTileTop)"/>
+            </svg>
         </div>
+
         <div class="d24-frame-strip d24-frame-strip--bottom">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="url(#d24BorderTile)"/></svg>
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="d24BorderTileBottom" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
+                        <rect width="14" height="14" fill="{{ $themeColor }}"/>
+                        <path d="M7 1.5 Q7 7 1.5 7 Q7 7 7 12.5 Q7 7 12.5 7 Q7 7 7 1.5Z" fill="#F7F2EC" opacity="0.95"/>
+                        <circle cx="7" cy="7" r="1.5" fill="#fff" opacity="0.8"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#d24BorderTileBottom)"/>
+            </svg>
         </div>
+
         <div class="d24-frame-strip d24-frame-strip--left">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="url(#d24BorderTile)"/></svg>
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="d24BorderTileLeft" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
+                        <rect width="14" height="14" fill="{{ $themeColor }}"/>
+                        <path d="M7 1.5 Q7 7 1.5 7 Q7 7 7 12.5 Q7 7 12.5 7 Q7 7 7 1.5Z" fill="#F7F2EC" opacity="0.95"/>
+                        <circle cx="7" cy="7" r="1.5" fill="#fff" opacity="0.8"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#d24BorderTileLeft)"/>
+            </svg>
         </div>
+
         <div class="d24-frame-strip d24-frame-strip--right">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="url(#d24BorderTile)"/></svg>
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="d24BorderTileRight" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
+                        <rect width="14" height="14" fill="{{ $themeColor }}"/>
+                        <path d="M7 1.5 Q7 7 1.5 7 Q7 7 7 12.5 Q7 7 12.5 7 Q7 7 7 1.5Z" fill="#F7F2EC" opacity="0.95"/>
+                        <circle cx="7" cy="7" r="1.5" fill="#fff" opacity="0.8"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#d24BorderTileRight)"/>
+            </svg>
         </div>
 
         <div class="d24-inner">
 
-            {{-- Corner medallions --}}
+            {{-- ✦ FIX: Each medallion SVG is fully self-contained, no shared pattern refs --}}
             <svg class="d24-medallion d24-medallion--tl" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="40" cy="40" r="36" fill="none" stroke="{{ $themeColor }}" stroke-width="0.75"/>
                 <circle cx="40" cy="40" r="28" fill="none" stroke="{{ $themeColor }}" stroke-width="0.5"/>
@@ -411,7 +443,7 @@
                 </div>
             </div>
 
-            {{-- Clean food image --}}
+            {{-- Food image --}}
             <div class="d24-image-wrap">
                 <div class="d24-image-frame">
                     @if (isset($menuImageUrl) && $menuImageUrl)
@@ -460,8 +492,4 @@
 
         </div>{{-- /.d24-inner --}}
     </div>{{-- /.design24-card --}}
-
-    {{-- Download Button --}}
-   
 </div>
-
