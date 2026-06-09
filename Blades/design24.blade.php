@@ -1,188 +1,198 @@
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Lato:wght@400;700;900&family=Dancing+Script:wght@700&family=Playfair+Display:wght@700;900&family=Chelsea+Market&display=swap"
+    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Water+Brush&display=swap" rel="stylesheet">
 
 <style>
-    /* ═══════════════════════════════════════
-       DESIGN 24 — ENHANCED MOROCCAN ZELLIGE
-       ═══════════════════════════════════════ */
     .design24-wrapper {
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        font-family: 'DM Sans', sans-serif;
+        font-family: 'Lato', sans-serif;
     }
 
     .design24-wrapper .design24-card {
         width: 100%;
-        max-width: 400px;
-        aspect-ratio: 4 / 5;
-        background: #F7F2EC;
+        max-width: 340px;
+        aspect-ratio: 4/5;
+        background: #fdf0d5;
         overflow: hidden;
         position: relative;
         box-sizing: border-box;
-        box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12), 0 8px 16px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.18);
         container-type: inline-size;
         display: flex;
         flex-direction: column;
-        border: 2px solid {{ $themeColor }};
-        padding: 1.5cqw;
     }
 
-    /* Moroccan tile background */
-    .design24-wrapper .d24-tile-bg {
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-        pointer-events: none;
-        opacity: 0.15;
-    }
-
-    /* Outer border strips */
-    .design24-wrapper .d24-frame-strip {
-        position: absolute;
-        z-index: 25;
-        pointer-events: none;
-        overflow: hidden;
-    }
-
-    .design24-wrapper .d24-frame-strip--top,
-    .design24-wrapper .d24-frame-strip--bottom {
-        left: 0; right: 0; height: 3.5cqw;
-    }
-    .design24-wrapper .d24-frame-strip--top { top: 0; }
-    .design24-wrapper .d24-frame-strip--bottom { bottom: 0; }
-
-    .design24-wrapper .d24-frame-strip--left,
-    .design24-wrapper .d24-frame-strip--right {
-        top: 3.5cqw; bottom: 3.5cqw; width: 3.5cqw;
-    }
-    .design24-wrapper .d24-frame-strip--left { left: 0; }
-    .design24-wrapper .d24-frame-strip--right { right: 0; }
-
-    /* Inner Container */
-    .design24-wrapper .d24-inner {
+    /* ══ TOP SECTION (cream bg) ══ */
+    .design24-wrapper .d24-top {
+        flex: 0 0 62cqw;
         position: relative;
-        z-index: 5;
-        flex: 1;
-        min-height: 0;
-        display: flex;
-        flex-direction: column;
-        background: #FDFBF7;
-        border: 1px solid {{ $themeColor }}88;
-        overflow: hidden;
+        overflow: visible;
+        background-color: #fdf0d5;
+        background-image:
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeBlend in='SourceGraphic' mode='multiply'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23t)' opacity='0.055'/%3E%3C/svg%3E"),
+            linear-gradient(155deg, #fef6e0 0%, #fdecd0 50%, #fce4b8 100%);
     }
 
-    /* Corner medallions */
-    .design24-wrapper .d24-medallion {
+    /* ── LOGO top-left ── */
+    .design24-wrapper .d24-logo-area {
         position: absolute;
-        width: 12cqw;
-        height: 12cqw;
-        z-index: 8;
-        pointer-events: none;
-        opacity: 0.45;
-    }
-    .design24-wrapper .d24-medallion--tl { top: 1.5cqw; left: 1.5cqw; }
-    .design24-wrapper .d24-medallion--tr { top: 1.5cqw; right: 1.5cqw; transform: scaleX(-1); }
-    .design24-wrapper .d24-medallion--bl { bottom: 1.5cqw; left: 1.5cqw; transform: scaleY(-1); }
-    .design24-wrapper .d24-medallion--br { bottom: 1.5cqw; right: 1.5cqw; transform: scale(-1, -1); }
-
-    /* ── BRAND BAR ── */
-    .design24-wrapper .d24-brand-bar {
-        flex-shrink: 0;
+        top: 4cqw;
+        left: 5cqw;
         z-index: 10;
-        background: transparent;
-        padding: 4cqw 5cqw 3cqw;
         display: flex;
         align-items: center;
-        gap: 3.5cqw;
-        border-bottom: 1px solid {{ $themeColor }}44;
-        position: relative;
-    }
-
-    .design24-wrapper .d24-brand-bar::after {
-        content: '✦';
-        position: absolute;
-        bottom: -1.2cqw;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 2cqw;
-        color: {{ $themeColor }};
-        background: #FDFBF7;
-        padding: 0 2cqw;
-        line-height: 1;
     }
 
     .design24-wrapper .d24-logo-img {
         height: 2rem;
         width: auto;
         display: block;
-        flex-shrink: 0;
     }
 
-    .design24-wrapper .d24-logo-fallback {
-        width: 11cqw;
-        height: 11cqw;
-        border-radius: 50%;
-        background: #F7F2EC;
-        border: 1px solid {{ $themeColor }};
+    .design24-wrapper .d24-logo-text {
+        font-family: 'Anton', sans-serif;
+        font-size: 5cqw;
+        color: #1a1a1a;
+        letter-spacing: 1px;
+        line-height: 1;
+    }
+
+    /* ── "New Menu!" badge top-right ── */
+    .design24-wrapper .d24-new-badge {
+        position: absolute;
+        top: 3cqw;
+        right: 4cqw;
+        z-index: 10;
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: center;
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 5.5cqw;
-        font-weight: 600;
-        color: {{ $themeColor }};
-        flex-shrink: 0;
     }
 
-    .design24-wrapper .d24-brand-text {
-        min-width: 0;
-        flex: 1;
-    }
-
-    .design24-wrapper .d24-brand-name {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 13px;
-        font-weight: 600;
-        color: #1A1815;
+    .design24-wrapper .d24-new-badge-text {
+        font-family: 'Dancing Script', cursive;
+        font-size: 4.5cqw;
+        font-weight: 700;
+        color: #cc2222;
         line-height: 1.1;
-        letter-spacing: 0.03em;
         white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
     }
 
-    .design24-wrapper .d24-brand-addr {
-        font-size: 1.9cqw;
-        font-weight: 400;
-        color: #8C8273;
-        margin-top: 0.6cqw;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    /* ── FOOD IMAGE ── */
-    .design24-wrapper .d24-image-wrap {
-        flex-shrink: 0;
-        padding: 4.5cqw 5cqw 1cqw;
-        position: relative;
-        z-index: 4;
-    }
-
-    .design24-wrapper .d24-image-frame {
-        position: relative;
+    .design24-wrapper .d24-new-badge-line {
         width: 100%;
-        aspect-ratio: 5 / 4;
-        background: #FDFBF7;
-        padding: 4px;
-        border: 1px solid {{ $themeColor }}66;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        height: 2px;
+        background: #cc2222;
+        border-radius: 2px;
+        margin-top: 0.5cqw;
+        position: relative;
     }
 
-    .design24-wrapper .d24-image-frame img {
+    /* curved swoosh underline via SVG */
+    .design24-wrapper .d24-swoosh {
+        position: absolute;
+        top: 3cqw;
+        right: 3cqw;
+        z-index: 10;
+        width: 22cqw;
+        height: 10cqw;
+    }
+
+    /* ── DECORATIVE SPLATS (dark brown blobs) ── */
+    .design24-wrapper .d24-splat {
+        position: absolute;
+        z-index: 2;
+        pointer-events: none;
+        border-radius: 50%;
+        background: #2b1505;
+    }
+
+    /* top-left splat */
+    .design24-wrapper .d24-splat-tl {
+        top: 30cqw;
+        left: 2cqw;
+        width: 5cqw;
+        height: 3.5cqw;
+        border-radius: 60% 40% 55% 45%;
+        transform: rotate(-20deg);
+    }
+
+    /* top-right splat */
+    .design24-wrapper .d24-splat-tr {
+        top: 24cqw;
+        right: 3cqw;
+        width: 4cqw;
+        height: 3cqw;
+        border-radius: 50% 60% 40% 55%;
+        transform: rotate(30deg);
+    }
+
+    /* mid-left splat */
+    .design24-wrapper .d24-splat-ml {
+        top: 43cqw;
+        left: 5cqw;
+        width: 3cqw;
+        height: 2cqw;
+        border-radius: 55% 45% 50% 50%;
+        transform: rotate(10deg);
+    }
+
+    /* mid-right tiny splat */
+    .design24-wrapper .d24-splat-mr {
+        top: 48cqw;
+        right: 6cqw;
+        width: 2.5cqw;
+        height: 1.8cqw;
+        border-radius: 50%;
+        transform: rotate(-15deg);
+    }
+
+    /* orange organic blob bottom-right */
+    .design24-wrapper .d24-blob-orange {
+        position: absolute;
+        bottom: -4cqw;
+        left: 7cqw;
+        width: 16cqw;
+        height: 14cqw;
+        background: #f0a500;
+        border-radius: 60% 40% 55% 45% / 50% 55% 45% 50%;
+        z-index: 2;
+        pointer-events: none;
+        opacity: 0.9;
+    }
+
+    /* ── CIRCULAR FOOD IMAGE ── */
+    .design24-wrapper .d24-food-circle-wrap {
+        position: absolute;
+        top: 3px;
+        right: -30px;
+        z-index: 5;
+        width: 70cqw;
+        height: 70cqw;
+    }
+
+    /* Outer orange ring */
+    .design24-wrapper .d24-food-ring-outer {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 3cqw solid #f0a500;
+        z-index: 5;
+    }
+
+    /* Food image clipped to circle */
+    .design24-wrapper .d24-food-circle {
+        position: absolute;
+        inset: 3cqw;
+        border-radius: 50%;
+        overflow: hidden;
+        z-index: 4;
+        background: #c8a060;
+    }
+
+    .design24-wrapper .d24-food-circle img {
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -190,306 +200,361 @@
         display: block;
     }
 
-    .design24-wrapper .d24-image-placeholder {
+    .design24-wrapper .d24-food-placeholder {
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, #E6E0D5 0%, #D1C8BA 100%);
+        background: linear-gradient(135deg, #c8a060 0%, #8a5a20 100%);
     }
 
-    .design24-wrapper .d24-badge {
+    /* ── PRICE BADGE (red circle, top-left of food) ── */
+    .design24-wrapper .d24-price-badge {
         position: absolute;
-        bottom: -2cqw;
-        right: 4cqw;
-        z-index: 7;
-        background: {{ $themeColor }};
-        color: #fff;
-        font-size: 1.8cqw;
-        font-weight: 500;
-        letter-spacing: 0.25em;
-        text-transform: uppercase;
-        padding: 1.5cqw 3cqw;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-
-    /* ── CONTENT ── */
-    .design24-wrapper .d24-content {
-        flex: 1;
-        min-height: 0;
-        padding: 3cqw 5cqw 4cqw;
+        top: 8cqw;
+        left: 4cqw;
+        z-index: 8;
+        width: 18cqw;
+        height: 18cqw;
+        border-radius: 50%;
+        background: #cc1f1f;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        text-align: center;
-        gap: 1.5cqw;
-        position: relative;
-        z-index: 5;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.25);
     }
 
-    .design24-wrapper .d24-eyebrow {
+    .design24-wrapper .d24-price-only {
+        font-size: 2.2cqw;
+        font-weight: 700;
+        color: rgba(255,255,255,0.9);
+        letter-spacing: 0.5px;
+        line-height: 1;
+        margin-bottom: 0.3cqw;
+        font-family: 'Lato', sans-serif;
+    }
+
+    .design24-wrapper .d24-price-val {
+        font-family: 'Anton', sans-serif;
+        font-size: 7cqw;
+        color: #fff;
+        line-height: 1;
+        letter-spacing: 0;
+    }
+
+    /* ══ DARK BROWN BAND ══ */
+    .design24-wrapper .d24-brown-band {
+        flex: 0 0 28cqw;
+        position: relative;
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 3cqw 5cqw 2cqw;
+        overflow: hidden;
+        background-color: #3a1a05;
+        background-image:
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeBlend in='SourceGraphic' mode='overlay'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23t)' opacity='0.07'/%3E%3C/svg%3E");
+    }
+
+    .design24-wrapper .d24-band-wave {
+        position: absolute;
+        top: -3cqw;
+        left: 0;
+        right: 0;
+        height: 6cqw;
+        background: #3a1a05;
+        border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    }
+
+    .design24-wrapper .d24-item-name-bold {
+        font-family: 'Playfair Display', serif;
+        font-size: 7.5cqw;
+        font-weight: 900;
+        color: #f5c842;
+        line-height: 1.05;
+        margin: 0;
+        letter-spacing: 0;
+    }
+
+    /* ── MENU NAME: Chelsea Market ── */
+    .design24-wrapper .d24-item-name-script {
+         font-family: "Water Brush", cursive;
+        font-size: 8.5cqw;
+        font-weight: 400;
+        color: #f5c842;
+        line-height: 1.05;
+        margin: 0;
+        letter-spacing: 0.5px;
+    }
+
+    .design24-wrapper .d24-desc {
+        font-size: 8px;
+        color: rgba(255,255,255,0.5);
+        line-height: 1.55;
+        margin: 1.5cqw 0 0;
+        font-weight: 400;
+    }
+
+    /* ══ FOOTER (cream strip) ══ */
+    .design24-wrapper .d24-footer {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2cqw 5cqw;
+        position: relative;
+        overflow: hidden;
+        min-height: 0;
+        background-color: #fdf0d5;
+        background-image:
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeBlend in='SourceGraphic' mode='multiply'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23t)' opacity='0.05'/%3E%3C/svg%3E"),
+            linear-gradient(90deg, #fef6e0 0%, #fdecd0 100%);
+        border-top: 1px solid rgba(0,0,0,0.06);
+    }
+
+    /* yellow brush stroke behind left content */
+    .design24-wrapper .d24-brush {
+        position: absolute;
+        left: 3cqw;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 45cqw;
+        height: 60%;
+        background: #f5c842;
+        border-radius: 2px 30px 30px 2px;
+        opacity: 0.35;
+        z-index: 0;
+        clip-path: polygon(0 20%, 100% 0%, 100% 80%, 0% 100%);
+    }
+
+    .design24-wrapper .d24-footer-left {
         display: flex;
         align-items: center;
         gap: 2cqw;
+        z-index: 1;
+        position: relative;
+    }
+
+    /* orange circle phone icon */
+    .design24-wrapper .d24-phone-circle {
+        width: 9cqw;
+        height: 9cqw;
+        border-radius: 50%;
+        background: #f0a500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .design24-wrapper .d24-phone-circle svg {
+        width: 4.5cqw;
+        height: 4.5cqw;
+        fill: #fff;
+    }
+
+    .design24-wrapper .d24-delivery-label {
+        font-size: 1.8cqw;
+        font-weight: 700;
+        color: #3a1a05;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        line-height: 1;
         margin-bottom: 0.5cqw;
     }
 
-    .design24-wrapper .d24-eyebrow-label {
-        font-size: 1.8cqw;
-        font-weight: 600;
-        letter-spacing: 0.3em;
-        text-transform: uppercase;
-        color: {{ $themeColor }};
-        white-space: nowrap;
+    .design24-wrapper .d24-phone-num {
+        font-family: 'Anton', sans-serif;
+        font-size: 4.5cqw;
+        color: #1a1a1a;
+        letter-spacing: 0.5px;
+        line-height: 1;
     }
 
-    .design24-wrapper .d24-title {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 9cqw;
-        font-weight: 600;
-        color: #1A1815;
-        line-height: 1.05;
-        letter-spacing: -0.01em;
-        margin: 0;
-        word-break: break-word;
-    }
-
-    .design24-wrapper .d24-title--long {
-        font-size: 7.5cqw;
-    }
-
-    .design24-wrapper .d24-title em {
-        font-style: italic;
-        font-weight: 400;
-        color: {{ $themeColor }};
-        padding-right: 0.1em;
-    }
-
-    /* ── FOOTER ── */
-    .design24-wrapper .d24-footer {
-        flex-shrink: 0;
-        padding: 3cqw 5cqw 4cqw;
+    /* right side: restaurant info */
+    .design24-wrapper .d24-footer-right {
+        text-align: right;
+        z-index: 1;
         position: relative;
-        z-index: 6;
-        border-top: 1px solid {{ $themeColor }}33;
     }
 
-    .design24-wrapper .d24-footer-inner {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1.5cqw;
+    .design24-wrapper .d24-rest-name {
+        font-size: 2.5cqw;
+        font-weight: 900;
+        color: #1a1a1a;
+        line-height: 1;
+        margin-bottom: 0.5cqw;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 32cqw;
     }
 
-    .design24-wrapper .d24-contacts {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 3cqw;
-        justify-content: center;
-        width: 100%;
+    .design24-wrapper .d24-rest-address {
+        font-size: 1.8cqw;
+        color: #666;
+        line-height: 1.4;
+        max-width: 32cqw;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
-    .design24-wrapper .d24-contact {
-        display: inline-flex;
-        align-items: center;
-        gap: 1.2cqw;
-        font-size: 2.6cqw;
-        font-weight: 400;
-        color: #4A443A;
+    .design24-wrapper .d24-rest-web {
+        font-size: 1.8cqw;
+        color: #666;
+        line-height: 1.2;
         white-space: nowrap;
     }
 
-    .design24-wrapper .d24-contact svg {
-        width: 2.6cqw;
-        height: 2.6cqw;
-        fill: {{ $themeColor }};
-        opacity: 0.8;
-    }
-
+    /* download btn */
     .design24-wrapper .d24-download-btn {
-        margin-top: 20px;
-        background: #1A1815;
+        margin-top: 10px;
+        background: #f0a500;
         color: #fff;
         border: none;
-        padding: 12px 28px;
-        font-size: 14px;
-        font-weight: 500;
+        padding: 8px 16px;
+        font-size: 12px;
+        font-weight: 700;
+        border-radius: 30px;
         cursor: pointer;
-        border-radius: 4px;
-        font-family: 'DM Sans', sans-serif;
+        font-family: 'Lato', sans-serif;
         display: flex;
         align-items: center;
-        gap: 10px;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        gap: 8px;
+        letter-spacing: 0.04em;
+        transition: opacity 0.2s, transform 0.15s;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
     }
-
-    .design24-wrapper .d24-download-btn:hover {
-        background: {{ $themeColor }};
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-    }
+    .design24-wrapper .d24-download-btn:hover  { opacity:.88; transform:translateY(-2px); }
+    .design24-wrapper .d24-download-btn:active  { transform:translateY(0); }
+    .design24-wrapper .d24-download-btn:disabled{ opacity:.5; cursor:not-allowed; transform:none; }
 </style>
 
 <div class="design24-wrapper">
     <div class="design24-card" id="posterCard24">
 
-        {{-- ✦ FIX: Tile background — self-contained <defs>, unique pattern ID --}}
-        <svg class="d24-tile-bg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <pattern id="d24ZelligeBgSelf" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
-                    <rect width="48" height="48" fill="none"/>
-                    <path d="M24 4 L28 20 L44 24 L28 28 L24 44 L20 28 L4 24 L20 20 Z" fill="{{ $themeColor }}" opacity="0.3"/>
-                    <path d="M24 10 L26 20 L36 24 L26 28 L24 38 L22 28 L12 24 L22 20 Z" fill="#fff" opacity="0.4"/>
-                    <circle cx="24" cy="24" r="2.5" fill="{{ $themeColor }}" opacity="0.5"/>
-                    <rect x="0.5" y="0.5" width="47" height="47" fill="none" stroke="{{ $themeColor }}" stroke-width="0.3" opacity="0.1"/>
-                </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#d24ZelligeBgSelf)"/>
-        </svg>
+        {{-- ══ TOP CREAM SECTION ══ --}}
+        <div class="d24-top">
 
-        {{-- ✦ FIX: Each frame strip SVG carries its own <defs> with a unique pattern ID --}}
-        <div class="d24-frame-strip d24-frame-strip--top">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <pattern id="d24BorderTileTop" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
-                        <rect width="14" height="14" fill="{{ $themeColor }}"/>
-                        <path d="M7 1.5 Q7 7 1.5 7 Q7 7 7 12.5 Q7 7 12.5 7 Q7 7 7 1.5Z" fill="#F7F2EC" opacity="0.95"/>
-                        <circle cx="7" cy="7" r="1.5" fill="#fff" opacity="0.8"/>
-                    </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#d24BorderTileTop)"/>
-            </svg>
-        </div>
-
-        <div class="d24-frame-strip d24-frame-strip--bottom">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <pattern id="d24BorderTileBottom" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
-                        <rect width="14" height="14" fill="{{ $themeColor }}"/>
-                        <path d="M7 1.5 Q7 7 1.5 7 Q7 7 7 12.5 Q7 7 12.5 7 Q7 7 7 1.5Z" fill="#F7F2EC" opacity="0.95"/>
-                        <circle cx="7" cy="7" r="1.5" fill="#fff" opacity="0.8"/>
-                    </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#d24BorderTileBottom)"/>
-            </svg>
-        </div>
-
-        <div class="d24-frame-strip d24-frame-strip--left">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <pattern id="d24BorderTileLeft" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
-                        <rect width="14" height="14" fill="{{ $themeColor }}"/>
-                        <path d="M7 1.5 Q7 7 1.5 7 Q7 7 7 12.5 Q7 7 12.5 7 Q7 7 7 1.5Z" fill="#F7F2EC" opacity="0.95"/>
-                        <circle cx="7" cy="7" r="1.5" fill="#fff" opacity="0.8"/>
-                    </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#d24BorderTileLeft)"/>
-            </svg>
-        </div>
-
-        <div class="d24-frame-strip d24-frame-strip--right">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <pattern id="d24BorderTileRight" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
-                        <rect width="14" height="14" fill="{{ $themeColor }}"/>
-                        <path d="M7 1.5 Q7 7 1.5 7 Q7 7 7 12.5 Q7 7 12.5 7 Q7 7 7 1.5Z" fill="#F7F2EC" opacity="0.95"/>
-                        <circle cx="7" cy="7" r="1.5" fill="#fff" opacity="0.8"/>
-                    </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#d24BorderTileRight)"/>
-            </svg>
-        </div>
-
-        <div class="d24-inner">
-
-            {{-- ✦ FIX: Each medallion SVG is fully self-contained, no shared pattern refs --}}
-            <svg class="d24-medallion d24-medallion--tl" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="40" cy="40" r="36" fill="none" stroke="{{ $themeColor }}" stroke-width="0.75"/>
-                <circle cx="40" cy="40" r="28" fill="none" stroke="{{ $themeColor }}" stroke-width="0.5"/>
-                <path d="M40 8 L43 33 L68 40 L43 47 L40 72 L37 47 L12 40 L37 33 Z" fill="{{ $themeColor }}" opacity="0.4"/>
-                <circle cx="40" cy="40" r="4" fill="{{ $themeColor }}"/>
-            </svg>
-            <svg class="d24-medallion d24-medallion--tr" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="40" cy="40" r="36" fill="none" stroke="{{ $themeColor }}" stroke-width="0.75"/>
-                <circle cx="40" cy="40" r="28" fill="none" stroke="{{ $themeColor }}" stroke-width="0.5"/>
-                <path d="M40 8 L43 33 L68 40 L43 47 L40 72 L37 47 L12 40 L37 33 Z" fill="{{ $themeColor }}" opacity="0.4"/>
-                <circle cx="40" cy="40" r="4" fill="{{ $themeColor }}"/>
-            </svg>
-            <svg class="d24-medallion d24-medallion--bl" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="40" cy="40" r="36" fill="none" stroke="{{ $themeColor }}" stroke-width="0.75"/>
-                <circle cx="40" cy="40" r="28" fill="none" stroke="{{ $themeColor }}" stroke-width="0.5"/>
-                <path d="M40 8 L43 33 L68 40 L43 47 L40 72 L37 47 L12 40 L37 33 Z" fill="{{ $themeColor }}" opacity="0.4"/>
-                <circle cx="40" cy="40" r="4" fill="{{ $themeColor }}"/>
-            </svg>
-            <svg class="d24-medallion d24-medallion--br" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="40" cy="40" r="36" fill="none" stroke="{{ $themeColor }}" stroke-width="0.75"/>
-                <circle cx="40" cy="40" r="28" fill="none" stroke="{{ $themeColor }}" stroke-width="0.5"/>
-                <path d="M40 8 L43 33 L68 40 L43 47 L40 72 L37 47 L12 40 L37 33 Z" fill="{{ $themeColor }}" opacity="0.4"/>
-                <circle cx="40" cy="40" r="4" fill="{{ $themeColor }}"/>
-            </svg>
-
-            {{-- Brand bar --}}
-            <div class="d24-brand-bar">
+            {{-- LOGO --}}
+            <div class="d24-logo-area">
                 @if (isset($logourl) && $logourl)
                     <img src="{{ $logourl }}" alt="logo" class="d24-logo-img" crossorigin="anonymous">
-                @else
-                    <div class="d24-logo-fallback">{{ strtoupper(substr(@user()->name ?? 'R', 0, 1)) }}</div>
+                
                 @endif
-                <div class="d24-brand-text">
-                    <div class="d24-brand-name">{{ @user()->name ?? 'Restaurant Name' }}</div>
-                    <div class="d24-brand-addr">{{ @user()->address ?? '123 Culinary Lane, Food City' }}</div>
-                </div>
             </div>
 
-            {{-- Food image --}}
-            <div class="d24-image-wrap">
-                <div class="d24-image-frame">
+            {{-- NEW MENU BADGE --}}
+            <div class="d24-swoosh">
+                
+            </div>
+
+            {{-- DECORATIVE SPLATS --}}
+            <div class="d24-splat d24-splat-tl"></div>
+            <div class="d24-splat d24-splat-tr"></div>
+            <div class="d24-splat d24-splat-ml"></div>
+            <div class="d24-splat d24-splat-mr"></div>
+
+            {{-- ORANGE BLOB bottom-right --}}
+            <div class="d24-blob-orange"></div>
+
+            {{-- CIRCULAR FOOD IMAGE --}}
+            <div class="d24-food-circle-wrap">
+                <div class="d24-food-ring-outer"></div>
+                <div class="d24-food-circle">
                     @if (isset($menuImageUrl) && $menuImageUrl)
                         <img src="{{ $menuImageUrl }}" alt="{{ @$menu['name'] ?? 'Menu Item' }}" class="js-poster-menu-image" crossorigin="anonymous">
                     @else
-                        <div class="d24-image-placeholder"></div>
+                        <div class="d24-food-placeholder"></div>
                     @endif
                 </div>
-                <div class="d24-badge">Order Now</div>
             </div>
 
-            {{-- Menu content --}}
-            <div class="d24-content">
-                <div class="d24-eyebrow">
-                    <span class="d24-eyebrow-label">Zest Quest</span>
+            
+
+        </div>{{-- /.d24-top --}}
+
+        {{-- ══ DARK BROWN BAND ══ --}}
+        <div class="d24-brown-band">
+            <!--<p class="d24-item-name-bold">Hot Spicy</p>-->
+            <p class="d24-item-name-script">{{ @$menu['name'] ?? 'Special Burger' }}</p>
+            @if (!empty($menu['description']))
+                <p class="d24-desc">{{ Str::limit($menu['description'], 100, '...') }}</p>
+            @endif
+        </div>
+
+        {{-- ══ FOOTER ══ --}}
+        <div class="d24-footer">
+            <div class="d24-brush"></div>
+
+            {{-- Left: phone --}}
+            <div class="d24-footer-left">
+                <div class="d24-phone-circle">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.33 21 3 13.67 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.21 2.2z"/>
+                    </svg>
                 </div>
-
-                <h2 class="d24-title{{ !empty($menu['name']) && strlen($menu['name']) > 18 ? ' d24-title--long' : '' }}">
-                    @if (!empty($menu['name']))
-                        {{ $menu['name'] }}
-                    @else
-                        <em>Exquisite</em> Taste
-                    @endif
-                </h2>
-            </div>
-
-            {{-- Footer contacts --}}
-            <div class="d24-footer">
-                <div class="d24-footer-inner">
-                    <div class="d24-contacts">
-                        @if (@user()->phone)
-                            <span class="d24-contact">
-                                <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.33 21 3 13.67 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.21 2.2z"/></svg>
-                                {{ @user()->phone }}
-                            </span>
-                        @endif
-                        @if (@user()->website_domain)
-                            <span class="d24-contact">
-                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-                                {{ @user()->website_domain }}
-                            </span>
-                        @endif
-                    </div>
+                <div>
+                    <div class="d24-delivery-label">Contact Us</div>
+                    <div class="d24-phone-num">{{ @user()->phone ?? '+123 456 789' }}</div>
                 </div>
             </div>
 
-        </div>{{-- /.d24-inner --}}
+            {{-- Right: restaurant info --}}
+            <div class="d24-footer-right">
+                <div class="d24-rest-name">{{ @user()->name ?? 'Your Restaurant' }}</div>
+                <div class="d24-rest-address">{{ @user()->address ?? '123 Street, Malaga, Spain.' }}</div>
+                <div class="d24-rest-web">{{ @user()->website_domain ?? 'www.yourweb.com' }}</div>
+            </div>
+        </div>
+
     </div>{{-- /.design24-card --}}
-</div>
+
+    {{-- <button type="button" class="d24-download-btn" onclick="downloadDesign24()">⬇ Download Poster</button> --}}
+
+</div>{{-- /.design24-wrapper --}}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+    function downloadDesign24() {
+        var card = document.getElementById('posterCard24');
+        var button = document.querySelector('.d24-download-btn');
+        button.innerHTML = 'Generating...';
+        button.disabled = true;
+
+        var exportW = 1080;
+        var scale = exportW / card.offsetWidth;
+
+        var images = card.querySelectorAll('img');
+        var imagePromises = Array.from(images).map(function(img) {
+            return new Promise(function(resolve) {
+                if (img.complete && img.naturalWidth > 0) { resolve(); }
+                else { img.onload = resolve; img.onerror = resolve; }
+            });
+        });
+
+        Promise.all(imagePromises).then(function() {
+            return html2canvas(card, {
+                scale: scale,
+                backgroundColor: '#fdf0d5',
+                logging: false,
+                useCORS: true,
+                allowTaint: true,
+                imageTimeout: 15000,
+            });
+        }).then(function(canvas) {
+            var link = document.createElement('a');
+            link.download = 'menu-poster-design24.png';
+            link.href = canvas.toDataURL('image/png', 1.0);
+            link.click();
+            button.innerHTML = 'Download Poster';
+            button.disabled = false;
+        }).catch(function(error) {
+            console.error('Error generating image:', error);
+            alert('Failed to generate image. Please try again.');
+            button.innerHTML = 'Download Poster';
+            button.disabled = false;
+        });
+    }
+</script>
