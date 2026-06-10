@@ -332,6 +332,8 @@
         $d25City = $d25AddrParts[count($d25AddrParts) - 2] ?? ($d25AddrParts[0] ?? 'Your City');
     }
     $d25City = $d25City ?: 'Your City';
+    
+    dump(user()->address);
 @endphp
 
 <div class="design25-wrapper">
@@ -351,8 +353,8 @@
                     </div>
                 @endif
                 <div>
-                    <div class="d25-brand-name">{{ @user()->name ?? 'Restaurant Name' }}</div>
-                    <div class="d25-brand-addr">{{ @user()->city ?? @user()->address ?? 'Your City' }}</div>
+                    <div class="d25-brand-name">{{ @user()->name ?? '' }}</div>
+                    <div class="d25-brand-addr">{{ @user()->address ?? '' }}</div>
                 </div>
             </div>
         </div>

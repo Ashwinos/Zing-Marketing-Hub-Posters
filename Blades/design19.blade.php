@@ -321,18 +321,21 @@
          height: 2rem;
      }
 
-     .d19-caption {
-         position: absolute;
-         z-index: 9 !important;
-         font-family: 'Snappy Sketch' !important;
-         left: 140px !important;
-         bottom: 3px !important;
-         font-size: 35px !important;
-         font-weight: 800;
-         transform-origin: center;
-         filter: drop-shadow(2px 4px 6px black);
-         color: white !important;
-     }
+   .d19-caption {
+    position: absolute;
+    z-index: 9 !important;
+    font-family: 'Snappy Sketch' !important;
+    right: 10px !important;
+    bottom: 5px !important;
+    font-size: 35px !important;
+    font-weight: 800;
+    line-height: 63px;
+    transform-origin: center;
+    filter: drop-shadow(2px 4px 6px black);
+    color: white !important;
+    display: flex;
+    align-items: center;
+}
 
      .d19-caption::before {
          content: '';
@@ -420,7 +423,6 @@
 
              {{-- 3. FOOD SECTION --}}
              <div class="d19-food">
-                 <div class="d19-caption">Purely Savory</div>
                  <div class="d19-mandala-wrap"></div>
                  @if(isset($menuImageUrl) && $menuImageUrl)
                      <img src="{{ $menuImageUrl }}" crossorigin="anonymous" alt="{{ @$menu['name'] ?? 'menu item' }}" class="js-poster-menu-image">
