@@ -1,0 +1,242 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@1,700&family=Dancing+Script:wght@700&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+  .d23w { width:100%; display:flex; flex-direction:column; align-items:center; font-family:'Lato',sans-serif; }
+
+  .d23w .d23-card {
+    width:100%; max-width:340px; aspect-ratio:4/5;
+    background:#f7f7f2; overflow:hidden; position:relative;
+    box-sizing:border-box; box-shadow:0 20px 60px rgba(0,0,0,0.2);
+    container-type:inline-size; display:flex; flex-direction:column;
+  }
+
+  /* ── TOP BAR ── */
+  .d23w .d23-top-bar {
+    flex-shrink:0; height:3cqw; z-index:10; position:relative;
+    background:repeating-linear-gradient(90deg,#4a8c1c 0px,#4a8c1c 8px,transparent 8px,transparent 14px);
+  }
+
+  /* ── FOOD IMAGE ── */
+  .d23w .d23-food {
+    position:relative; width:100%; height:52cqw;
+    flex-shrink:0; overflow:hidden; z-index:4;
+  }
+  .d23w .d23-food img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+  .d23w .d23-food-placeholder { width:100%; height:100%; background:linear-gradient(135deg,#c8a060 0%,#8a5a20 100%); }
+
+  /* Header bar over image */
+  .d23w .d23-img-header {
+    position:absolute; top:0; left:0; right:0; z-index:9;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:3cqw 4cqw;
+    background:linear-gradient(180deg,rgba(0,0,0,0.45) 0%,transparent 100%);
+  }
+  .d23w .d23-img-header-left { display:flex; align-items:center; gap:1.5cqw; }
+  .d23w .d23-logo-img { height:2rem; width:auto; display:block; flex-shrink:0; }
+  .d23w .d23-logo-avatar {
+    height:2rem; width:2rem; border-radius:50%;
+    background:#4a8c1c; display:flex; align-items:center; justify-content:center;
+    font-family:'Anton',sans-serif; font-size:3.8cqw; color:#fff;
+    border:2px solid rgba(255,255,255,0.8);
+    box-shadow:0 2px 8px rgba(0,0,0,0.3); flex-shrink:0;
+  }
+  .d23w .d23-brand-name-img {
+    font-size:3cqw; font-weight:900; color:#fff;
+    text-shadow:0 1px 4px rgba(0,0,0,0.5); white-space:nowrap;
+  }
+  .d23w .d23-img-badge {
+    background:#4a8c1c; color:#fff;
+    font-size:2cqw; font-weight:700; letter-spacing:1.2px;
+    text-transform:uppercase; padding:1cqw 2.5cqw;
+    clip-path:polygon(6% 0%,100% 0%,94% 100%,0% 100%);
+    white-space:nowrap;
+  }
+
+  /* ── BOTTOM CONTENT ── */
+  .d23w .d23-content {
+    flex:1; min-height:0; background:#f7f7f2;
+    position:relative; z-index:5;
+    padding:3.5cqw 5cqw 3cqw;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .d23w .d23-dot-tr {
+    position:absolute; top:2cqw; right:2cqw; z-index:0; pointer-events:none;
+    width:9cqw; height:9cqw;
+    background-image:radial-gradient(circle,#4a8c1c 1.3px,transparent 1.3px);
+    background-size:5px 5px; opacity:0.4;
+  }
+
+  /* ── NEW HEADLINE STYLE: Playfair italic + outline Anton ── */
+  .d23w .d23-headline-block { position:relative; z-index:2; }
+  .d23w .d23-script {
+    font-family:'Playfair Display',serif; font-style:italic; font-weight:700;
+    font-size:7cqw; color:#888; line-height:1; margin:0; letter-spacing:1px;
+    text-transform:uppercase;
+  }
+  .d23w .d23-bold-line {
+    font-family:'Anton',sans-serif;
+    font-size:15cqw; color:transparent;
+    -webkit-text-stroke:2px #4a8c1c;
+    line-height:0.88; letter-spacing:3px;
+    text-transform:uppercase; margin:0;
+  }
+  .d23w .d23-bold-line-solid {
+    font-family:'Anton',sans-serif;
+    font-size:9cqw; color:#1a1a1a;
+    line-height:1; letter-spacing:2px;
+    text-transform:uppercase; margin:0;
+  }
+  .d23w .d23-underline {
+    width:14cqw; height:3px;
+    background:#4a8c1c; margin:1.5cqw 0 0;
+  }
+
+  /* ── Description ── */
+  .d23w .d23-desc {
+    position:relative; z-index:2;
+    border-left:3px solid #4a8c1c;
+    padding-left:2.5cqw;
+    font-size:2.4cqw; color:#555; line-height:1.65; margin:0; font-weight:400;
+  }
+
+  /* ══ NEW FOOTER: logo + name + address + phone + website ══ */
+  .d23w .d23-footer {
+    position:relative; z-index:2;
+    background:#1a1a1a;
+    margin:0 -5cqw -3cqw;  /* bleed to edges */
+    padding:2.5cqw 5cqw;
+    display:flex; flex-direction:column; gap:1.5cqw;
+  }
+
+  /* Top row: logo + name + address */
+  .d23w .d23-footer-top {
+    display:flex; align-items:center; gap:2cqw;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    padding-bottom:1.5cqw;
+  }
+  .d23w .d23-footer-logo-img { height:1.8rem; width:auto; display:block; flex-shrink:0; }
+  .d23w .d23-footer-logo-avatar {
+    width:7cqw; height:7cqw; border-radius:50%;
+    background:#4a8c1c; display:flex; align-items:center; justify-content:center;
+    font-family:'Anton',sans-serif; font-size:3.2cqw; color:#fff; flex-shrink:0;
+  }
+  .d23w .d23-footer-info { flex:1; min-width:0; }
+  .d23w .d23-footer-name {
+    font-size:2.8cqw; font-weight:900; color:#fff;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis; line-height:1;
+    margin-bottom:0.4cqw;
+  }
+  .d23w .d23-footer-address {
+    font-size:2cqw; color:rgba(255,255,255,0.55);
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis; line-height:1;
+  }
+
+  /* Bottom row: phone + sep + website */
+  .d23w .d23-footer-bottom {
+    display:flex; align-items:center; gap:2cqw;
+  }
+  .d23w .d23-footer-item {
+    display:flex; align-items:center; gap:1.2cqw;
+    font-size:2.1cqw; color:rgba(255,255,255,0.75);
+    font-weight:600; overflow:hidden; white-space:nowrap; flex:1; min-width:0;
+  }
+  .d23w .d23-footer-item svg { width:2.8cqw; height:2.8cqw; fill:#4a8c1c; flex-shrink:0; }
+  .d23w .d23-footer-sep { width:1px; height:3.5cqw; background:rgba(255,255,255,0.15); flex-shrink:0; }
+
+  /* ── BOTTOM BAR ── */
+  .d23w .d23-bottom-bar {
+    flex-shrink:0; height:3cqw; z-index:10; position:relative;
+    background:repeating-linear-gradient(90deg,#4a8c1c 0px,#4a8c1c 8px,transparent 8px,transparent 14px);
+  }
+
+  .d23w .d23-download-btn {
+    margin-top:10px; background:#4a8c1c; color:#fff; border:none;
+    padding:8px 16px; font-size:12px; font-weight:700; border-radius:30px;
+    cursor:pointer; font-family:'Lato',sans-serif; display:flex;
+    align-items:center; gap:8px; letter-spacing:0.04em;
+    transition:opacity 0.2s,transform 0.15s;
+    box-shadow:0 4px 16px rgba(74,140,28,0.4);
+  }
+  .d23w .d23-download-btn:hover { opacity:.88; transform:translateY(-2px); }
+  .d23w .d23-download-btn:active { transform:translateY(0); }
+  .d23w .d23-download-btn:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+</style>
+
+<div class="d23w">
+  <div class="d23-card" id="posterCard23">
+
+    <div class="d23-top-bar"></div>
+
+    <!-- FOOD IMAGE -->
+    <div class="d23-food">
+      <img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=700&q=70" alt="Food" crossorigin="anonymous">
+      <div class="d23-img-header">
+        <div class="d23-img-header-left">
+          <div class="d23-logo-avatar">B</div>
+          <span class="d23-brand-name-img">Bold Bites</span>
+        </div>
+        <div class="d23-img-badge">Fan Favorite</div>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="d23-content">
+      <div class="d23-dot-tr"></div>
+
+      <!-- NEW HEADLINE -->
+      <div class="d23-headline-block">
+        <p class="d23-script">— Special —</p>
+        <p class="d23-bold-line">FOOD</p>
+        <p class="d23-bold-line-solid">PROMO</p>
+        <div class="d23-underline"></div>
+      </div>
+
+      <!-- Description -->
+      <p class="d23-desc">Delightful flavors dance, a symphony on the taste buds</p>
+
+      <!-- NEW FOOTER: logo + name + address + phone + website -->
+      <div class="d23-footer">
+        <!-- Top row -->
+        <div class="d23-footer-top">
+          <div class="d23-footer-logo-avatar">B</div>
+          <div class="d23-footer-info">
+            <div class="d23-footer-name">Bold Bites Restaurant</div>
+            <div class="d23-footer-address">123 Anywhere St, Any City</div>
+          </div>
+        </div>
+        <!-- Bottom row -->
+        <div class="d23-footer-bottom">
+          <div class="d23-footer-item">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.33 21 3 13.67 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.21 2.2z"/></svg>
+            +1 123 456 789
+          </div>
+          <div class="d23-footer-sep"></div>
+          <div class="d23-footer-item">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            www.boldbitesrestaurant.com
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="d23-bottom-bar"></div>
+
+  </div>
+  <button type="button" class="d23-download-btn" onclick="downloadDesign23()">⬇ Download Poster</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+function downloadDesign23(){
+  var card=document.getElementById('posterCard23');
+  var btn=document.querySelector('.d23-download-btn');
+  btn.innerHTML='Generating...'; btn.disabled=true;
+  var scale=1080/card.offsetWidth;
+  html2canvas(card,{scale:scale,backgroundColor:'#f7f7f2',logging:false,useCORS:true,allowTaint:true,imageTimeout:0,
+    onclone:function(d){var imgs=d.querySelectorAll('img');return Promise.all(Array.from(imgs).map(function(i){return new Promise(function(r){if(i.complete)r();else{i.onload=r;i.onerror=r;}});}));}
+  }).then(function(c){var a=document.createElement('a');a.download='menu-poster-design23.png';a.href=c.toDataURL('image/png',1.0);a.click();btn.innerHTML='⬇ Download Poster';btn.disabled=false;
+  }).catch(function(){alert('Failed.');btn.innerHTML='⬇ Download Poster';btn.disabled=false;});
+}
+</script>

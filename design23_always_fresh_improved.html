@@ -1,0 +1,372 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@1,700&family=Dancing+Script:wght@700&family=Lato:wght@400;700;900&display=swap"
+  rel="stylesheet">
+
+<style>
+  .d23w {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .d23w .d23-card {
+    width: 100%;
+    max-width: 340px;
+    aspect-ratio: 4/5;
+    background: #f9f6f0;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+    container-type: inline-size;
+    display: flex;
+    flex-direction: column;
+    /*outline:2px solid #5aad1e;*/
+    outline-offset: -6px;
+  }
+
+  /* ── TOP HEADER ── */
+  .d23w .d23-top {
+    flex-shrink: 0;
+    background: #fff;
+    padding: 4cqw 5cqw 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*border-bottom:2px solid #5aad1e;*/
+  }
+
+  /* Logo + name row */
+  .d23w .d23-header-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2cqw;
+  }
+
+  .d23w .d23-logo-area {
+    display: flex;
+    align-items: center;
+    gap: 1.5cqw;
+  }
+
+  .d23w .d23-logo-img {
+    height: 2rem;
+    width: auto;
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .d23w .d23-brand-name {
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    font-size: 3cqw;
+    color: #1a1a1a;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+
+  .d23w .d23-fresh-badge {
+    background: #5aad1e;
+    color: #fff;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 1.9cqw;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 0.8cqw 2.5cqw;
+    white-space: nowrap;
+  }
+
+  /* Headline block */
+  .d23w .d23-headline-block {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    padding: 0 4cqw 3cqw;
+  }
+
+  .d23w .d23-always {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    font-size: 9cqw;
+    color: #5aad1e;
+    line-height: 1;
+    margin: 0;
+  }
+
+  .d23w .d23-fresh {
+    font-family: 'Anton', sans-serif;
+    font-size: 20cqw;
+    color: #1a1a1a;
+    line-height: 0.88;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0;
+    text-shadow: 3px 3px 0 rgba(90, 173, 30, 0.18);
+  }
+
+  .d23w .d23-tagline {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 2.4cqw;
+    color: #666;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin: 2cqw 0 0;
+  }
+
+  /* ── FOOD IMAGE ── */
+  .d23w .d23-food {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .d23w .d23-food img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .d23w .d23-food-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #d4edda 0%, #a8d5b5 100%);
+  }
+
+  /* Green overlay strip at bottom of image */
+  .d23w .d23-food::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1cqw;
+    background: #5aad1e;
+    z-index: 2;
+  }
+
+  /* ── INFO STRIP: phone + address ── */
+  .d23w .d23-info-strip {
+    flex-shrink: 0;
+    background: #1a1a1a;
+    padding: 2.5cqw 5cqw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2cqw;
+  }
+
+  .d23w .d23-info-item {
+    display: flex;
+    align-items: center;
+    gap: 1.2cqw;
+    font-size: 2.1cqw;
+    color: rgba(255, 255, 255, 0.88);
+    font-weight: 600;
+    overflow: hidden;
+    white-space: nowrap;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .d23w .d23-info-item svg {
+    width: 3cqw;
+    height: 3cqw;
+    fill: #5aad1e;
+    flex-shrink: 0;
+  }
+
+  .d23w .d23-info-sep {
+    width: 1px;
+    height: 4cqw;
+    background: rgba(90, 173, 30, 0.4);
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER: logo + website ── */
+  .d23w .d23-footer {
+    flex-shrink: 0;
+    background: #fff;
+    border-top: 1px solid #e8e8e8;
+    padding: 2.5cqw 5cqw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2cqw;
+  }
+
+  .d23w .d23-footer-left {
+    display: flex;
+    align-items: center;
+    gap: 2cqw;
+    overflow: hidden;
+  }
+
+  .d23w .d23-footer-logo {
+    height: 2rem;
+    width: auto;
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .d23w .d23-footer-name {
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    font-size: 2.8cqw;
+    color: #1a1a1a;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .d23w .d23-footer-web {
+    display: flex;
+    align-items: center;
+    gap: 1cqw;
+    font-size: 2.3cqw;
+    color: #5aad1e;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .d23w .d23-footer-web svg {
+    width: 2.8cqw;
+    height: 2.8cqw;
+    fill: #5aad1e;
+    flex-shrink: 0;
+  }
+
+  /* download btn */
+  .d23w .d23-download-btn {
+    margin-top: 10px;
+    background: #5aad1e;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.04em;
+    transition: opacity 0.2s, transform 0.15s;
+    box-shadow: 0 4px 16px rgba(90, 173, 30, 0.4);
+  }
+
+  .d23w .d23-download-btn:hover {
+    opacity: .88;
+    transform: translateY(-2px);
+  }
+
+  .d23w .d23-download-btn:active {
+    transform: translateY(0);
+  }
+
+  .d23w .d23-download-btn:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+    transform: none;
+  }
+</style>
+
+<div class="d23w">
+  <div class="d23-card" id="posterCard23">
+
+    <!-- TOP HEADER -->
+    <div class="d23-top">
+
+      <!-- Logo + name + badge -->
+      <div class="d23-header-row">
+        <div class="d23-logo-area">
+          <div
+            style="width:7cqw;height:7cqw;border-radius:50%;background:#5aad1e;display:flex;align-items:center;justify-content:center;font-family:'Anton',sans-serif;font-size:3.5cqw;color:#fff;flex-shrink:0;">
+            B</div>
+
+        </div>
+        <div class="d23-fresh-badge">Fan Favorite</div>
+      </div>
+
+      <!-- Headline -->
+      <div class="d23-headline-block">
+        <p class="d23-always">Always</p>
+        <p class="d23-fresh">FRESH</p>
+        <p class="d23-tagline">Enjoy the taste of food</p>
+      </div>
+
+    </div>
+
+    <!-- FOOD IMAGE -->
+    <div class="d23-food">
+      <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=700&q=70" alt="Healthy Food"
+        crossorigin="anonymous">
+    </div>
+
+    <!-- INFO STRIP -->
+    <div class="d23-info-strip">
+      <div class="d23-info-item">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.33 21 3 13.67 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.21 2.2z" />
+        </svg>
+        +1 123 456 789
+      </div>
+      <div class="d23-info-sep"></div>
+      <div class="d23-info-item">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z" />
+        </svg>
+        123 Anywhere St, Any City
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="d23-footer">
+      <div class="d23-footer-left">
+
+        <div class="d23-footer-name">Bold Bites</div>
+      </div>
+      <div class="d23-footer-web">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+        </svg>
+        www.yourfood.com
+      </div>
+    </div>
+
+  </div>
+
+  <!--<button type="button" class="d23-download-btn" onclick="downloadDesign23()">⬇ Download Poster</button>-->
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+  function downloadDesign23() {
+    var card = document.getElementById('posterCard23');
+    var btn = document.querySelector('.d23-download-btn');
+    btn.innerHTML = 'Generating...'; btn.disabled = true;
+    var scale = 1080 / card.offsetWidth;
+    html2canvas(card, {
+      scale: scale, backgroundColor: '#f9f6f0', logging: false, useCORS: true, allowTaint: true, imageTimeout: 0,
+      onclone: function (d) { var imgs = d.querySelectorAll('img'); return Promise.all(Array.from(imgs).map(function (i) { return new Promise(function (r) { if (i.complete) r(); else { i.onload = r; i.onerror = r; } }); })); }
+    }).then(function (c) {
+      var a = document.createElement('a'); a.download = 'menu-poster-design23.png'; a.href = c.toDataURL('image/png', 1.0); a.click(); btn.innerHTML = '⬇ Download Poster'; btn.disabled = false;
+    }).catch(function () { alert('Failed. Please try again.'); btn.innerHTML = '⬇ Download Poster'; btn.disabled = false; });
+  }
+</script>
