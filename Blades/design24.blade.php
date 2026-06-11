@@ -214,6 +214,7 @@
 
     .design24-wrapper .d24-item-name-script--long {
         font-size: 7cqw;
+        text-align: center !important;
     }
 
     .design24-wrapper .d24-desc {
@@ -224,6 +225,7 @@
         font-weight: 400;
         position: relative;
         z-index: 4;
+        text-align: center !important;
     }
 
     /* ══ FOOD CIRCLE — positioned on card level to overlap band ══ */
