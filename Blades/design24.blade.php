@@ -210,6 +210,7 @@
         letter-spacing: 0.5px;
         position: relative;
         z-index: 4;
+        text-align: center !important;
     }
 
     .design24-wrapper .d24-item-name-script--long {
@@ -508,7 +509,7 @@
             </svg>
 
             <p class="d24-item-name-script{{ !empty($menu['name']) && strlen($menu['name']) > 14 ? ' d24-item-name-script--long' : '' }}">
-                {{ @$menu['name'] ?? 'Special Burger' }}
+                {{ @$menu['name'] ?? '' }}
             </p>
 
             @if (!empty($menu['description']))
@@ -530,15 +531,15 @@
                 </div>
                 <div>
                     <div class="d24-delivery-label">Contact Us</div>
-                    <div class="d24-phone-num">{{ @user()->phone ?? '+123 456 789' }}</div>
+                    <div class="d24-phone-num">{{ @user()->phone ?? '' }}</div>
                 </div>
             </div>
 
             {{-- RIGHT: restaurant info --}}
             <div class="d24-footer-right">
-                <div class="d24-rest-name">{{ @user()->name ?? 'Your Restaurant' }}</div>
-                <div class="d24-rest-address">{{ @user()->address ?? '123 Street, Malaga, Spain.' }}</div>
-                <div class="d24-rest-web">{{ @user()->website_domain ?? 'www.yourweb.com' }}</div>
+                <div class="d24-rest-name">{{ @user()->name ?? '' }}</div>
+                <div class="d24-rest-address">{{ @user()->address ?? '' }}</div>
+                <div class="d24-rest-web">{{ @user()->website_domain ?? ' ' }}</div>
             </div>
         </div>{{-- /.d24-footer --}}
 

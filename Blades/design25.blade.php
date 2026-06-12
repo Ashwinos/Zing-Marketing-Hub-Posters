@@ -199,7 +199,7 @@
         font-family: 'Anton', sans-serif;
         font-size: 9cqw;
         color: #F5EFE4;
-        line-height: 0.9;
+        line-height: 1.0;
         letter-spacing: 0.01em;
         text-transform: uppercase;
         max-width: 45cqw;
@@ -333,7 +333,7 @@
     }
     $d25City = $d25City ?: 'Your City';
     
-    dump(user()->address);
+    
 @endphp
 
 <div class="design25-wrapper">
@@ -404,8 +404,7 @@
             <p class="d25-desc">
                 @if (!empty($menu['description']))
                     {{ Str::limit($menu['description'], 75, '...') }}
-                @else
-                    Savor the perfect blend of flavors with our premium ingredients.
+                
                 @endif
             </p>
             <div class="d25-order-btn">ORDER NOW</div>
