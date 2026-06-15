@@ -387,11 +387,12 @@
             <div class="d25-dish-label">
                 
                 <div class="d25-dish-name">
-                    @if (!empty($menu['name']))
-                        {!! nl2br(wordwrap(strtoupper($menu['name']), 8, "\n", false)) !!}
-                    @else
-                        Richly <br>Crafted
-                    @endif
+                    @if (strlen(@$menu['name']) <= 20)
+
+                   {{ @$menu['name'] }}
+             @else
+             Happiness in Every Bite
+            @endif
                 </div>
             </div>
 

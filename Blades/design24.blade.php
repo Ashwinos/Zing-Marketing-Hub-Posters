@@ -214,7 +214,7 @@
     }
 
     .design24-wrapper .d24-item-name-script--long {
-        font-size: 7cqw;
+        font-size: 8cqw;
         text-align: center !important;
     }
 
@@ -509,7 +509,13 @@
             </svg>
 
             <p class="d24-item-name-script{{ !empty($menu['name']) && strlen($menu['name']) > 14 ? ' d24-item-name-script--long' : '' }}">
-                {{ @$menu['name'] ?? '' }}
+              @if (strlen(@$menu['name']) <= 20)
+
+                   {{ @$menu['name'] }}
+             @else
+             Zest Quest
+            @endif
+
             </p>
 
             @if (!empty($menu['description']))
