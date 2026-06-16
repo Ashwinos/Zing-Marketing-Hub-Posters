@@ -88,6 +88,7 @@
         font-weight: 600;
         color: #1a0a0a;
         line-height: 1.1;
+        text-align: left;
     }
 
     .design25-wrapper .d25-brand-addr {
@@ -122,6 +123,7 @@
         letter-spacing: 0.01em;
         text-transform: uppercase;
         word-break: break-word;
+        text-align: left;
     }
 
     .design25-wrapper .d25-headline-main span {
@@ -175,7 +177,7 @@
     .design25-wrapper .d25-food-placeholder {
         width: 100%;
         height: 100%;
-        background: #b5501a;
+        background: {{$themeColor}};
     }
 
     /* ── DISH LABEL (on wave) ── */

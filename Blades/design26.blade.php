@@ -116,7 +116,7 @@
     .design26-wrapper .d26-photo-placeholder {
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, #8B4513, #D2691E);
+       
     }
     .design26-wrapper .d26-photo-fade-top {
         position: absolute;
@@ -376,7 +376,7 @@
              viewBox="0 0 340 24" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="340" height="24" fill="#2d5a1b"/>
             {{-- Red upper zigzag --}}
-            <path d="M0 0 L9 12 L18 0 L27 12 L36 0 L45 12 L54 0 L63 12 L72 0 L81 12 L90 0 L99 12 L108 0 L117 12 L126 0 L135 12 L144 0 L153 12 L162 0 L171 12 L180 0 L189 12 L198 0 L207 12 L216 0 L225 12 L234 0 L243 12 L252 0 L261 12 L270 0 L279 12 L288 0 L297 12 L306 0 L315 12 L324 0 L333 12 L340 5 L340 0 L0 0 Z" fill="#c0392b"/>
+            <path d="M0 0 L9 12 L18 0 L27 12 L36 0 L45 12 L54 0 L63 12 L72 0 L81 12 L90 0 L99 12 L108 0 L117 12 L126 0 L135 12 L144 0 L153 12 L162 0 L171 12 L180 0 L189 12 L198 0 L207 12 L216 0 L225 12 L234 0 L243 12 L252 0 L261 12 L270 0 L279 12 L288 0 L297 12 L306 0 L315 12 L324 0 L333 12 L340 5 L340 0 L0 0 Z" fill="{{$themeColor}}"/>
             {{-- Yellow lower zigzag --}}
             <path d="M0 24 L9 12 L18 24 L27 12 L36 24 L45 12 L54 24 L63 12 L72 24 L81 12 L90 24 L99 12 L108 24 L117 12 L126 24 L135 12 L144 24 L153 12 L162 24 L171 12 L180 24 L189 12 L198 24 L207 12 L216 24 L225 12 L234 24 L243 12 L252 24 L261 12 L270 24 L279 12 L288 24 L297 12 L306 24 L315 12 L324 24 L333 12 L340 19 L340 24 L0 24 Z" fill="#f5c518"/>
         </svg>

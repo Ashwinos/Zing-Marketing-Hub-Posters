@@ -151,6 +151,7 @@
     .design23-wrapper .d23-headline-block {
         position: relative;
         z-index: 2;
+        text-align: left;
     }
 
     .design23-wrapper .d23-script {
@@ -204,6 +205,7 @@
         line-height: 1.65;
         margin: 0;
         font-weight: 400;
+            text-align: left;
     }
 
     /* ══ FOOTER ══ */

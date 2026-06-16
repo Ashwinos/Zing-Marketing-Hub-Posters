@@ -1,28 +1,259 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script:wght@600;700&family=Lato:wght@400;700;900&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
 
 <style>
-    .design26-wrapper {
+    /* ── Wrapper ── */
+    .design27-wrapper {
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         font-family: 'Lato', sans-serif;
     }
-    .design26-wrapper .design26-card {
+
+    /* ── Card ── */
+    .design27-wrapper .design27-card {
         width: 100%;
         max-width: 340px;
         aspect-ratio: 4 / 5;
         position: relative;
         overflow: hidden;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.28);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.2);
         container-type: inline-size;
         box-sizing: border-box;
     }
-    .design26-wrapper .d26-download-btn {
+
+    /* ── L0: Cream background ── */
+    .design27-wrapper .d27-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background-color: #faf5ee;
+    }
+
+    /* ── Subtle linen texture ── */
+    .design27-wrapper .d27-texture {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background-image:
+            repeating-linear-gradient(0deg, transparent, transparent 9px, rgba(180,130,60,0.03) 9px, rgba(180,130,60,0.03) 10px),
+            repeating-linear-gradient(90deg, transparent, transparent 9px, rgba(180,130,60,0.025) 9px, rgba(180,130,60,0.025) 10px);
+    }
+
+    /* ── Right Aztec pattern strip ── */
+    .design27-wrapper .d27-aztec-strip {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 18cqw;
+        height: 100%;
+        z-index: 6;
+        pointer-events: none;
+    }
+
+    /* ── Food image area — top-left, circular crop ── */
+    .design27-wrapper .d27-food-wrap {
+        position: absolute;
+        top: -2cqw;
+        left: -3cqw;
+        width: 76cqw;
+        height: 52cqw;
+        z-index: 3;
+        border-radius: 0 0 50% 0;
+        overflow: hidden;
+        box-shadow: 0 8px 28px rgba(0,0,0,0.22);
+    }
+
+    .design27-wrapper .d27-food-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+    }
+
+    .design27-wrapper .d27-food-placeholder {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #c8a060, #8a5a20);
+    }
+
+    /* ── 20% OFF badge ── */
+    .design27-wrapper .d27-badge {
+        position: absolute;
+        top: 6cqw;
+        right: 21cqw;
+        z-index: 8;
+        width: 16cqw;
+        height: 16cqw;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 2.5px solid {{ $themeColor }};
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+        gap: 0;
+    }
+
+    .design27-wrapper .d27-badge-pct {
+        font-family: 'Lato', sans-serif;
+        font-size: 5cqw;
+        font-weight: 900;
+        color: {{ $themeColor }};
+        line-height: 1;
+    }
+
+    .design27-wrapper .d27-badge-off {
+        font-family: 'Lato', sans-serif;
+        font-size: 3cqw;
+        font-weight: 700;
+        color: #1a1a1a;
+        line-height: 1;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    /* ── Logo — top-left ── */
+    .design27-wrapper .d27-logo {
+        position: absolute;
+        top: 3cqw;
+        left: 3cqw;
+        z-index: 10;
+    }
+
+    .design27-wrapper .d27-logo img {
+        height: 2rem;
+        width: auto;
+        display: block;
+    }
+
+    /* ── Orange diamond deco shape ── */
+    .design27-wrapper .d27-diamond-svg {
+        position: absolute;
+        top: 51cqw;
+        left: 3cqw;
+        width: 10cqw;
+        height: 10cqw;
+        z-index: 4;
+    }
+
+    /* ── Main text block ── */
+    .design27-wrapper .d27-text-block {
+        position: absolute;
+        top: 49cqw;
+        left: 13cqw;
+        right: 20cqw;
+        z-index: 5;
+    }
+
+    .design27-wrapper .d27-brand-name {
+        font-family: 'Pacifico', cursive;
+        font-size: 10cqw;
+        color: #1a1a1a;
+        line-height: 1.1;
+        margin: 0 0 1cqw 0;
+        letter-spacing: 0.5px;
+    }
+
+    .design27-wrapper .d27-tagline {
+        font-family: 'Lato', sans-serif;
+        font-size: 2.4cqw;
+        font-weight: 900;
+        color: #333;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin: 0;
+        line-height: 1;
+    }
+
+    /* ── Divider ── */
+    .design27-wrapper .d27-divider {
+        position: absolute;
+        top: 73cqw;
+        left: 5cqw;
+        right: 20cqw;
+        height: 1px;
+        background: rgba(0,0,0,0.15);
+        z-index: 4;
+    }
+
+    /* ── Lower content ── */
+    .design27-wrapper .d27-lower {
+        position: absolute;
+        top: 75cqw;
+        left: 5cqw;
+        right: 21cqw;
+        z-index: 5;
+        text-align: center;
+    }
+
+    .design27-wrapper .d27-section-title {
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        font-size: 5cqw;
+        font-weight: 500;
+        color: #1a1a1a;
+        margin: 0 0 1.5cqw 0;
+        line-height: 1.2;
+    }
+
+    .design27-wrapper .d27-desc {
+        font-family: 'Lato', sans-serif;
+        font-size: 2.1cqw;
+        color: #777;
+        line-height: 1.65;
+        font-weight: 400;
+        margin: 0 0 2cqw 0;
+        text-align: center;
+    }
+
+    /* ── Social icons row ── */
+    .design27-wrapper .d27-socials {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3cqw;
+        margin-bottom: 2.5cqw;
+    }
+
+    .design27-wrapper .d27-social-icon {
+        width: 4.5cqw;
+        height: 4.5cqw;
+        fill: {{ $themeColor }};
+        display: block;
+    }
+
+    /* ── Footer contact ── */
+    .design27-wrapper .d27-come-visit {
+        font-family: 'Lato', sans-serif;
+        font-size: 2.2cqw;
+        font-weight: 900;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: #555;
+        margin: 0 0 0.8cqw 0;
+        text-align: center;
+    }
+
+    .design27-wrapper .d27-address {
+        font-family: 'Dancing Script', cursive;
+        font-size: 5cqw;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin: 0;
+        text-align: center;
+        line-height: 1.2;
+    }
+
+    /* ── Download btn ── */
+    .design27-wrapper .d27-download-btn {
         margin-top: 10px;
-        background: {{ $themeColor ?? '#e67e22' }};
+        background: {{ $themeColor }};
         color: #fff;
         border: none;
         padding: 8px 18px;
@@ -33,446 +264,153 @@
         font-family: 'Lato', sans-serif;
         transition: opacity 0.2s;
     }
-    .design26-wrapper .d26-download-btn:hover    { opacity: .88; }
-    .design26-wrapper .d26-download-btn:disabled { opacity: .5; cursor: not-allowed; }
-
-    /* ===== L0: Orange background ===== */
-    .design26-wrapper .d26-bg {
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: {{ $themeColor ?? '#e8691e' }};
-        z-index: 0;
-    }
-
-    /* ===== L1: Scattered food texture SVG ===== */
-    .design26-wrapper .d26-texture-svg {
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-        pointer-events: none;
-        opacity: 0.11;
-    }
-
-    /* ===== L2: Top Aztec zigzag border ===== */
-    .design26-wrapper .d26-border-svg {
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%;
-        height: 7cqw;
-        z-index: 5;
-        pointer-events: none;
-    }
-
-    /* ===== L4: Headline block ===== */
-    .design26-wrapper .d26-headline {
-        position: absolute;
-        top: 8cqw; left: 0; right: 0;
-        z-index: 6;
-        text-align: center;
-        padding-top: 1cqw;
-    }
-    .design26-wrapper .d26-headline-main {
-        font-family: 'Bangers', cursive;
-        font-size: 27cqw;
-        color: #fff5e0;
-        line-height: 0.88;
-        margin: 0;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        text-shadow: 3px 3px 0 rgba(0,0,0,0.2), 1px 1px 0 #7a1a00;
-    }
-    .design26-wrapper .d26-headline-sub {
-        display: inline-block;
-        background: #2d5a1b;
-        padding: 0.6cqw 4cqw;
-        margin-top: -1cqw;
-    }
-    .design26-wrapper .d26-headline-sub-text {
-        font-family: 'Anton', sans-serif;
-        font-size: 4.8cqw;
-        color: #f5c518;
-        letter-spacing: 4px;
-        text-transform: uppercase;
-        line-height: 1.3;
-    }
-
-    /* ===== L5: Food photo band ===== */
-    .design26-wrapper .d26-photo-band {
-        position: absolute;
-        top: 34cqw; left: 0; right: 0;
-        height: 46cqw;
-        z-index: 4;
-        overflow: hidden;
-    }
-    .design26-wrapper .d26-photo-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        display: block;
-    }
-    .design26-wrapper .d26-photo-placeholder {
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, #8B4513, #D2691E);
-    }
-    .design26-wrapper .d26-photo-fade-top {
-        position: absolute;
-        top: 0; left: 0; right: 0;
-        height: 10cqw;
-        background: linear-gradient(to bottom, rgba(0,0,0,0.2), transparent);
-    }
-    .design26-wrapper .d26-photo-fade-bottom {
-        position: absolute;
-        bottom: 0; left: 0; right: 0;
-        height: 12cqw;
-        background: linear-gradient(to top, rgba(0,0,0,0.28), transparent);
-    }
-
-    /* ===== L6: ORDER NOW button ===== */
-    .design26-wrapper .d26-order-btn {
-        position: absolute;
-        top: 75cqw;
-        left: 50%;
-        width: 42cqw;
-        margin-left: -21cqw;
-        z-index: 8;
-        background: #2d5a1b;
-        color: #fff;
-        font-family: 'Anton', sans-serif;
-        font-size: 3.8cqw;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        padding: 2.2cqw 0;
-        text-align: center;
-        box-shadow: 0 4px 18px rgba(0,0,0,0.3);
-    }
-
-    /* ===== L7: Lower info section ===== */
-    .design26-wrapper .d26-info {
-        position: absolute;
-        top: 90cqw; left: 0; right: 0;
-        z-index: 6;
-        text-align: center;
-        padding: 0 4cqw;
-    }
-    .design26-wrapper .d26-menu-name {
-        font-family: 'Bangers', cursive;
-        font-size: 6.5cqw;
-        color: #ffffff;
-        line-height: 1;
-        margin: 0 0 1cqw 0;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-    }
-    .design26-wrapper .d26-menu-desc {
-        font-family: 'Lato', sans-serif;
-        font-size: 2.3cqw;
-        color: rgba(255,255,255,0.85);
-        line-height: 1.6;
-        font-weight: 400;
-        margin: 0 0 2cqw 0;
-    }
-    .design26-wrapper .d26-address {
-        font-family: 'Lato', sans-serif;
-        font-size: 1.9cqw;
-        font-weight: 900;
-        color: #ffffff;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        margin: 0 0 0.6cqw 0;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-    }
-    .design26-wrapper .d26-phone {
-        font-family: 'Lato', sans-serif;
-        font-size: 1.9cqw;
-        font-weight: 700;
-        color: rgba(255,255,255,0.88);
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        margin: 0;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-    }
-
-    /* ===== L8: Dark green footer bar ===== */
-    .design26-wrapper .d26-footer {
-        position: absolute;
-        bottom: 0; left: 0; right: 0;
-        height: 10cqw;
-        background: #2d5a1b;
-        z-index: 9;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 4cqw;
-        box-sizing: border-box;
-    }
-    .design26-wrapper .d26-footer-site {
-        font-family: 'Lato', sans-serif;
-        font-size: 2.1cqw;
-        color: rgba(255,255,255,0.8);
-        letter-spacing: 0.5px;
-    }
-    .design26-wrapper .d26-footer-logo-wrap {
-        display: flex;
-        align-items: center;
-        flex-shrink: 0;
-    }
-    .design26-wrapper .d26-footer-logo {
-        height: 6cqw;
-        width: auto;
-        max-width: 22cqw;
-        display: block;
-        object-fit: contain;
-    }
+    .design27-wrapper .d27-download-btn:hover    { opacity: .88; }
+    .design27-wrapper .d27-download-btn:disabled { opacity: .5; cursor: not-allowed; }
 </style>
 
-<div class="design26-wrapper">
-    <div class="design26-card" id="posterCard26">
+<div class="design27-wrapper">
+    <div class="design27-card" id="posterCard27">
 
-        {{-- ============================================================
-             L0: Orange background
-        ============================================================ --}}
-        <div class="d26-bg"></div>
+        {{-- L0: Cream background --}}
+        <div class="d27-bg"></div>
+        <div class="d27-texture"></div>
 
-        {{-- ============================================================
-             L1: Scattered food-item SVG texture across entire card
-             All strokes, no fills except small accent dots — stays light
-        ============================================================ --}}
-        <svg class="d26-texture-svg"
-             viewBox="0 0 340 425" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#7a2800" stroke-width="1.3">
-
-            {{-- Taco top-left --}}
-            <g transform="translate(12,14)">
-                <path d="M0 28 Q24 4 48 28"/>
-                <path d="M4 28 Q24 40 44 28"/>
-                <circle cx="18" cy="20" r="2.5" fill="#7a2800" stroke="none"/>
-                <circle cx="26" cy="15" r="2"   fill="#7a2800" stroke="none"/>
-                <circle cx="33" cy="22" r="2"   fill="#7a2800" stroke="none"/>
-            </g>
-
-            {{-- Sombrero top-right --}}
-            <g transform="translate(265,8)">
-                <ellipse cx="34" cy="34" rx="32" ry="9"/>
-                <ellipse cx="34" cy="28" rx="15" ry="20"/>
-                <line x1="2"  y1="34" x2="66" y2="34"/>
-                <path d="M20 34 Q28 38 34 39 Q40 38 48 34" stroke-width="0.9"/>
-            </g>
-
-            {{-- Lime wedge upper-left --}}
-            <g transform="translate(72,56)">
-                <path d="M0 0 A20 20 0 0 1 28 28 L0 0 Z"/>
-                <line x1="4"  y1="4"  x2="14" y2="20"/>
-                <line x1="9"  y1="2"  x2="22" y2="15"/>
-                <line x1="2"  y1="9"  x2="11" y2="24"/>
-            </g>
-
-            {{-- Jalapeño upper mid --}}
-            <g transform="translate(194,64)">
-                <path d="M2 5 Q14 0 24 8 Q34 16 30 26 Q26 32 18 26 Q8 18 2 5 Z"/>
-                <path d="M0 4 Q-4 0 2 -3"/>
-            </g>
-
-            {{-- Chili right side --}}
-            <g transform="translate(304,78)">
-                <path d="M5 0 Q0 16 8 32 Q16 48 12 64"/>
-                <path d="M12 0 Q18 16 14 32"/>
-                <ellipse cx="9" cy="2" rx="5" ry="3"/>
-            </g>
-
-            {{-- Avocado half left-mid --}}
-            <g transform="translate(7,122)">
-                <path d="M16 0 Q32 8 30 28 Q28 46 16 48 Q4 46 2 28 Q0 8 16 0 Z"/>
-                <circle cx="16" cy="29" r="8"/>
-            </g>
-
-            {{-- Bowl upper-center --}}
-            <g transform="translate(124,46)">
-                <path d="M0 18 Q42 44 84 18"/>
-                <ellipse cx="42" cy="18" rx="42" ry="11"/>
-            </g>
-
-            {{-- Corn cob right-lower-mid --}}
-            <g transform="translate(300,192)">
-                <ellipse cx="11" cy="22" rx="9" ry="22"/>
-                <line x1="11" y1="2"  x2="11" y2="42"/>
-                <line x1="5"  y1="5"  x2="5"  y2="39"/>
-                <line x1="17" y1="5"  x2="17" y2="39"/>
-                <path d="M3 42 Q-4 50 2 58 M19 42 Q26 50 20 58"/>
-            </g>
-
-            {{-- Maracas right-mid --}}
-            <g transform="translate(304,182)">
-                <circle cx="13" cy="12" r="11"/>
-                <line x1="13" y1="23" x2="8"  y2="50"/>
-            </g>
-
-            {{-- Cactus left --}}
-            <g transform="translate(8,276)">
-                <line x1="20" y1="72" x2="20" y2="10"/>
-                <path d="M20 26 Q8 26 8 16 Q8 9 14 9"/>
-                <path d="M20 38 Q32 38 32 27 Q32 20 26 20"/>
-                <line x1="20" y1="72" x2="10" y2="72"/>
-                <line x1="20" y1="72" x2="30" y2="72"/>
-            </g>
-
-            {{-- Tomato right lower --}}
-            <g transform="translate(308,264)">
-                <circle cx="14" cy="18" r="13"/>
-                <path d="M14 5 L11 0 M14 5 L17 0 M14 5 L14 -2 M14 5 L8 2 M14 5 L20 2"/>
-            </g>
-
-            {{-- Guitar bottom-right --}}
-            <g transform="translate(278,326)">
-                <circle cx="17" cy="55" r="14"/>
-                <circle cx="21" cy="22" r="10"/>
-                <line x1="17" y1="8"  x2="17" y2="41"/>
-                <line x1="11" y1="30" x2="23" y2="30"/>
-            </g>
-
-            {{-- Tortilla stack bottom-left --}}
-            <g transform="translate(48,362)">
-                <ellipse cx="28" cy="8"  rx="28" ry="7"/>
-                <ellipse cx="28" cy="16" rx="28" ry="7"/>
-                <ellipse cx="28" cy="24" rx="28" ry="7"/>
-            </g>
-
-            {{-- Onion bottom-center --}}
-            <g transform="translate(148,368)">
-                <circle cx="16" cy="20" r="14"/>
-                <path d="M16 6 Q12 0 16 -4 Q20 0 16 6"/>
-                <path d="M8 13 Q16 21 24 13" stroke-width="0.9"/>
-                <path d="M6 21 Q16 29 26 21" stroke-width="0.9"/>
-            </g>
-
-            {{-- Fork & knife bottom right-center --}}
-            <g transform="translate(228,362)">
-                <line x1="6"  y1="0"  x2="6"  y2="44"/>
-                <line x1="2"  y1="0"  x2="2"  y2="12"/>
-                <line x1="10" y1="0"  x2="10" y2="12"/>
-                <path d="M2 12 Q6 16 10 12"/>
-                <path d="M22 0 Q28 14 24 24 L24 44"/>
-            </g>
-
-            {{-- Accent dots & sparkles --}}
-            <circle cx="115" cy="104" r="2"   fill="#7a2800" stroke="none"/>
-            <circle cx="252" cy="122" r="2.5" fill="#7a2800" stroke="none"/>
-            <circle cx="60"  cy="242" r="2"   fill="#7a2800" stroke="none"/>
-            <circle cx="288" cy="350" r="2"   fill="#7a2800" stroke="none"/>
-            <circle cx="110" cy="398" r="2.5" fill="#7a2800" stroke="none"/>
-            <path d="M172 30 L172 38 M169 34 L175 34"/>
-            <path d="M54  96 L54  102 M51 99 L57 99"/>
-            <path d="M268 286 L268 292 M265 289 L271 289"/>
+        {{-- L1: Right Aztec pattern strip (full height) --}}
+        <svg class="d27-aztec-strip" viewBox="0 0 60 340" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <rect width="60" height="340" fill="{{ $themeColor }}"/>
+            {{-- Repeating diamond/geometric Aztec pattern --}}
+            <defs>
+                <pattern id="d27aztec" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+                    {{-- Diamond outline --}}
+                    <polygon points="15,2 28,15 15,28 2,15" fill="none" stroke="#fff" stroke-width="1.2" opacity="0.6"/>
+                    {{-- Inner diamond --}}
+                    <polygon points="15,7 23,15 15,23 7,15" fill="none" stroke="#fff" stroke-width="0.8" opacity="0.4"/>
+                    {{-- Center dot --}}
+                    <circle cx="15" cy="15" r="2" fill="#fff" opacity="0.5"/>
+                    {{-- Corner marks --}}
+                    <rect x="0"  y="0"  width="4" height="4" fill="#fff" opacity="0.25"/>
+                    <rect x="26" y="0"  width="4" height="4" fill="#fff" opacity="0.25"/>
+                    <rect x="0"  y="26" width="4" height="4" fill="#fff" opacity="0.25"/>
+                    <rect x="26" y="26" width="4" height="4" fill="#fff" opacity="0.25"/>
+                </pattern>
+                {{-- Secondary color overlay pattern --}}
+                <pattern id="d27aztec2" x="0" y="15" width="30" height="30" patternUnits="userSpaceOnUse">
+                    <polygon points="15,2 28,15 15,28 2,15" fill="#c0392b" opacity="0.35"/>
+                </pattern>
+            </defs>
+            <rect width="60" height="340" fill="url(#d27aztec)"/>
+            <rect width="60" height="340" fill="url(#d27aztec2)"/>
+            {{-- Left edge accent line --}}
+            <line x1="0" y1="0" x2="0" y2="340" stroke="#fff" stroke-width="2" opacity="0.4"/>
+            <line x1="4" y1="0" x2="4" y2="340" stroke="#fff" stroke-width="0.5" opacity="0.2"/>
         </svg>
 
-        {{-- ============================================================
-             L2: Top Aztec / tribal zigzag border
-             Green strip, red upper triangles, yellow lower triangles
-        ============================================================ --}}
-        <svg class="d26-border-svg"
-             viewBox="0 0 340 24" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="340" height="24" fill="#2d5a1b"/>
-            {{-- Red upper zigzag --}}
-            <path d="M0 0 L9 12 L18 0 L27 12 L36 0 L45 12 L54 0 L63 12 L72 0 L81 12 L90 0 L99 12 L108 0 L117 12 L126 0 L135 12 L144 0 L153 12 L162 0 L171 12 L180 0 L189 12 L198 0 L207 12 L216 0 L225 12 L234 0 L243 12 L252 0 L261 12 L270 0 L279 12 L288 0 L297 12 L306 0 L315 12 L324 0 L333 12 L340 5 L340 0 L0 0 Z" fill="#c0392b"/>
-            {{-- Yellow lower zigzag --}}
-            <path d="M0 24 L9 12 L18 24 L27 12 L36 24 L45 12 L54 24 L63 12 L72 24 L81 12 L90 24 L99 12 L108 24 L117 12 L126 24 L135 12 L144 24 L153 12 L162 24 L171 12 L180 24 L189 12 L198 24 L207 12 L216 24 L225 12 L234 24 L243 12 L252 24 L261 12 L270 24 L279 12 L288 24 L297 12 L306 24 L315 12 L324 24 L333 12 L340 19 L340 24 L0 24 Z" fill="#f5c518"/>
-        </svg>
-
-        {{-- ============================================================
-             L3: Logo — top-center yellow circle
-        ============================================================ --}}
-
-
-        {{-- ============================================================
-             L4: Headline block
-             "TASTE" — large Bangers, cream/white
-             "PERFECTION" — Anton, yellow-on-green pill
-        ============================================================ --}}
-        <div class="d26-headline">
-            {{-- Main large word --}}
-            <p class="d26-headline-main">TASTE</p>
-            {{-- Sub label — green bg strip --}}
-            <div class="d26-headline-sub">
-                <span class="d26-headline-sub-text">PERFECTION</span>
-            </div>
-        </div>
-
-        {{-- ============================================================
-             L5: Food photo — full width, middle band
-        ============================================================ --}}
-        <div class="d26-photo-band">
-            @if (!empty($menuImageUrl))
+        {{-- L2: Food image — top-left organic crop --}}
+        <div class="d27-food-wrap">
+            @if (isset($menuImageUrl) && $menuImageUrl)
                 <img src="{{ $menuImageUrl }}"
-                     alt="{{ $menu['name'] ?? 'Menu Item' }}"
-                     class="js-poster-menu-image d26-photo-img"
+                     alt="{{ @$menu['name'] ?? 'Menu Item' }}"
+                     class="js-poster-menu-image"
                      crossorigin="anonymous">
             @else
-                <div class="d26-photo-placeholder"></div>
+                <div class="d27-food-placeholder"></div>
             @endif
-            {{-- Top + bottom photo fades --}}
-            <div class="d26-photo-fade-top"></div>
-            <div class="d26-photo-fade-bottom"></div>
         </div>
 
-        {{-- ============================================================
-             L6: ORDER NOW button — overlapping photo bottom
-        ============================================================ --}}
-        <div class="d26-order-btn">ORDER NOW!</div>
+        {{-- L3: 20% OFF badge --}}
+        <div class="d27-badge">
+            <span class="d27-badge-pct">20%</span>
+            <span class="d27-badge-off">OFF</span>
+        </div>
 
-        {{-- ============================================================
-             L7: Lower info section on orange bg
-        ============================================================ --}}
-        <div class="d26-info">
-
-            {{-- Menu name --}}
-            <p class="d26-menu-name">
-                @if (strlen(@$menu['name']) <= 20)
-
-                   {{ strtoupper($menu['name']) }}
-             @else
-             Eat. Love. Repeat.
+        {{-- L4: Logo top-left --}}
+        <div class="d27-logo">
+            @if (isset($logourl) && $logourl)
+                <img src="{{ $logourl }}" alt="logo" crossorigin="anonymous">
             @endif
-               
-            </p>
+        </div>
 
-            {{-- Description --}}
-            <p class="d26-menu-desc">
-                @if (!empty($menu['description']))
-                    {{ Str::limit($menu['description'], 110, '...') }}
-                @endif
-            </p>
+        {{-- L5: Orange diamond decorative shape --}}
+        <svg class="d27-diamond-svg" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="20,0 40,20 20,40 0,20" fill="{{ $themeColor }}"/>
+            <polygon points="20,6 34,20 20,34 6,20" fill="none" stroke="#fff" stroke-width="1.5" opacity="0.6"/>
+        </svg>
 
-            {{-- Address --}}
-            <p class="d26-address">{{ @user()->address ?? 'L' }}</p>
+        {{-- L6: Main brand text --}}
+        <div class="d27-text-block">
+            <p class="d27-brand-name">{{ @$menu['name'] ?? 'Taco Bistro' }}</p>
+            <p class="d27-tagline">Authentic Mexican Cuisine</p>
+        </div>
 
-            {{-- Phone --}}
-            <p class="d26-phone">Call Us: {{ @user()->phone ?? '' }}</p>
+        {{-- Divider line --}}
+        <div class="d27-divider"></div>
 
-        </div>{{-- /info --}}
+        {{-- L7: Lower content --}}
+        <div class="d27-lower">
+            <p class="d27-section-title">Traditional recipes</p>
 
-        {{-- ============================================================
-             L8: Dark green footer bar
-        ============================================================ --}}
-        <div class="d26-footer">
+            @if (!empty($menu['description']))
+                <p class="d27-desc">{{ Str::limit($menu['description'], 100, '...') }}</p>
+            @else
+                <p class="d27-desc">The passion experienced a surge in popularity during the 1990s when chefs first used it on their dishes.</p>
+            @endif
 
-            {{-- Website left --}}
-            <div class="d26-footer-site">{{ @user()->website_domain ?? '' }}</div>
-
-            {{-- Logo right --}}
-            <div class="d26-footer-logo-wrap">
-                @if (!empty($logourl))
-                    <img src="{{ $logourl }}" alt="logo" crossorigin="anonymous" class="d26-footer-logo">
-                @endif
+            {{-- Social icons --}}
+            <div class="d27-socials">
+                <svg class="d27-social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+                <svg class="d27-social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                <svg class="d27-social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
             </div>
 
-        </div>{{-- /footer --}}
+            {{-- Come visit us --}}
+            <p class="d27-come-visit">Come Visit Us</p>
+            <p class="d27-address">{{ @user()->address ?? '22nd Street / Brighton' }}</p>
+        </div>
 
-    </div>{{-- /.design26-card --}}
+    </div>{{-- /.design27-card --}}
 
-    {{-- <button type="button" class="d26-download-btn" onclick="downloadDesign26()">&#8595; Download Poster</button> --}}
+    {{-- <button type="button" class="d27-download-btn" onclick="downloadDesign27()">&#8595; Download Poster</button> --}}
 
-</div>{{-- /.design26-wrapper --}}
+</div>{{-- /.design27-wrapper --}}
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+    function downloadDesign27() {
+        var card   = document.getElementById('posterCard27');
+        var button = document.querySelector('.d27-download-btn');
+        if (!card || !button) return;
+        button.innerHTML = 'Generating...';
+        button.disabled  = true;
+        var exportW = 1080;
+        var scale   = exportW / card.offsetWidth;
+        Promise.all(Array.from(card.querySelectorAll('img')).map(function(img) {
+            return new Promise(function(resolve) {
+                if (img.complete && img.naturalWidth > 0) resolve();
+                else { img.onload = resolve; img.onerror = resolve; }
+            });
+        })).then(function() {
+            return html2canvas(card, {
+                scale: scale, backgroundColor: '#faf5ee',
+                logging: false, useCORS: true, allowTaint: true, imageTimeout: 15000
+            });
+        }).then(function(canvas) {
+            var link = document.createElement('a');
+            link.download = 'menu-poster-design27.png';
+            link.href = canvas.toDataURL('image/png', 1.0);
+            link.click();
+            button.innerHTML = 'Download Poster';
+            button.disabled = false;
+        }).catch(function(error) {
+            console.error('Error:', error);
+            alert('Failed to generate image.');
+            button.innerHTML = 'Download Poster';
+            button.disabled = false;
+        });
+    }
+</script>
