@@ -273,14 +273,19 @@
 
             <div class="d4-card-contact">
                 <div class="d4-footer-inner">
-                    <div class="d4-contact-number">
-                        <i class="bi bi-telephone-fill"></i>
-                        {{ @user()->phone ?? ' ' }}
-                    </div>
-                    <div class="d4-website">
-                        <i class="bi bi-globe"></i>
-                        {{ @user()->website_domain ?? ' ' }}
-                    </div>
+                    @if(!empty(@user()->phone))
+                        <div class="d4-contact-number">
+                            <i class="bi bi-telephone-fill"></i>
+                            {{ @user()->phone }}
+                        </div>
+                    @endif
+
+                    @if(!empty(@user()->website_domain))
+                        <div class="d4-website">
+                            <i class="bi bi-globe"></i>
+                            {{ @user()->website_domain }}
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

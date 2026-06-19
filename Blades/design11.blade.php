@@ -432,14 +432,19 @@
 
             {{-- Footer bar --}}
             <div class="design11-footer-bar">
-                <div class="design11-footer-contact">
-                    <div class="design11-fc-label">Contact Us</div>
-                    <div class="design11-fc-value">{{ @user()->phone ?? ' ' }}</div>
-                </div>
-                <div class="design11-footer-website">
-                    <div class="design11-fw-label">Visit Our Website</div>
-                    <div class="design11-fw-value">{{ @user()->website_domain ?? ' ' }}</div>
-                </div>
+                @if(!empty(@user()->phone))
+                    <div class="design11-footer-contact">
+                        <div class="design11-fc-label">Contact Us</div>
+                        <div class="design11-fc-value">{{ @user()->phone }}</div>
+                    </div>
+                @endif
+
+                @if(!empty(@user()->website_domain))
+                    <div class="design11-footer-website">
+                        <div class="design11-fw-label">Visit Our Website</div>
+                        <div class="design11-fw-value">{{ @user()->website_domain }}</div>
+                    </div>
+                @endif
             </div>
 
         </div>{{-- /.design11-card --}}

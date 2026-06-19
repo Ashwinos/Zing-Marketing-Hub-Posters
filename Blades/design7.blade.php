@@ -363,17 +363,25 @@
 
         <div class="d7-footer-1">
             <div>
-                <div class="d7-footer-item">
-                    <i class="bi bi-telephone-fill"></i> {{ @user()->phone ?? ' ' }}
-                </div>
-                <div class="d7-footer-item">
-                    <i class="bi bi-globe"></i> {{ @user()->website_domain ?? ' ' }}
-                </div>
+                @if(!empty(@user()->phone))
+                    <div class="d7-footer-item">
+                        <i class="bi bi-telephone-fill"></i> {{ @user()->phone }}
+                    </div>
+                @endif
+
+                @if(!empty(@user()->website_domain))
+                    <div class="d7-footer-item">
+                        <i class="bi bi-globe"></i> {{ @user()->website_domain }}
+                    </div>
+                @endif
             </div>
-            <div class="d7-footer-item">
-                <i class="bi bi-geo-alt-fill"></i>
-                {{ @user()->address ?? ' ' }}
-            </div>
+
+            @if(!empty(@user()->address))
+                <div class="d7-footer-item">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    {{ @user()->address }}
+                </div>
+            @endif
         </div>
 
     </div>

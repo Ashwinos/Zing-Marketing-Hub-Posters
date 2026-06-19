@@ -529,23 +529,31 @@
             <div class="d24-brush"></div>
 
             {{-- LEFT: phone --}}
-            <div class="d24-footer-left">
-                <div class="d24-phone-circle">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.33 21 3 13.67 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.21 2.2z"/>
-                    </svg>
+            @if(!empty(@user()->phone))
+                <div class="d24-footer-left">
+                    <div class="d24-phone-circle">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.33 21 3 13.67 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.21 2.2z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="d24-delivery-label">Contact Us</div>
+                        <div class="d24-phone-num">{{ @user()->phone }}</div>
+                    </div>
                 </div>
-                <div>
-                    <div class="d24-delivery-label">Contact Us</div>
-                    <div class="d24-phone-num">{{ @user()->phone ?? '' }}</div>
-                </div>
-            </div>
+            @endif
 
             {{-- RIGHT: restaurant info --}}
             <div class="d24-footer-right">
                 <div class="d24-rest-name">{{ @user()->name ?? '' }}</div>
-                <div class="d24-rest-address">{{ @user()->address ?? '' }}</div>
-                <div class="d24-rest-web">{{ @user()->website_domain ?? ' ' }}</div>
+
+                @if(!empty(@user()->address))
+                    <div class="d24-rest-address">{{ @user()->address }}</div>
+                @endif
+
+                @if(!empty(@user()->website_domain))
+                    <div class="d24-rest-web">{{ @user()->website_domain }}</div>
+                @endif
             </div>
         </div>{{-- /.d24-footer --}}
 

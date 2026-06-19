@@ -392,35 +392,50 @@
             </p>
 
             {{-- FOOTER --}}
-            <div class="d23-footer">
-                {{-- Top row --}}
-                <div class="d23-footer-top">
-                    @if (isset($logourl) && $logourl)
-                        <img src="{{ $logourl }}" alt="logo" class="d23-footer-logo-img" crossorigin="anonymous">
-                    @else
-                        <div class="d23-footer-logo-avatar">{{ strtoupper(substr(@user()->name ?? 'R', 0, 1)) }}</div>
+           <div class="d23-footer">
+            {{-- Top row --}}
+            <div class="d23-footer-top">
+                @if (isset($logourl) && $logourl)
+                    <img src="{{ $logourl }}" alt="logo" class="d23-footer-logo-img" crossorigin="anonymous">
+                @else
+                    <div class="d23-footer-logo-avatar">{{ strtoupper(substr(@user()->name ?? 'R', 0, 1)) }}</div>
+                @endif
+
+                <div class="d23-footer-info">
+                    <div class="d23-footer-name">{{ @user()->name ?? '' }}</div>
+
+                    @if(!empty(@user()->address))
+                        <div class="d23-footer-address">{{ @user()->address }}</div>
                     @endif
-                    <div class="d23-footer-info">
-                        <div class="d23-footer-name">{{ @user()->name ?? '' }}</div>
-                        <div class="d23-footer-address">{{ @user()->address ?? '' }}</div>
-                    </div>
                 </div>
-                {{-- Bottom row --}}
-                <div class="d23-footer-bottom">
+            </div>
+
+            {{-- Bottom row --}}
+            <div class="d23-footer-bottom">
+
+                @if(!empty(@user()->phone))
                     <div class="d23-footer-item">
                         <svg viewBox="0 0 24 24">
                             <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.33 21 3 13.67 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.21 2.2z"/>
                         </svg>
-                        {{ @user()->phone ?? '' }}
+                        {{ @user()->phone }}
                     </div>
+                @endif
+
+                @if(!empty(@user()->phone) && !empty(@user()->website_domain))
                     <div class="d23-footer-sep"></div>
+                @endif
+
+                @if(!empty(@user()->website_domain))
                     <div class="d23-footer-item">
                         <svg viewBox="0 0 24 24">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
                         </svg>
-                        {{ @user()->website_domain ?? '' }}
+                        {{ @user()->website_domain }}
                     </div>
-                </div>
+                @endif
+
+               </div>
             </div>
 
         </div>

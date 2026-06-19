@@ -386,38 +386,44 @@
             <div class="d12-resto-info">
                 <div class="d12-resto-name">{{ @user()->name ?? ' ' }}</div>
                 <div class="d12-resto-divider"></div>
+
                 <div class="d12-resto-contacts">
 
-                    <div class="d12-resto-contact-row">
-                        <div class="d12-icon-circle">
-                            <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M2 1.5 Q2 3 4 5 Q6 7 7.5 8 L8.5 7 Q9 6.5 8.5 6 L7 4.5 Q6.5 4 6 4.5 L5.5 5 Q4.5 4.5 3.5 3 L4 2.5 Q4.5 2 4 1.5 L2.5 0.5 Q2 0 2 1.5Z" />
-                            </svg>
+                    @if(!empty(@user()->phone))
+                        <div class="d12-resto-contact-row">
+                            <div class="d12-icon-circle">
+                                <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 1.5 Q2 3 4 5 Q6 7 7.5 8 L8.5 7 Q9 6.5 8.5 6 L7 4.5 Q6.5 4 6 4.5 L5.5 5 Q4.5 4.5 3.5 3 L4 2.5 Q4.5 2 4 1.5 L2.5 0.5 Q2 0 2 1.5Z" />
+                                </svg>
+                            </div>
+                            <div class="d12-resto-contact-text">{{ @user()->phone }}</div>
                         </div>
-                        <div class="d12-resto-contact-text">{{ @user()->phone ?? '' }}</div>
-                    </div>
+                    @endif
 
-                    <div class="d12-resto-contact-row">
-                        <div class="d12-icon-circle">
-                            <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M5 0.5 C3 0.5 1.5 2 1.5 3.8 C1.5 6.5 5 9.5 5 9.5 C5 9.5 8.5 6.5 8.5 3.8 C8.5 2 7 0.5 5 0.5Z" />
-                                <circle cx="5" cy="3.8" r="1.2" fill="#c93a1a" />
-                            </svg>
+                    @if(!empty(@user()->address))
+                        <div class="d12-resto-contact-row">
+                            <div class="d12-icon-circle">
+                                <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 0.5 C3 0.5 1.5 2 1.5 3.8 C1.5 6.5 5 9.5 5 9.5 C5 9.5 8.5 6.5 8.5 3.8 C8.5 2 7 0.5 5 0.5Z" />
+                                    <circle cx="5" cy="3.8" r="1.2" fill="#c93a1a" />
+                                </svg>
+                            </div>
+                            <div class="d12-resto-contact-text">
+                                {{ @user()->address }}
+                            </div>
                         </div>
-                        <div class="d12-resto-contact-text">
-                            {{ @user()->address ?? ' ' }}</div>
-                    </div>
+                    @endif
 
                 </div>
             </div>
 
             {{-- Website --}}
-            <div class="d12-resto-website">
-                <div class="d12-website-label">Visit Us</div>
-                <div class="d12-website-url">{{ @user()->website_domain ?? ' ' }}</div>
-            </div>
+            @if(!empty(@user()->website_domain))
+                <div class="d12-resto-website">
+                    <div class="d12-website-label">Visit Us</div>
+                    <div class="d12-website-url">{{ @user()->website_domain }}</div>
+                </div>
+            @endif
 
         </div>{{-- /.d12-restaurant-strip --}}
 
