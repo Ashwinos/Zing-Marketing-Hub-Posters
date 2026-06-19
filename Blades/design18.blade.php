@@ -312,10 +312,10 @@
 
             {{-- Center restaurant info --}}
             <div class="d18-info-center">
-                <div class="d18-r-name">{{ @user()->name ?? 'Greek Belair Cafe' }}</div>
-                <div class="d18-r-addr">{{ @user()->address ?? '327 5th Ave S, Naples, FL 34102, USA' }}</div>
-                <div class="d18-r-phone">Phone: {{ @user()->phone ?? '(239) 262-1234' }}</div>
-                <div class="d18-r-email">Email: {{ @user()->email ?? 'support@greekbelaircafe.com' }}</div>
+                <div class="d18-r-name">{{ @user()->name ?? ' ' }}</div>
+                <div class="d18-r-addr">{{ @user()->address ?? ' ' }}</div>
+                <div class="d18-r-phone">Phone: {{ @user()->phone ?? ' ' }}</div>
+                <div class="d18-r-email">Email: {{ @user()->email ?? ' ' }}</div>
             </div>
 
             {{-- Right tile column --}}

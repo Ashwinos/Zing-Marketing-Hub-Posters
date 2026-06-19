@@ -343,9 +343,7 @@
                 @if (isset($menuImageUrl) && $menuImageUrl)
                     <img src="{{ $menuImageUrl }}" alt="{{ @$menu['name'] ?? 'Menu Item' }}"
                         class="js-poster-menu-image" crossorigin="anonymous">
-                @else
-                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=90" alt="Menu Item"
-                        crossorigin="anonymous">
+                
                 @endif
             </div>
 
@@ -386,7 +384,7 @@
 
             {{-- Name + contacts --}}
             <div class="d12-resto-info">
-                <div class="d12-resto-name">{{ @user()->name ?? 'Borcelle &amp; Co.' }}</div>
+                <div class="d12-resto-name">{{ @user()->name ?? ' ' }}</div>
                 <div class="d12-resto-divider"></div>
                 <div class="d12-resto-contacts">
 
@@ -397,7 +395,7 @@
                                     d="M2 1.5 Q2 3 4 5 Q6 7 7.5 8 L8.5 7 Q9 6.5 8.5 6 L7 4.5 Q6.5 4 6 4.5 L5.5 5 Q4.5 4.5 3.5 3 L4 2.5 Q4.5 2 4 1.5 L2.5 0.5 Q2 0 2 1.5Z" />
                             </svg>
                         </div>
-                        <div class="d12-resto-contact-text">{{ @user()->phone ?? '+123-456-7890' }}</div>
+                        <div class="d12-resto-contact-text">{{ @user()->phone ?? '' }}</div>
                     </div>
 
                     <div class="d12-resto-contact-row">
@@ -409,7 +407,7 @@
                             </svg>
                         </div>
                         <div class="d12-resto-contact-text">
-                            {{ @user()->address ?? '123 Anywhere St., Any City, ST 12345' }}</div>
+                            {{ @user()->address ?? ' ' }}</div>
                     </div>
 
                 </div>
@@ -418,7 +416,7 @@
             {{-- Website --}}
             <div class="d12-resto-website">
                 <div class="d12-website-label">Visit Us</div>
-                <div class="d12-website-url">{{ @user()->website_domain ?? 'www.borcelle.com' }}</div>
+                <div class="d12-website-url">{{ @user()->website_domain ?? ' ' }}</div>
             </div>
 
         </div>{{-- /.d12-restaurant-strip --}}

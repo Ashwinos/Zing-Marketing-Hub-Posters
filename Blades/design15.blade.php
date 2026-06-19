@@ -309,7 +309,7 @@
         </div>
 
         {{-- Brand --}}
-        <div class="d15-brand">{{ @user()->name ?? 'Borcelle Restaurant' }}</div>
+        <div class="d15-brand">{{ @user()->name ?? ' ' }}</div>
 
         {{-- Arch food photo --}}
         <div class="d15-arch-wrap">
@@ -353,8 +353,8 @@
 
         {{-- Footer --}}
         <div class="d15-footer">
-            <div class="d15-f-item">{{ @user()->website_domain ?? 'www.reallygreatsite.com' }}</div>
-            <div class="d15-f-item">{{ @user()->phone ?? '+123-456-7890' }}</div>
+            <div class="d15-f-item">{{ @user()->website_domain ?? ' ' }}</div>
+            <div class="d15-f-item">{{ @user()->phone ?? ' ' }}</div>
         </div>
 
     </div>{{-- /.design15-card --}}

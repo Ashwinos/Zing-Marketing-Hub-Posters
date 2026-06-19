@@ -424,9 +424,7 @@
                     @if (isset($menuImageUrl) && $menuImageUrl)
                         <img src="{{ $menuImageUrl }}" alt="{{ @$menu['name'] ?? 'Menu Item' }}"
                             class="js-poster-menu-image" crossorigin="anonymous">
-                    @else
-                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=85"
-                            class="js-poster-menu-image" crossorigin="anonymous" alt="Menu Item">
+                    
                     @endif
                 </div>
                 <div class="design11-plate-shadow"></div>

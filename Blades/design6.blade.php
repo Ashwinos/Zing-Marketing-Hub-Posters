@@ -302,8 +302,7 @@
         <div class="d6-pizza-wrap">
             @if (isset($menuImageUrl) && $menuImageUrl)
                 <img src="{{ $menuImageUrl }}" alt="{{ @$menu['name'] ?? 'Menu Item' }}" crossorigin="anonymous">
-            @else
-                <img src="https://pngimg.com/d/pizza_PNG44095.png" alt="Menu Item">
+            
             @endif
         </div>
 
