@@ -271,6 +271,8 @@
                 </div>
             @endif
 
+        @if(!empty(@user()->phone) || !empty(@user()->website_domain))
+
             <div class="d4-card-contact">
                 <div class="d4-footer-inner">
                     @if(!empty(@user()->phone))
@@ -288,6 +290,7 @@
                     @endif
                 </div>
             </div>
+            @endif
         </div>
 
     </div>{{-- /.design4-card --}}

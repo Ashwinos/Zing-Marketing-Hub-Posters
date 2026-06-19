@@ -183,6 +183,7 @@
         background-color: #ffffffba;
         margin-bottom: 4px;
         display: inline-block;
+        font-size: 10px !important;
     }
 
     .d7-top-header {
@@ -276,6 +277,11 @@
         font-style: normal;
         font-display: swap;
     }
+    .design7-wrapper .d7-footer-item i {
+    font-size: 10px; /* Adjust as needed */
+    margin-right: 4px;
+    vertical-align: middle;
+}
 </style>
 
 <div class="design7-wrapper">

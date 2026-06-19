@@ -235,6 +235,11 @@
         cursor: not-allowed;
         transform: none;
     }
+    
+    .design16-wrapper svg path {
+        fill: #ededed;
+    }
+    
 </style>
 
 <div class="design16-wrapper">

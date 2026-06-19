@@ -155,7 +155,7 @@
         }
 
         .design13-wrapper .design13-description {
-            font-size: 2.6cqw;
+            font-size: 8px;
             font-family: 'Montserrat', sans-serif;
             color: #776654;
             line-height: 1.6;
