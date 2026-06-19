@@ -122,8 +122,8 @@
 
         {{-- Bottom bar: website + phone --}}
         <div style="position:absolute;left:0;bottom:0;width:100%;display:flex;justify-content:space-between;z-index:9;padding:10px 15px;color:white;font-family:'Lato',sans-serif;box-sizing:border-box;background-color:transparent;">
-            <div style="font-size:8px;color:#ffffff;">{{ @user()->website_domain ?? '' }}</div>
-            <div style="font-size:8px;color:#ffffff;">{{ @user()->phone ?? '' }}</div>
+            <div style="font-size:9px;color:#ffffff;">{{ @user()->website_domain ?? '' }}</div>
+            <div style="font-size:9px;color:#ffffff;">{{ @user()->phone ?? '' }}</div>
         </div>
 
     </div>{{-- /#posterCard20 --}}

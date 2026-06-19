@@ -1,9 +1,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-    /* ── Wrapper ── */
     .design28-wrapper {
         width: 100%;
         display: flex;
@@ -15,262 +14,402 @@
     /* ── Card ── */
     .design28-wrapper .design28-card {
         width: 100%;
-        max-width: 340px;
-        aspect-ratio: 17 / 24;
+        max-width: 380px;
+        aspect-ratio: 4 / 5;
         position: relative;
         overflow: hidden;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-        background: {{ $themeColor }};
+        background: #fdf3d0;
+        box-shadow: 0 16px 48px rgba(0,0,0,0.18);
         container-type: inline-size;
         box-sizing: border-box;
     }
 
-    /* ── Dot grid — top right ── */
-    .design28-wrapper .d28-dots {
+    /* ══ WATERMARK BG ══ */
+    .design28-wrapper .d28-watermark {
         position: absolute;
-        top: 0;
-        right: 0;
-        width: 30cqw;
-        height: 20cqw;
-        z-index: 2;
+        top: 0; left: 0; right: 0; bottom: 0;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0;
         pointer-events: none;
+        overflow: hidden;
     }
-    .design28-wrapper .d28-dots svg {
-        width: 100%;
-        height: 100%;
+    .design28-wrapper .d28-watermark span {
+        font-family: 'Oswald', sans-serif;
+        font-size: 18cqw;
+        font-weight: 900;
+        color: #f5e5a0;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        line-height: 0.95;
+        white-space: nowrap;
+        display: block;
+        opacity: 0.55;
+    }
+    .design28-wrapper .d28-watermark span:nth-child(odd)  { transform: translateX(-4cqw); }
+    .design28-wrapper .d28-watermark span:nth-child(even) { transform: translateX(4cqw); }
+
+    /* ══ RIGHT ACCENT STRIP ══ */
+    .design28-wrapper .d28-right-strip {
+        position: absolute;
+        top: 0; right: 0; bottom: 0;
+        width: 3.5cqw;
+        background: {{ $themeColor }};
+        z-index: 3;
     }
 
-    /* ── Top bar ── */
-    .design28-wrapper .d28-topbar {
+    /* ══ TOP-LEFT LOGO BADGE ══ */
+    .design28-wrapper .d28-logo-badge {
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 10cqw;
-        z-index: 5;
-        display: flex;
-        align-items: center;
-        padding: 0 4cqw;
-    }
-    .design28-wrapper .d28-logo-box {
-        display: flex;
-        align-items: center;
-        gap: 2cqw;
-    }
-    .design28-wrapper .d28-logo-icon {
-        width: 8cqw;
-        height: 8cqw;
-        background: #1a1a1a;
-        border-radius: 1.5cqw;
+        top: 2.5cqw;
+        left: 2.5cqw;
+        z-index: 10;
+        background: {{ $themeColor }};
+        border-radius: 1.2cqw;
+        padding: 1.2cqw 1.8cqw;
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-shrink: 0;
+        min-width: 12cqw;
+        min-height: 7cqw;
+        box-sizing: border-box;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.22);
     }
-    .design28-wrapper .d28-logo-icon img {
-        width: 5cqw;
-        height: 5cqw;
+    .design28-wrapper .d28-logo-badge img {
+        height: 5.5cqw;
+        width: auto;
+        max-width: 16cqw;
         object-fit: contain;
+        display: block;
     }
-    .design28-wrapper .d28-logo-icon svg {
-        width: 5cqw;
-        height: 5cqw;
-    }
-    .design28-wrapper .d28-logo-text {
+    .design28-wrapper .d28-logo-badge-text {
         font-family: 'Oswald', sans-serif;
-        font-size: 4.5cqw;
+        font-size: 2.8cqw;
         font-weight: 700;
-        color: #1a1a1a;
-        letter-spacing: 0.5px;
+        color: #ffffff;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        line-height: 1;
     }
 
-    /* ── Headline block ── */
+    /* ══ HEADLINE ══ */
     .design28-wrapper .d28-headline {
         position: absolute;
-        top: 10cqw;
-        left: 4cqw;
-        right: 4cqw;
+        top: 3cqw;
+        left: 3cqw;
+        right: 6cqw;
         z-index: 5;
+        text-align: center;
     }
-    .design28-wrapper .d28-headline h1 {
-        font-family: 'Oswald', sans-serif;
-        font-size: 13cqw;
+    .design28-wrapper .d28-hl-main {
+            font-family: 'Oswald', sans-serif;
+    font-size: 10.5cqw;
+    font-weight: 900;
+    color: #3a1a00;
+    text-transform: uppercase;
+    line-height: 0.95;
+    margin: 0;
+    letter-spacing: 1px;
+    display: block;
+    margin-top: 22px;
+    }
+    .design28-wrapper .d28-pill-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: {{ $themeColor }};
+        border-radius: 30px;
+        padding: 0.9cqw 4cqw;
+        margin: 1cqw 0;
+    }
+    .design28-wrapper .d28-pill-badge span {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 2.8cqw;
         font-weight: 700;
-        color: #1a1a1a;
-        line-height: 1.0;
-        margin: 0 0 2cqw 0;
+        color: #ffffff;
+        letter-spacing: 1px;
         text-transform: uppercase;
-        letter-spacing: -0.5px;
-    }
-    .design28-wrapper .d28-headline p {
-        font-size: 2.3cqw;
-        color: #1a1a1a;
-        line-height: 1.55;
-        margin: 0;
-        opacity: 0.72;
-        max-width: 52cqw;
+        line-height: 1;
     }
 
-    /* ── Food image circle ── */
-    .design28-wrapper .d28-food-circle {
+    /* ══ FOOD IMAGE ══ */
+    .design28-wrapper .d28-food {
         position: absolute;
-        top: 34cqw;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 62cqw;
-        height: 62cqw;
-        border-radius: 50%;
-        overflow: hidden;
-        z-index: 4;
-        border: 1.5cqw solid #ffffff;
-        box-sizing: border-box;
+        top: 38cqw;
+        left: -4cqw;
+        right: -4cqw;
+        height: 50cqw;
+        z-index: 6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-    .design28-wrapper .d28-food-circle img {
-        width: 100%;
+    .design28-wrapper .d28-food img {
+        width: 108%;
         height: 100%;
         object-fit: cover;
         object-position: center;
         display: block;
     }
     .design28-wrapper .d28-food-placeholder {
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, #c8a060, #8a5a20);
+        width: 100%; height: 100%;
+        background: radial-gradient(ellipse at center, #d4854a 0%, #8a4520 70%);
+        border-radius: 50%;
     }
 
-    /* ── Discount badge ── */
+    /* ══ LEFT STAMP BADGE ══ */
+    .design28-wrapper .d28-stamp {
+        position: absolute;
+        top: 41cqw;
+        left: 2cqw;
+        width: 18cqw;
+        height: 18cqw;
+        z-index: 8;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        box-sizing: border-box;
+    }
+    .design28-wrapper .d28-stamp > svg {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+    }
+    .design28-wrapper .d28-stamp-inner {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.3cqw;
+        padding: 1cqw;
+    }
+    .design28-wrapper .d28-stamp-icon {
+        width: 4.5cqw; height: 4.5cqw;
+        display: flex; align-items: center; justify-content: center;
+    }
+    .design28-wrapper .d28-stamp-icon svg {
+        width: 100%; height: 100%; display: block;
+    }
+    .design28-wrapper .d28-stamp-text {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 1.6cqw;
+        font-weight: 700;
+        color: #3a1a00;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        line-height: 1.3;
+    }
+
+    /* ══ DISCOUNT BADGE ══ */
     .design28-wrapper .d28-discount {
         position: absolute;
-        top: 64cqw;
-        right: 3cqw;
+        top: 46cqw;
+        right: 5.5cqw;
         width: 20cqw;
         height: 20cqw;
-        border-radius: 50%;
-        background: {{ $themeColor }};
-        border: 0.9cqw solid #1a1a1a;
-        z-index: 7;
+        z-index: 8;
+        background: #f5c518;
+        border-radius: 1.5cqw;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         box-sizing: border-box;
+        padding: 1.5cqw;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.18);
+    }
+    .design28-wrapper .d28-disc-top {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 1.8cqw;
+        font-weight: 700;
+        color: #3a1a00;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        line-height: 1;
+        margin-bottom: 0.3cqw;
     }
     .design28-wrapper .d28-disc-pct {
         font-family: 'Oswald', sans-serif;
-        font-size: 7cqw;
-        font-weight: 700;
-        color: #1a1a1a;
-        line-height: 1;
-    }
-    .design28-wrapper .d28-disc-label {
-        font-size: 2cqw;
-        font-weight: 700;
-        color: #1a1a1a;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        line-height: 1;
-        margin-top: 0.3cqw;
-    }
-
-    /* ── Doodle icons ── */
-    .design28-wrapper .d28-doodle {
-        position: absolute;
-        z-index: 3;
-        opacity: 0.18;
-    }
-    .design28-wrapper .d28-doodle svg {
-        display: block;
-    }
-
-    /* ── Dark CTA band ── */
-    .design28-wrapper .d28-cta-band {
-        position: absolute;
-        top: 96cqw;
-        left: 0;
-        right: 0;
-        height: 20cqw;
-        background: #1a1a1a;
-        z-index: 5;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
-        padding: 0 4cqw;
-    }
-    .design28-wrapper .d28-cta-label {
-        font-size: 2.2cqw;
-        font-weight: 600;
+        font-size: 10cqw;
+        font-weight: 900;
         color: {{ $themeColor }};
-        letter-spacing: 2.5px;
-        text-transform: uppercase;
-        margin: 0 0 1cqw 0;
+        line-height: 0.9;
+        letter-spacing: -1px;
     }
-    .design28-wrapper .d28-cta-phone {
+    .design28-wrapper .d28-disc-off {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 2.2cqw;
+        font-weight: 700;
+        color: #3a1a00;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        line-height: 1;
+        margin-top: 0.4cqw;
+    }
+
+    /* ══ HERB LEAVES ══ */
+    .design28-wrapper .d28-leaf {
+        position: absolute;
+        pointer-events: none;
+        z-index: 9;
+    }
+    .design28-wrapper .d28-leaf svg { display: block; }
+
+    /* ══ DESCRIPTION ══ */
+    .design28-wrapper .d28-desc {
+        position: absolute;
+        top: 87cqw;
+        left: 4cqw;
+        right: 6cqw;
+        z-index: 7;
+        text-align: center;
+        background: {{$themeColor}};
+    }
+    .design28-wrapper .d28-desc p {
+      font-family: 'Open Sans', sans-serif;
+    font-size: 2.3cqw;
+    color: #ffffff;
+    line-height: 1.6;
+    margin: 0;
+    }
+
+    /* ══ ORDER NOW BUTTON ══ */
+    .design28-wrapper .d28-order-wrap {
+        position: absolute;
+        bottom: 22cqw;
+        left: 3cqw;
+        right: 6cqw;
+        z-index: 7;
+        display: flex;
+        justify-content: center;
+    }
+    .design28-wrapper .d28-order-btn {
+        background: {{ $themeColor }};
+        border-radius: 30px;
+        padding: 2cqw 9cqw;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .design28-wrapper .d28-order-btn span {
         font-family: 'Oswald', sans-serif;
-        font-size: 9cqw;
+        font-size: 4cqw;
         font-weight: 700;
         color: #ffffff;
+        letter-spacing: 3px;
+        text-transform: uppercase;
         line-height: 1;
-        letter-spacing: 0.5px;
-        margin: 0;
     }
 
-    /* ── Two-column text block ── */
-    .design28-wrapper .d28-twocol {
-        position: absolute;
-        top: 117cqw;
-        left: 0;
-        right: 0;
-        z-index: 5;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2cqw;
-        padding: 0 4cqw;
-    }
-    .design28-wrapper .d28-twocol p {
-        font-size: 2.2cqw;
-        color: #1a1a1a;
-        line-height: 1.55;
-        margin: 0;
-        opacity: 0.72;
-    }
-
-    /* ── Footer strip ── */
+    /* ══ FOOTER BAR ══ */
     .design28-wrapper .d28-footer {
         position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 8cqw;
-        background: #1a1a1a;
-        z-index: 6;
+        bottom: 0; left: 0; right: 0;
+        height: 20cqw;
+        z-index: 7;
+        background: rgba(253,243,208,0.96);
+        border-top: 1.5px solid rgba(212,43,43,0.18);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.2cqw;
+        padding: 0 4cqw;
+        box-sizing: border-box;
+    }
+    /* Top row: website LEFT — phone RIGHT */
+    .design28-wrapper .d28-footer-top-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+    /* Phone — smaller font, right end */
+    .design28-wrapper .d28-footer-phone {
+        font-family: 'Oswald', sans-serif;
+        font-size: 2.2cqw;
+        font-weight: 700;
+        color: #3a1a00;
+        letter-spacing: 0.8px;
+        line-height: 1;
+        white-space: nowrap;
+        text-align: right;
+        flex-shrink: 0;
+    }
+    /* Website + logo — left end */
+    .design28-wrapper .d28-footer-meta {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 2cqw;
+        min-width: 0;
+    }
+    .design28-wrapper .d28-footer-logo {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+    }
+    .design28-wrapper .d28-footer-logo img {
+        height: 5cqw;
+        width: auto;
+        max-width: 14cqw;
+        object-fit: contain;
+        display: block;
+    }
+    .design28-wrapper .d28-footer-logo-ph {
+        background: {{ $themeColor }};
+        border-radius: 0.8cqw;
+        padding: 0.8cqw 1.8cqw;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 3cqw;
     }
-    .design28-wrapper .d28-footer-label {
+    .design28-wrapper .d28-footer-logo-ph span {
+        font-family: 'Oswald', sans-serif;
         font-size: 2.2cqw;
-        color: rgba(255,255,255,0.6);
-        letter-spacing: 0.4px;
-    }
-    .design28-wrapper .d28-footer-socials {
-        font-size: 2.2cqw;
-        color: rgba(255,255,255,0.45);
-        letter-spacing: 1px;
-    }
-    .design28-wrapper .d28-footer-url {
-        font-size: 2.4cqw;
         font-weight: 700;
-        color: {{ $themeColor }};
-        letter-spacing: 0.4px;
+        color: #ffffff;
+        letter-spacing: 0.5px;
+    }
+    .design28-wrapper .d28-footer-divider {
+        width: 1px;
+        height: 4cqw;
+        background: rgba(0,0,0,0.15);
+        flex-shrink: 0;
+    }
+    .design28-wrapper .d28-footer-website {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 2.1cqw;
+        font-weight: 700;
+        color: #555555;
+        letter-spacing: 0.3px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    /* Address — centered below, unchanged */
+    .design28-wrapper .d28-footer-address {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 1.8cqw;
+        font-weight: 600;
+        color: #999999;
+        letter-spacing: 0.3px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
     }
 
     /* ── Download btn ── */
     .design28-wrapper .d28-download-btn {
         margin-top: 10px;
         background: {{ $themeColor }};
-        color: #1a1a1a;
+        color: #ffffff;
         border: none;
         padding: 8px 18px;
         font-size: 12px;
@@ -287,49 +426,35 @@
 <div class="design28-wrapper">
     <div class="design28-card" id="posterCard28">
 
-        {{-- Dot grid top-right --}}
-        <div class="d28-dots">
-            <svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
-                <g fill="#1a1a1a" opacity="0.35">
-                    <circle cx="12" cy="12" r="2.5"/><circle cx="28" cy="12" r="2.5"/><circle cx="44" cy="12" r="2.5"/><circle cx="60" cy="12" r="2.5"/><circle cx="76" cy="12" r="2.5"/><circle cx="92" cy="12" r="2.5"/>
-                    <circle cx="12" cy="28" r="2.5"/><circle cx="28" cy="28" r="2.5"/><circle cx="44" cy="28" r="2.5"/><circle cx="60" cy="28" r="2.5"/><circle cx="76" cy="28" r="2.5"/><circle cx="92" cy="28" r="2.5"/>
-                    <circle cx="12" cy="44" r="2.5"/><circle cx="28" cy="44" r="2.5"/><circle cx="44" cy="44" r="2.5"/><circle cx="60" cy="44" r="2.5"/><circle cx="76" cy="44" r="2.5"/><circle cx="92" cy="44" r="2.5"/>
-                    <circle cx="12" cy="60" r="2.5"/><circle cx="28" cy="60" r="2.5"/><circle cx="44" cy="60" r="2.5"/><circle cx="60" cy="60" r="2.5"/><circle cx="76" cy="60" r="2.5"/>
-                    <circle cx="12" cy="76" r="2.5"/><circle cx="28" cy="76" r="2.5"/><circle cx="44" cy="76" r="2.5"/>
-                </g>
-            </svg>
+        {{-- ══ WATERMARK BG ══ --}}
+        <div class="d28-watermark" aria-hidden="true">
+            @php $wm = !empty($menu['name']) ? mb_strtoupper(mb_substr($menu['name'], 0, 8)) : 'HOT DOG'; @endphp
+            <span>{{ $wm }}</span><span>{{ $wm }}</span>
+            <span>{{ $wm }}</span><span>{{ $wm }}</span>
+            <span>{{ $wm }}</span>
         </div>
 
-        {{-- Top bar: logo --}}
-        <div class="d28-topbar">
-            <div class="d28-logo-box">
-                <div class="d28-logo-icon">
-                    @if (!empty($logourl))
-                        <img src="{{ $logourl }}" alt="logo" crossorigin="anonymous">
-                    @else
-                        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="3" y="10" width="14" height="3" rx="1.5" fill="{{ $themeColor }}"/>
-                            <rect x="5" y="7"  width="10" height="3" rx="1.5" fill="{{ $themeColor }}"/>
-                            <rect x="2" y="13" width="16" height="2" rx="1"   fill="{{ $themeColor }}"/>
-                        </svg>
-                    @endif
-                </div>
-                <span class="d28-logo-text">{{ @user()->name ?? 'Logo' }}</span>
-            </div>
-        </div>
+        {{-- ══ RIGHT ACCENT STRIP ══ --}}
+        <div class="d28-right-strip"></div>
 
-        {{-- Headline --}}
-        <div class="d28-headline">
-            <h1>{{ $restaurant->name ?? 'American Food Restaurant' }}</h1>
-            @if (!empty($restaurant->description))
-                <p>{{ Str::limit($restaurant->description, 120, '…') }}</p>
-            @else
-                <p>Lorem ipsum dolor sit amet, vis damu sit amet. Sed suis eumod mandamus lorem ipsum.</p>
+        {{-- ══ TOP-LEFT LOGO BADGE ══ --}}
+        <div class="d28-logo-badge">
+            @if (!empty($logourl))
+                <img src="{{ $logourl }}" alt="logo" crossorigin="anonymous">
             @endif
         </div>
 
-        {{-- Food image circle --}}
-        <div class="d28-food-circle">
+        {{-- ══ HEADLINE ══ --}}
+        <div class="d28-headline">
+            
+            <span class="d28-hl-main">{{ $menu['name'] }}</span>
+            <div class="d28-pill-badge">
+                <span>Bite Into Bliss</span>
+            </div>
+        </div>
+
+        {{-- ══ FOOD IMAGE ══ --}}
+        <div class="d28-food">
             @if (!empty($menuImageUrl))
                 <img src="{{ $menuImageUrl }}"
                      alt="{{ $menu['name'] ?? 'Food' }}"
@@ -340,68 +465,82 @@
             @endif
         </div>
 
-        {{-- Discount badge --}}
-        <div class="d28-discount">
-            <span class="d28-disc-pct">50%</span>
-            <span class="d28-disc-label">Discount</span>
+        {{-- ══ HERB LEAVES ══ --}}
+        <div class="d28-leaf" style="top:1cqw; right:5cqw;">
+            <svg viewBox="0 0 40 60" width="10cqw" height="15cqw" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 55 Q2 35 8 15 Q14 2 20 5 Q26 2 32 15 Q38 35 20 55Z" fill="#4caf50"/>
+                <path d="M20 55 Q20 30 20 5" stroke="#2e7d32" stroke-width="1.2" fill="none"/>
+                <path d="M20 40 Q12 32 8 25" stroke="#2e7d32" stroke-width="0.8" fill="none"/>
+                <path d="M20 40 Q28 32 32 25" stroke="#2e7d32" stroke-width="0.8" fill="none"/>
+                <path d="M20 28 Q14 22 10 16" stroke="#2e7d32" stroke-width="0.8" fill="none"/>
+                <path d="M20 28 Q26 22 30 16" stroke="#2e7d32" stroke-width="0.8" fill="none"/>
+            </svg>
         </div>
-
-        {{-- Doodle: burger icon — left mid --}}
-        <div class="d28-doodle" style="top:70cqw; left:1cqw; width:10cqw; height:10cqw;">
-            <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
-                <rect x="6" y="18" width="22" height="10" rx="5" stroke="#1a1a1a" stroke-width="2"/>
-                <rect x="10" y="13" width="14" height="6"  rx="3" stroke="#1a1a1a" stroke-width="2"/>
-                <rect x="4"  y="28" width="26" height="3"  rx="1.5" stroke="#1a1a1a" stroke-width="1.5"/>
-                <ellipse cx="17" cy="11" rx="9" ry="4" stroke="#1a1a1a" stroke-width="1.8"/>
+        <div class="d28-leaf" style="top:5cqw; right:8cqw; transform:rotate(30deg);">
+            <svg viewBox="0 0 30 45" width="7cqw" height="10cqw" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 42 Q2 26 6 11 Q10 1 15 4 Q20 1 24 11 Q28 26 15 42Z" fill="#66bb6a"/>
+                <path d="M15 42 Q15 22 15 4" stroke="#388e3c" stroke-width="1" fill="none"/>
+            </svg>
+        </div>
+        <div class="d28-leaf" style="bottom:26cqw; left:1cqw; transform:rotate(-40deg);">
+            <svg viewBox="0 0 30 45" width="7cqw" height="10cqw" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 42 Q2 26 6 11 Q10 1 15 4 Q20 1 24 11 Q28 26 15 42Z" fill="#4caf50"/>
+                <path d="M15 42 Q15 22 15 4" stroke="#2e7d32" stroke-width="1" fill="none"/>
+            </svg>
+        </div>
+        <div class="d28-leaf" style="bottom:24cqw; right:6cqw; transform:rotate(20deg);">
+            <svg viewBox="0 0 24 36" width="5cqw" height="8cqw" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 33 Q2 20 5 9 Q8 1 12 3 Q16 1 19 9 Q22 20 12 33Z" fill="#81c784"/>
+                <path d="M12 33 Q12 16 12 3" stroke="#388e3c" stroke-width="0.8" fill="none"/>
             </svg>
         </div>
 
-        {{-- Doodle: fries icon — right upper --}}
-        <div class="d28-doodle" style="top:44cqw; right:1cqw; width:9cqw; height:14cqw;">
-            <svg viewBox="0 0 28 44" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
-                <rect x="10" y="0"  width="8"  height="22" rx="2" stroke="#1a1a1a" stroke-width="1.8"/>
-                <rect x="6"  y="22" width="16" height="8"  rx="2" stroke="#1a1a1a" stroke-width="1.8"/>
-                <rect x="4"  y="30" width="20" height="8"  rx="4" stroke="#1a1a1a" stroke-width="1.8"/>
-                <rect x="6"  y="38" width="5"  height="6"  rx="1" stroke="#1a1a1a" stroke-width="1.5"/>
-                <rect x="17" y="38" width="5"  height="6"  rx="1" stroke="#1a1a1a" stroke-width="1.5"/>
-            </svg>
+        {{-- ══ DESCRIPTION ══ --}}
+        @if (!empty($menu['description']))
+            <div class="d28-desc">
+                <p>{{ mb_substr($menu['description'], 0, 100) }}{{ mb_strlen($menu['description']) > 100 ? '…' : '' }}</p>
+            </div>
+        @endif
+
+        {{-- ══ ORDER NOW BUTTON ══ --}}
+        <div class="d28-order-wrap">
+            <div class="d28-order-btn">
+                <span>Order Now</span>
+            </div>
         </div>
 
-        {{-- Doodle: pizza/plate icon — bottom left --}}
-        <div class="d28-doodle" style="bottom:16cqw; left:1.5cqw; width:9cqw; height:9cqw;">
-            <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
-                <circle cx="15" cy="15" r="11" stroke="#1a1a1a" stroke-width="2"/>
-                <path d="M8 15 Q15 8 22 15" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
-                <circle cx="11" cy="13" r="1.5" fill="#1a1a1a"/>
-                <circle cx="19" cy="13" r="1.5" fill="#1a1a1a"/>
-                <path d="M11 18 Q15 22 19 18" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
-            </svg>
-        </div>
-
-        {{-- Doodle: star — top left decorative --}}
-        <div class="d28-doodle" style="top:9cqw; right:32cqw; width:6cqw; height:6cqw;">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
-                <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" stroke="#1a1a1a" stroke-width="1.8" fill="none"/>
-            </svg>
-        </div>
-
-        {{-- Dark CTA band --}}
-        <div class="d28-cta-band">
-            <p class="d28-cta-label">Call for order now</p>
-            <p class="d28-cta-phone">{{ @user()->phone ?? '+1-234-5678' }}</p>
-        </div>
-
-        {{-- Two-column text --}}
-        <div class="d28-twocol">
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.</p>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.</p>
-        </div>
-
-        {{-- Footer --}}
+        {{-- ══ FOOTER BAR ══ --}}
         <div class="d28-footer">
-            <span class="d28-footer-label">Follow us on</span>
-            <span class="d28-footer-socials">f &nbsp; &#9675; &nbsp; in</span>
-            <span class="d28-footer-url">{{ @user()->website_domain ?? 'www.yoursite.com' }}</span>
+
+            {{-- Top row: website+logo LEFT — phone RIGHT --}}
+            <div class="d28-footer-top-row">
+
+                {{-- Left: logo + website --}}
+                <div class="d28-footer-meta">
+                    
+                       
+                   
+                    @if (!empty($restaurant->website_domain))
+                        <span class="d28-footer-website">{{ mb_substr($restaurant->website_domain, 0, 22) }}</span>
+                    @else
+                        <span class="d28-footer-website">www.yourwebsite.com</span>
+                    @endif
+                </div>
+
+                {{-- Right: phone --}}
+                @if (!empty($restaurant->phone))
+                    <span class="d28-footer-phone">{{ mb_substr($restaurant->phone, 0, 16) }}</span>
+                @else
+                    <span class="d28-footer-phone">000 0000 000</span>
+                @endif
+
+            </div>
+
+            {{-- Address — centered below, same position --}}
+            @if (!empty($restaurant->address))
+                <span class="d28-footer-address">{{ mb_substr($restaurant->address, 0, 44) }}</span>
+            @endif
+
         </div>
 
     </div>{{-- /.design28-card --}}
@@ -409,3 +548,39 @@
     {{-- <button type="button" class="d28-download-btn" onclick="downloadDesign28()">&#8595; Download Poster</button> --}}
 
 </div>{{-- /.design28-wrapper --}}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+    function downloadDesign28() {
+        var card   = document.getElementById('posterCard28');
+        var button = document.querySelector('.d28-download-btn');
+        if (!card || !button) return;
+        button.innerHTML = 'Generating...';
+        button.disabled  = true;
+        var exportW = 1080;
+        var scale   = exportW / card.offsetWidth;
+        Promise.all(Array.from(card.querySelectorAll('img')).map(function(img) {
+            return new Promise(function(resolve) {
+                if (img.complete && img.naturalWidth > 0) resolve();
+                else { img.onload = resolve; img.onerror = resolve; }
+            });
+        })).then(function() {
+            return html2canvas(card, {
+                scale: scale, backgroundColor: '#fdf3d0',
+                logging: false, useCORS: true, allowTaint: true, imageTimeout: 15000
+            });
+        }).then(function(canvas) {
+            var link = document.createElement('a');
+            link.download = 'menu-poster-design28.png';
+            link.href = canvas.toDataURL('image/png', 1.0);
+            link.click();
+            button.innerHTML = 'Download Poster';
+            button.disabled = false;
+        }).catch(function(error) {
+            console.error('Error:', error);
+            alert('Failed to generate image.');
+            button.innerHTML = 'Download Poster';
+            button.disabled = false;
+        });
+    }
+</script>
