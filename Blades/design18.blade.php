@@ -315,7 +315,7 @@
                 <div class="d18-r-name">{{ @user()->name ?? ' ' }}</div>
                 <div class="d18-r-addr">{{ @user()->address ?? ' ' }}</div>
                 <div class="d18-r-phone">Phone: {{ @user()->phone ?? ' ' }}</div>
-                <div class="d18-r-email">Email: {{ @user()->email ?? ' ' }}</div>
+                <div class="d18-r-email">Website: {{ @user()->website_domain ?? ' ' }}</div>
             </div>
 
             {{-- Right tile column --}}

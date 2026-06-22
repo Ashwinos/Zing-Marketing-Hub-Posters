@@ -473,7 +473,7 @@
                  <div class="d19-ct-right">{{ @user()->website_domain ?? '' }}</div>
                  <div class="d19-ct-phone">
                      <span>{{ @user()->phone ?? '' }}</span>
-                     <span>{{ @user()->email ?? '' }}</span>
+                     
                  </div>
                  <div class="d19-tile-col-narrow"></div>
              </div>
