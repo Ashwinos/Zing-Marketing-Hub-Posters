@@ -260,10 +260,19 @@
         white-space: nowrap;
         flex-shrink: 0;
         margin: 0 2cqw;
+        display: flex;
+        align-items: baseline;
     }
 
     .design27-wrapper .d27-promo-tagline-text span {
+        display: inline-block;
+        font-family: 'Oswald', sans-serif;
+        font-size: 4.2cqw;
+        font-weight: 700;
+        line-height: 1;
+        vertical-align: baseline;
         color: {{ $themeColor }};
+        margin-left: 0.5ch;
     }
 
     /* ══ L4: Footer ══ */

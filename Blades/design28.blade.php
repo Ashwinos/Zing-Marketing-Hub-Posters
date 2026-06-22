@@ -116,22 +116,25 @@
     margin-top: 22px;
     }
     .design28-wrapper .d28-pill-badge {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+        display: block;
+        text-align: center;
         background: {{ $themeColor }};
         border-radius: 30px;
-        padding: 0.9cqw 4cqw;
-        margin: 1cqw 0;
+       padding: 0.95cqw 2.8cqw 0.95cqw;
+        margin: 0.8cqw auto;
+        width: fit-content;
+        line-height: 0;
     }
     .design28-wrapper .d28-pill-badge span {
         font-family: 'Open Sans', sans-serif;
-        font-size: 2.8cqw;
+        font-size: 9px;
         font-weight: 700;
         color: #ffffff;
         letter-spacing: 1px;
         text-transform: uppercase;
         line-height: 1;
+        display: inline-block;
+        vertical-align: middle;
     }
 
     /* ══ FOOD IMAGE ══ */
@@ -446,10 +449,10 @@
 
         {{-- ══ HEADLINE ══ --}}
         <div class="d28-headline">
-            
+
             <span class="d28-hl-main">{{ $menu['name'] }}</span>
             <div class="d28-pill-badge">
-                <span>Bite Into Bliss</span>
+                <span style="color: #ffffff;">Bite Into Bliss</span>
             </div>
         </div>
 
@@ -517,9 +520,8 @@
 
                 {{-- Left: logo + website --}}
                 <div class="d28-footer-meta">
-                    
-                       
-                   
+
+
                     @if (!empty($restaurant->website_domain))
                         <span class="d28-footer-website">{{ mb_substr($restaurant->website_domain, 0, 22) }}</span>
                     @else
