@@ -186,6 +186,7 @@
         bottom: 2.5cqw;
         left: 3.5cqw;
         z-index: 9;
+        text-align: start;
     }
 
     .design25-wrapper .d25-dish-sup {
@@ -251,6 +252,7 @@
         line-height: 1.5;
         max-width: 55%;
         margin: 0;
+        text-align: start;
     }
 
     .design25-wrapper .d25-order-btn {
@@ -337,6 +339,7 @@
     
     
 @endphp
+
 
 <div class="design25-wrapper">
     <div class="design25-card" id="posterCard25">
