@@ -522,14 +522,14 @@
                 <div class="d28-footer-meta">
 
 
-                    @if (!empty((@user()->website_domain))
+                    @if (!empty(@user()->website_domain))
                         <span class="d28-footer-website">{{ mb_substr($restaurant->website_domain, 0, 22) }}</span>
                     
                     @endif
                 </div>
 
                 {{-- Right: phone --}}
-                @if (!empty((@user()->phone))
+                @if (!empty(@user()->phone))
                     <span class="d28-footer-phone">{{ mb_substr($restaurant->phone, 0, 16) }}</span>
                 
                 @endif
