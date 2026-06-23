@@ -449,18 +449,19 @@
             <p class="d26-address">{{ @user()->address ?? 'L' }}</p>
 
             {{-- Phone --}}
+            @if (@user()->phone)
             <p class="d26-phone">Call Us: {{ @user()->phone ?? '' }}</p>
-
+            @endif
         </div>{{-- /info --}}
 
         {{-- ============================================================
              L8: Dark green footer bar
         ============================================================ --}}
         <div class="d26-footer">
-
+             @if (@user()->website_domain)
             {{-- Website left --}}
             <div class="d26-footer-site">{{ @user()->website_domain ?? '' }}</div>
-
+             @endif
             {{-- Logo right --}}
             <div class="d26-footer-logo-wrap">
                 @if (!empty($logourl))
