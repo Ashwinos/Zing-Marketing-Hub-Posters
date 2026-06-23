@@ -454,7 +454,7 @@
         {{-- ── L4: Footer ── --}}
         <div class="d27-footer">
             <div class="d27-footer-band-left">
-                <span class="d27-footer-brand">{{ @user()->name ?? 'Our Restaurant' }}</span>
+                <span class="d27-footer-brand">{{ @user()->name ?? '' }}</span>
                 @if (!empty(@user()->address))
                     <span class="d27-footer-address">{{ @user()->address }}</span>
                 @endif
