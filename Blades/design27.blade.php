@@ -87,6 +87,7 @@
         gap: 1.8cqw;
         /* Right border separator between the two columns */
         border-right: 3px solid rgba(0,0,0,0.18);
+        text-align: start;
     }
 
     .design27-wrapper .d27-promo-logo {
@@ -160,6 +161,7 @@
         position: relative;
         overflow: hidden;
         gap: 1.5cqw;
+        text-align: start;
     }
 
     .design27-wrapper .d27-headline-col h2 {
@@ -262,6 +264,7 @@
         margin: 0 2cqw;
         display: flex;
         align-items: baseline;
+        /*text-align: start;*/
     }
 
     .design27-wrapper .d27-promo-tagline-text span {
