@@ -377,7 +377,7 @@
         <div class="d29-bg-right"></div>
 
         {{-- L1: Left side decoration — food icon outlines --}}
-        <svg class="d29-decor-left" viewBox="0 0 177 340" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <svg class="d29-decor-left" width="177" height="340" viewBox="0 0 177 340" xmlns="http://www.w3.org/2000/svg" fill="none" preserveAspectRatio="none">
             {{-- Avocado top --}}
             <g transform="translate(25,15)" stroke="#1a1a1a" stroke-width="1.4" opacity="0.85">
                 <ellipse cx="20" cy="22" rx="16" ry="20"/>
@@ -418,7 +418,7 @@
         <div class="d29-r-chili2-body"></div>
 
         {{-- L2: Dotted vertical line edge --}}
-        <svg class="d29-dots-edge" viewBox="0 0 8 70" xmlns="http://www.w3.org/2000/svg">
+        <svg class="d29-dots-edge" width="8" height="70" viewBox="0 0 8 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
             <circle cx="4" cy="4"  r="1.6" fill="{{ $themeColor }}"/>
             <circle cx="4" cy="14" r="1.6" fill="{{ $themeColor }}"/>
             <circle cx="4" cy="24" r="1.6" fill="{{ $themeColor }}"/>
