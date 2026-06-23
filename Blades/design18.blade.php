@@ -1,11 +1,7 @@
 <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Cormorant+Garamond:wght@400;600;700&family=Dancing+Script:wght@700&display=swap"
     rel="stylesheet">
-@php
-  user()->website_domain = null;
-  user()->phone = null;
 
-@endphp
 <style>
     .design18-wrapper {
         width: 100%;
