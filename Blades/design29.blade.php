@@ -214,6 +214,7 @@
         bottom: 15cqw; left: 5cqw;
         width: 45%;
         z-index: 5;
+        text-align: start;
     }
 
     .design29-wrapper .d29-eyebrow {
