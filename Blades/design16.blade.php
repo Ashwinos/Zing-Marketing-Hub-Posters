@@ -267,6 +267,7 @@
         <div class="d16-banner">
             <div class="d16-banner-bg"></div>
             <div class="d16-order-btn">Order now</div>
+             @if(!empty(@user()->address))
             <div class="d16-location">
                 <svg viewBox="0 0 24 24">
                     <path
@@ -274,6 +275,7 @@
                 </svg>
                 {{ @user()->address ?? ' ' }}
             </div>
+             @endif
         </div>
 
         {{-- FOOD IMAGE --}}

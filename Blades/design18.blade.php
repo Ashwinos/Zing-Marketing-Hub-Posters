@@ -239,7 +239,9 @@
 
         {{-- HEADLINE --}}
         <div class="d18-hl-wrap">
-            <p class="d18-headline">Craving Greek<br>Belair Cafe Food?</p>
+            <p class="d18-headline"> @if(strlen(@$menu['name']) <= 20)
+                    {{ @$menu['name'] }}
+                @endif</p>
         </div>
 
         {{-- FOOD IMAGE --}}
@@ -256,8 +258,7 @@
         <div class="d18-tagline-wrap">
             @if (!empty($menu['description']))
                 <p class="d18-tagline">{{ Str::limit($menu['description'], 55, '...') }}</p>
-            @else
-                <p class="d18-tagline">Still haven't tried our delicious Tacos?</p>
+            
             @endif
         </div>
 
@@ -314,8 +315,12 @@
             <div class="d18-info-center">
                 <div class="d18-r-name">{{ @user()->name ?? ' ' }}</div>
                 <div class="d18-r-addr">{{ @user()->address ?? ' ' }}</div>
+                @if(!empty(@user()->phone))
                 <div class="d18-r-phone">Phone: {{ @user()->phone ?? ' ' }}</div>
+                 @endif
+                  @if(!empty(@user()->website_domain))
                 <div class="d18-r-email">Website: {{ @user()->website_domain ?? ' ' }}</div>
+                 @endif
             </div>
 
             {{-- Right tile column --}}
