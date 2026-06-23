@@ -524,16 +524,14 @@
 
                     @if (!empty($restaurant->website_domain))
                         <span class="d28-footer-website">{{ mb_substr($restaurant->website_domain, 0, 22) }}</span>
-                    @else
-                        <span class="d28-footer-website">www.yourwebsite.com</span>
+                    
                     @endif
                 </div>
 
                 {{-- Right: phone --}}
                 @if (!empty($restaurant->phone))
                     <span class="d28-footer-phone">{{ mb_substr($restaurant->phone, 0, 16) }}</span>
-                @else
-                    <span class="d28-footer-phone">000 0000 000</span>
+                
                 @endif
 
             </div>
