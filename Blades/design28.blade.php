@@ -431,7 +431,7 @@
 
         {{-- ══ WATERMARK BG ══ --}}
         <div class="d28-watermark" aria-hidden="true">
-            @php $wm = !empty($menu['name']) ? mb_strtoupper(mb_substr($menu['name'], 0, 8)) : 'HOT DOG'; @endphp
+            @php $wm = !empty($menu['name']) ? mb_strtoupper(mb_substr($menu['name'], 0, 8)) : 'Zest Quest'; @endphp
             <span>{{ $wm }}</span><span>{{ $wm }}</span>
             <span>{{ $wm }}</span><span>{{ $wm }}</span>
             <span>{{ $wm }}</span>
