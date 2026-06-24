@@ -268,7 +268,7 @@
         border-radius: 50%;
         overflow: hidden;
         z-index: 1;
-        background: #c8a060;
+        background: {{$themeColor}};
     }
 
     .design24-wrapper .d24-food-circle img {
@@ -282,7 +282,7 @@
     .design24-wrapper .d24-food-placeholder {
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, #c8a060 0%, #8a5a20 100%);
+        background: {{$themeColor}});
     }
 
     /* ORDER NOW badge — right side of circle, at band level */

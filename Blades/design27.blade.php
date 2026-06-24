@@ -41,7 +41,7 @@
 
     .design27-wrapper .d27-photo-placeholder {
         width: 100%; height: 100%;
-        background: linear-gradient(135deg, #c8a060 0%, #8a5a20 60%, #5a3010 100%);
+        background: {{$themeColor}};
     }
 
     /* Dot grid top-right */
@@ -52,13 +52,7 @@
         z-index: 4; pointer-events: none;
     }
 
-    /* Dark corner square */
-    .design27-wrapper .d27-corner-sq {
-        position: absolute;
-        top: 0; right: 0;
-        width: 5cqw; height: 5cqw;
-        background: #1a1a1a; z-index: 5;
-    }
+   
 
     /* ══ L2: Middle split row ══ */
     .design27-wrapper .d27-mid-row {
@@ -409,8 +403,7 @@
                 </svg>
             </div>
 
-            {{-- Dark corner square --}}
-            <div class="d27-corner-sq"></div>
+            
         </div>
 
         {{-- ── L2: Middle split row ── --}}

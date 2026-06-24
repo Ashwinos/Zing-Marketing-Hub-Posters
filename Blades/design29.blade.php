@@ -172,7 +172,7 @@
 
     .design29-wrapper .d29-food-placeholder {
         width: 100%; height: 100%;
-        background: linear-gradient(135deg, #c8a060, #8a5a20);
+        background: {{$themeColor}};
     }
 
     /* ── Date badge — overlapping center of photo ── */
@@ -386,10 +386,10 @@
                 <ellipse cx="20" cy="22" rx="16" ry="20" fill="#8aab3a" opacity="0.3" stroke="none"/>
             </g>
             {{-- Knife --}}
-            <g transform="translate(110,20) rotate(25)" stroke="#1a1a1a" stroke-width="1.3" opacity="0.8">
-                <path d="M0 0 L25 0 L30 8 L0 8 Z"/>
-                <line x1="0" y1="4" x2="-15" y2="4"/>
-            </g>
+            <!--<g transform="translate(110,20) rotate(25)" stroke="#1a1a1a" stroke-width="1.3" opacity="0.8">-->
+            <!--    <path d="M0 0 L25 0 L30 8 L0 8 Z"/>-->
+            <!--    <line x1="0" y1="4" x2="-15" y2="4"/>-->
+            <!--</g>-->
             {{-- Cheese wedge --}}
             <g transform="translate(15,140)" stroke="#1a1a1a" stroke-width="1.3" opacity="0.8">
                 <path d="M0 30 L20 0 L40 30 Z"/>

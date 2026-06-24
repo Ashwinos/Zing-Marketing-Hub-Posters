@@ -31,10 +31,12 @@
         z-index: 1;
         display: flex;
         flex-direction: column;
+        align-items: center;
         justify-content: center;
         gap: 0;
         pointer-events: none;
         overflow: hidden;
+        text-align: center;
     }
     .design28-wrapper .d28-watermark span {
         font-family: 'Oswald', sans-serif;
@@ -46,10 +48,9 @@
         line-height: 0.95;
         white-space: nowrap;
         display: block;
+        text-align: center;
         opacity: 0.55;
     }
-    .design28-wrapper .d28-watermark span:nth-child(odd)  { transform: translateX(-4cqw); }
-    .design28-wrapper .d28-watermark span:nth-child(even) { transform: translateX(4cqw); }
 
     /* ══ RIGHT ACCENT STRIP ══ */
     .design28-wrapper .d28-right-strip {
@@ -158,7 +159,7 @@
     }
     .design28-wrapper .d28-food-placeholder {
         width: 100%; height: 100%;
-        background: radial-gradient(ellipse at center, #d4854a 0%, #8a4520 70%);
+       
         border-radius: 50%;
     }
 
@@ -524,14 +525,14 @@
 
                     @if (!empty(@user()->website_domain))
                         <span class="d28-footer-website">{{ mb_substr($restaurant->website_domain, 0, 22) }}</span>
-                    
+
                     @endif
                 </div>
 
                 {{-- Right: phone --}}
                 @if (!empty(@user()->phone))
                     <span class="d28-footer-phone">{{ mb_substr($restaurant->phone, 0, 16) }}</span>
-                
+
                 @endif
 
             </div>

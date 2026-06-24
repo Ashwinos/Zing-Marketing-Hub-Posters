@@ -163,7 +163,7 @@ background: radial-gradient(
     .design22-wrapper .d22-food-placeholder {
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, #c8a060 0%, #8a5a20 100%);
+        background: {{$themeColor}};
     }
 
     /* ── Price tag overlaid on food image bottom-right ── */
@@ -274,6 +274,13 @@ background: radial-gradient(
         width: 3cqw;
         height: 3cqw;
         fill: {{ $themeColor }};
+        flex-shrink: 0;
+    }
+
+    /* Order Now badge inside footer — always pinned to the right edge,
+       regardless of whether the website block is rendered before it */
+    .design22-wrapper .d22-footer .d22-badge {
+        margin-left: auto;
         flex-shrink: 0;
     }
 

@@ -161,7 +161,7 @@
 
     .design30-wrapper .d30-food-placeholder {
         width: 100%; height: 100%;
-        background: linear-gradient(135deg, #e0c068 0%, #c8902a 55%, #9a5c10 100%);
+        background: {{$themeColor}};
     }
 
     /* ══ Menu name — heading, below food image ══ */

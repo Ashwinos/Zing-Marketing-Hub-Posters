@@ -55,7 +55,7 @@
     .design23-wrapper .d23-food-placeholder {
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, #c8a060 0%, #8a5a20 100%);
+        background: {{$themeColor}};
     }
 
     /* Header bar over image */
