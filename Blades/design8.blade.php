@@ -263,7 +263,7 @@ body{
         background: white;
         content: '';
     } */
-    svg path {
+    .design8-wrapper svg path {
         fill: var(--text-on-theme);
     }
 

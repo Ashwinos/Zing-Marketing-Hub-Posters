@@ -232,7 +232,7 @@
         opacity: 0.4;
     }
 
-    svg path {
+    .design7-wrapper svg path {
         fill: var(--text-on-theme);
     }
 
