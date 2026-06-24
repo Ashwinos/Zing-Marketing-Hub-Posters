@@ -377,6 +377,30 @@
     .design27-wrapper .d27-download-btn:disabled { opacity: .5; cursor: not-allowed; }
 </style>
 
+ @php
+    
+      
+       $addressParts = array_map('trim', explode(',', user()->address));
+    
+        $city = null;
+        
+        switch (count($addressParts)) {
+            case 3:
+                $city = $addressParts[0];
+                break;
+        
+            case 4:
+                $city = $addressParts[1];
+                break;
+        
+            case 5:
+                $city = $addressParts[2];
+                break;
+        }
+    
+    
+    @endphp
+
 <div class="design27-wrapper">
     <div class="design27-card" id="posterCard27">
 
@@ -442,7 +466,13 @@
         <div class="d27-promo-sect">
             <div class="d27-promo-sect-rule"></div>
             <span class="d27-promo-sect-ornament">&#9670;</span>
-            <p class="d27-promo-tagline-text">Best In <span>Chicago</span></p>
+           <p class="d27-promo-tagline-text">
+                @if(strlen($city) > 33)
+                    Best In <span>The City</span>
+                @else
+                    Best In <span>{{ $city }}</span>
+                @endif
+            </p>
             <span class="d27-promo-sect-ornament">&#9670;</span>
             <div class="d27-promo-sect-rule"></div>
         </div>

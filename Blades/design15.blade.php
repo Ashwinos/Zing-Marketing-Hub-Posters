@@ -279,7 +279,9 @@
 
         {{-- BG collage --}}
         <div class="d15-bg-collage">
-            <img src="{{ $menuImageUrl }}" alt="" crossorigin="anonymous">
+              @if (isset($menuImageUrl) && $menuImageUrl)
+                <img src="{{ $menuImageUrl }}" alt="" crossorigin="anonymous">
+             @endif
         </div>
 
         {{-- Dot patterns --}}

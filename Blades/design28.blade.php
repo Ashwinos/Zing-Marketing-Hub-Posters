@@ -524,22 +524,20 @@
 
 
                     @if (!empty(@user()->website_domain))
-                        <span class="d28-footer-website">{{ mb_substr($restaurant->website_domain, 0, 22) }}</span>
-
+                        <span class="d28-footer-website">{{ @user()->website_domain, }}</span>
                     @endif
                 </div>
 
                 {{-- Right: phone --}}
                 @if (!empty(@user()->phone))
-                    <span class="d28-footer-phone">{{ mb_substr($restaurant->phone, 0, 16) }}</span>
-
+                    <span class="d28-footer-phone">{{ @user()->phone }}</span>
                 @endif
 
             </div>
 
             {{-- Address — centered below, same position --}}
             @if (!empty(@user()->address))
-                <span class="d28-footer-address">{{ mb_substr($restaurant->address, 0, 44) }}</span>
+                <span class="d28-footer-address">{{ @user()->address, 0, 44 }}</span>
             @endif
 
         </div>

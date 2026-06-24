@@ -128,7 +128,7 @@
 
     .design25-wrapper .d25-headline-main span {
         font-family: 'Anton', sans-serif;
-        font-size: 13cqw;
+        font-size: 9cqw;
         color: #1a0a0a;
         line-height: 0.92;
         letter-spacing: 0.01em;
@@ -329,16 +329,31 @@
     }
 </style>
 
-@php
-    $d25City = @user()->city ?? null;
-    if (!$d25City && !empty(@user()->address)) {
-        $d25AddrParts = array_map('trim', explode(',', @user()->address));
-        $d25City = $d25AddrParts[count($d25AddrParts) - 2] ?? ($d25AddrParts[0] ?? 'Your City');
-    }
-    $d25City = $d25City ?: 'Your City';
+
+    @php
+    
+      
+       $addressParts = array_map('trim', explode(',', user()->address));
+    
+        $city = null;
+        
+        switch (count($addressParts)) {
+            case 3:
+                $city = $addressParts[0];
+                break;
+        
+            case 4:
+                $city = $addressParts[1];
+                break;
+        
+            case 5:
+                $city = $addressParts[2];
+                break;
+        }
     
     
-@endphp
+    @endphp
+
 
 
 <div class="design25-wrapper">
@@ -368,7 +383,11 @@
         <div class="d25-headline-wrap">
             
             <div class="d25-headline-main">
-                Discover<br><span>{{ $d25City }}</span>'s<br>Hidden Gem
+                Discover<br>
+                <span>
+                    {{ !empty(@user()->address) && !empty($city) && strlen($city) < 40 ? $city : 'Your City' }}
+                </span>'s<br>
+                Hidden Gem
             </div>
         </div>
 
