@@ -60,9 +60,7 @@
             @if (isset($logourl) && $logourl)
                 <img src="{{ $logourl }}" alt="logo" crossorigin="anonymous"
                      style="height:100%;width:auto;display:block;object-fit:contain;">
-            @else
-                <div style="height:100%;padding:0 8px;display:flex;align-items:center;font-family:'Lato',sans-serif;font-weight:900;font-size:14px;color:#fff;white-space:nowrap;background:#263238;">
-                    {{ @user()->name ?? ' ' }}
+            
                 </div>
             @endif
         </div>

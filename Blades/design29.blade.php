@@ -433,8 +433,7 @@
         <div class="d29-logo">
             @if (isset($logourl) && $logourl)
                 <img src="{{ $logourl }}" alt="logo" crossorigin="anonymous">
-            @else
-                <div class="d29-logo-fallback">{{ strtoupper(substr(@user()->name ?? 'R', 0, 1)) }}</div>
+            
             @endif
         </div>
 

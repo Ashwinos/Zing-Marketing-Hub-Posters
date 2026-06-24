@@ -442,11 +442,13 @@
         <div class="d28-right-strip"></div>
 
         {{-- ══ TOP-LEFT LOGO BADGE ══ --}}
-        <div class="d28-logo-badge">
-            @if (!empty($logourl))
-                <img src="{{ $logourl }}" alt="logo" crossorigin="anonymous">
-            @endif
-        </div>
+        @if (isset($logourl) && $logourl)
+            <div class="d28-logo-badge">
+               
+                    <img src="{{ $logourl }}" alt="logo" crossorigin="anonymous">
+              
+            </div>
+          @endif
 
         {{-- ══ HEADLINE ══ --}}
         <div class="d28-headline">

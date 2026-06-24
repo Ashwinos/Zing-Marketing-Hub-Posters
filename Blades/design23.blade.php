@@ -397,8 +397,7 @@
             <div class="d23-footer-top">
                 @if (isset($logourl) && $logourl)
                     <img src="{{ $logourl }}" alt="logo" class="d23-footer-logo-img" crossorigin="anonymous">
-                @else
-                    <div class="d23-footer-logo-avatar">{{ strtoupper(substr(@user()->name ?? 'R', 0, 1)) }}</div>
+                
                 @endif
 
                 <div class="d23-footer-info">

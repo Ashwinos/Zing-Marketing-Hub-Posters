@@ -248,11 +248,12 @@
             <div class="design17-logo-wrap">
 
                 {{-- LOGO above --}}
-                <div class="design17-logo-ring">
-                    @if(isset($logourl) && $logourl)
+                
+                 @if(isset($logourl) && $logourl)
+                    <div class="design17-logo-ring">
                         <img src="{{ $logourl }}" alt="logo" crossorigin="anonymous">
-                    @endif    
                 </div>
+                @endif    
 
                 {{-- NAME below --}}
                 <div class="design17-logo-text">

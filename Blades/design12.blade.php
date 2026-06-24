@@ -178,7 +178,7 @@
         width: auto;
         height: 2rem;
         overflow: hidden;
-        border: 2.5px solid rgba(255, 255, 255, 0.6);
+        /*border: 2.5px solid rgba(255, 255, 255, 0.6);*/
         flex-shrink: 0;
         background: #fff;
         display: flex;

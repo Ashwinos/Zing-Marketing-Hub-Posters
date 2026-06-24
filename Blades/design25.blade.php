@@ -367,10 +367,7 @@
             <div class="d25-logo-wrap">
                 @if (isset($logourl) && $logourl)
                     <img src="{{ $logourl }}" alt="logo" class="d25-logo-img" crossorigin="anonymous">
-                @else
-                    <div class="d25-logo-fallback">
-                        <svg viewBox="0 0 24 24"><path d="M12 3C7 3 3 7 3 12s4 9 9 9 9-4 9-9-4-9-9-9zm0 2c1.5 0 2.9.4 4.1 1.1L5.1 16.1C4.4 14.9 4 13.5 4 12c0-4.4 3.6-8 8-8zm0 14c-1.5 0-2.9-.4-4.1-1.1l11-11c.7 1.2 1.1 2.6 1.1 4.1 0 4.4-3.6 8-8 8z"/></svg>
-                    </div>
+                
                 @endif
                 <div>
                     <div class="d25-brand-name">{{ @user()->name ?? '' }}</div>

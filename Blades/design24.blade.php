@@ -473,8 +473,7 @@
             <div class="d24-logo-area">
                 @if (isset($logourl) && $logourl)
                     <img src="{{ $logourl }}" alt="logo" class="d24-logo-img" crossorigin="anonymous">
-                @else
-                    <div class="d24-logo-fallback">{{ strtoupper(substr(@user()->name ?? 'R', 0, 1)) }}</div>
+                
                 @endif
             </div>
 
