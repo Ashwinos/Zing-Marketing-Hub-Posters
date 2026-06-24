@@ -114,7 +114,7 @@
     margin: 0;
     letter-spacing: 1px;
     display: block;
-    margin-top: 22px;
+    margin-top: 28px;
     }
     .design28-wrapper .d28-pill-badge {
         display: block;
@@ -450,8 +450,12 @@
 
         {{-- ══ HEADLINE ══ --}}
         <div class="d28-headline">
-
-            <span class="d28-hl-main">{{ $menu['name'] }}</span>
+            @if (!empty($menu['name']) && strlen($menu['name']) <= 20)
+                <span class="d28-hl-main">{{ $menu['name'] }}</span>
+            @else
+                <span class="d28-hl-main">Culinary Perfection</span>
+                    
+            @endif
             <div class="d28-pill-badge">
                 <span style="color: #ffffff;">Bite Into Bliss</span>
             </div>

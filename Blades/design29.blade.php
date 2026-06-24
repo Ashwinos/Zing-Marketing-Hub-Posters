@@ -458,8 +458,12 @@
 
         {{-- L6: Bottom-left yellow content --}}
         <div class="d29-lower-left">
-
-            <p class="d29-main-title">{{ @$menu['name'] ?? '' }}</p>
+            @if (!empty($menu['name']) && strlen($menu['name']) <= 20)
+                <p class="d29-main-title">{{ @$menu['name'] }}</p>
+             @else
+               <p class="d29-main-title">Next-Level Flavor</p>
+                    
+            @endif
             <p class="d29-desc">
                 @if (!empty($menu['description']))
                     {{ Str::limit($menu['description'], 80, '...') }}

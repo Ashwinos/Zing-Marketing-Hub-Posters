@@ -443,8 +443,11 @@
 
             {{-- Right: dark headline col --}}
             <div class="d27-headline-col">
-                @if (!empty($menu['name']))
+                @if (!empty($menu['name']) && strlen($menu['name']) <= 20)
+                
                     <h2>{!! nl2br(e($menu['name'])) !!}</h2>
+                @else
+                    <h2>Taste the Best</h2>
                 @endif
                 @if (!empty($menu['description']))
                     <p class="d27-col-desc">{{ Str::limit($menu['description'], 80, '…') }}</p>
