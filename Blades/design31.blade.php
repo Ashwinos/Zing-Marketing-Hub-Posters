@@ -135,7 +135,7 @@
 
     .design31-wrapper .d31-photo-placeholder {
         width: 100%; height: 100%;
-        background: radial-gradient(circle at center, #cfe0a0 0%, #8fae4a 70%, #5d7a2c 100%);
+        background: {{ $themeColor }};
     }
 
     /* ══ Description ══ */
@@ -203,10 +203,22 @@
         text-overflow: ellipsis;
         letter-spacing: 0.2px;
     }
+    
+     .design31-wrapper .d31-footer-left span.visit-us {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 3cqw;
+        font-weight: 700;
+        color: #ffffff;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        letter-spacing: 0.2px;
+        padding-top: 3px;
+    }
 
     .design31-wrapper .d31-footer-right {
         flex: 1;
-        background: #5a7a2e;
+        background: #53514f;
         padding: 2.4cqw 3.5cqw;
         display: flex;
         flex-direction: column;
@@ -318,7 +330,11 @@
 
         {{-- ══ Script headline ══ --}}
         <div class="d31-headline">
-            <h1>{{ !empty($menu['name']) ? $menu['name'] : 'Healthy Food' }}</h1>
+            @if (!empty($menu['name']) && strlen($menu['name']) <= 20)
+            <h1>{{ $menu['name'] }}</h1>
+             @else
+              <h1>Taste the Best</h1>
+              @endif
             <p class="d31-headline-sub">Every Bite a Delight</p>
         </div>
 
@@ -353,9 +369,14 @@
                 @if (!empty(@user()->website_domain))
                     <span>{{ @user()->website_domain }}</span>
                 @endif
+                @if (empty(@user()->website_domain) && empty(@user()->phone) )
+                  @if (!empty(@user()->address))
+                  <span class="visit-us">VISIT US</span>
+                  @endif
+                @endif
             </div>
 
-            <div class="d31-footer-right" style="background: #5a7a2e;">
+            <div class="d31-footer-right" style="background: #53514f;">
                 @if (!empty(@user()->address))
                     <span>{{ @user()->address }}</span>
                 @endif
@@ -403,4 +424,4 @@
             button.disabled = false;
         });
     }
-</script> 
+</script>

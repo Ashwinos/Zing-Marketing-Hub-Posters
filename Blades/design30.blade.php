@@ -4,6 +4,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Matemasie&display=swap" rel="stylesheet">
+
 <style>
     /* ═══════════════════════════════════════════════════════
        design30 — PREMIUM REDESIGN
@@ -238,7 +239,7 @@
          font-family: "Matemasie", sans-serif;
   font-weight: 400;
         font-size: 9cqw;
-        color: {{ $themeColor }};
+        color: #49473c;
         line-height: 1.0;
         text-transform: uppercase;
         margin: 0;
@@ -540,7 +541,7 @@
 
         {{-- ══ Watermark — repeating restaurant name ══ --}}
         <div class="d30-watermark" aria-hidden="true">
-            @php $d30WName = Str::upper(@user()->name ?? 'RESTAURANT'); @endphp
+            @php $d30WName = Str::upper(@user()->name ?? ''); @endphp
             @for ($i = 0; $i < 6; $i++)
                 <div class="d30-watermark-row">
                     <span>{{ $d30WName }}</span>
@@ -615,11 +616,15 @@
         
 
         {{-- ══ Menu name heading ══ --}}
-        @if (!empty($menu['name']))
+        
             <div class="d30-menu-heading">
+                @if (!empty($menu['name']) && strlen($menu['name']) <= 19)
                 <h2>{{ $menu['name'] }}</h2>
+                 @else
+                 <h2>The Flavor Express</h2>
+                  @endif
             </div>
-        @endif
+       
 
         {{-- ══ Art deco ornamental divider ══ --}}
         <!--<div class="d30-art-divider" aria-hidden="true">-->
@@ -677,7 +682,7 @@
         <div class="d30-footer">
 
             <div class="d30-footer-left">
-                <p class="d30-restaurant-name">{{ Str::limit(@user()->name ?? 'Our Restaurant', 22, '') }}</p>
+                <p class="d30-restaurant-name">{{ Str::limit(@user()->name ?? '', 22, '') }}</p>
                 @if (!empty(@user()->website_domain))
                     <div class="d30-website-row">
                         <svg viewBox="0 0 24 24" fill="#c9a84c" xmlns="http://www.w3.org/2000/svg">
