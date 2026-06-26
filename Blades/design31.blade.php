@@ -1,6 +1,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
     .design31-wrapper {
@@ -17,13 +17,13 @@
         aspect-ratio: 4 / 5;
         position: relative;
         overflow: hidden;
-        background: #161616;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+        background: #f7f6ec;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.22);
         container-type: inline-size;
         box-sizing: border-box;
     }
 
-    /* ══ TOP-LEFT LOGO ══ */
+    /* ══ Logo — top-left ══ */
     .design31-wrapper .d31-logo {
         position: absolute;
         top: 3cqw; left: 4cqw;
@@ -36,38 +36,95 @@
         display: block;
     }
 
-    .design31-wrapper .d31-logo-fallback {
-        font-family: 'Anton', sans-serif;
-        font-size: 3.6cqw;
-        color: #ffffff;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-    }
-
-    /* ══ Circular food photo area ══ */
-    .design31-wrapper .d31-photo-circle {
+    /* ══ Organic blob shapes — background decoration ══ */
+    .design31-wrapper .d31-blob-tr {
         position: absolute;
-        top: 2cqw;
-        left: calc(50% - 46cqw);
-        width: 92cqw; height: 92cqw;
-        z-index: 1;
-        border-radius: 50%;
-        background: #1a1a1a;
-        overflow: hidden;
-        box-sizing: border-box;
-    }
-
-    /* Dashed ring outline, slightly inset */
-    .design31-wrapper .d31-photo-dashring {
-        position: absolute;
-        top: 2cqw;
-        left: calc(50% - 46cqw);
-        width: 92cqw; height: 92cqw;
-        z-index: 4;
-        border-radius: 50%;
-        border: 1.5px dashed rgba(255,255,255,0.35);
-        box-sizing: border-box;
+        top: -10cqw; right: -14cqw;
+        width: 60cqw; height: 60cqw;
+        background: {{ $themeColor }};
+        opacity: 0.18;
+        border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%;
+        z-index: 0;
         pointer-events: none;
+    }
+
+    .design31-wrapper .d31-blob-bl {
+        position: absolute;
+        bottom: -12cqw; left: -16cqw;
+        width: 55cqw; height: 55cqw;
+        background: {{ $themeColor }};
+        opacity: 0.13;
+        border-radius: 58% 42% 35% 65% / 55% 60% 40% 45%;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    /* ══ Decorative leaf accents ══ */
+    .design31-wrapper .d31-leaf {
+        position: absolute;
+        z-index: 1;
+        opacity: 0.55;
+        pointer-events: none;
+    }
+    .design31-wrapper .d31-leaf svg { display: block; }
+
+    /* ══ Decorative swirl accents ══ */
+    .design31-wrapper .d31-swirl {
+        position: absolute;
+        z-index: 1;
+        opacity: 0.5;
+        pointer-events: none;
+    }
+    .design31-wrapper .d31-swirl svg { display: block; }
+
+    /* ══ Script headline ══ */
+    .design31-wrapper .d31-headline {
+        position: relative;
+        z-index: 5;
+        text-align: center;
+        padding-top: 15cqw;
+    }
+
+    .design31-wrapper .d31-headline h1 {
+        font-family: 'Pacifico', cursive;
+        font-size: 9cqw;
+        color: {{ $themeColor }};
+        line-height: 1;
+        margin: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        /*white-space: nowrap;*/
+        adding: 10cqw 6cqw 0 6cqw;
+    }
+
+    .design31-wrapper .d31-headline-sub {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 2.4cqw;
+        font-weight: 700;
+        color: #d49a1f;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        margin: 0.8cqw 0 0;
+    }
+
+    /* ══ Circular food photo ══ */
+    .design31-wrapper .d31-photo-wrap {
+        position: relative;
+        z-index: 4;
+        display: flex;
+        justify-content: center;
+        margin-top: 4cqw;
+    }
+
+    .design31-wrapper .d31-photo-circle {
+        width: 58cqw; height: 58cqw;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 2cqw solid #ffffff;
+        box-sizing: border-box;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+        overflow: hidden;
+        position: relative;
     }
 
     .design31-wrapper .d31-photo-circle img {
@@ -78,219 +135,34 @@
 
     .design31-wrapper .d31-photo-placeholder {
         width: 100%; height: 100%;
-        background: radial-gradient(circle at center, #e0a040 0%, #a85a10 60%, #5a2e08 100%);
+        background: radial-gradient(circle at center, #cfe0a0 0%, #8fae4a 70%, #5d7a2c 100%);
     }
 
-    /* ══ Red circular phone badge — overlapping photo, upper-right ══ */
-    .design31-wrapper .d31-call-badge {
-        position: absolute;
-        top: 14cqw;
-        right: 3cqw;
-        width: 27cqw; height: 27cqw;
-        z-index: 6;
-        border-radius: 50%;
-        background: {{ $themeColor }};
-        border: 1.2cqw solid #161616;
-        box-sizing: border-box;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.45);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 1.5cqw;
-        transform: rotate(-8deg);
-    }
-
-    .design31-wrapper .d31-call-label {
-        font-family: 'Open Sans', sans-serif;
-        font-size: 2.4cqw;
-        font-weight: 800;
-        color: #ffffff;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        line-height: 1;
-        margin: 0 0 0.6cqw;
-    }
-
-    .design31-wrapper .d31-call-sub {
-        font-family: 'Open Sans', sans-serif;
-        font-size: 1.5cqw;
-        font-weight: 600;
-        color: rgba(255,255,255,0.85);
-        letter-spacing: 0.3px;
-        line-height: 1.2;
-        margin: 0 0 0.8cqw;
-    }
-
-    .design31-wrapper .d31-call-phone {
-        font-family: 'Anton', sans-serif;
-        font-size: 2.6cqw;
-        color: #ffffff;
-        letter-spacing: 0.3px;
-        line-height: 1.1;
-    }
-
-    /* ══ Torn-paper ribbon banner — "MOST DELICIOUS" ══ */
-    .design31-wrapper .d31-ribbon-top {
-        position: absolute;
-        top: 60cqw;
-        left: 0; right: 0;
-        z-index: 5;
-        display: flex;
-        justify-content: center;
-    }
-
-    .design31-wrapper .d31-ribbon-top span {
-        display: inline-block;
-        background: {{ $themeColor }};
-        color: #ffffff;
-        font-family: 'Open Sans', sans-serif;
-        font-size: 2.2cqw;
-        font-weight: 800;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        padding: 0.9cqw 6cqw;
-        line-height: 1;
-        clip-path: polygon(0% 0%, 100% 0%, 97% 50%, 100% 100%, 0% 100%, 3% 50%);
-    }
-
-    /* ══ PIZZA headline ══ */
-    .design31-wrapper .d31-pizza-heading {
-        position: absolute;
-        top: 64cqw;
-        left: 0; right: 0;
-        z-index: 4;
-        text-align: center;
-    }
-
-    .design31-wrapper .d31-pizza-heading h1 {
-        font-family: 'Anton', sans-serif;
-        font-size: 17cqw;
-        color: #ffffff;
-        line-height: 0.85;
-        margin: 0;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        -webkit-text-stroke: 1.5px {{ $themeColor }};
-    }
-
-    .design31-wrapper .d31-pizza-sub {
-        font-family: 'Open Sans', sans-serif;
-        font-size: 2.6cqw;
-        font-weight: 700;
-        color: #ffffff;
-        letter-spacing: 4px;
-        text-transform: uppercase;
-        margin: 0.8cqw 0 0;
-    }
-
-    /* ══ Lower content row: tagline left / checklist right ══ */
-    .design31-wrapper .d31-lower-row {
-        position: absolute;
-        top: 84cqw;
-        left: 5cqw; right: 5cqw;
-        z-index: 4;
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        gap: 3cqw;
-    }
-
-    .design31-wrapper .d31-lower-left {
-        flex: 1;
-        min-width: 0;
-    }
-
-    .design31-wrapper .d31-lower-eyebrow {
-        font-family: 'Open Sans', sans-serif;
-        font-size: 1.9cqw;
-        font-weight: 700;
-        color: {{ $themeColor }};
-        letter-spacing: 0.3px;
-        margin: 0 0 0.6cqw;
-        line-height: 1.3;
-    }
-
-    .design31-wrapper .d31-lower-eyebrow strong {
-        color: #ffffff;
-    }
-
-    .design31-wrapper .d31-restaurant-name {
-        font-family: 'Anton', sans-serif;
-        font-size: 3.4cqw;
-        color: #ffffff;
-        text-transform: uppercase;
-        letter-spacing: 0.3px;
-        margin: 0.6cqw 0 0;
-        line-height: 1.1;
-    }
-
-    .design31-wrapper .d31-stars {
-        color: {{ $themeColor }};
-        font-size: 2.2cqw;
-        letter-spacing: 0.2cqw;
-        margin-top: 0.6cqw;
-    }
-
-    .design31-wrapper .d31-lower-right {
-        flex-shrink: 0;
-        text-align: right;
-        max-width: 42cqw;
-    }
-
-    .design31-wrapper .d31-checklist-title {
-        font-family: 'Open Sans', sans-serif;
-        font-size: 1.9cqw;
-        font-weight: 800;
-        color: #ffffff;
-        letter-spacing: 0.3px;
-        text-transform: uppercase;
-        margin: 0 0 1cqw;
-        line-height: 1.15;
-    }
-
-    .design31-wrapper .d31-checklist {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 0.8cqw;
-    }
-
-    .design31-wrapper .d31-checklist li {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 0.8cqw;
-        font-family: 'Open Sans', sans-serif;
-        font-size: 1.9cqw;
-        font-weight: 600;
-        color: #ffffff;
-        white-space: nowrap;
-    }
-
-    .design31-wrapper .d31-checklist li svg {
-        width: 2.4cqw; height: 2.4cqw;
-        flex-shrink: 0;
-    }
-
-    /* ══ Description strip ══ */
+    /* ══ Description ══ */
     .design31-wrapper .d31-desc {
-        position: absolute;
-        top: 95cqw;
-        left: 5cqw; right: 5cqw;
-        z-index: 4;
+        position: relative;
+        z-index: 5;
+        text-align: center;
+        padding: 5cqw 8cqw 0;
+    }
+
+    .design31-wrapper .d31-desc-title {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 5.4cqw;
+        font-weight: 800;
+        color: {{ $themeColor }};
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        margin: 0 0 1.2cqw;
+        line-height: 1.05;
     }
 
     .design31-wrapper .d31-desc p {
         font-family: 'Open Sans', sans-serif;
-        font-size: 1.7cqw;
+        font-size: 2.1cqw;
         font-weight: 400;
-        color: rgba(255,255,255,0.55);
-        line-height: 1.4;
+        color: #6a6a5a;
+        line-height: 1.5;
         margin: 0;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -299,42 +171,73 @@
         -webkit-box-orient: vertical;
     }
 
-    /* ══ FOOTER BAR — green, contact row ══ */
+    /* ══ FOOTER — two-tone green bar ══ */
     .design31-wrapper .d31-footer {
         position: absolute;
-        bottom: 0; left: 0; right: 0;
-        height: 9cqw;
+        bottom: 5cqw; left: 5cqw; right: 5cqw;
         z-index: 6;
-        background: #1e6b3e;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 4cqw;
-        box-sizing: border-box;
-        gap: 2cqw;
+        border-radius: 30px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.18);
     }
 
-    .design31-wrapper .d31-footer-item {
+    .design31-wrapper .d31-footer-left {
+        flex: 1.3;
+        background: {{ $themeColor }};
+        padding: 2.4cqw 4cqw;
         display: flex;
-        align-items: center;
-        gap: 0.8cqw;
+        flex-direction: column;
+        gap: 0.6cqw;
+        box-sizing: border-box;
         min-width: 0;
     }
 
-    .design31-wrapper .d31-footer-item svg {
-        width: 2.6cqw; height: 2.6cqw;
-        flex-shrink: 0;
-    }
-
-    .design31-wrapper .d31-footer-item span {
+    .design31-wrapper .d31-footer-left span {
         font-family: 'Open Sans', sans-serif;
-        font-size: 1.7cqw;
-        font-weight: 600;
+        font-size: 1.9cqw;
+        font-weight: 700;
         color: #ffffff;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         letter-spacing: 0.2px;
+    }
+
+    .design31-wrapper .d31-footer-right {
+        flex: 1;
+        background: #5a7a2e;
+        padding: 2.4cqw 3.5cqw;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 1cqw;
+        box-sizing: border-box;
+        min-width: 0;
+    }
+
+    .design31-wrapper .d31-social-icons {
+        display: flex;
+        align-items: center;
+        gap: 1.4cqw;
+    }
+
+    .design31-wrapper .d31-social-icons svg {
+        width: 3cqw; height: 3cqw;
+        fill: #ffffff;
+        flex-shrink: 0;
+    }
+
+    .design31-wrapper .d31-footer-right span {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 1.8cqw;
+        font-weight: 700;
+        color: #ffffff;
+        /*white-space: nowrap;*/
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
     }
 
     /* ── Download btn ── */
@@ -358,105 +261,106 @@
 <div class="design31-wrapper">
     <div class="design31-card" id="posterCard31">
 
-        {{-- ══ LOGO ══ --}}
-        <div class="d31-logo">
-            @if (!empty($logourl))
+        {{-- ══ Logo ══ --}}
+        @if (!empty($logourl))
+            <div class="d31-logo">
                 <img src="{{ $logourl }}" alt="logo" crossorigin="anonymous">
-            @else
-                <span class="d31-logo-fallback">{{ strtoupper(substr(@user()->name ?? 'Restaurant', 0, 10)) }}</span>
-            @endif
-        </div>
-
-        {{-- ══ Circular food photo ══ --}}
-        <div class="d31-photo-circle">
-            @if (!empty($menuImageUrl))
-                <img src="{{ $menuImageUrl }}"
-                     alt="{{ $menu['name'] ?? 'Food' }}"
-                     class="js-poster-menu-image"
-                     crossorigin="anonymous">
-            @else
-                <div class="d31-photo-placeholder"></div>
-            @endif
-        </div>
-        <div class="d31-photo-dashring"></div>
-
-        {{-- ══ Red call badge ══ --}}
-        @if (!empty(@user()->phone))
-            <div class="d31-call-badge" style="background: {{ $themeColor }};">
-                <p class="d31-call-label">Call Now!</p>
-                <p class="d31-call-sub">For Reservation</p>
-                <p class="d31-call-phone">{{ @user()->phone }}</p>
             </div>
         @endif
 
-        {{-- ══ Torn-paper ribbon ══ --}}
-        <div class="d31-ribbon-top">
-            <span style="background: {{ $themeColor }};">Most Delicious</span>
+        {{-- ══ Background blobs ══ --}}
+        <div class="d31-blob-tr" style="background: {{ $themeColor }};"></div>
+        <div class="d31-blob-bl" style="background: {{ $themeColor }};"></div>
+
+        {{-- ══ Decorative leaves ══ --}}
+        <div class="d31-leaf" style="top: 3cqw; right: 8cqw;">
+            <svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 1C5 4 3 9 6 15c3 4 8 5 12 2-2-1-5-2-7-5-2-3-2-7 0-11Z" fill="{{ $themeColor }}"/>
+            </svg>
+        </div>
+        <div class="d31-leaf" style="top: 30cqw; left: 3cqw; transform: rotate(-30deg);">
+            <svg width="18" height="18" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 1C5 4 3 9 6 15c3 4 8 5 12 2-2-1-5-2-7-5-2-3-2-7 0-11Z" fill="{{ $themeColor }}"/>
+            </svg>
+        </div>
+        <div class="d31-leaf" style="top: 22cqw; right: 4cqw; transform: rotate(40deg);">
+            <svg width="16" height="16" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 1C5 4 3 9 6 15c3 4 8 5 12 2-2-1-5-2-7-5-2-3-2-7 0-11Z" fill="{{ $themeColor }}"/>
+            </svg>
+        </div>
+        <div class="d31-leaf" style="bottom: 30cqw; left: 6cqw; transform: rotate(20deg);">
+            <svg width="20" height="20" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 1C5 4 3 9 6 15c3 4 8 5 12 2-2-1-5-2-7-5-2-3-2-7 0-11Z" fill="{{ $themeColor }}"/>
+            </svg>
+        </div>
+        <div class="d31-leaf" style="bottom: 36cqw; right: 6cqw; transform: rotate(-15deg);">
+            <svg width="18" height="18" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 1C5 4 3 9 6 15c3 4 8 5 12 2-2-1-5-2-7-5-2-3-2-7 0-11Z" fill="{{ $themeColor }}"/>
+            </svg>
         </div>
 
-        {{-- ══ PIZZA headline ══ --}}
-        <div class="d31-pizza-heading">
-            <h1 style="-webkit-text-stroke-color: {{ $themeColor }};">Pizza</h1>
-            <p class="d31-pizza-sub">In Town</p>
+        {{-- ══ Decorative swirls ══ --}}
+        <div class="d31-swirl" style="top: 5cqw; left: 6cqw;">
+            <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="{{ $themeColor }}" stroke-width="1.4">
+                <path d="M2 8a6 6 0 1 1 6 6"/>
+            </svg>
+        </div>
+        <div class="d31-swirl" style="top: 27cqw; right: 7cqw;">
+            <svg width="14" height="14" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="{{ $themeColor }}" stroke-width="1.4">
+                <path d="M2 8a6 6 0 1 1 6 6"/>
+            </svg>
+        </div>
+        <div class="d31-swirl" style="bottom: 34cqw; left: 4cqw;">
+            <svg width="14" height="14" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="{{ $themeColor }}" stroke-width="1.4">
+                <path d="M2 8a6 6 0 1 1 6 6"/>
+            </svg>
         </div>
 
-        {{-- ══ Lower row: tagline left / checklist right ══ --}}
-        <div class="d31-lower-row">
-            <div class="d31-lower-left">
-                <p class="d31-lower-eyebrow"><strong>Come and experience</strong><br>the best pizza in town!</p>
-                <p class="d31-restaurant-name">{{ Str::limit(@user()->name ?? 'Our Restaurant', 18, '') }}</p>
-                <div class="d31-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            </div>
-            <div class="d31-lower-right">
-                <p class="d31-checklist-title">Why Choose Us</p>
-                <ul class="d31-checklist">
-                    <li>
-                        <span>Wide Selection</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="{{ $themeColor }}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M20 6L9 17l-5-5"/>
-                        </svg>
-                    </li>
-                    <li>
-                        <span>Daily Special</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="{{ $themeColor }}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M20 6L9 17l-5-5"/>
-                        </svg>
-                    </li>
-                    <li>
-                        <span>Take Away</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="{{ $themeColor }}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M20 6L9 17l-5-5"/>
-                        </svg>
-                    </li>
-                </ul>
+        {{-- ══ Script headline ══ --}}
+        <div class="d31-headline">
+            <h1>{{ !empty($menu['name']) ? $menu['name'] : 'Healthy Food' }}</h1>
+            <p class="d31-headline-sub">Every Bite a Delight</p>
+        </div>
+
+        {{-- ══ Circular food photo ══ --}}
+        <div class="d31-photo-wrap">
+            <div class="d31-photo-circle">
+                @if (!empty($menuImageUrl))
+                    <img src="{{ $menuImageUrl }}"
+                         alt="{{ $menu['name'] ?? 'Food' }}"
+                         class="js-poster-menu-image"
+                         crossorigin="anonymous">
+                @else
+                    <div class="d31-photo-placeholder"></div>
+                @endif
             </div>
         </div>
 
         {{-- ══ Description ══ --}}
         @if (!empty($menu['description']))
             <div class="d31-desc">
-                <p>{{ Str::limit($menu['description'], 70, '…') }}</p>
+                <p>{{ Str::limit($menu['description'], 90, '…') }}</p>
             </div>
         @endif
 
-        {{-- ══ FOOTER BAR ══ --}}
-        <div class="d31-footer" style="background: #1e6b3e;">
-            @if (!empty(@user()->website_domain))
-                <div class="d31-footer-item">
-                    <svg viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-                    </svg>
+        {{-- ══ FOOTER ══ --}}
+        <div class="d31-footer">
+
+            <div class="d31-footer-left" style="background: {{ $themeColor }};">
+                @if (!empty(@user()->phone))
+                    <span>Call: {{ @user()->phone }}</span>
+                @endif
+                @if (!empty(@user()->website_domain))
                     <span>{{ @user()->website_domain }}</span>
-                </div>
-            @endif
-            @if (!empty(@user()->address))
-                <div class="d31-footer-item">
-                    <svg viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
-                    </svg>
-                    <span>{{ Str::limit(@user()->address, 30, '') }}</span>
-                </div>
-            @endif
+                @endif
+            </div>
+
+            <div class="d31-footer-right" style="background: #5a7a2e;">
+                @if (!empty(@user()->address))
+                    <span>{{ @user()->address }}</span>
+                @endif
+            </div>
+
         </div>
 
     </div>{{-- /.design31-card --}}
@@ -482,7 +386,7 @@
             });
         })).then(function() {
             return html2canvas(card, {
-                scale: scale, backgroundColor: '#161616',
+                scale: scale, backgroundColor: '#f7f6ec',
                 logging: false, useCORS: true, allowTaint: true, imageTimeout: 15000
             });
         }).then(function(canvas) {
@@ -499,4 +403,4 @@
             button.disabled = false;
         });
     }
-</script>
+</script> 
