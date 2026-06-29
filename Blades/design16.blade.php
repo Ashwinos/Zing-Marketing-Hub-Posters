@@ -251,7 +251,7 @@
             @if (isset($logourl) && $logourl)
                 <img src="{{ $logourl }}" alt="logo" crossorigin="anonymous">
             @endif
-            | {{ @user()->name ?? ' ' }}
+             {{ @user()->name ?? ' ' }}
         </div>
 
         {{-- HEADLINE --}}

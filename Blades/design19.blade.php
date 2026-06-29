@@ -431,6 +431,7 @@
 
              {{-- 4. TAGLINE — menu name --}}
              <div class="d19-tagline-wrap">
+                 @if(isset($menu['name']) && strlen($menu['name']) <= 20)
                  <svg width="100%" height="16" viewBox="0 0 320 16" style="display:block;margin-bottom:5px">
                      <line x1="12" y1="8" x2="126" y2="8" stroke="#c9a843" stroke-width=".7" opacity=".58" />
                      <line x1="194" y1="8" x2="308" y2="8" stroke="#c9a843" stroke-width=".7" opacity=".58" />
@@ -441,11 +442,11 @@
                  </svg>
 
                  <p class="d19-tagline">
-                     @if(isset($menu['name']) && strlen($menu['name']) <= 20)
+                     
                          {{ $menu['name'] }}
-                     @endif
+                    
                  </p>
-
+                @endif
                  <svg width="100%" height="16" viewBox="0 0 320 16" style="display:block;margin-top:5px">
                      <line x1="12" y1="8" x2="126" y2="8" stroke="#c9a843" stroke-width=".7" opacity=".58" />
                      <line x1="194" y1="8" x2="308" y2="8" stroke="#c9a843" stroke-width=".7" opacity=".58" />
@@ -454,6 +455,7 @@
                      <polygon points="160,2 165,8 160,14 155,8" fill="none" stroke="#c9a843" stroke-width="1.1" />
                      <circle cx="160" cy="8" r="2.5" fill="#c9a843" opacity=".9" />
                  </svg>
+                  
              </div>
 
              {{-- 5. INFO ROW — collapsed --}}

@@ -90,13 +90,7 @@
         z-index: 2; pointer-events: none; opacity: 0.85;
     }
 
-    /* ── Dotted vertical line — far right edge ── */
-    .design29-wrapper .d29-dots-edge {
-        position: absolute;
-        top: 3cqw; right: 2.5cqw;
-        width: 2cqw; height: 18cqw;
-        z-index: 4; pointer-events: none;
-    }
+
 
     /* ── LOGO — top-left ── */
     .design29-wrapper .d29-logo {
@@ -244,6 +238,8 @@
         line-height: 1.5;
         font-weight: 400;
         margin: 0;
+        overflow-wrap: anywhere;
+        word-break: break-all;
     }
 
     /* ── Address — below description, yellow area ── */
@@ -418,16 +414,7 @@
         <div class="d29-r-chili2-cap"></div>
         <div class="d29-r-chili2-body"></div>
 
-        {{-- L2: Dotted vertical line edge --}}
-        <svg class="d29-dots-edge" width="8" height="70" viewBox="0 0 8 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <circle cx="4" cy="4"  r="1.6" fill="{{ $themeColor }}"/>
-            <circle cx="4" cy="14" r="1.6" fill="{{ $themeColor }}"/>
-            <circle cx="4" cy="24" r="1.6" fill="{{ $themeColor }}"/>
-            <circle cx="4" cy="34" r="1.6" fill="{{ $themeColor }}"/>
-            <circle cx="4" cy="44" r="1.6" fill="{{ $themeColor }}"/>
-            <circle cx="4" cy="54" r="1.6" fill="{{ $themeColor }}"/>
-            <circle cx="4" cy="64" r="1.6" fill="{{ $themeColor }}"/>
-        </svg>
+        
 
         {{-- LOGO — top-left --}}
         <div class="d29-logo">

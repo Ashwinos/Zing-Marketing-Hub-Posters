@@ -39,7 +39,6 @@ body{
         flex-direction: column;
         align-items: center;
         font-family: "Playfair Display", serif;
-        padding: 20px 0;
         font-family: "Quicksand", sans-serif;
     }
 
@@ -122,6 +121,7 @@ body{
     .design8-wrapper .d8-body {
 
         z-index: 9;
+        padding-bottom: 70px;
        
     }
 
@@ -181,7 +181,10 @@ body{
 
     /* ── Footer ── */
     .design8-wrapper .d8-footer {
-
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
         padding: 0rem 1rem;
 
         color: var(--text-on-accent);

@@ -310,7 +310,7 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        line-height: 1;
+        line-height: 1.3;
     }
 
     .design27-wrapper .d27-footer-address {
@@ -318,11 +318,17 @@
         font-size: 1.8cqw;
         font-weight: 400;
         color: rgba(255,255,255,0.55);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        line-height: 1;
+        line-height: 1.3;
         letter-spacing: 0.2px;
+
+        /* Allow multiple lines */
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+
+        /* Prevent overflow from long words */
+        overflow-wrap: anywhere;
+        word-break: break-word;
     }
 
     .design27-wrapper .d27-footer-band-right {

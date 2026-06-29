@@ -157,14 +157,14 @@
 
     .design18-wrapper .d18-r-phone {
         font-family: 'Cormorant Garamond', serif;
-        font-size: 2.5cqw;
+        font-size: 8px !important;
         color: #333;
         margin: 0;
     }
 
     .design18-wrapper .d18-r-email {
         font-family: 'Cormorant Garamond', serif;
-        font-size: 2.5cqw;
+        font-size: 8px !important;
         color: #333;
         margin: 0;
     }

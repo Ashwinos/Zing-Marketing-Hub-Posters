@@ -134,6 +134,13 @@
         justify-content: space-between;
     }
 
+    /* ── DOT DECORATION (top-right) ──
+       Replaced CSS radial-gradient background-image with an inline SVG dot grid.
+       html2canvas frequently fails to rasterize small repeating radial-gradient
+       backgrounds (renders blank/flat), and cqw-based width/height on the gradient
+       box can collapse to 0 if the cloned document doesn't preserve the
+       container-query context during the snapshot. An SVG with literal <circle>
+       elements has no such dependency — it paints identically in every renderer. */
     .design23-wrapper .d23-dot-tr {
         position: absolute;
         top: 2cqw;
@@ -142,9 +149,13 @@
         pointer-events: none;
         width: 9cqw;
         height: 9cqw;
-        background-image: radial-gradient(circle, {{ $themeColor }} 1.3px, transparent 1.3px);
-        background-size: 5px 5px;
         opacity: 0.4;
+    }
+
+    .design23-wrapper .d23-dot-tr svg {
+        display: block;
+        width: 100%;
+        height: 100%;
     }
 
     /* ── HEADLINE STYLE ── */
@@ -272,7 +283,7 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        line-height: 1;
+        line-height: 1.3;
     }
 
    .design23-wrapper .d23-footer-bottom {
@@ -375,7 +386,26 @@
 
         {{-- CONTENT --}}
         <div class="d23-content">
-            <div class="d23-dot-tr"></div>
+            <div class="d23-dot-tr">
+                <svg width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="4.5" cy="4.5" r="1.3" fill="{{ $themeColor }}"/>
+                    <circle cx="13.5" cy="4.5" r="1.3" fill="{{ $themeColor }}"/>
+                    <circle cx="22.5" cy="4.5" r="1.3" fill="{{ $themeColor }}"/>
+                    <circle cx="31.5" cy="4.5" r="1.3" fill="{{ $themeColor }}"/>
+                    <circle cx="4.5" cy="13.5" r="1.3" fill="{{ $themeColor }}"/>
+                    <circle cx="13.5" cy="13.5" r="1.3" fill="{{ $themeColor }}"/>
+                    <circle cx="22.5" cy="13.5" r="1.3" fill="{{ $themeColor }}"/>
+                    <circle cx="31.5" cy="13.5" r="1.3" fill="{{ $themeColor }}"/>
+                    <circle cx="4.5" cy="22.5" r="1.3" fill="{{ $themeColor }}"/>
+                    <circle cx="13.5" cy="22.5" r="1.3" fill="{{ $themeColor }}"/>
+                    <circle cx="22.5" cy="22.5" r="1.3" fill="{{ $themeColor }}"/>
+                    <circle cx="31.5" cy="22.5" r="1.3" fill="{{ $themeColor }}"/>
+                    <circle cx="4.5" cy="31.5" r="1.3" fill="{{ $themeColor }}"/>
+                    <circle cx="13.5" cy="31.5" r="1.3" fill="{{ $themeColor }}"/>
+                    <circle cx="22.5" cy="31.5" r="1.3" fill="{{ $themeColor }}"/>
+                    <circle cx="31.5" cy="31.5" r="1.3" fill="{{ $themeColor }}"/>
+                </svg>
+            </div>
 
             {{-- HEADLINE --}}
             <div class="d23-headline-block">
@@ -397,7 +427,6 @@
             <div class="d23-footer-top">
                 @if (isset($logourl) && $logourl)
                     <img src="{{ $logourl }}" alt="logo" class="d23-footer-logo-img" crossorigin="anonymous">
-                
                 @endif
 
                 <div class="d23-footer-info">

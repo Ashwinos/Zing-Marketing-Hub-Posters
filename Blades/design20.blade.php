@@ -28,29 +28,66 @@
 
 <div class="design20-wrapper">
 
-    {{-- ALL structural styles are INLINE — guarantees html2canvas export fidelity --}}
+    {{-- ALL structural styles are INLINE — guarantees html2canvas / headless-Chrome export fidelity --}}
     <div id="posterCard20"
          style="position:relative;width:340px;height:425px;overflow:hidden;background-color:#263238;box-shadow:0 28px 80px rgba(0,0,0,.65);flex-shrink:0;font-family:'Lato',sans-serif;">
 
         {{-- L0: Dark background --}}
         <div style="position:absolute;top:0;left:0;right:0;bottom:0;z-index:0;background-color:#263238;"></div>
 
-        {{-- L1: Crosshatch pattern via SVG --}}
-        <svg style="position:absolute;top:0;left:0;width:340px;height:425px;z-index:1;opacity:0.15;"
+        {{-- L1: Crosshatch grid — built from plain <line> elements, NOT a <pattern>/url() fill. --}}
+        {{-- Pattern fills depend on the renderer resolving url(#id) references inside <defs>, which is the
+             single most failure-prone step in headless/server-side SVG rasterization (timing + isolated-frame
+             rendering + occasional id collisions). Plain lines have no indirection, so they paint identically
+             in every renderer — html2canvas, headless Chrome/Puppeteer, or a normal browser. --}}
+        <svg width="340" height="425"
+             style="position:absolute;top:0;left:0;width:340px;height:425px;z-index:1;"
              viewBox="0 0 340 425" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <pattern id="d20ch" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                    <line x1="0"  y1="0"  x2="0"  y2="20" stroke="#59AF16" stroke-width="1.2"/>
-                    <line x1="10" y1="0"  x2="10" y2="20" stroke="#59AF16" stroke-width="1.2"/>
-                    <line x1="0"  y1="0"  x2="20" y2="0"  stroke="#59AF16" stroke-width="1.2"/>
-                    <line x1="0"  y1="10" x2="20" y2="10" stroke="#59AF16" stroke-width="1.2"/>
-                </pattern>
-            </defs>
-            <rect width="340" height="425" fill="url(#d20ch)"/>
+                <line x1="0" y1="0" x2="0" y2="425" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="20" y1="0" x2="20" y2="425" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="40" y1="0" x2="40" y2="425" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="60" y1="0" x2="60" y2="425" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="80" y1="0" x2="80" y2="425" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="100" y1="0" x2="100" y2="425" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="120" y1="0" x2="120" y2="425" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="140" y1="0" x2="140" y2="425" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="160" y1="0" x2="160" y2="425" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="180" y1="0" x2="180" y2="425" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="200" y1="0" x2="200" y2="425" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="220" y1="0" x2="220" y2="425" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="240" y1="0" x2="240" y2="425" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="260" y1="0" x2="260" y2="425" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="280" y1="0" x2="280" y2="425" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="300" y1="0" x2="300" y2="425" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="320" y1="0" x2="320" y2="425" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="340" y1="0" x2="340" y2="425" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="0" y1="0" x2="340" y2="0" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="0" y1="20" x2="340" y2="20" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="0" y1="40" x2="340" y2="40" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="0" y1="60" x2="340" y2="60" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="0" y1="80" x2="340" y2="80" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="0" y1="100" x2="340" y2="100" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="0" y1="120" x2="340" y2="120" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="0" y1="140" x2="340" y2="140" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="0" y1="160" x2="340" y2="160" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="0" y1="180" x2="340" y2="180" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="0" y1="200" x2="340" y2="200" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="0" y1="220" x2="340" y2="220" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="0" y1="240" x2="340" y2="240" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="0" y1="260" x2="340" y2="260" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="0" y1="280" x2="340" y2="280" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="0" y1="300" x2="340" y2="300" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="0" y1="320" x2="340" y2="320" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="0" y1="340" x2="340" y2="340" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="0" y1="360" x2="340" y2="360" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="0" y1="380" x2="340" y2="380" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="0" y1="400" x2="340" y2="400" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+                <line x1="0" y1="420" x2="340" y2="420" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
         </svg>
 
         {{-- L2: White corner triangle (SVG polygon, clip-path unreliable in some exports) --}}
-        <svg style="position:absolute;top:0;left:0;width:340px;height:425px;z-index:2;pointer-events:none;"
+        <svg width="340" height="425"
+             style="position:absolute;top:0;left:0;width:340px;height:425px;z-index:2;pointer-events:none;"
              viewBox="0 0 340 425" xmlns="http://www.w3.org/2000/svg">
             <polygon points="0,0 92,0 0,94" fill="#ffffff"/>
         </svg>
@@ -60,8 +97,6 @@
             @if (isset($logourl) && $logourl)
                 <img src="{{ $logourl }}" alt="logo" crossorigin="anonymous"
                      style="height:100%;width:auto;display:block;object-fit:contain;">
-            
-                </div>
             @endif
         </div>
 
@@ -83,18 +118,35 @@
                 {{-- Solid colour band --}}
                 <div style="position:absolute;top:0;left:0;right:0;bottom:0;background-color:{{ $themeColor }};z-index:0;"></div>
 
-                {{-- Crosshatch overlay on band --}}
-                <svg style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;opacity:0.18;pointer-events:none;"
+                {{-- Crosshatch grid on band — same plain-line approach, no pattern/url() fill. --}}
+                <svg width="340" height="120"
+                     style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;"
                      viewBox="0 0 340 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <pattern id="d20chb" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                            <line x1="0"  y1="0"  x2="0"  y2="20" stroke="#fff" stroke-width="1.2"/>
-                            <line x1="10" y1="0"  x2="10" y2="20" stroke="#fff" stroke-width="1.2"/>
-                            <line x1="0"  y1="0"  x2="20" y2="0"  stroke="#fff" stroke-width="1.2"/>
-                            <line x1="0"  y1="10" x2="20" y2="10" stroke="#fff" stroke-width="1.2"/>
-                        </pattern>
-                    </defs>
-                    <rect width="340" height="120" fill="url(#d20chb)"/>
+                            <line x1="0" y1="0" x2="0" y2="120" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+                            <line x1="20" y1="0" x2="20" y2="120" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+                            <line x1="40" y1="0" x2="40" y2="120" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+                            <line x1="60" y1="0" x2="60" y2="120" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+                            <line x1="80" y1="0" x2="80" y2="120" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+                            <line x1="100" y1="0" x2="100" y2="120" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+                            <line x1="120" y1="0" x2="120" y2="120" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+                            <line x1="140" y1="0" x2="140" y2="120" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+                            <line x1="160" y1="0" x2="160" y2="120" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+                            <line x1="180" y1="0" x2="180" y2="120" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+                            <line x1="200" y1="0" x2="200" y2="120" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+                            <line x1="220" y1="0" x2="220" y2="120" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+                            <line x1="240" y1="0" x2="240" y2="120" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+                            <line x1="260" y1="0" x2="260" y2="120" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+                            <line x1="280" y1="0" x2="280" y2="120" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+                            <line x1="300" y1="0" x2="300" y2="120" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+                            <line x1="320" y1="0" x2="320" y2="120" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+                            <line x1="340" y1="0" x2="340" y2="120" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+                            <line x1="0" y1="0" x2="340" y2="0" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+                            <line x1="0" y1="20" x2="340" y2="20" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+                            <line x1="0" y1="40" x2="340" y2="40" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+                            <line x1="0" y1="60" x2="340" y2="60" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+                            <line x1="0" y1="80" x2="340" y2="80" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+                            <line x1="0" y1="100" x2="340" y2="100" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+                            <line x1="0" y1="120" x2="340" y2="120" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
                 </svg>
 
                 {{-- Text content --}}
