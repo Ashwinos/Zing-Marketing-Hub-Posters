@@ -212,11 +212,9 @@
         align-items: center;
         gap: 1.8cqw;
         background: {{ $themeColor }};
-        border-radius: 50cqw;
+       
         padding: 2cqw 6.5cqw;
-        box-shadow:
-            0 4px 18px rgba(0,0,0,0.35),
-            inset 0 1px 0 rgba(255,255,255,0.15);
+        
     }
     .design32-wrapper .d32-order-btn svg {
         width: 3.2cqw; height: 3.2cqw;

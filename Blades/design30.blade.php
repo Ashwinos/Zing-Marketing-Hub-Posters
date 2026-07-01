@@ -170,7 +170,6 @@
         height: 1.8rem; width: auto; display: block;
     }
 
-    
     .design30-wrapper .d30-eyebrow span {
         font-family: 'Open Sans', sans-serif;
         font-size: 2cqw;
@@ -189,7 +188,6 @@
         z-index: 6;
         border-radius: 1.5cqw;
         overflow: hidden;
-        
     }
     .design30-wrapper .d30-food-board img {
         width: 100%; height: 100%;
@@ -201,7 +199,7 @@
         background: {{ $themeColor }};
     }
 
-    /* Radial vignette over food image */
+    /* Radial vignette over food image — SVG-based (html2canvas-safe) */
     .design30-wrapper .d30-food-vignette {
         position: absolute;
         top: 17cqw;
@@ -209,8 +207,11 @@
         height: 52cqw;
         z-index: 7;
         border-radius: 1.5cqw;
+        overflow: hidden;
         pointer-events: none;
-        background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.32) 100%);
+    }
+    .design30-wrapper .d30-food-vignette svg {
+        width: 100%; height: 100%; display: block;
     }
 
     /* ══ Corner ornament brackets (4 corners of food image) ══ */
@@ -235,9 +236,8 @@
         text-align: center;
     }
     .design30-wrapper .d30-menu-heading h2 {
-       /*font-family: "Spicy Rice", serif;*/
-         font-family: "Matemasie", sans-serif;
-  font-weight: 400;
+        font-family: "Matemasie", sans-serif;
+        font-weight: 400;
         font-size: 9cqw;
         color: #49473c;
         line-height: 1.0;
@@ -290,7 +290,7 @@
     /* ══ Tagline pills (gold accent, not theme colour) ══ */
     .design30-wrapper .d30-tagline-pills {
         position: absolute;
-        top: 102cqw;
+        top: 98cqw;
         left: 4cqw; right: 4cqw;
         z-index: 6;
         display: flex;
@@ -554,8 +554,6 @@
         {{-- ══ Gold inner frame (full card) ══ --}}
         <div class="d30-inner-frame" aria-hidden="true"></div>
 
-        
-
         {{-- ══ Decorative rosette badge (top-left) ══ --}}
         <div class="d30-badge" aria-hidden="true">
             <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" fill="none">
@@ -610,21 +608,27 @@
             @endif
         </div>
 
-        {{-- ══ Food image radial vignette ══ --}}
-        <div class="d30-food-vignette" aria-hidden="true"></div>
-
-        
+        {{-- ══ Food image radial vignette (SVG-based, html2canvas-safe) ══ --}}
+        <div class="d30-food-vignette" aria-hidden="true">
+            <svg width="100%" height="100%" viewBox="0 0 400 240" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <radialGradient id="d30VignetteGrad" cx="50%" cy="50%" r="70%">
+                        <stop offset="50%" stop-color="#000000" stop-opacity="0"/>
+                        <stop offset="100%" stop-color="#000000" stop-opacity="0.32"/>
+                    </radialGradient>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#d30VignetteGrad)"/>
+            </svg>
+        </div>
 
         {{-- ══ Menu name heading ══ --}}
-        
-            <div class="d30-menu-heading">
-                @if (!empty($menu['name']) && strlen($menu['name']) <= 19)
-                <h2>{{ $menu['name'] }}</h2>
-                 @else
-                 <h2>The Flavor Express</h2>
-                  @endif
-            </div>
-       
+        <div class="d30-menu-heading">
+            @if (!empty($menu['name']) && strlen($menu['name']) <= 19)
+            <h2>{{ $menu['name'] }}</h2>
+             @else
+             <h2>The Flavor Express</h2>
+              @endif
+        </div>
 
         {{-- ══ Art deco ornamental divider ══ --}}
         <!--<div class="d30-art-divider" aria-hidden="true">-->
@@ -662,11 +666,11 @@
         <!--</div>-->
 
         {{-- ══ Description strip ══ --}}
-        @if (!empty($menu['description']))
-            <div class="d30-desc-strip">
-                <p>{{ Str::limit($menu['description'], 80, '…') }}</p>
-            </div>
-        @endif
+        <!--@if (!empty($menu['description']))-->
+        <!--    <div class="d30-desc-strip">-->
+        <!--        <p>{{ Str::limit($menu['description'], 80, '…') }}</p>-->
+        <!--    </div>-->
+        <!--@endif-->
 
         {{-- ══ Tagline pills (gold palette) ══ --}}
         <div class="d30-tagline-pills">

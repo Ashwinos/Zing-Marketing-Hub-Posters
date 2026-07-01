@@ -191,6 +191,7 @@
         gap: 0.6cqw;
         box-sizing: border-box;
         min-width: 0;
+        text-align: start;
     }
 
     .design31-wrapper .d31-footer-left span {
@@ -250,6 +251,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         max-width: 100%;
+        text-align: end;
     }
 
     /* ── Download btn ── */
