@@ -89,7 +89,7 @@
         font-family: 'Pacifico', cursive;
         font-size: 9cqw;
         color: {{ $themeColor }};
-        line-height: 1;
+        line-height: 1.8;
         margin: 0;
         overflow: hidden;
         text-overflow: ellipsis;

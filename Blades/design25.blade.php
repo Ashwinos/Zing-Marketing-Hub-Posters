@@ -29,9 +29,7 @@
         inset: 0;
         z-index: 0;
         pointer-events: none;
-        background-image: radial-gradient(circle, #c4a882 1px, transparent 1px);
-        background-size: 10px 10px;
-        opacity: 0.35;
+        display: block;
     }
 
     /* ── TOP BAR ── */
@@ -294,10 +292,15 @@
         padding: 1.8cqw 3.5cqw 2cqw;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-start;
         position: relative;
         z-index: 5;
         gap: 2cqw;
+    }
+
+    .design25-wrapper .d25-contact.d25-contact-right {
+        margin-left: auto;
+        flex: 0 1 auto;
     }
 
     .design25-wrapper .d25-footer-divider {
@@ -318,7 +321,6 @@
         overflow: hidden;
         text-overflow: ellipsis;
         min-width: 0;
-        flex: 1;
     }
 
     .design25-wrapper .d25-contact svg {
@@ -359,7 +361,16 @@
 <div class="design25-wrapper">
     <div class="design25-card" id="posterCard25">
 
-        <div class="d25-dot-bg"></div>
+        {{-- Dot background — self-contained SVG pattern, unique id scoped to Design 25, explicit width/height attributes so html2canvas paints it on clone --}}
+        <svg class="d25-dot-bg" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <defs>
+                <pattern id="d25-dots-pattern" patternUnits="userSpaceOnUse" width="10" height="10">
+                    <circle cx="1" cy="1" r="1" fill="#c4a882" />
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#d25-dots-pattern)" opacity="0.35" />
+        </svg>
+
         <div class="d25-top-bar"></div>
 
         {{-- Header --}}
@@ -456,7 +467,7 @@
                 <div class="d25-footer-divider"></div>
             @endif
             @if (@user()->website_domain)
-                <span class="d25-contact">
+                <span class="d25-contact d25-contact-right">
                     <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
                     {{ @user()->website_domain }}
                 </span>
