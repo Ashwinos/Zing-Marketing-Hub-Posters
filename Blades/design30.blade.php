@@ -686,7 +686,7 @@
         <div class="d30-footer">
 
             <div class="d30-footer-left">
-                <p class="d30-restaurant-name">{{ Str::limit(@user()->name ?? '', 22, '') }}</p>
+                <p class="d30-restaurant-name">{{ Str::limit(@user()->name ?? '', 26) }}</p>
                 @if (!empty(@user()->website_domain))
                     <div class="d30-website-row">
                         <svg viewBox="0 0 24 24" fill="#c9a84c" xmlns="http://www.w3.org/2000/svg">
