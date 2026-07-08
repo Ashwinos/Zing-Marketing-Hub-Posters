@@ -23,6 +23,21 @@
         box-sizing: border-box;
     }
 
+    /* ══ Paper texture layer (SVG grain, html2canvas-safe) ══ */
+    .d35-paper-texture {
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        z-index: 1;
+        pointer-events: none;
+        mix-blend-mode: multiply;
+        opacity: 0.5;
+    }
+    .d35-paper-texture svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+
     .d35-border-svg {
         position: absolute;
         top: 0; left: 0;
@@ -47,7 +62,10 @@
         height: 2rem;
         width: auto;
         display: block;
-        margin: 0 auto 2.4cqw;
+        position: absolute;
+        top: 6cqw;
+        right: 7cqw;
+        z-index: 6;
     }
 
     .d35-header {
@@ -58,19 +76,10 @@
         margin-bottom: 3.5cqw;
     }
 
-    .d35-header-label {
-        font-family: 'Oswald', sans-serif;
-        font-size: 3.6cqw;
-        font-weight: 600;
-        letter-spacing: 0.35em;
-        color: #3d2415;
-        text-transform: uppercase;
-    }
-
     .d35-title {
         font-family: 'Poppins', sans-serif;
         font-weight: 900;
-        font-size: 9.6cqw;
+        font-size: 27px;
         line-height: 1.02;
         letter-spacing: 0.01em;
         color: #3d2415;
@@ -82,6 +91,7 @@
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
+        margin-top: 25px;
     }
 
     .d35-address {
@@ -111,9 +121,10 @@
         right: 0;
         bottom: 0;
         width: 100%;
-        height: 64cqw;
+        height: 68cqw;
         overflow: hidden;
         background-color: #2a2015;
+        border-radius: 6px;
     }
 
     .d35-photo-rect img {
@@ -177,6 +188,21 @@
 <div class="design35-wrapper">
     <div class="design35-card" id="posterCard35" style="background: #d3b17f;">
 
+        {{-- ══ Paper texture — SVG feTurbulence grain (html2canvas-safe) ══ --}}
+        <div class="d35-paper-texture" aria-hidden="true">
+            <svg width="340" height="425" viewBox="0 0 340 425" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <filter id="d35PaperGrain">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch" result="noise"/>
+                    <feColorMatrix in="noise" type="matrix"
+                        values="0 0 0 0 0
+                                0 0 0 0 0
+                                0 0 0 0 0
+                                0 0 0 0.45 0"/>
+                </filter>
+                <rect width="100%" height="100%" filter="url(#d35PaperGrain)"/>
+            </svg>
+        </div>
+
         <svg class="d35-border-svg" width="340" height="425" viewBox="0 0 340 425" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
             <rect x="14" y="14" width="312" height="397" fill="none" stroke="#3d2415" stroke-width="1.5" stroke-dasharray="5,4"/>
             <g stroke="#3d2415" stroke-width="1.5">
@@ -197,19 +223,9 @@
                 <img src="{{ $logourl }}" alt="logo" class="d35-logo" crossorigin="anonymous">
             @endif
 
-            <div class="d35-header">
-                <svg width="22" height="20" viewBox="0 0 22 20" xmlns="http://www.w3.org/2000/svg">
-                    <polygon points="11,0 13.5,7 21,7 15,11.5 17,19 11,14.5 5,19 7,11.5 1,7 8.5,7" fill="#3d2415"/>
-                </svg>
-                <span class="d35-header-label">Burger</span>
-                <svg width="22" height="20" viewBox="0 0 22 20" xmlns="http://www.w3.org/2000/svg">
-                    <polygon points="11,0 13.5,7 21,7 15,11.5 17,19 11,14.5 5,19 7,11.5 1,7 8.5,7" fill="#3d2415"/>
-                </svg>
-            </div>
-
             <h1 class="d35-title">{{ $menu['name'] ?? 'Crafted for Flavor' }}</h1>
 
-            <p class="d35-address">@user()->address</p>
+            <p class="d35-address">{{ @user()->address }}</p>
 
             <div class="d35-photo-zone">
 

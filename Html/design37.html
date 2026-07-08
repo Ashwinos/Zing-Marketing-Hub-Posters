@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Design 37 (Alt) - Medallion Badge Poster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    body { margin: 0; padding: 20px; background: #efe9db; display: flex; justify-content: center; }
+
+    .design37b-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'Manrope', sans-serif;
+    }
+
+    .design37b-wrapper .design37b-card {
+        width: 100%;
+        max-width: 340px;
+        aspect-ratio: 4 / 5;
+        position: relative;
+        overflow: hidden;
+        background: #1f3a2e;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+        container-type: inline-size;
+        box-sizing: border-box;
+    }
+
+    /* Grain texture via SVG filter — established platform fix,
+       avoids CSS background-image tiling issues in html2canvas */
+    .d37b-grain-svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.05;
+        pointer-events: none;
+        z-index: 3;
+    }
+
+    .d37b-content {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        padding: 8cqw 8cqw 7cqw;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        z-index: 4;
+    }
+
+    .d37b-logo-wrap {
+        position: absolute;
+        top: 6cqw;
+        left: 8cqw;
+        z-index: 6;
+    }
+
+    .d37b-logo-wrap img {
+        max-height: 1.8rem;
+        height: auto;
+        width: auto;
+        max-width: 100%;
+        display: block;
+    }
+
+    /* ---------- FULL-BLEED BACKGROUND IMAGE (like Design 38) ---------- */
+    .d37b-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: 1;
+    }
+
+    .d37b-bg-preload {
+        position: absolute;
+        width: 1px; height: 1px;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .d37b-scrim-top {
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 42%;
+        background: linear-gradient(180deg, rgba(15,26,20,0.72) 0%, rgba(15,26,20,0) 100%);
+        z-index: 2;
+    }
+
+    .d37b-scrim-bottom {
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        height: 48%;
+        background: linear-gradient(0deg, rgba(15,26,20,0.85) 0%, rgba(15,26,20,0.4) 60%, rgba(15,26,20,0) 100%);
+        z-index: 2;
+    }
+
+    /* ---------- TITLE ---------- */
+    .d37b-title {
+        font-family: 'Bodoni Moda', serif;
+        font-weight: 600;
+        font-style: italic;
+        font-size: 9.2cqw;
+        line-height: 1.04;
+        letter-spacing: 0.005em;
+        color: #f7f1e3;
+        text-align: left;
+        margin: 0 0 2.6cqw;
+        text-shadow: 0 3px 16px rgba(0,0,0,0.4);
+    }
+
+    .d37b-rule {
+        width: 14cqw;
+        height: 1.5px;
+        background: #c9a24b;
+        margin-bottom: 2.6cqw;
+        flex-shrink: 0;
+    }
+
+    .d37b-desc {
+        font-family: 'Manrope', sans-serif;
+        font-size: 2.3cqw;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+        color: #d9d2bf;
+        text-align: left;
+        max-width: 84%;
+        margin: 0;
+    }
+
+    .d37b-spacer { flex: 1 1 auto; }
+
+    /* ---------- FOOTER (floating pill chip: phone + website) ---------- */
+    .d37b-footer {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 2.6cqw;
+        padding: 2.6cqw 5.5cqw;
+        background: rgba(247,241,227,0.96);
+        border-radius: 999px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.28);
+    }
+
+    .d37b-footer-phone,
+    .d37b-footer-site {
+        font-family: 'Manrope', sans-serif;
+        font-size: 2.3cqw;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        color: #1f3a2e;
+        margin: 0;
+        white-space: nowrap;
+    }
+
+    .d37b-footer-divider {
+        width: 1px;
+        height: 3cqw;
+        background: rgba(31,58,46,0.3);
+        flex-shrink: 0;
+    }
+
+    .d37b-download-btn {
+        margin-top: 16px;
+        padding: 10px 22px;
+        font-family: 'Manrope', sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        background: #1f3a2e;
+        color: #f7f1e3;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+    .d37b-download-btn:disabled { opacity: 0.6; cursor: default; }
+</style>
+</head>
+<body>
+
+<div class="design37b-wrapper">
+    <div class="design37b-card" id="posterCard37b" style="background:#1f3a2e;">
+
+        <div class="d37b-bg js-photo-zone" style="background-image:url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1000&q=80')"></div>
+        <img class="d37b-bg-preload js-poster-menu-image" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1000&q=80" alt="">
+
+        <div class="d37b-scrim-top"></div>
+        <div class="d37b-scrim-bottom"></div>
+
+        <svg class="d37b-grain-svg" xmlns="http://www.w3.org/2000/svg" width="340" height="425" viewBox="0 0 340 425" preserveAspectRatio="none">
+            <filter id="d37bGrain">
+                <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.9 0"/>
+            </filter>
+            <rect width="340" height="425" filter="url(#d37bGrain)"/>
+        </svg>
+
+        <div class="d37b-logo-wrap">
+            <img src="https://dummyimage.com/160x40/1f3a2e/f7f1e3&text=LOGO" alt="Logo">
+        </div>
+
+        <div class="d37b-content">
+
+            <div class="d37b-spacer"></div>
+
+            <h1 class="d37b-title">Crafted for Flavor</h1>
+            <div class="d37b-rule"></div>
+            <p class="d37b-desc">Juicy beef patty, fresh spinach, house sauce, toasted brioche bun.</p>
+
+            <div class="d37b-footer" style="margin-top: 4cqw;">
+                <span class="d37b-footer-phone">+62 812 3456 7890</span>
+                <div class="d37b-footer-divider"></div>
+                <span class="d37b-footer-site">www.mikaburger.com</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <button type="button" class="d37b-download-btn" onclick="downloadDesign37b()">&#8595; Download Poster</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+    function downloadDesign37b() {
+        var card   = document.getElementById('posterCard37b');
+        var button = document.querySelector('.d37b-download-btn');
+        if (!card || !button) return;
+        button.innerHTML = 'Generating...';
+        button.disabled  = true;
+
+        var exportW = 1080;
+        var scale   = exportW / card.offsetWidth;
+
+        Promise.all(Array.from(card.querySelectorAll('img')).map(function(img) {
+            return new Promise(function(resolve) {
+                if (img.complete && img.naturalWidth > 0) resolve();
+                else { img.onload = resolve; img.onerror = resolve; }
+            });
+        })).then(function() {
+            return html2canvas(card, {
+                scale: scale,
+                backgroundColor: '#1f3a2e',
+                logging: false,
+                useCORS: true,
+                allowTaint: true,
+                imageTimeout: 15000,
+                onclone: function(clonedDoc) {
+                    var zones = clonedDoc.querySelectorAll('.js-photo-zone');
+                    zones.forEach(function(zone) {
+                        zone.style.backgroundSize = 'cover';
+                        zone.style.backgroundPosition = 'center';
+                        zone.style.backgroundRepeat = 'no-repeat';
+                    });
+                    var preloads = clonedDoc.querySelectorAll('.d37b-bg-preload');
+                    preloads.forEach(function(img) { img.style.display = 'none'; });
+                }
+            });
+        }).then(function(canvas) {
+            var link = document.createElement('a');
+            link.download = 'menu-poster-design37-alt.png';
+            link.href = canvas.toDataURL('image/png', 1.0);
+            link.click();
+            button.innerHTML = 'Download Poster';
+            button.disabled = false;
+        }).catch(function(error) {
+            console.error('Error:', error);
+            alert('Failed to generate image.');
+            button.innerHTML = 'Download Poster';
+            button.disabled = false;
+        });
+    }
+</script>
+
+</body>
+</html>
