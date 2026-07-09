@@ -1,9 +1,6 @@
-<!-- ============================================================
-     DESIGN 39 — Full-Bleed Menu Image, Corner Contact Info + Footer
-     Top-left: website · Top-right: phone
-     Footer: dish name (heading) — logo — address
-     Font pairing: Fraunces italic (heading) + Manrope (everything else)
-     ============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Asimovian&display=swap" rel="stylesheet">
 <style>
     .design39-wrapper {
         width: 100%;
@@ -125,15 +122,16 @@
     }
 
     .d39-heading {
-        font-family: 'Fraunces', serif;
+        font-family: "Asimovian", sans-serif;
         font-weight: 600;
         font-style: italic;
-        font-size: 8.4cqw;
+        font-size: 11.4cqw;
         line-height: 1.08;
         color: #ffffff;
         text-align: center;
         margin: 0 0 3cqw;
-        text-shadow: 0 3px 12px rgba(0,0,0,0.5);
+        text-shadow: 0 3px 12px rgba(0, 0, 0, 0.5);
+        text-transform: uppercase;
     }
 
     .d39-footer-row {
@@ -186,6 +184,17 @@
         cursor: pointer;
     }
     .d39-download-btn:disabled { opacity: 0.6; cursor: default; }
+    .d39-desc {
+               font-family: 'Manrope', sans-serif;
+            font-weight: 400;
+            font-size: 2.9cqw;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.92);
+            text-align: center;
+             max-width: 92%; 
+            /* margin: 3.4cqw 0 0;
+        }
+
 </style>
 
 <div class="design39-wrapper">
@@ -217,7 +226,10 @@
             <div class="d39-spacer"></div>
 
             <div class="d39-footer">
-                <h1 class="d39-heading">{{ $menu['name'] ?? 'Signature Dish' }}</h1>
+                <h1 class="d39-heading">Flavor First</h1>
+                @if(!empty($menu['description']))
+                    <p class="d39-desc">{{ $menu['description'] }}</p>
+                @endif
                 <div class="d39-footer-row">
                     @if(!empty($logourl))
                         <div class="d39-footer-logo">

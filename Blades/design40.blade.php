@@ -1,9 +1,6 @@
-<!-- ============================================================
-     DESIGN 40 — Full-Bleed Photo, Left-Anchored Promo Copy
-     Chevron corner decorations (inline SVG) top-left & bottom-right
-     Font pairing: Archivo Black (heading) + Yellowtail (script line)
-     + Poppins (body / button / website)
-     ============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montenegrin+Gothic+One&display=swap" rel="stylesheet">
 <style>
     .design40-wrapper {
         width: 100%;
@@ -57,6 +54,17 @@
         z-index: 2;
     }
 
+    /* ---------- LOGO (top-right) ---------- */
+    .d40-logo {
+        position: absolute;
+        top: 6cqw;
+        right: 6cqw;
+        height: 2rem;
+        width: auto;
+        display: block;
+        z-index: 4;
+    }
+
     .d40-content {
         position: absolute;
         top: 0; left: 0;
@@ -72,19 +80,36 @@
     /* ---------- CHEVRON DECORATIONS ---------- */
     .d40-chevrons { display: flex; gap: 1.6cqw; }
     .d40-chevrons-top { margin-bottom: 4cqw; }
-    .d40-chevrons-bottom {
+
+    /* ---------- BOTTOM-RIGHT CLUSTER (phone + chevrons) ---------- */
+    .d40-corner-bottom-right {
         position: absolute;
         bottom: 5cqw;
         right: 6cqw;
-        transform: rotate(180deg);
         z-index: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 2cqw;
     }
+
     .d40-chevron-icon {
-        width: 13cqw;
+        width: 9cqw;
         height: auto;
         display: block;
     }
     .d40-chevron-icon svg { width: 100%; height: 100%; display: block; }
+
+    .d40-phone {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        font-size: 2.6cqw;
+        color: #ffffff;
+        margin: 0;
+        text-align: right;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+        white-space: nowrap;
+    }
 
     /* ---------- TEXT BLOCK ---------- */
     .d40-heading {
@@ -100,14 +125,15 @@
     }
 
     .d40-script {
-        font-family: 'Yellowtail', cursive;
+        font-family: "Montenegrin Gothic One", serif;
         font-weight: 400;
-        font-size: 7.6cqw;
+        font-size: 9.6cqw;
         line-height: 1;
         color: #ffffff;
         text-align: left;
         margin: 1.4cqw 0 0;
         text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+        text-transform: uppercase;
     }
 
     .d40-desc {
@@ -172,6 +198,10 @@
 
         <div class="d40-scrim-left"></div>
 
+        @if(!empty($logourl))
+            <img class="d40-logo" src="{{ $logourl }}" alt="Logo" crossorigin="anonymous">
+        @endif
+
         <div class="d40-content">
 
             <div class="d40-chevrons d40-chevrons-top">
@@ -206,14 +236,10 @@
 
         </div>
 
-        <div class="d40-chevrons-bottom">
-            <span class="d40-chevron-icon">
-                <svg width="60" height="46" viewBox="0 0 60 46" xmlns="http://www.w3.org/2000/svg">
-                    <polyline points="4,4 20,23 4,42" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                    <polyline points="22,4 38,23 22,42" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
-                    <polyline points="40,4 56,23 40,42" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
-                </svg>
-            </span>
+        <div class="d40-corner-bottom-right">
+            @if(!empty(@user()->phone))
+                <p class="d40-phone">{{ @user()->phone }}</p>
+            @endif
         </div>
 
     </div>

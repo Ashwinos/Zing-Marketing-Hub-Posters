@@ -1,6 +1,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Matemasie&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet">
 <style>
     .design38-wrapper {
         width: 100%;
@@ -80,17 +80,17 @@
     }
 
     .d38-title-block {
-        padding: 14cqw 6cqw 0;
+        padding: 17cqw 6cqw 0;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
     .d38-title {
-        font-family: 'Matemasie', sans-serif;
+        font-family: "Caveat Brush", cursive;
         font-weight: 400;
         font-style: normal;
-        font-size: 9cqw;
+        font-size: 11cqw;
         line-height: 1.15;
         letter-spacing: 0.01em;
         color: #ffffff;
@@ -207,6 +207,16 @@
         cursor: pointer;
     }
     .d38-download-btn:disabled { opacity: 0.6; cursor: default; }
+    .d38-desc {
+               font-family: 'Manrope', sans-serif;
+            font-weight: 400;
+            font-size: 2.9cqw;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.92);
+            text-align: center;
+             max-width: 92%; 
+            /* margin: 3.4cqw 0 0;
+        }
 </style>
 
 <div class="design38-wrapper">
@@ -229,6 +239,9 @@
                 <h1 class="d38-title">{{ $menu['name'] ?? 'Tales & Trails' }}</h1>
                 @if(!empty(@user()->business_name))
                     <p class="d38-subtitle">{{ @user()->business_name }}</p>
+                @endif
+                @if(!empty($menu['description']))
+                    <p class="d38-desc">{{ $menu['description'] }}</p>
                 @endif
             </div>
 
