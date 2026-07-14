@@ -79,7 +79,7 @@
 
     /* ---------- CHEVRON DECORATIONS ---------- */
     .d40-chevrons { display: flex; gap: 1.6cqw; }
-    .d40-chevrons-top { margin-bottom: 4cqw; }
+    .d40-chevrons-top { margin-bottom: 5cqw; }
 
     /* ---------- BOTTOM-RIGHT CLUSTER (phone + chevrons) ---------- */
     .d40-corner-bottom-right {
@@ -111,56 +111,65 @@
         white-space: nowrap;
     }
 
-    /* ---------- TEXT BLOCK ---------- */
-    .d40-heading {
-        font-family: 'Archivo Black', sans-serif;
-        font-weight: 400;
-        font-size: 9.4cqw;
-        line-height: 1.05;
-        color: #ffffff;
-        text-align: left;
-        margin: 0;
-        max-width: 60%;
-        text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    /* ---------- HEADING BLOCK ---------- */
+    .d40-heading-block {
+        display: flex;
+        flex-direction: column;
+        margin-top: 15px;
     }
 
-    .d40-script {
+    
+
+    
+    .d40-title {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .d40-title-line {
+        font-family: 'Archivo Black', sans-serif;
+        font-weight: 900;
+        font-size: 28px;
+        line-height: 0.98;
+        letter-spacing: -0.01em;
+        color: #ffffff;
+        text-shadow: 0 3px 14px rgba(0,0,0,0.45);
+    }
+
+    .d40-title-accent {
         font-family: "Montenegrin Gothic One", serif;
         font-weight: 400;
-        font-size: 9.6cqw;
-        line-height: 1;
-        color: #ffffff;
-        text-align: left;
-        margin: 1.4cqw 0 0;
-        text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+        font-size: 12.5cqw;
+        line-height: 0.92;
+        margin-top: 0.8cqw;
         text-transform: uppercase;
+        color: {{$themeColor}};
+        text-shadow: 0 4px 18px rgba(0,0,0,0.5);
     }
 
-    .d40-desc {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 400;
-        font-size: 2.9cqw;
-        line-height: 1.5;
-        color: rgba(255,255,255,0.92);
-        text-align: left;
-        max-width: 62%;
-        margin: 3.4cqw 0 0;
+    .d40-accent-bar {
+        width: 14cqw;
+        height: 0.9cqw;
+        background: {{$themeColor}};
+        border-radius: 2px;
+        margin-top: 3.4cqw;
     }
 
     .d40-spacer { flex: 1 1 auto; }
 
     /* ---------- CTA + WEBSITE ---------- */
     .d40-cta {
-        align-self: flex-start;
+           align-self: flex-start;
         background: transparent;
         border: 1.5px solid #ffffff;
         color: #ffffff;
         font-family: 'Poppins', sans-serif;
         font-weight: 600;
-        font-size: 2.7cqw;
+        font-size: 8px;
         letter-spacing: 0.08em;
         text-transform: uppercase;
-        padding: 3cqw 6cqw;
+        padding: 2cqw 6cqw;
         text-decoration: none;
         display: inline-block;
         margin-bottom: 2.6cqw;
@@ -215,14 +224,14 @@
                 </span>
             </div>
 
-
-            @if(!empty($menu['name']))
-                <p class="d40-script">{{ $menu['name'] }}</p>
-            @endif
-
-            @if(!empty($menu['description']))
-                <p class="d40-desc">{{ $menu['description'] }}</p>
-            @endif
+            <div class="d40-heading-block">
+                
+                <h1 class="d40-title">
+                    <span class="d40-title-line">THE FLAVOR</span>
+                    <span class="d40-title-accent">Express</span>
+                </h1>
+                <div class="d40-accent-bar"></div>
+            </div>
 
             <div class="d40-spacer"></div>
 

@@ -115,38 +115,67 @@
         z-index: 2;
     }
 
-    /* ---------- TITLE ---------- */
-    .d37-title {
-        font-family: 'Bodoni Moda', serif;
-        font-weight: 600;
-        font-style: italic;
-        font-size: 9.2cqw;
-        line-height: 1.04;
-        letter-spacing: 0.005em;
-        color: #f7f1e3;
-        text-align: left;
-        margin: 0 0 2.6cqw;
-        text-shadow: 0 3px 16px rgba(0,0,0,0.4);
+    /* ---------- HEADING BLOCK ---------- */
+    .d37-heading-block {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        max-width: 82%;
     }
 
-    .d37-rule {
-        width: 14cqw;
+    /* First line: light italic serif, sets up the second line */
+    .d37-title-line1 {
+        font-family: 'Bodoni Moda', serif;
+        font-weight: 400;
+        font-style: italic;
+        font-size: 4.6cqw;
+        line-height: 1;
+        letter-spacing: 0.06em;
+        color: #f7f1e3;
+        opacity: 0.92;
+        text-align: left;
+        margin: 0 0 1cqw;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    }
+
+    /* Second line: bold upright serif in a warm gold accent — the payoff phrase */
+    .d37-title-line2 {
+        font-family: 'Bodoni Moda', serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 7.6cqw;
+        line-height: 1.02;
+        letter-spacing: -0.005em;
+        color: #d9b872;
+        text-align: left;
+        margin: 0;
+        text-shadow: 0 4px 18px rgba(0,0,0,0.5);
+    }
+
+    /* Rule with a small diamond accent, drawn as literal SVG geometry
+       (no pattern/url refs, per platform fix) */
+    .d37-rule-wrap {
+        display: flex;
+        align-items: center;
+        gap: 1.4cqw;
+        margin: 3cqw 0 2.6cqw;
+    }
+
+    .d37-rule-line {
+        width: 10cqw;
         height: 1.5px;
-        background: {{$themeColor}};
-        margin-bottom: 2.6cqw;
+        background: #f7f1e3;
+        opacity: 0.9;
         flex-shrink: 0;
     }
 
-    .d37-desc {
-        font-family: 'Manrope', sans-serif;
-        font-size: 2.3cqw;
-        font-weight: 500;
-        letter-spacing: 0.01em;
-        color: #d9d2bf;
-        text-align: left;
-        max-width: 84%;
-        margin: 0;
+    .d37-rule-diamond {
+        width: 1.6cqw;
+        height: 1.6cqw;
+        flex-shrink: 0;
+        display: block;
     }
+    .d37-rule-diamond svg { width: 100%; height: 100%; display: block; }
 
     .d37-spacer { flex: 1 1 auto; }
 
@@ -221,11 +250,20 @@
 
             <div class="d37-spacer"></div>
 
-            <h1 class="d37-title">{{ $menu['name']  }}</h1>
-            <div class="d37-rule"></div>
-            @if(!empty($menu['description']))
-                <p class="d37-desc">{{ $menu['description'] }}</p>
-            @endif
+            <div class="d37-heading-block">
+                <h1 class="d37-title-line1">Made with Love,</h1>
+                <h1 class="d37-title-line2">Tastes Like Home.</h1>
+            </div>
+
+            <div class="d37-rule-wrap">
+                <span class="d37-rule-line"></span>
+                <span class="d37-rule-diamond">
+                    <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="4" y="4" width="12" height="12" fill="none" stroke="#f7f1e3" stroke-width="1.5" transform="rotate(45 10 10)"/>
+                    </svg>
+                </span>
+                <span class="d37-rule-line"></span>
+            </div>
 
             <div class="d37-footer">
                 @if(!empty(@user()->phone))

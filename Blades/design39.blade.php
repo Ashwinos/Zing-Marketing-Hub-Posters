@@ -129,7 +129,7 @@
         line-height: 1.08;
         color: #ffffff;
         text-align: center;
-        margin: 0 0 3cqw;
+        margin: 0 0 6cqw;
         text-shadow: 0 3px 12px rgba(0, 0, 0, 0.5);
         text-transform: uppercase;
     }
@@ -184,16 +184,7 @@
         cursor: pointer;
     }
     .d39-download-btn:disabled { opacity: 0.6; cursor: default; }
-    .d39-desc {
-               font-family: 'Manrope', sans-serif;
-            font-weight: 400;
-            font-size: 2.9cqw;
-            line-height: 1.5;
-            color: rgba(255, 255, 255, 0.92);
-            text-align: center;
-             max-width: 92%; 
-           
-        }
+    
 
 </style>
 
@@ -227,9 +218,7 @@
 
             <div class="d39-footer">
                 <h1 class="d39-heading">Flavor First</h1>
-                @if(!empty($menu['description']))
-                    <p class="d39-desc">{{ $menu['description'] }}</p>
-                @endif
+                
                 <div class="d39-footer-row">
                     @if(!empty($logourl))
                         <div class="d39-footer-logo">

@@ -207,16 +207,7 @@
         cursor: pointer;
     }
     .d38-download-btn:disabled { opacity: 0.6; cursor: default; }
-    .d38-desc {
-               font-family: 'Manrope', sans-serif;
-            font-weight: 400;
-            font-size: 2.9cqw;
-            line-height: 1.5;
-            color: rgba(255, 255, 255, 0.92);
-            text-align: center;
-             max-width: 92%; 
-           
-        }
+    
 </style>
 
 <div class="design38-wrapper">
@@ -236,13 +227,11 @@
         <div class="d38-content">
 
             <div class="d38-title-block">
-                <h1 class="d38-title">{{ $menu['name']  }}</h1>
-                @if(!empty(@user()->business_name))
-                    <p class="d38-subtitle">{{ @user()->business_name }}</p>
-                @endif
-                @if(!empty($menu['description']))
-                    <p class="d38-desc">{{ $menu['description'] }}</p>
-                @endif
+                <h1 class="d38-title">A Symphony of Flavors</h1>
+                
+                   
+                
+                
             </div>
 
             <div class="d38-spacer"></div>
