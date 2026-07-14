@@ -192,7 +192,7 @@
             color: rgba(255, 255, 255, 0.92);
             text-align: center;
              max-width: 92%; 
-            /* margin: 3.4cqw 0 0;
+           
         }
 
 </style>

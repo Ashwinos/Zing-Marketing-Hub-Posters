@@ -249,7 +249,7 @@
         <div class="d34-photo-wrap">
 
             @if (!empty($menuImageUrl))
-                <img src="{{ $menuImageUrl }}" alt="{{ $menu['name'] ?? 'Food' }}" class="js-poster-menu-image" crossorigin="anonymous">
+                <img src="{{ $menuImageUrl }}" alt="{{ $menu['name'] }}" class="js-poster-menu-image" crossorigin="anonymous">
             @else
                 <div class="d34-photo-placeholder"></div>
             @endif

@@ -140,7 +140,7 @@
         width: 5.4cqw;
         height: 5.4cqw;
         border-radius: 50%;
-        border: 1px solid rgba(246,199,68,0.85);
+        border: 1px solid {{$themeColor}};
         display: flex;
         align-items: center;
         justify-content: center;
@@ -160,7 +160,7 @@
         font-size: 1.9cqw;
         font-weight: 500;
         letter-spacing: 0.14em;
-        color: #f6c744;
+        color: {{$themeColor}};
         text-transform: uppercase;
         margin: 0;
     }
@@ -180,7 +180,7 @@
 
     .d38-cta {
         flex: none;
-        background: #f6c744;
+        background: {{$themeColor}};
         color: #221a0d;
         font-family: 'Jost', sans-serif;
         font-weight: 600;
@@ -201,7 +201,7 @@
         font-weight: 600;
         font-size: 14px;
         background: #221a0d;
-        color: #f6c744;
+        color: {{$themeColor}};
         border: none;
         border-radius: 6px;
         cursor: pointer;
@@ -215,7 +215,7 @@
             color: rgba(255, 255, 255, 0.92);
             text-align: center;
              max-width: 92%; 
-            /* margin: 3.4cqw 0 0;
+           
         }
 </style>
 
@@ -236,7 +236,7 @@
         <div class="d38-content">
 
             <div class="d38-title-block">
-                <h1 class="d38-title">{{ $menu['name'] ?? 'Tales & Trails' }}</h1>
+                <h1 class="d38-title">{{ $menu['name']  }}</h1>
                 @if(!empty(@user()->business_name))
                     <p class="d38-subtitle">{{ @user()->business_name }}</p>
                 @endif
@@ -253,9 +253,9 @@
                     @if(!empty(@user()->website_domain))
                         <span class="d38-icon-badge">
                             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="12" cy="12" r="9" stroke="#f6c744" stroke-width="1.6"/>
-                                <line x1="3" y1="12" x2="21" y2="12" stroke="#f6c744" stroke-width="1.6"/>
-                                <path d="M12 3c2.6 2.4 4 5.6 4 9s-1.4 6.6-4 9c-2.6-2.4-4-5.6-4-9s1.4-6.6 4-9z" stroke="#f6c744" stroke-width="1.6"/>
+                                <circle cx="12" cy="12" r="9" stroke="{{$themeColor}}" stroke-width="1.6"/>
+                                <line x1="3" y1="12" x2="21" y2="12" stroke="{{$themeColor}}" stroke-width="1.6"/>
+                                <path d="M12 3c2.6 2.4 4 5.6 4 9s-1.4 6.6-4 9c-2.6-2.4-4-5.6-4-9s1.4-6.6 4-9z" stroke="{{$themeColor}}" stroke-width="1.6"/>
                             </svg>
                         </span>
                         <span class="d38-bar-text">
@@ -275,7 +275,7 @@
                         </span>
                         <span class="d38-icon-badge">
                             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M7 3.5c.7 1.5 1.5 2.8 2.5 3.8-1 1-1.3 1.8-.9 2.6.9 1.9 2.9 3.9 4.8 4.8.8.4 1.6.1 2.6-.9 1 1 2.3 1.8 3.8 2.5v2.3c0 1-.9 1.7-1.9 1.5C11.9 19.2 5.8 13.1 4.8 6.4 4.6 5.4 5.3 4.5 6.3 4.5H7z" stroke="#f6c744" stroke-width="1.4" stroke-linejoin="round"/>
+                                <path d="M7 3.5c.7 1.5 1.5 2.8 2.5 3.8-1 1-1.3 1.8-.9 2.6.9 1.9 2.9 3.9 4.8 4.8.8.4 1.6.1 2.6-.9 1 1 2.3 1.8 3.8 2.5v2.3c0 1-.9 1.7-1.9 1.5C11.9 19.2 5.8 13.1 4.8 6.4 4.6 5.4 5.3 4.5 6.3 4.5H7z" stroke="{{$themeColor}}" stroke-width="1.4" stroke-linejoin="round"/>
                             </svg>
                         </span>
                     @endif

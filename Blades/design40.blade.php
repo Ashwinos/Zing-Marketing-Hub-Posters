@@ -164,6 +164,7 @@
         text-decoration: none;
         display: inline-block;
         margin-bottom: 2.6cqw;
+        border-radius: 26px;
     }
 
     .d40-website {
@@ -214,9 +215,6 @@
                 </span>
             </div>
 
-            @if(!empty(@user()->business_name))
-                <h1 class="d40-heading">{{ @user()->business_name }}</h1>
-            @endif
 
             @if(!empty($menu['name']))
                 <p class="d40-script">{{ $menu['name'] }}</p>
@@ -228,7 +226,7 @@
 
             <div class="d40-spacer"></div>
 
-            <a class="d40-cta" href="{{ !empty(@user()->website_domain) ? 'https://'.@user()->website_domain : '#' }}">Order Now</a>
+            <a class="d40-cta">Order Now</a>
 
             @if(!empty(@user()->website_domain))
                 <p class="d40-website">{{ @user()->website_domain }}</p>

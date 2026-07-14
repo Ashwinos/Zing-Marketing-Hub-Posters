@@ -223,7 +223,7 @@
                 <img src="{{ $logourl }}" alt="logo" class="d35-logo" crossorigin="anonymous">
             @endif
 
-            <h1 class="d35-title">{{ $menu['name'] ?? 'Crafted for Flavor' }}</h1>
+            <h1 class="d35-title">{{ $menu['name']  }}</h1>
 
             <p class="d35-address">{{ @user()->address }}</p>
 

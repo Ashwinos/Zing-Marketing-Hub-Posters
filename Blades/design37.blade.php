@@ -3,6 +3,7 @@
      Font pairing: Bodoni Moda (title) + Manrope (everything else)
      Logo: top-left overlay
      Footer: no background, phone + website at opposite ends, white text
+     Border: single thin white hairline frame
      ============================================================ -->
 <style>
     .design37-wrapper {
@@ -35,6 +36,17 @@
         opacity: 0.05;
         pointer-events: none;
         z-index: 3;
+    }
+
+    /* Decorative border frame — single thin white hairline,
+       drawn as literal SVG rect (no pattern/url refs, per platform fix) */
+    .d37-frame-svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 5;
     }
 
     .d37-content {
@@ -120,7 +132,7 @@
     .d37-rule {
         width: 14cqw;
         height: 1.5px;
-        background: #c9a24b;
+        background: {{$themeColor}};
         margin-bottom: 2.6cqw;
         flex-shrink: 0;
     }
@@ -194,6 +206,11 @@
             <rect width="340" height="425" filter="url(#d37Grain)"/>
         </svg>
 
+        <!-- Decorative border frame: single thin white hairline -->
+        <svg class="d37-frame-svg" width="340" height="425" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 425" preserveAspectRatio="none">
+            <rect x="14" y="14" width="312" height="397" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.85"/>
+        </svg>
+
         @if(!empty($logourl))
             <div class="d37-logo-wrap">
                 <img src="{{ $logourl }}" alt="Logo" crossorigin="anonymous">
@@ -204,7 +221,7 @@
 
             <div class="d37-spacer"></div>
 
-            <h1 class="d37-title">{{ $menu['name'] ?? 'Signature Dish' }}</h1>
+            <h1 class="d37-title">{{ $menu['name']  }}</h1>
             <div class="d37-rule"></div>
             @if(!empty($menu['description']))
                 <p class="d37-desc">{{ $menu['description'] }}</p>

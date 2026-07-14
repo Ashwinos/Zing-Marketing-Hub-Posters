@@ -108,7 +108,7 @@
         -webkit-box-orient: vertical;
     }
 
-    /* ══ Footer: contact info left, QR right ══ */
+    /* ══ Footer: contact info left, Order Now pill right ══ */
     .d36-footer {
         position: absolute;
         bottom: 5cqw;
@@ -116,14 +116,14 @@
         right: 7cqw;
         z-index: 5;
         display: flex;
-        align-items: flex-end;
+        align-items: center;
         justify-content: space-between;
     }
     .d36-contact-info {
         display: flex;
         flex-direction: column;
         gap: 1.4cqw;
-        max-width: 65%;
+        max-width: 62%;
     }
     .d36-contact-row {
         display: flex;
@@ -152,23 +152,32 @@
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
     }
-    .d36-qr {
-        position: relative;
-        left: 15px;
-        top: 7px;
-        width: 15cqw;
-        height: 15cqw;
-        background: #ffffff;
-        border-radius: 1.5cqw;
-        padding: 1cqw;
-        box-sizing: border-box;
+
+    /* ══ Order Now pill (replaces QR code) ══ */
+    .d36-order-now {
+        display: flex;
+        align-items: center;
+        gap: 1.6cqw;
         flex-shrink: 0;
+        background: {{ $themeColor ?? '#e07a1f' }};
+        color: #ffffff;
+        padding: 2.6cqw 4.2cqw;
+        border-radius: 999px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+        white-space: nowrap;
     }
-    .d36-qr img {
-        width: 100%;
-        height: 100%;
-        display: block;
-        object-fit: contain;
+    .d36-order-now span {
+        font-family: 'Poppins', sans-serif;
+        font-size: 2.3cqw;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #ffffff;
+    }
+    .d36-order-now svg {
+        width: 3.4cqw;
+        height: 3.4cqw;
+        flex-shrink: 0;
     }
 
     /* ── Logo (optional, top-left over photo) ── */
@@ -239,18 +248,18 @@
         {{-- ══ Text content ══ --}}
         <div class="d36-text-block">
            
-            <h1 class="d36-headline">{{ $menu['name'] ?? 'Eat Healthy' }}</h1>
+            <h1 class="d36-headline">{{ $menu['name'] }}</h1>
             @if (!empty($menu['description']))
                 <p class="d36-description">{{ Str::limit($menu['description'], 110, '…') }}</p>
             @endif
         </div>
 
-        {{-- ══ Footer: phone + address left, QR right ══ --}}
+        {{-- ══ Footer: phone + address left, Order Now pill right ══ --}}
         <div class="d36-footer">
             <div class="d36-contact-info">
                 @if (!empty(@user()->phone))
                     <div class="d36-contact-row d36-phone-row">
-                        <svg viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+                        <svg viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
                             <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.33 21 3 13.67 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.21 2.2z"/>
                         </svg>
                         <span>{{ @user()->phone }}</span>
@@ -258,7 +267,7 @@
                 @endif
                 @if (!empty(@user()->address))
                     <div class="d36-contact-row d36-address-row">
-                        <svg viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+                        <svg viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
                             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
                         </svg>
                         <span>{{ @user()->address }}</span>
@@ -266,13 +275,13 @@
                 @endif
             </div>
 
-            @if (!empty(@user()->website_domain))
-                <div class="d36-qr">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data={{ urlencode('https://' . @user()->website_domain) }}"
-                         alt="QR code"
-                         crossorigin="anonymous">
-                </div>
-            @endif
+            <div class="d36-order-now">
+                <span>Order Now</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                    <polyline points="12 5 19 12 12 19"/>
+                </svg>
+            </div>
         </div>
 
     </div>{{-- /.design36-card --}}
