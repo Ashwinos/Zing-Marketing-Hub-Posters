@@ -211,10 +211,7 @@
                 <line x1="14" y1="395" x2="14" y2="411"/><line x1="14" y1="411" x2="30" y2="411"/>
                 <line x1="326" y1="395" x2="326" y2="411"/><line x1="326" y1="411" x2="310" y2="411"/>
             </g>
-            <g stroke="#3d2415" stroke-width="1.5">
-                <line x1="24" y1="24" x2="34" y2="24"/><line x1="29" y1="19" x2="29" y2="29"/>
-                <line x1="306" y1="24" x2="316" y2="24"/><line x1="311" y1="19" x2="311" y2="29"/>
-            </g>
+            
         </svg>
 
         <div class="d35-content">
@@ -230,13 +227,12 @@
             <div class="d35-photo-zone">
 
                 <div class="d35-photo-rect">
-                    @if (!empty($menuImageUrl))
+                   @if (isset($menuImageUrl) && $menuImageUrl)
                         <img src="{{ $menuImageUrl }}"
                              alt="{{ $menu['name'] ?? 'Menu item' }}"
                              class="js-poster-menu-image"
                              crossorigin="anonymous">
-                    @else
-                        <div class="d35-photo-placeholder"></div>
+                    
                     @endif
                 </div>
 

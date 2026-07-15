@@ -1,6 +1,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montenegrin+Gothic+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Bodoni+Moda:ital,wght@1,700&display=swap" rel="stylesheet">
 <style>
     .design40-wrapper {
         width: 100%;
@@ -128,24 +128,28 @@
     }
 
     .d40-title-line {
-        font-family: 'Archivo Black', sans-serif;
-        font-weight: 900;
-        font-size: 28px;
-        line-height: 0.98;
-        letter-spacing: -0.01em;
+        font-family: 'Cinzel', serif;
+        font-weight: 600;
+        font-size: 4.6cqw;
+        line-height: 1.1;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
         color: #ffffff;
-        text-shadow: 0 3px 14px rgba(0,0,0,0.45);
+        text-shadow: 0 3px 14px rgba(0, 0, 0, 0.45);
+        position: absolute;
+        left: 73px;
+        top: 85px;
     }
 
     .d40-title-accent {
-        font-family: "Montenegrin Gothic One", serif;
-        font-weight: 400;
-        font-size: 12.5cqw;
-        line-height: 0.92;
-        margin-top: 0.8cqw;
-        text-transform: uppercase;
-        color: {{$themeColor}};
-        text-shadow: 0 4px 18px rgba(0,0,0,0.5);
+        font-family: 'Bodoni Moda', serif;
+        font-style: italic;
+        font-weight: 700;
+        font-size: 17cqw;
+        line-height: 0.98;
+        margin-top: 1.4cqw;
+        color: #ffffff;
+        text-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
     }
 
     .d40-accent-bar {

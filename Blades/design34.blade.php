@@ -56,7 +56,7 @@
     .design34-wrapper .d34-social-dots span {
         width: 2.6cqw; height: 2.6cqw;
         border-radius: 50%;
-        background: #D2691E;
+        background: {{ $themeColor }};
         display: block;
     }
 
@@ -94,7 +94,7 @@
         position: absolute;
         top: 0; left: 0;
         width: 100%; height: 100%;
-        background: radial-gradient(circle at 50% 60%, #3a3a3a 0%, #1a1a1a 75%);
+        background: {{ $themeColor }};
     }
 
     /* ══ Logo row — outside the photo, bottom-right, above the footer ══ */
@@ -127,6 +127,7 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
+            text-align: left;
     }
 
     .design34-wrapper .d34-offer-label {
@@ -135,7 +136,7 @@
         font-size: 2.4cqw;
         letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: #D2691E;
+        color: {{ $themeColor }};
         margin: 0 0 1.4cqw;
     }
 
@@ -183,7 +184,7 @@
         width: 5.4cqw; height: 5.4cqw;
         min-width: 5.4cqw; min-height: 5.4cqw;
         border-radius: 50%;
-        background: #D2691E;
+        background: {{ $themeColor }};
         flex-shrink: 0;
         box-sizing: border-box;
     }
@@ -203,7 +204,7 @@
     /* ── Download btn ── */
     .design34-wrapper .d34-download-btn {
         margin-top: 10px;
-        background: #D2691E;
+        background: {{ $themeColor }};
         color: #ffffff;
         border: none;
         padding: 8px 18px;
@@ -227,11 +228,11 @@
                 @php $dotRows = 50; @endphp
                 @for ($i = 0; $i < $dotRows; $i++)
                     @php $y = 6 + $i * 8; @endphp
-                    <circle cx="6" cy="{{ $y }}" r="1.4" fill="#D2691E" opacity="0.55"/>
+                    <circle cx="6" cy="{{ $y }}" r="1.4" fill="{{ $themeColor }}" opacity="0.55"/>
                 @endfor
                 {{-- corner leaf flourishes --}}
-                <path d="M18 14 C28 18 30 28 22 34 C18 24 12 18 18 14Z" fill="#D2691E" opacity="0.3"/>
-                <path d="M18 366 C28 362 30 372 22 378 C18 368 12 362 18 366Z" fill="#D2691E" opacity="0.3"/>
+                <path d="M18 14 C28 18 30 28 22 34 C18 24 12 18 18 14Z" fill="{{ $themeColor }}" opacity="0.3"/>
+                <path d="M18 366 C28 362 30 372 22 378 C18 368 12 362 18 366Z" fill="{{ $themeColor }}" opacity="0.3"/>
             </svg>
         </div>
 
@@ -248,7 +249,7 @@
         {{-- ══ Photo block — large, rounded ══ --}}
         <div class="d34-photo-wrap">
 
-            @if (!empty($menuImageUrl))
+             @if (isset($menuImageUrl) && $menuImageUrl)
                 <img src="{{ $menuImageUrl }}" alt="{{ $menu['name'] }}" class="js-poster-menu-image" crossorigin="anonymous">
             @else
                 <div class="d34-photo-placeholder"></div>

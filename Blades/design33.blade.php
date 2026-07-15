@@ -62,12 +62,15 @@
 
     /* ══ Logo — top-RIGHT ══ */
     .design33-wrapper .d33-logo {
-        position: relative;
+           /* position: relative; */
         z-index: 10;
-        margin: 5cqw 0 4cqw 0;
+        /* margin: 15cqw 0 4cqw 0; */
         width: 100%;
         display: flex;
         justify-content: flex-end;
+        position: absolute;
+        right: 17px;
+        top: 10px;
     }
 
     .design33-wrapper .d33-logo img {
@@ -93,7 +96,8 @@
     .design33-wrapper .d33-headline {
         margin: 0 0 2cqw;
         line-height: 0.85;
-        position: relative;
+            position: absolute;
+    top: 34px;
     }
 
     .design33-wrapper .d33-headline-accent {
@@ -102,12 +106,13 @@
         font-size: 9cqw;
         font-style: italic;
         letter-spacing: 0.01em;
-        color: var(--d33-accent-color);
+        color: {{ $themeColor }};
         transform: rotate(-4deg) skewX(-3deg);
         transform-origin: left bottom;
-        position: relative;
+        
+        position: absolute;
+        bottom: 76px;
         z-index: 2;
-        margin-bottom: -5cqw;
     }
 
     .design33-wrapper .d33-headline-main {
@@ -123,13 +128,15 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         text-shadow: 2px 2px 0 rgba(0,0,0,0.05);
+        line-height: 1.4;
     }
 
     /* ══ Contact row ══ */
     .design33-wrapper .d33-contact-row {
-        margin-top: 2.5cqw;
-        position: relative;
+           margin-top: 2.5cqw;
         z-index: 3;
+        position: absolute;
+        top: 155px;
     }
 
     .design33-wrapper .d33-contact-item {
@@ -169,7 +176,7 @@
         height: 53%;
         flex-shrink: 0;
         overflow: hidden;
-        background: #8a4a1f;
+        background: {{ $themeColor }};
     }
 
     .design33-wrapper .d33-photo-block img {
@@ -303,13 +310,12 @@
         {{-- ══ PHOTO BLOCK — full bleed, no rounding ══ --}}
         <div class="d33-photo-block">
 
-            @if (!empty($menuImageUrl))
+            @if (isset($menuImageUrl) && $menuImageUrl)
                 <img src="{{ $menuImageUrl }}"
-                     alt="{{ $menu['name'] ?? 'Food' }}"
+                     alt="{{ $menu['name'] }}"
                      class="js-poster-menu-image"
                      crossorigin="anonymous">
-            @else
-                <div class="d33-photo-placeholder"></div>
+            
             @endif
 
             {{-- ══ Overlay for text legibility ══ --}}
