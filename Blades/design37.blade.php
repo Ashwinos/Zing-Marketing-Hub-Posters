@@ -26,18 +26,6 @@
         box-sizing: border-box;
     }
 
-    /* Grain texture via SVG filter — established platform fix,
-       avoids CSS background-image tiling issues in html2canvas */
-    .d37-grain-svg {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0.05;
-        pointer-events: none;
-        z-index: 3;
-    }
-
     /* Decorative border frame — single thin white hairline,
        drawn as literal SVG rect (no pattern/url refs, per platform fix) */
     .d37-frame-svg {
@@ -99,19 +87,20 @@
         pointer-events: none;
     }
 
-    .d37-scrim-top {
+    /* Single full-height scrim (dark top, clear middle, dark bottom).
+       Merged into one element — two separate divs left a visible
+       html2canvas seam line at their shared edge. */
+    .d37-scrim {
         position: absolute;
-        top: 0; left: 0; right: 0;
-        height: 42%;
-        background: linear-gradient(180deg, rgba(15,26,20,0.72) 0%, rgba(15,26,20,0) 100%);
-        z-index: 2;
-    }
-
-    .d37-scrim-bottom {
-        position: absolute;
-        bottom: 0; left: 0; right: 0;
-        height: 48%;
-        background: linear-gradient(0deg, rgba(15,26,20,0.85) 0%, rgba(15,26,20,0.4) 60%, rgba(15,26,20,0) 100%);
+        inset: 0;
+        background: linear-gradient(
+            180deg,
+            rgba(15,26,20,0.72) 0%,
+            rgba(15,26,20,0) 24%,
+            rgba(15,26,20,0) 46%,
+            rgba(15,26,20,0.4) 68%,
+            rgba(15,26,20,0.85) 100%
+        );
         z-index: 2;
     }
 
@@ -224,16 +213,7 @@
         <div class="d37-bg js-photo-zone" style="background-image:url('{{ $menuImageUrl ?? '' }}')"></div>
         <img class="d37-bg-preload js-poster-menu-image" src="{{ $menuImageUrl ?? '' }}" alt="{{ $menu['name'] ?? 'Menu item' }}" crossorigin="anonymous">
 
-        <div class="d37-scrim-top"></div>
-        <div class="d37-scrim-bottom"></div>
-
-        <svg class="d37-grain-svg" width="340" height="425" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 425" preserveAspectRatio="none">
-            <filter id="d37Grain">
-                <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
-                <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.9 0"/>
-            </filter>
-            <rect width="340" height="425" filter="url(#d37Grain)"/>
-        </svg>
+        <div class="d37-scrim"></div>
 
         <!-- Decorative border frame: single thin white hairline -->
         <svg class="d37-frame-svg" width="340" height="425" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 425" preserveAspectRatio="none">

@@ -178,22 +178,6 @@
 
     .d38-bar-right .d38-bar-text { align-items: flex-end; text-align: right; }
 
-    .d38-cta {
-        flex: none;
-        background: {{$themeColor}};
-        color: #221a0d;
-        font-family: 'Jost', sans-serif;
-        font-weight: 600;
-        font-size: 2.4cqw;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        padding: 2.4cqw 4.4cqw;
-        border-radius: 999px;
-        text-decoration: none;
-        display: inline-block;
-        white-space: nowrap;
-    }
-
     .d38-download-btn {
         margin-top: 16px;
         padding: 10px 22px;
@@ -254,7 +238,7 @@
                     @endif
                 </div>
 
-                <a class="d38-cta" href="{{ !empty(@user()->website_domain) ? 'https://'.@user()->website_domain : '#' }}">Order Now</a>
+                
 
                 <div class="d38-bar-side d38-bar-right">
                     @if(!empty(@user()->phone))

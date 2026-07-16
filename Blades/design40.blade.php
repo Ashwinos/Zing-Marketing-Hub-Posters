@@ -150,6 +150,7 @@
         margin-top: 1.4cqw;
         color: #ffffff;
         text-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+        text-align: start;
     }
 
     .d40-accent-bar {

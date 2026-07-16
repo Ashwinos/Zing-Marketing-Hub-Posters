@@ -46,22 +46,6 @@
         background: {{ $themeColor ?? '#e07a1f' }};
     }
 
-    /* ══ Vertical website text along right edge ══ */
-    .d36-vertical-site {
-        position: absolute;
-        top: 6cqw;
-        right: 3.5cqw;
-        z-index: 3;
-        writing-mode: vertical-rl;
-        transform: rotate(180deg);
-        font-size: 2cqw;
-        font-weight: 600;
-        letter-spacing: 3px;
-        color: rgba(255,255,255,0.85);
-        text-transform: uppercase;
-        white-space: nowrap;
-    }
-
     /* ══ Orange blob overlay (SVG, html2canvas-safe) ══ */
     .d36-blob-svg {
         position: absolute;
@@ -143,7 +127,8 @@
         color: #ffffff;
         line-height: 1.4;
     }
-    .d36-contact-row.d36-phone-row span {
+    .d36-contact-row.d36-phone-row span,
+    .d36-contact-row.d36-website-row span {
         white-space: nowrap;
     }
     .d36-contact-row.d36-address-row span {
@@ -160,12 +145,13 @@
         align-items: center;
         gap: 1.6cqw;
         flex-shrink: 0;
-        background: {{ $themeColor ?? '#e07a1f' }};
+        background: #EC4040;
         color: #ffffff;
         padding: 2.6cqw 4.2cqw;
         border-radius: 999px;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+        /* box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); */
         white-space: nowrap;
+        border: white solid;
     }
     .d36-order-now span {
         font-family: 'Poppins', sans-serif;
@@ -227,11 +213,6 @@
             <img src="{{ $logourl }}" alt="logo" class="d36-logo" crossorigin="anonymous">
         @endif
 
-        {{-- ══ Vertical website text ══ --}}
-        @if (!empty(@user()->website_domain))
-            <div class="d36-vertical-site">{{ @user()->website_domain }}</div>
-        @endif
-
         {{-- ══ Orange organic blob overlay ══ --}}
         <svg class="d36-blob-svg" viewBox="0 0 340 425" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0,235
@@ -253,16 +234,26 @@
             @else
                 <h1 class="d36-headline">Next-Level Flavor</h1>
             @endif
-           
-           
+
+
             @if (!empty($menu['description']))
                 <p class="d36-description">{{ Str::limit($menu['description'], 110, '…') }}</p>
             @endif
         </div>
 
-        {{-- ══ Footer: phone + address left, Order Now pill right ══ --}}
+        {{-- ══ Footer: website/phone/address left, Order Now pill right ══ --}}
         <div class="d36-footer">
             <div class="d36-contact-info">
+                @if (!empty(@user()->website_domain))
+                    <div class="d36-contact-row d36-website-row">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="2" y1="12" x2="22" y2="12"/>
+                            <path d="M12 2a15.3 15.3 0 010 20a15.3 15.3 0 010-20z"/>
+                        </svg>
+                        <span>{{ @user()->website_domain }}</span>
+                    </div>
+                @endif
                 @if (!empty(@user()->phone))
                     <div class="d36-contact-row d36-phone-row">
                         <svg viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
@@ -271,14 +262,7 @@
                         <span>{{ @user()->phone }}</span>
                     </div>
                 @endif
-                @if (!empty(@user()->address))
-                    <div class="d36-contact-row d36-address-row">
-                        <svg viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
-                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
-                        </svg>
-                        <span>{{ @user()->address }}</span>
-                    </div>
-                @endif
+                
             </div>
 
             <div class="d36-order-now">
