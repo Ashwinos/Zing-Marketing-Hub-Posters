@@ -79,6 +79,7 @@
         left: 7cqw;
         right: 18cqw;
         z-index: 4;
+        text-align: start;
     }
 
     .d36-headline {
@@ -247,8 +248,13 @@
 
         {{-- ══ Text content ══ --}}
         <div class="d36-text-block">
+             @if (!empty($menu['name']) && strlen($menu['name']) <= 19)
+                 <h1 class="d36-headline">{{ $menu['name'] }}</h1>
+            @else
+                <h1 class="d36-headline">Next-Level Flavor</h1>
+            @endif
            
-            <h1 class="d36-headline">{{ $menu['name'] }}</h1>
+           
             @if (!empty($menu['description']))
                 <p class="d36-description">{{ Str::limit($menu['description'], 110, '…') }}</p>
             @endif

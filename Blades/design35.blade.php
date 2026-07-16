@@ -220,8 +220,12 @@
                 <img src="{{ $logourl }}" alt="logo" class="d35-logo" crossorigin="anonymous">
             @endif
 
-            <h1 class="d35-title">{{ $menu['name']  }}</h1>
-
+            @if (!empty($menu['name']) && strlen($menu['name']) <= 19)
+                <h1 class="d35-title">{{ $menu['name']  }}</h1>
+            @else
+                <h1 class="d35-title">Culinary Perfection</h1>
+            @endif
+            
             <p class="d35-address">{{ @user()->address }}</p>
 
             <div class="d35-photo-zone">

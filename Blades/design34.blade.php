@@ -261,9 +261,10 @@
         <div class="d34-lower">
              @if (strlen(@$menu['name']) <= 20)
             <p class="d34-offer-label"> {{ @$menu['name'] }}</p>
+            @endif
+
             @if (!empty($menu['description']))
                 <p class="d34-desc">{{ Str::limit($menu['description'], 140, '...') }}</p>
-            @endif
             @endif
 
             @if (!empty($logourl))

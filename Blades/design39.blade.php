@@ -87,6 +87,7 @@
         display: flex;
         flex-direction: column;
         min-width: 0;
+        text-align: start;
     }
 
     .d39-top-item.d39-top-right { align-items: flex-end; text-align: right; }
