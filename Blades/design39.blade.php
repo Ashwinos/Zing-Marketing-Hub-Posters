@@ -26,7 +26,7 @@
     /* background-image div, not <img> — html2canvas ignores
        object-fit: cover on <img> tags; this is the platform's
        established fix for reliable full-bleed photo rendering. */
-    .d39-bg {
+    .d39-bg {   
         position: absolute;
         inset: 0;
         width: 100%;
@@ -45,21 +45,23 @@
         pointer-events: none;
     }
 
-    /* Thin top scrim so the corner contact info stays legible */
-    .d39-scrim-top {
+    /* Single full-height scrim covering both the top corner-info zone
+       and the bottom heading/footer zone. Two separate partial-height
+       divs (d39-scrim-top / d39-scrim-bottom) each leave a hard box
+       edge mid-photo that html2canvas rasterizes as a visible seam
+       line. One inset:0 element with the fades baked into the
+       gradient stops removes both edges. */
+    .d39-scrim {
         position: absolute;
-        top: 0; left: 0; right: 0;
-        height: 20%;
-        background: linear-gradient(180deg, rgba(8,6,4,0.68) 0%, rgba(8,6,4,0) 100%);
-        z-index: 2;
-    }
-
-    /* Footer scrim, taller — holds heading + logo + address */
-    .d39-scrim-bottom {
-        position: absolute;
-        bottom: 0; left: 0; right: 0;
-        height: 34%;
-        background: linear-gradient(0deg, rgba(8,6,4,0.86) 0%, rgba(8,6,4,0.5) 65%, rgba(8,6,4,0) 100%);
+        inset: 0;
+        background: linear-gradient(
+            180deg,
+            rgba(8,6,4,0.68) 0%,
+            rgba(8,6,4,0) 20%,
+            rgba(8,6,4,0) 66%,
+            rgba(8,6,4,0.5) 78%,
+            rgba(8,6,4,0.86) 100%
+        );
         z-index: 2;
     }
 
@@ -195,8 +197,7 @@
         <div class="d39-bg js-photo-zone" style="background-image:url('{{ $menuImageUrl ?? '' }}')"></div>
         <img class="d39-bg-preload js-poster-menu-image" src="{{ $menuImageUrl ?? '' }}" alt="{{ $menu['name'] ?? 'Menu item' }}" crossorigin="anonymous">
 
-        <div class="d39-scrim-top"></div>
-        <div class="d39-scrim-bottom"></div>
+        <div class="d39-scrim"></div>
 
         <div class="d39-content">
 

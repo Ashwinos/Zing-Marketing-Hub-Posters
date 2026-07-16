@@ -45,12 +45,23 @@
         pointer-events: none;
     }
 
-    /* Scrim behind the title so it reads over any photo */
-    .d38-scrim-top {
+    /* Scrim behind the title so it reads over any photo.
+       Spans the FULL card height (inset:0) — a partial-height div
+       (e.g. height:48%) leaves a hard box edge mid-photo that
+       html2canvas rasterizes as a visible seam line, even when the
+       color at that edge is transparent. Fading to 0% opacity well
+       before the box's own boundary keeps that boundary out of the
+       visible image. */
+    .d38-scrim {
         position: absolute;
-        top: 0; left: 0; right: 0;
-        height: 48%;
-        background: linear-gradient(180deg, rgba(8,6,4,0.75) 0%, rgba(8,6,4,0.32) 55%, rgba(8,6,4,0) 100%);
+        inset: 0;
+        background: linear-gradient(
+            180deg,
+            rgba(8,6,4,0.75) 0%,
+            rgba(8,6,4,0.32) 30%,
+            rgba(8,6,4,0) 48%,
+            rgba(8,6,4,0) 100%
+        );
         z-index: 2;
     }
 
@@ -200,7 +211,7 @@
         <div class="d38-bg js-photo-zone" style="background-image:url('{{ $menuImageUrl ?? '' }}')"></div>
         <img class="d38-bg-preload js-poster-menu-image" src="{{ $menuImageUrl ?? '' }}" alt="{{ $menu['name'] ?? 'Menu item' }}" crossorigin="anonymous">
 
-        <div class="d38-scrim-top"></div>
+        <div class="d38-scrim"></div>
 
         @if(!empty($logourl))
             <div class="d38-logo-topleft">

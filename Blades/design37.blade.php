@@ -65,7 +65,17 @@
         display: block;
     }
 
-    /* ---------- FULL-BLEED BACKGROUND IMAGE ---------- */
+    /* ---------- FULL-BLEED BACKGROUND IMAGE ----------
+       CSS background-image div left as the live-preview layer (cheap,
+       fine for on-screen display). A same-sized <canvas> sits on top
+       of it and is only populated at capture time, inside onclone —
+       html2canvas has a known banding/seam bug rasterizing
+       background-size:cover on large elements, but it copies a
+       canvas's pixel buffer verbatim with no "cover" re-interpretation,
+       so drawing the cover-cropped photo there right before capture
+       sidesteps the bug. Kept in onclone specifically because that's
+       the hook the backend renderer replays — a top-level script tag
+       is not executed by the backend pipeline. */
     .d37-bg {
         position: absolute;
         inset: 0;
@@ -74,6 +84,15 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        z-index: 1;
+    }
+
+    .d37-bg-canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
         z-index: 1;
     }
 
@@ -87,9 +106,7 @@
         pointer-events: none;
     }
 
-    /* Single full-height scrim (dark top, clear middle, dark bottom).
-       Merged into one element — two separate divs left a visible
-       html2canvas seam line at their shared edge. */
+    /* Single full-height scrim (dark top, clear middle, dark bottom). */
     .d37-scrim {
         position: absolute;
         inset: 0;
@@ -211,6 +228,7 @@
     <div class="design37-card" id="posterCard37" style="background: {{ $themeColor ?? '#1f3a2e' }};">
 
         <div class="d37-bg js-photo-zone" style="background-image:url('{{ $menuImageUrl ?? '' }}')"></div>
+        <canvas class="d37-bg-canvas js-photo-canvas" id="posterBgCanvas37"></canvas>
         <img class="d37-bg-preload js-poster-menu-image" src="{{ $menuImageUrl ?? '' }}" alt="{{ $menu['name'] ?? 'Menu item' }}" crossorigin="anonymous">
 
         <div class="d37-scrim"></div>
@@ -291,9 +309,35 @@
                         zone.style.backgroundSize = 'cover';
                         zone.style.backgroundPosition = 'center';
                         zone.style.backgroundRepeat = 'no-repeat';
+                        // Hide the CSS background layer — it's the one
+                        // html2canvas mis-rasterizes with a banding seam.
+                        // The canvas painted below replaces it visually.
+                        zone.style.visibility = 'hidden';
                     });
+
                     var preloads = clonedDoc.querySelectorAll('.d37-bg-preload');
                     preloads.forEach(function(img) { img.style.display = 'none'; });
+
+                    // Paint the cover-cropped photo onto the canvas here,
+                    // inside onclone, since this is the hook the backend
+                    // renderer actually replays.
+                    var canvas = clonedDoc.getElementById('posterBgCanvas37');
+                    var img    = clonedDoc.querySelector('.js-poster-menu-image');
+                    if (canvas && img && img.naturalWidth > 0) {
+                        var targetW = 1080, targetH = 1350; // 4:5
+                        canvas.width = targetW;
+                        canvas.height = targetH;
+                        var ctx = canvas.getContext('2d');
+                        var iw = img.naturalWidth, ih = img.naturalHeight;
+                        var ir = iw / ih, tr = targetW / targetH;
+                        var sx, sy, sw, sh;
+                        if (ir > tr) {
+                            sh = ih; sw = ih * tr; sx = (iw - sw) / 2; sy = 0;
+                        } else {
+                            sw = iw; sh = iw / tr; sx = 0; sy = (ih - sh) / 2;
+                        }
+                        ctx.drawImage(img, sx, sy, sw, sh, 0, 0, targetW, targetH);
+                    }
                 }
             });
         }).then(function(canvas) {
