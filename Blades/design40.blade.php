@@ -1,6 +1,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Bodoni+Moda:ital,wght@1,700&display=swap" rel="stylesheet">
+
 <style>
     .design40-wrapper {
         width: 100%;
@@ -16,16 +17,12 @@
         aspect-ratio: 4 / 5;
         position: relative;
         overflow: hidden;
-        background-color: {{ $themeColor ?? '#2b2420' }}; /* fallback while image loads */
+        background-color: {{ $themeColor ?? '#2b2420' }};
         box-shadow: 0 20px 60px rgba(0,0,0,0.22);
         container-type: inline-size;
         box-sizing: border-box;
     }
 
-    /* ---------- FULL-BLEED BACKGROUND IMAGE ---------- */
-    /* background-image div, not <img> — html2canvas ignores
-       object-fit: cover on <img> tags; this is the platform's
-       established fix for reliable full-bleed photo rendering. */
     .d40-bg {
         position: absolute;
         inset: 0;
@@ -37,7 +34,6 @@
         z-index: 1;
     }
 
-    /* Real <img> kept only for preloading/decoding, never shown. */
     .d40-bg-preload {
         position: absolute;
         width: 1px; height: 1px;
@@ -45,8 +41,6 @@
         pointer-events: none;
     }
 
-    /* Dark scrim over the left ~2/3 so copy reads over any photo,
-       photo stays fully open on the right side */
     .d40-scrim-left {
         position: absolute;
         inset: 0;
@@ -54,7 +48,6 @@
         z-index: 2;
     }
 
-    /* ---------- LOGO (top-right) ---------- */
     .d40-logo {
         position: absolute;
         top: 6cqw;
@@ -77,11 +70,9 @@
         flex-direction: column;
     }
 
-    /* ---------- CHEVRON DECORATIONS ---------- */
     .d40-chevrons { display: flex; gap: 1.6cqw; }
     .d40-chevrons-top { margin-bottom: 5cqw; }
 
-    /* ---------- BOTTOM-RIGHT CLUSTER (phone + chevrons) ---------- */
     .d40-corner-bottom-right {
         position: absolute;
         bottom: 5cqw;
@@ -111,16 +102,12 @@
         white-space: nowrap;
     }
 
-    /* ---------- HEADING BLOCK ---------- */
     .d40-heading-block {
         display: flex;
         flex-direction: column;
         margin-top: 15px;
     }
 
-    
-
-    
     .d40-title {
         margin: 0;
         display: flex;
@@ -163,9 +150,8 @@
 
     .d40-spacer { flex: 1 1 auto; }
 
-    /* ---------- CTA + WEBSITE ---------- */
     .d40-cta {
-           align-self: flex-start;
+        align-self: flex-start;
         background: transparent;
         border: 1.5px solid #ffffff;
         color: #ffffff;
@@ -188,6 +174,16 @@
         color: #ffffff;
         margin: 0;
         text-align: left;
+        max-width: 56cqw;
+        white-space: normal;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        line-height: 1.3;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
     }
 
     .d40-download-btn {
@@ -203,6 +199,13 @@
         cursor: pointer;
     }
     .d40-download-btn:disabled { opacity: 0.6; cursor: default; }
+    
+    .d40-cta:hover {
+        background: transparent;
+        color: #ffffff;
+        border-color: #ffffff;
+        text-decoration: none;
+    }
 </style>
 
 <div class="design40-wrapper">
@@ -230,7 +233,7 @@
             </div>
 
             <div class="d40-heading-block">
-                
+
                 <h1 class="d40-title">
                     <span class="d40-title-line">THE FLAVOR</span>
                     <span class="d40-title-accent">Express</span>

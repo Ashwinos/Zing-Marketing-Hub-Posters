@@ -1,6 +1,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Asimovian&display=swap" rel="stylesheet">
+
 <style>
     .design39-wrapper {
         width: 100%;
@@ -16,17 +17,13 @@
         aspect-ratio: 4 / 5;
         position: relative;
         overflow: hidden;
-        background-color: {{ $themeColor ?? '#151210' }}; /* fallback while image loads */
+        background-color: {{ $themeColor ?? '#151210' }};
         box-shadow: 0 20px 60px rgba(0,0,0,0.22);
         container-type: inline-size;
         box-sizing: border-box;
     }
 
-    /* ---------- FULL-BLEED BACKGROUND IMAGE ---------- */
-    /* background-image div, not <img> — html2canvas ignores
-       object-fit: cover on <img> tags; this is the platform's
-       established fix for reliable full-bleed photo rendering. */
-    .d39-bg {   
+    .d39-bg {
         position: absolute;
         inset: 0;
         width: 100%;
@@ -37,7 +34,6 @@
         z-index: 1;
     }
 
-    /* Real <img> kept only for preloading/decoding, never shown. */
     .d39-bg-preload {
         position: absolute;
         width: 1px; height: 1px;
@@ -45,12 +41,6 @@
         pointer-events: none;
     }
 
-    /* Single full-height scrim covering both the top corner-info zone
-       and the bottom heading/footer zone. Two separate partial-height
-       divs (d39-scrim-top / d39-scrim-bottom) each leave a hard box
-       edge mid-photo that html2canvas rasterizes as a visible seam
-       line. One inset:0 element with the fades baked into the
-       gradient stops removes both edges. */
     .d39-scrim {
         position: absolute;
         inset: 0;
@@ -76,7 +66,6 @@
         flex-direction: column;
     }
 
-    /* ---------- TOP CORNERS: website (left) / phone (right) ---------- */
     .d39-top-row {
         padding: 5.5cqw 6cqw 0;
         display: flex;
@@ -89,6 +78,7 @@
         display: flex;
         flex-direction: column;
         min-width: 0;
+        max-width: 46cqw;
         text-align: start;
     }
 
@@ -110,13 +100,20 @@
         font-weight: 700;
         color: #ffffff;
         margin: 0;
-        white-space: nowrap;
+        white-space: normal;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        line-height: 1.3;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
         text-shadow: 0 2px 8px rgba(0,0,0,0.5);
     }
 
     .d39-spacer { flex: 1 1 auto; }
 
-    /* ---------- FOOTER ---------- */
     .d39-footer {
         padding: 0 7cqw 6.5cqw;
         display: flex;
@@ -187,7 +184,6 @@
         cursor: pointer;
     }
     .d39-download-btn:disabled { opacity: 0.6; cursor: default; }
-    
 
 </style>
 
@@ -220,7 +216,7 @@
 
             <div class="d39-footer">
                 <h1 class="d39-heading">Flavor First</h1>
-                
+
                 <div class="d39-footer-row">
                     @if(!empty($logourl))
                         <div class="d39-footer-logo">

@@ -26,8 +26,6 @@
         box-sizing: border-box;
     }
 
-    /* Decorative border frame — single thin white hairline,
-       drawn as literal SVG rect (no pattern/url refs, per platform fix) */
     .d37-frame-svg {
         position: absolute;
         inset: 0;
@@ -65,17 +63,6 @@
         display: block;
     }
 
-    /* ---------- FULL-BLEED BACKGROUND IMAGE ----------
-       CSS background-image div left as the live-preview layer (cheap,
-       fine for on-screen display). A same-sized <canvas> sits on top
-       of it and is only populated at capture time, inside onclone —
-       html2canvas has a known banding/seam bug rasterizing
-       background-size:cover on large elements, but it copies a
-       canvas's pixel buffer verbatim with no "cover" re-interpretation,
-       so drawing the cover-cropped photo there right before capture
-       sidesteps the bug. Kept in onclone specifically because that's
-       the hook the backend renderer replays — a top-level script tag
-       is not executed by the backend pipeline. */
     .d37-bg {
         position: absolute;
         inset: 0;
@@ -96,9 +83,6 @@
         z-index: 1;
     }
 
-    /* Real <img> kept only for preloading/decoding, never shown visually.
-       Hidden in the onclone callback — established platform fix, since
-       html2canvas is unreliable with object-fit: cover on <img> tags. */
     .d37-bg-preload {
         position: absolute;
         width: 1px; height: 1px;
@@ -106,7 +90,6 @@
         pointer-events: none;
     }
 
-    /* Single full-height scrim (dark top, clear middle, dark bottom). */
     .d37-scrim {
         position: absolute;
         inset: 0;
@@ -121,7 +104,6 @@
         z-index: 2;
     }
 
-    /* ---------- HEADING BLOCK ---------- */
     .d37-heading-block {
         display: flex;
         flex-direction: column;
@@ -129,7 +111,6 @@
         max-width: 82%;
     }
 
-    /* First line: light italic serif, sets up the second line */
     .d37-title-line1 {
         font-family: 'Bodoni Moda', serif;
         font-weight: 400;
@@ -144,7 +125,6 @@
         text-shadow: 0 2px 10px rgba(0,0,0,0.4);
     }
 
-    /* Second line: bold upright serif in a warm gold accent — the payoff phrase */
     .d37-title-line2 {
         font-family: 'Bodoni Moda', serif;
         font-weight: 700;
@@ -158,8 +138,6 @@
         text-shadow: 0 4px 18px rgba(0,0,0,0.5);
     }
 
-    /* Rule with a small diamond accent, drawn as literal SVG geometry
-       (no pattern/url refs, per platform fix) */
     .d37-rule-wrap {
         display: flex;
         align-items: center;
@@ -185,7 +163,6 @@
 
     .d37-spacer { flex: 1 1 auto; }
 
-    /* ---------- FOOTER (no background, phone + website at opposite ends, white) ---------- */
     .d37-footer {
         display: flex;
         align-items: center;
@@ -197,8 +174,7 @@
         margin-top: 4cqw;
     }
 
-    .d37-footer-phone,
-    .d37-footer-site {
+    .d37-footer-phone {
         font-family: 'Manrope', sans-serif;
         font-size: 2.3cqw;
         font-weight: 700;
@@ -207,6 +183,29 @@
         margin: 0;
         white-space: nowrap;
         text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        flex-shrink: 0;
+    }
+
+    .d37-footer-site {
+        font-family: 'Manrope', sans-serif;
+        font-size: 2.3cqw;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        color: #ffffff;
+        margin: 0;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        text-align: right;
+        max-width: 50cqw;
+        white-space: normal;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        line-height: 1.3;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+        min-width: 0;
     }
 
     .d37-download-btn {
@@ -233,7 +232,6 @@
 
         <div class="d37-scrim"></div>
 
-        <!-- Decorative border frame: single thin white hairline -->
         <svg class="d37-frame-svg" width="340" height="425" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 425" preserveAspectRatio="none">
             <rect x="14" y="14" width="312" height="397" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.85"/>
         </svg>
@@ -309,22 +307,16 @@
                         zone.style.backgroundSize = 'cover';
                         zone.style.backgroundPosition = 'center';
                         zone.style.backgroundRepeat = 'no-repeat';
-                        // Hide the CSS background layer — it's the one
-                        // html2canvas mis-rasterizes with a banding seam.
-                        // The canvas painted below replaces it visually.
                         zone.style.visibility = 'hidden';
                     });
 
                     var preloads = clonedDoc.querySelectorAll('.d37-bg-preload');
                     preloads.forEach(function(img) { img.style.display = 'none'; });
 
-                    // Paint the cover-cropped photo onto the canvas here,
-                    // inside onclone, since this is the hook the backend
-                    // renderer actually replays.
                     var canvas = clonedDoc.getElementById('posterBgCanvas37');
                     var img    = clonedDoc.querySelector('.js-poster-menu-image');
                     if (canvas && img && img.naturalWidth > 0) {
-                        var targetW = 1080, targetH = 1350; // 4:5
+                        var targetW = 1080, targetH = 1350;
                         canvas.width = targetW;
                         canvas.height = targetH;
                         var ctx = canvas.getContext('2d');

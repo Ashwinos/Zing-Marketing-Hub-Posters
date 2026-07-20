@@ -221,7 +221,7 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        border-radius: 0 0 10px 10px;
+        
     }
 </style>
 

@@ -156,6 +156,7 @@
         letter-spacing: 0.05em;
         color: #3d2415;
         white-space: nowrap;
+        flex-shrink: 0;
     }
 
     .d35-footer-site {
@@ -164,10 +165,18 @@
         letter-spacing: 0.08em;
         color: #3d2415;
         margin-left: auto;
-        white-space: nowrap;
+        text-align: right;
+        max-width: 45cqw;
+        white-space: normal;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        line-height: 1.35;
         overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
         text-overflow: ellipsis;
-        max-width: 55%;
+        min-width: 0;
     }
 
     .d35-download-btn {
@@ -211,7 +220,7 @@
                 <line x1="14" y1="395" x2="14" y2="411"/><line x1="14" y1="411" x2="30" y2="411"/>
                 <line x1="326" y1="395" x2="326" y2="411"/><line x1="326" y1="411" x2="310" y2="411"/>
             </g>
-            
+
         </svg>
 
         <div class="d35-content">
@@ -225,7 +234,7 @@
             @else
                 <h1 class="d35-title">Culinary Perfection</h1>
             @endif
-            
+
             <p class="d35-address">{{ @user()->address }}</p>
 
             <div class="d35-photo-zone">
@@ -236,7 +245,7 @@
                              alt="{{ $menu['name'] ?? 'Menu item' }}"
                              class="js-poster-menu-image"
                              crossorigin="anonymous">
-                    
+
                     @endif
                 </div>
 

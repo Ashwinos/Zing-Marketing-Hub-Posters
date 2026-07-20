@@ -1,6 +1,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet">
+
 <style>
     .design38-wrapper {
         width: 100%;
@@ -16,16 +17,12 @@
         aspect-ratio: 4 / 5;
         position: relative;
         overflow: hidden;
-        background-color: {{ $themeColor ?? '#14100c' }}; /* fallback while image loads */
+        background-color: {{ $themeColor ?? '#14100c' }};
         box-shadow: 0 20px 60px rgba(0,0,0,0.22);
         container-type: inline-size;
         box-sizing: border-box;
     }
 
-    /* ---------- FULL-BLEED BACKGROUND IMAGE ---------- */
-    /* background-image div, not <img> — html2canvas ignores
-       object-fit: cover on <img> tags; this is the platform's
-       established fix for reliable full-bleed photo rendering. */
     .d38-bg {
         position: absolute;
         inset: 0;
@@ -37,7 +34,6 @@
         z-index: 1;
     }
 
-    /* Real <img> kept only for preloading/decoding, never shown. */
     .d38-bg-preload {
         position: absolute;
         width: 1px; height: 1px;
@@ -45,13 +41,6 @@
         pointer-events: none;
     }
 
-    /* Scrim behind the title so it reads over any photo.
-       Spans the FULL card height (inset:0) — a partial-height div
-       (e.g. height:48%) leaves a hard box edge mid-photo that
-       html2canvas rasterizes as a visible seam line, even when the
-       color at that edge is transparent. Fading to 0% opacity well
-       before the box's own boundary keeps that boundary out of the
-       visible image. */
     .d38-scrim {
         position: absolute;
         inset: 0;
@@ -76,7 +65,6 @@
         flex-direction: column;
     }
 
-    /* ---------- TITLE BLOCK ---------- */
     .d38-logo-topleft {
         position: absolute;
         top: 5cqw;
@@ -124,7 +112,6 @@
 
     .d38-spacer { flex: 1 1 auto; }
 
-    /* ---------- BOTTOM INFO BAR ---------- */
     .d38-bar {
         width: 100%;
         background: rgba(10,8,6,0.82);
@@ -182,8 +169,15 @@
         font-weight: 500;
         color: #ffffff;
         margin: 0;
-        white-space: nowrap;
+        max-width: 100%;
+        white-space: normal;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        line-height: 1.3;
         overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
         text-overflow: ellipsis;
     }
 
@@ -202,7 +196,7 @@
         cursor: pointer;
     }
     .d38-download-btn:disabled { opacity: 0.6; cursor: default; }
-    
+
 </style>
 
 <div class="design38-wrapper">
@@ -223,10 +217,9 @@
 
             <div class="d38-title-block">
                 <h1 class="d38-title">A Symphony of Flavors</h1>
-                
-                   
-                
-                
+
+
+
             </div>
 
             <div class="d38-spacer"></div>
@@ -249,7 +242,7 @@
                     @endif
                 </div>
 
-                
+
 
                 <div class="d38-bar-side d38-bar-right">
                     @if(!empty(@user()->phone))

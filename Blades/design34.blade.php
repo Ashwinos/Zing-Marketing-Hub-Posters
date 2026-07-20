@@ -170,11 +170,14 @@
         align-items: center;
         gap: 1.2cqw;
         padding-right: 3cqw;
+        max-width: 38%;
+        box-sizing: border-box;
     }
 
     .design34-wrapper .d34-contact-item.d34-contact-right {
         margin-left: auto;
         padding-right: 0;
+        max-width: 60%;
     }
 
     .design34-wrapper .d34-contact-icon {
@@ -196,9 +199,16 @@
         font-size: 2.1cqw;
         font-weight: 500;
         color: #2a2a2a;
-        white-space: nowrap;
+        white-space: normal;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        line-height: 1.35;
         overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
         text-overflow: ellipsis;
+        min-width: 0;
     }
 
     /* ── Download btn ── */
