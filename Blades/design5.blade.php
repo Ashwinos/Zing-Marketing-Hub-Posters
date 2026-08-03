@@ -347,14 +347,19 @@
 
             {{-- Footer --}}
             <div class="d5-footer">
-                <div class="d5-contact">
-                    <i class="bi bi-telephone-fill"></i>
-                    {{ @user()->phone ?? ' ' }}
-                </div>
-                <div class="d5-website">
-                    <i class="bi bi-globe"></i>
-                    {{ @user()->website_domain ?? ' ' }}
-                </div>
+                @if(!empty(@user()->phone))
+                    <div class="d5-contact">
+                        <i class="bi bi-telephone-fill"></i>
+                        {{ @user()->phone }}
+                    </div>
+                @endif
+
+                @if(!empty(@user()->website_domain))
+                    <div class="d5-website">
+                        <i class="bi bi-globe"></i>
+                        {{ @user()->website_domain }}
+                    </div>
+                @endif
             </div>
 
         </div>{{-- /.d5-content --}}

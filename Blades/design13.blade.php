@@ -155,7 +155,7 @@
         }
 
         .design13-wrapper .design13-description {
-            font-size: 2.6cqw;
+            font-size: 8px;
             font-family: 'Montserrat', sans-serif;
             color: #776654;
             line-height: 1.6;
@@ -347,22 +347,32 @@
                 <div class="design13-footer-info">
                     <div class="design13-footer-name">{{ @user()->name ?? ' ' }}</div>
                     <div class="design13-footer-divider"></div>
+
                     <div class="design13-footer-contact">
-                        <div class="design13-footer-row">
-                            <div class="design13-footer-dot"></div>
-                            <div class="design13-footer-text">{{ @user()->phone ?? ' ' }}</div>
-                        </div>
-                        <div class="design13-footer-row">
-                            <div class="design13-footer-dot"></div>
-                            <div class="design13-footer-text">{{ @user()->address ?? ' ' }}</div>
-                        </div>
+
+                        @if(!empty(@user()->phone))
+                            <div class="design13-footer-row">
+                                <div class="design13-footer-dot"></div>
+                                <div class="design13-footer-text">{{ @user()->phone }}</div>
+                            </div>
+                        @endif
+
+                        @if(!empty(@user()->address))
+                            <div class="design13-footer-row">
+                                <div class="design13-footer-dot"></div>
+                                <div class="design13-footer-text">{{ @user()->address }}</div>
+                            </div>
+                        @endif
+
                     </div>
                 </div>
 
-                <div class="design13-footer-website">
-                    <div class="design13-website-label">Visit Us</div>
-                    <div class="design13-website-url">{{ @user()->website_domain ?? ' ' }}</div>
-                </div>
+                @if(!empty(@user()->website_domain))
+                    <div class="design13-footer-website">
+                        <div class="design13-website-label">Visit Us</div>
+                        <div class="design13-website-url">{{ @user()->website_domain }}</div>
+                    </div>
+                @endif
 
             </div>{{-- /.design13-footer --}}
 

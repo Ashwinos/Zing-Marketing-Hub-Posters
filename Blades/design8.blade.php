@@ -39,7 +39,6 @@ body{
         flex-direction: column;
         align-items: center;
         font-family: "Playfair Display", serif;
-        padding: 20px 0;
         font-family: "Quicksand", sans-serif;
     }
 
@@ -122,6 +121,7 @@ body{
     .design8-wrapper .d8-body {
 
         z-index: 9;
+        padding-bottom: 70px;
        
     }
 
@@ -181,7 +181,10 @@ body{
 
     /* ── Footer ── */
     .design8-wrapper .d8-footer {
-
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
         padding: 0rem 1rem;
 
         color: var(--text-on-accent);
@@ -263,7 +266,7 @@ body{
         background: white;
         content: '';
     } */
-    svg path {
+    .design8-wrapper svg path {
         fill: var(--text-on-theme);
     }
 
@@ -448,7 +451,7 @@ body{
                 <div class="d8-restaurant-name fw-bold">
                      {{ @user()->name ?? ' ' }}
                 </div>
-                <p>{{ \Illuminate\Support\Str::limit($menu['description'] ?? '', 150, '...') }}</p>
+                <p style="font-size:10px">{{ \Illuminate\Support\Str::limit($menu['description'] ?? '', 150, '...') }}</p>
 
             </div>
 
@@ -457,16 +460,24 @@ body{
 
         <div class="d8-footer">
             <div class="email-phone d8-footer-row">
-                <div class="d8-footer-item">
-                    <i class="bi bi-telephone-fill"></i> {{ @user()->phone ?? '+00 000 000' }}
-                </div>
-                <div class="d8-footer-item">
-                    <i class="bi bi-globe"></i> {{ @user()->website_domain ?? 'www.example.com' }}
-                </div>
+                @if(!empty(@user()->phone))
+                    <div class="d8-footer-item">
+                        <i class="bi bi-telephone-fill"></i> {{ @user()->phone }}
+                    </div>
+                @endif
+
+                @if(!empty(@user()->website_domain))
+                    <div class="d8-footer-item">
+                        <i class="bi bi-globe"></i> {{ @user()->website_domain }}
+                    </div>
+                @endif
             </div>
-            <div class="d8-restaurant-address d8-footer-row">
-                {{ @user()->address ?? ' ' }}
-            </div>
+
+            @if(!empty(@user()->address))
+                <div class="d8-restaurant-address d8-footer-row">
+                    {{ @user()->address }}
+                </div>
+            @endif
         </div>
 
     </div>

@@ -246,14 +246,19 @@
 
         {{-- Footer --}}
         <div class="d1-footer">
-            <div class="d1-footer-item">
-                <i class="bi bi-telephone-fill"></i>
-                {{ @user()->phone ?? ' ' }}
-            </div>
-            <div class="d1-footer-item">
-                <i class="bi bi-globe"></i>
-                {{ @user()->website_domain ?? ' ' }}
-            </div>
+            @if(!empty(@user()->phone))
+                <div class="d1-footer-item">
+                    <i class="bi bi-telephone-fill"></i>
+                    {{ @user()->phone }}
+                </div>
+            @endif
+
+            @if(!empty(@user()->website_domain))
+                <div class="d1-footer-item">
+                    <i class="bi bi-globe"></i>
+                    {{ @user()->website_domain }}
+                </div>
+            @endif
         </div>
 
     </div>{{-- /.design1-card --}}

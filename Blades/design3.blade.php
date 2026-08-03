@@ -339,14 +339,19 @@
 
             {{-- Footer --}}
             <div class="d3-footer">
-                <div class="d3-contact-number">
-                    <i class="bi bi-telephone-fill"></i>
-                    {{ @user()->phone ?? ' ' }}
-                </div>
-                <div class="d3-website">
-                    <i class="bi bi-globe"></i>
-                    {{ @user()->website_domain ?? ' ' }}
-                </div>
+                @if(!empty(@user()->phone))
+                    <div class="d3-contact-number">
+                        <i class="bi bi-telephone-fill"></i>
+                        {{ @user()->phone }}
+                    </div>
+                @endif
+
+                @if(!empty(@user()->website_domain))
+                    <div class="d3-website">
+                        <i class="bi bi-globe"></i>
+                        {{ @user()->website_domain }}
+                    </div>
+                @endif
             </div>
 
         </div>{{-- /.d3-inner --}}

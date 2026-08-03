@@ -210,10 +210,12 @@
         letter-spacing: 0.5px;
         position: relative;
         z-index: 4;
+        text-align: center !important;
     }
 
     .design24-wrapper .d24-item-name-script--long {
-        font-size: 7cqw;
+        font-size: 8cqw;
+        text-align: center !important;
     }
 
     .design24-wrapper .d24-desc {
@@ -224,6 +226,7 @@
         font-weight: 400;
         position: relative;
         z-index: 4;
+        text-align: center !important;
     }
 
     /* ══ FOOD CIRCLE — positioned on card level to overlap band ══ */
@@ -265,7 +268,7 @@
         border-radius: 50%;
         overflow: hidden;
         z-index: 1;
-        background: #c8a060;
+        background: {{$themeColor}};
     }
 
     .design24-wrapper .d24-food-circle img {
@@ -279,7 +282,7 @@
     .design24-wrapper .d24-food-placeholder {
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, #c8a060 0%, #8a5a20 100%);
+        background: {{$themeColor}});
     }
 
     /* ORDER NOW badge — right side of circle, at band level */
@@ -470,8 +473,7 @@
             <div class="d24-logo-area">
                 @if (isset($logourl) && $logourl)
                     <img src="{{ $logourl }}" alt="logo" class="d24-logo-img" crossorigin="anonymous">
-                @else
-                    <div class="d24-logo-fallback">{{ strtoupper(substr(@user()->name ?? 'R', 0, 1)) }}</div>
+                
                 @endif
             </div>
 
@@ -506,7 +508,13 @@
             </svg>
 
             <p class="d24-item-name-script{{ !empty($menu['name']) && strlen($menu['name']) > 14 ? ' d24-item-name-script--long' : '' }}">
-                {{ @$menu['name'] ?? 'Special Burger' }}
+              @if (strlen(@$menu['name']) <= 20)
+
+                   {{ @$menu['name'] }}
+             @else
+             Zest Quest
+            @endif
+
             </p>
 
             @if (!empty($menu['description']))
@@ -520,23 +528,31 @@
             <div class="d24-brush"></div>
 
             {{-- LEFT: phone --}}
-            <div class="d24-footer-left">
-                <div class="d24-phone-circle">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.33 21 3 13.67 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.21 2.2z"/>
-                    </svg>
+            @if(!empty(@user()->phone))
+                <div class="d24-footer-left">
+                    <div class="d24-phone-circle">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.33 21 3 13.67 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.21 2.2z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="d24-delivery-label">Contact Us</div>
+                        <div class="d24-phone-num">{{ @user()->phone }}</div>
+                    </div>
                 </div>
-                <div>
-                    <div class="d24-delivery-label">Contact Us</div>
-                    <div class="d24-phone-num">{{ @user()->phone ?? '+123 456 789' }}</div>
-                </div>
-            </div>
+            @endif
 
             {{-- RIGHT: restaurant info --}}
             <div class="d24-footer-right">
-                <div class="d24-rest-name">{{ @user()->name ?? 'Your Restaurant' }}</div>
-                <div class="d24-rest-address">{{ @user()->address ?? '123 Street, Malaga, Spain.' }}</div>
-                <div class="d24-rest-web">{{ @user()->website_domain ?? 'www.yourweb.com' }}</div>
+                <div class="d24-rest-name">{{ @user()->name ?? '' }}</div>
+
+                @if(!empty(@user()->address))
+                    <div class="d24-rest-address">{{ @user()->address }}</div>
+                @endif
+
+                @if(!empty(@user()->website_domain))
+                    <div class="d24-rest-web">{{ @user()->website_domain }}</div>
+                @endif
             </div>
         </div>{{-- /.d24-footer --}}
 

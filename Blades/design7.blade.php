@@ -183,6 +183,7 @@
         background-color: #ffffffba;
         margin-bottom: 4px;
         display: inline-block;
+        font-size: 10px !important;
     }
 
     .d7-top-header {
@@ -231,7 +232,7 @@
         opacity: 0.4;
     }
 
-    svg path {
+    .design7-wrapper svg path {
         fill: var(--text-on-theme);
     }
 
@@ -276,6 +277,11 @@
         font-style: normal;
         font-display: swap;
     }
+    .design7-wrapper .d7-footer-item i {
+    font-size: 10px; /* Adjust as needed */
+    margin-right: 4px;
+    vertical-align: middle;
+}
 </style>
 
 <div class="design7-wrapper">
@@ -363,17 +369,25 @@
 
         <div class="d7-footer-1">
             <div>
-                <div class="d7-footer-item">
-                    <i class="bi bi-telephone-fill"></i> {{ @user()->phone ?? ' ' }}
-                </div>
-                <div class="d7-footer-item">
-                    <i class="bi bi-globe"></i> {{ @user()->website_domain ?? ' ' }}
-                </div>
+                @if(!empty(@user()->phone))
+                    <div class="d7-footer-item">
+                        <i class="bi bi-telephone-fill"></i> {{ @user()->phone }}
+                    </div>
+                @endif
+
+                @if(!empty(@user()->website_domain))
+                    <div class="d7-footer-item">
+                        <i class="bi bi-globe"></i> {{ @user()->website_domain }}
+                    </div>
+                @endif
             </div>
-            <div class="d7-footer-item">
-                <i class="bi bi-geo-alt-fill"></i>
-                {{ @user()->address ?? ' ' }}
-            </div>
+
+            @if(!empty(@user()->address))
+                <div class="d7-footer-item">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    {{ @user()->address }}
+                </div>
+            @endif
         </div>
 
     </div>

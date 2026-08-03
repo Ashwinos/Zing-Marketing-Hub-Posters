@@ -424,9 +424,7 @@
                     @if (isset($menuImageUrl) && $menuImageUrl)
                         <img src="{{ $menuImageUrl }}" alt="{{ @$menu['name'] ?? 'Menu Item' }}"
                             class="js-poster-menu-image" crossorigin="anonymous">
-                    @else
-                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=85"
-                            class="js-poster-menu-image" crossorigin="anonymous" alt="Menu Item">
+                    
                     @endif
                 </div>
                 <div class="design11-plate-shadow"></div>
@@ -434,14 +432,19 @@
 
             {{-- Footer bar --}}
             <div class="design11-footer-bar">
-                <div class="design11-footer-contact">
-                    <div class="design11-fc-label">Contact Us</div>
-                    <div class="design11-fc-value">{{ @user()->phone ?? ' ' }}</div>
-                </div>
-                <div class="design11-footer-website">
-                    <div class="design11-fw-label">Visit Our Website</div>
-                    <div class="design11-fw-value">{{ @user()->website_domain ?? ' ' }}</div>
-                </div>
+                @if(!empty(@user()->phone))
+                    <div class="design11-footer-contact">
+                        <div class="design11-fc-label">Contact Us</div>
+                        <div class="design11-fc-value">{{ @user()->phone }}</div>
+                    </div>
+                @endif
+
+                @if(!empty(@user()->website_domain))
+                    <div class="design11-footer-website">
+                        <div class="design11-fw-label">Visit Our Website</div>
+                        <div class="design11-fw-value">{{ @user()->website_domain }}</div>
+                    </div>
+                @endif
             </div>
 
         </div>{{-- /.design11-card --}}

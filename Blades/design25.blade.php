@@ -29,9 +29,7 @@
         inset: 0;
         z-index: 0;
         pointer-events: none;
-        background-image: radial-gradient(circle, #c4a882 1px, transparent 1px);
-        background-size: 10px 10px;
-        opacity: 0.35;
+        display: block;
     }
 
     /* ── TOP BAR ── */
@@ -88,6 +86,7 @@
         font-weight: 600;
         color: #1a0a0a;
         line-height: 1.1;
+        text-align: left;
     }
 
     .design25-wrapper .d25-brand-addr {
@@ -122,11 +121,12 @@
         letter-spacing: 0.01em;
         text-transform: uppercase;
         word-break: break-word;
+        text-align: left;
     }
 
     .design25-wrapper .d25-headline-main span {
         font-family: 'Anton', sans-serif;
-        font-size: 13cqw;
+        font-size: 9cqw;
         color: #1a0a0a;
         line-height: 0.92;
         letter-spacing: 0.01em;
@@ -175,7 +175,7 @@
     .design25-wrapper .d25-food-placeholder {
         width: 100%;
         height: 100%;
-        background: #b5501a;
+        background: {{$themeColor}};
     }
 
     /* ── DISH LABEL (on wave) ── */
@@ -184,6 +184,7 @@
         bottom: 2.5cqw;
         left: 3.5cqw;
         z-index: 9;
+        text-align: start;
     }
 
     .design25-wrapper .d25-dish-sup {
@@ -199,7 +200,7 @@
         font-family: 'Anton', sans-serif;
         font-size: 9cqw;
         color: #F5EFE4;
-        line-height: 0.9;
+        line-height: 1.0;
         letter-spacing: 0.01em;
         text-transform: uppercase;
         max-width: 45cqw;
@@ -249,6 +250,7 @@
         line-height: 1.5;
         max-width: 55%;
         margin: 0;
+        text-align: start;
     }
 
     .design25-wrapper .d25-order-btn {
@@ -290,10 +292,15 @@
         padding: 1.8cqw 3.5cqw 2cqw;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-start;
         position: relative;
         z-index: 5;
         gap: 2cqw;
+    }
+
+    .design25-wrapper .d25-contact.d25-contact-right {
+        margin-left: auto;
+        flex: 0 1 auto;
     }
 
     .design25-wrapper .d25-footer-divider {
@@ -314,7 +321,6 @@
         overflow: hidden;
         text-overflow: ellipsis;
         min-width: 0;
-        flex: 1;
     }
 
     .design25-wrapper .d25-contact svg {
@@ -325,19 +331,46 @@
     }
 </style>
 
-@php
-    $d25City = @user()->city ?? null;
-    if (!$d25City && !empty(@user()->address)) {
-        $d25AddrParts = array_map('trim', explode(',', @user()->address));
-        $d25City = $d25AddrParts[count($d25AddrParts) - 2] ?? ($d25AddrParts[0] ?? 'Your City');
-    }
-    $d25City = $d25City ?: 'Your City';
-@endphp
+
+    @php
+    
+      
+       $addressParts = array_map('trim', explode(',', user()->address));
+    
+        $city = null;
+        
+        switch (count($addressParts)) {
+            case 3:
+                $city = $addressParts[0];
+                break;
+        
+            case 4:
+                $city = $addressParts[1];
+                break;
+        
+            case 5:
+                $city = $addressParts[2];
+                break;
+        }
+    
+    
+    @endphp
+
+
 
 <div class="design25-wrapper">
     <div class="design25-card" id="posterCard25">
 
-        <div class="d25-dot-bg"></div>
+        {{-- Dot background — self-contained SVG pattern, unique id scoped to Design 25, explicit width/height attributes so html2canvas paints it on clone --}}
+        <svg class="d25-dot-bg" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <defs>
+                <pattern id="d25-dots-pattern" patternUnits="userSpaceOnUse" width="10" height="10">
+                    <circle cx="1" cy="1" r="1" fill="#c4a882" />
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#d25-dots-pattern)" opacity="0.35" />
+        </svg>
+
         <div class="d25-top-bar"></div>
 
         {{-- Header --}}
@@ -345,14 +378,11 @@
             <div class="d25-logo-wrap">
                 @if (isset($logourl) && $logourl)
                     <img src="{{ $logourl }}" alt="logo" class="d25-logo-img" crossorigin="anonymous">
-                @else
-                    <div class="d25-logo-fallback">
-                        <svg viewBox="0 0 24 24"><path d="M12 3C7 3 3 7 3 12s4 9 9 9 9-4 9-9-4-9-9-9zm0 2c1.5 0 2.9.4 4.1 1.1L5.1 16.1C4.4 14.9 4 13.5 4 12c0-4.4 3.6-8 8-8zm0 14c-1.5 0-2.9-.4-4.1-1.1l11-11c.7 1.2 1.1 2.6 1.1 4.1 0 4.4-3.6 8-8 8z"/></svg>
-                    </div>
+                
                 @endif
                 <div>
-                    <div class="d25-brand-name">{{ @user()->name ?? 'Restaurant Name' }}</div>
-                    <div class="d25-brand-addr">{{ @user()->city ?? @user()->address ?? 'Your City' }}</div>
+                    <div class="d25-brand-name">{{ @user()->name ?? '' }}</div>
+                    <div class="d25-brand-addr">{{ @user()->address ?? '' }}</div>
                 </div>
             </div>
         </div>
@@ -361,7 +391,11 @@
         <div class="d25-headline-wrap">
             
             <div class="d25-headline-main">
-                Discover<br><span>{{ $d25City }}</span>'s<br>Hidden Gem
+                Discover<br>
+                <span>
+                    {{ !empty(@user()->address) && !empty($city) && strlen($city) < 40 ? $city : 'Your City' }}
+                </span>'s<br>
+                Hidden Gem
             </div>
         </div>
 
@@ -385,11 +419,12 @@
             <div class="d25-dish-label">
                 
                 <div class="d25-dish-name">
-                    @if (!empty($menu['name']))
-                        {!! nl2br(wordwrap(strtoupper($menu['name']), 8, "\n", false)) !!}
-                    @else
-                        Richly <br>Crafted
-                    @endif
+                    @if (strlen(@$menu['name']) <= 20)
+
+                   {{ @$menu['name'] }}
+             @else
+             Happiness in Every Bite
+            @endif
                 </div>
             </div>
 
@@ -402,8 +437,7 @@
             <p class="d25-desc">
                 @if (!empty($menu['description']))
                     {{ Str::limit($menu['description'], 75, '...') }}
-                @else
-                    Savor the perfect blend of flavors with our premium ingredients.
+                
                 @endif
             </p>
             <div class="d25-order-btn">ORDER NOW</div>
@@ -433,7 +467,7 @@
                 <div class="d25-footer-divider"></div>
             @endif
             @if (@user()->website_domain)
-                <span class="d25-contact">
+                <span class="d25-contact d25-contact-right">
                     <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
                     {{ @user()->website_domain }}
                 </span>

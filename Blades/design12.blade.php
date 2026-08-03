@@ -35,13 +35,21 @@
         overflow: hidden;
     }
 
-    /* ── RED VERTICAL STRIPE with drips ── */
+    /* ── RED VERTICAL STRIPE with drips ──
+       NOTE: previously used `bottom: -32px` (negative offset) inside
+       .d12-top-section which has `overflow: hidden`. html2canvas clips
+       negative-bottom-offset boxes against the parent's pre-overflow
+       bounds, so the stripe silently disappeared in the exported PNG
+       even though it rendered fine live in the browser.
+       Fixed by using `height: calc(100% + 32px)` instead — same visual
+       extension past the bottom edge, but expressed as a positive size
+       rather than a negative offset, which html2canvas paints correctly. */
     .design12-wrapper .d12-stripe {
         position: absolute;
         top: 0;
         left: 78px;
         width: 64px;
-        bottom: -32px;
+        height: calc(100% + 32px);
         background: {{ $themeColor ?? '#c93a1a' }} ;
         z-index: 2;
     }
@@ -79,19 +87,20 @@
     /* ── RIGHT CONTENT ── */
     .design12-wrapper .d12-right-col {
         position: absolute;
-        top: -64px;
+        top: 0;
         bottom: 0;
         left: 126px;
         right: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
         z-index: 5;
+        pointer-events: none;
     }
 
     /* heading block */
     .design12-wrapper .d12-heading-block {
-        margin-bottom: 2px;
+        position: absolute;
+        top: -20px;
+        left: 0;
+        right: 0;
     }
 
     .design12-wrapper .d12-heading-pizza {
@@ -104,11 +113,17 @@
         opacity: 70%;
     }
 
-    /* badge */
+    /* badge — now anchored to a FIXED position relative to
+       .d12-top-section (via .d12-right-col which spans top:0/bottom:0
+       of .d12-top-section), directly under the pizza image.
+       .d12-pizza-wrap sits at top:15% + height:55% (ends at 70% of
+       .d12-top-section's height), so the badge starts right after that,
+       regardless of how tall the bottom restaurant strip is. */
     .design12-wrapper .d12-badge-wrap {
-        position: relative;
-        bottom: 251px;
-        left: 0;
+        position: absolute;
+        top: calc(70% + 10px);
+        left: 12px;
+        pointer-events: auto;
     }
 
     .design12-wrapper .d12-badge {
@@ -162,16 +177,14 @@
     .design12-wrapper .d12-resto-logo {
         width: auto;
         height: 2rem;
-        /* border-radius: 50%; */
         overflow: hidden;
-        border: 2.5px solid rgba(255, 255, 255, 0.6);
+        /*border: 2.5px solid rgba(255, 255, 255, 0.6);*/
         flex-shrink: 0;
         background: #fff;
         display: flex;
         align-items: center;
         justify-content: center;
         z-index: 10;
-        /* padding: 0; */
         position: relative;
         top: 10px;
         left: 24px;
@@ -182,7 +195,6 @@
         height: 100%;
         object-fit: cover;
         display: block;
-        /*border-radius: 50%;*/
     }
 
     /* Name + divider + contacts */
@@ -322,14 +334,14 @@
 
             {{-- Red stripe with SVG drips --}}
             <div class="d12-stripe">
-                <svg class="d12-stripe-drips-svg" viewBox="0 0 64 80" preserveAspectRatio="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    style="position:absolute;bottom:67px;left:0;width:100%;height:80px;">
-                    <path d="M0,0 L64,0 L64,20
-                      Q58,20 58,35 Q58,52 52,52 Q46,52 46,35 Q46,20 40,20
-                      Q34,20 34,30 Q34,48 28,48 Q22,48 22,30 Q22,20 16,20
-                      Q10,20 10,42 Q10,58 4,58 Q0,58 0,42 Z" fill="#f5f0e6" />
-                </svg>
+                <!--<svg class="d12-stripe-drips-svg" viewBox="0 0 64 80" preserveAspectRatio="none"-->
+                <!--    xmlns="http://www.w3.org/2000/svg"-->
+                <!--    style="position:absolute;bottom:67px;left:0;width:100%;height:80px;">-->
+                <!--    <path d="M0,0 L64,0 L64,20-->
+                <!--      Q58,20 58,35 Q58,52 52,52 Q46,52 46,35 Q46,20 40,20-->
+                <!--      Q34,20 34,30 Q34,48 28,48 Q22,48 22,30 Q22,20 16,20-->
+                <!--      Q10,20 10,42 Q10,58 4,58 Q0,58 0,42 Z" fill="#f5f0e6" />-->
+                <!--</svg>-->
             </div>
 
             <div class="d12-resto-logo">
@@ -343,9 +355,6 @@
                 @if (isset($menuImageUrl) && $menuImageUrl)
                     <img src="{{ $menuImageUrl }}" alt="{{ @$menu['name'] ?? 'Menu Item' }}"
                         class="js-poster-menu-image" crossorigin="anonymous">
-                @else
-                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=90" alt="Menu Item"
-                        crossorigin="anonymous">
                 @endif
             </div>
 
@@ -381,45 +390,48 @@
         {{-- ════ RESTAURANT DETAILS STRIP ════ --}}
         <div class="d12-restaurant-strip">
 
-            {{-- Logo --}}
-
-
             {{-- Name + contacts --}}
             <div class="d12-resto-info">
-                <div class="d12-resto-name">{{ @user()->name ?? 'Borcelle &amp; Co.' }}</div>
+                <div class="d12-resto-name">{{ @user()->name ?? ' ' }}</div>
                 <div class="d12-resto-divider"></div>
+
                 <div class="d12-resto-contacts">
 
-                    <div class="d12-resto-contact-row">
-                        <div class="d12-icon-circle">
-                            <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M2 1.5 Q2 3 4 5 Q6 7 7.5 8 L8.5 7 Q9 6.5 8.5 6 L7 4.5 Q6.5 4 6 4.5 L5.5 5 Q4.5 4.5 3.5 3 L4 2.5 Q4.5 2 4 1.5 L2.5 0.5 Q2 0 2 1.5Z" />
-                            </svg>
+                    @if(!empty(@user()->phone))
+                        <div class="d12-resto-contact-row">
+                            <div class="d12-icon-circle">
+                                <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 1.5 Q2 3 4 5 Q6 7 7.5 8 L8.5 7 Q9 6.5 8.5 6 L7 4.5 Q6.5 4 6 4.5 L5.5 5 Q4.5 4.5 3.5 3 L4 2.5 Q4.5 2 4 1.5 L2.5 0.5 Q2 0 2 1.5Z" />
+                                </svg>
+                            </div>
+                            <div class="d12-resto-contact-text">{{ @user()->phone }}</div>
                         </div>
-                        <div class="d12-resto-contact-text">{{ @user()->phone ?? '+123-456-7890' }}</div>
-                    </div>
+                    @endif
 
-                    <div class="d12-resto-contact-row">
-                        <div class="d12-icon-circle">
-                            <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M5 0.5 C3 0.5 1.5 2 1.5 3.8 C1.5 6.5 5 9.5 5 9.5 C5 9.5 8.5 6.5 8.5 3.8 C8.5 2 7 0.5 5 0.5Z" />
-                                <circle cx="5" cy="3.8" r="1.2" fill="#c93a1a" />
-                            </svg>
+                    @if(!empty(@user()->address))
+                        <div class="d12-resto-contact-row">
+                            <div class="d12-icon-circle">
+                                <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 0.5 C3 0.5 1.5 2 1.5 3.8 C1.5 6.5 5 9.5 5 9.5 C5 9.5 8.5 6.5 8.5 3.8 C8.5 2 7 0.5 5 0.5Z" />
+                                    <circle cx="5" cy="3.8" r="1.2" fill="#c93a1a" />
+                                </svg>
+                            </div>
+                            <div class="d12-resto-contact-text">
+                                {{ @user()->address }}
+                            </div>
                         </div>
-                        <div class="d12-resto-contact-text">
-                            {{ @user()->address ?? '123 Anywhere St., Any City, ST 12345' }}</div>
-                    </div>
+                    @endif
 
                 </div>
             </div>
 
             {{-- Website --}}
-            <div class="d12-resto-website">
-                <div class="d12-website-label">Visit Us</div>
-                <div class="d12-website-url">{{ @user()->website_domain ?? 'www.borcelle.com' }}</div>
-            </div>
+            @if(!empty(@user()->website_domain))
+                <div class="d12-resto-website">
+                    <div class="d12-website-label">Visit Us</div>
+                    <div class="d12-website-url">{{ @user()->website_domain }}</div>
+                </div>
+            @endif
 
         </div>{{-- /.d12-restaurant-strip --}}
 

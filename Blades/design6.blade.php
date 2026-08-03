@@ -302,8 +302,7 @@
         <div class="d6-pizza-wrap">
             @if (isset($menuImageUrl) && $menuImageUrl)
                 <img src="{{ $menuImageUrl }}" alt="{{ @$menu['name'] ?? 'Menu Item' }}" crossorigin="anonymous">
-            @else
-                <img src="https://pngimg.com/d/pizza_PNG44095.png" alt="Menu Item">
+            
             @endif
         </div>
 
@@ -330,12 +329,17 @@
 
         {{-- Footer: phone + website only --}}
         <div class="d6-footer">
-            <div class="d6-phone">
-                {{ @user()->phone ?? ' ' }}
-            </div>
-            <div class="d6-website">
-                {{ @user()->website_domain ?? ' ' }}
-            </div>
+            @if(!empty(@user()->phone))
+                <div class="d6-phone">
+                    {{ @user()->phone }}
+                </div>
+            @endif
+
+            @if(!empty(@user()->website_domain))
+                <div class="d6-website">
+                    {{ @user()->website_domain }}
+                </div>
+            @endif
         </div>{{-- /.d6-footer --}}
 
     </div>{{-- /.design6-card --}}

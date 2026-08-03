@@ -321,18 +321,21 @@
          height: 2rem;
      }
 
-     .d19-caption {
-         position: absolute;
-         z-index: 9 !important;
-         font-family: 'Snappy Sketch' !important;
-         left: 140px !important;
-         bottom: 3px !important;
-         font-size: 35px !important;
-         font-weight: 800;
-         transform-origin: center;
-         filter: drop-shadow(2px 4px 6px black);
-         color: white !important;
-     }
+   .d19-caption {
+    position: absolute;
+    z-index: 9 !important;
+    font-family: 'Snappy Sketch' !important;
+    right: 10px !important;
+    bottom: 5px !important;
+    font-size: 35px !important;
+    font-weight: 800;
+    line-height: 63px;
+    transform-origin: center;
+    filter: drop-shadow(2px 4px 6px black);
+    color: white !important;
+    display: flex;
+    align-items: center;
+}
 
      .d19-caption::before {
          content: '';
@@ -420,7 +423,6 @@
 
              {{-- 3. FOOD SECTION --}}
              <div class="d19-food">
-                 <div class="d19-caption">Purely Savory</div>
                  <div class="d19-mandala-wrap"></div>
                  @if(isset($menuImageUrl) && $menuImageUrl)
                      <img src="{{ $menuImageUrl }}" crossorigin="anonymous" alt="{{ @$menu['name'] ?? 'menu item' }}" class="js-poster-menu-image">
@@ -429,6 +431,7 @@
 
              {{-- 4. TAGLINE — menu name --}}
              <div class="d19-tagline-wrap">
+                 @if(isset($menu['name']) && strlen($menu['name']) <= 20)
                  <svg width="100%" height="16" viewBox="0 0 320 16" style="display:block;margin-bottom:5px">
                      <line x1="12" y1="8" x2="126" y2="8" stroke="#c9a843" stroke-width=".7" opacity=".58" />
                      <line x1="194" y1="8" x2="308" y2="8" stroke="#c9a843" stroke-width=".7" opacity=".58" />
@@ -439,11 +442,11 @@
                  </svg>
 
                  <p class="d19-tagline">
-                     @if(isset($menu['name']) && strlen($menu['name']) <= 20)
+                     
                          {{ $menu['name'] }}
-                     @endif
+                    
                  </p>
-
+                @endif
                  <svg width="100%" height="16" viewBox="0 0 320 16" style="display:block;margin-top:5px">
                      <line x1="12" y1="8" x2="126" y2="8" stroke="#c9a843" stroke-width=".7" opacity=".58" />
                      <line x1="194" y1="8" x2="308" y2="8" stroke="#c9a843" stroke-width=".7" opacity=".58" />
@@ -452,6 +455,7 @@
                      <polygon points="160,2 165,8 160,14 155,8" fill="none" stroke="#c9a843" stroke-width="1.1" />
                      <circle cx="160" cy="8" r="2.5" fill="#c9a843" opacity=".9" />
                  </svg>
+                  
              </div>
 
              {{-- 5. INFO ROW — collapsed --}}
@@ -471,7 +475,7 @@
                  <div class="d19-ct-right">{{ @user()->website_domain ?? '' }}</div>
                  <div class="d19-ct-phone">
                      <span>{{ @user()->phone ?? '' }}</span>
-                     <span>{{ @user()->email ?? '' }}</span>
+                     
                  </div>
                  <div class="d19-tile-col-narrow"></div>
              </div>

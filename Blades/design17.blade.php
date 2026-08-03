@@ -133,7 +133,7 @@
     }
 
     .design17-wrapper .design17-description {
-        font-size: 10px !important;
+        font-size: 8px !important;
         margin-top: 3.5%;
         color: #7a6550;
         font-size: 2.6cqw;
@@ -248,11 +248,12 @@
             <div class="design17-logo-wrap">
 
                 {{-- LOGO above --}}
-                <div class="design17-logo-ring">
-                    @if(isset($logourl) && $logourl)
+                
+                 @if(isset($logourl) && $logourl)
+                    <div class="design17-logo-ring">
                         <img src="{{ $logourl }}" alt="logo" crossorigin="anonymous">
-                    @endif    
                 </div>
+                @endif    
 
                 {{-- NAME below --}}
                 <div class="design17-logo-text">
@@ -317,25 +318,33 @@
         <div class="design17-footer">
 
             {{-- ADDRESS --}}
-            <div class="design17-footer-address-bar">
-                <i class="bi bi-geo-alt-fill"></i>
-                {{ @user()->address ?? ' ' }}
-            </div>
+            @if(!empty(@user()->address))
+                <div class="design17-footer-address-bar">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    {{ @user()->address }}
+                </div>
+            @endif
 
             {{-- CONTACTS --}}
             <div class="design17-footer-contacts">
 
-                <div class="design17-contact-item">
-                    <i class="bi bi-telephone-fill"></i>
-                    {{ @user()->phone ?? ' ' }}
-                </div>
+                @if(!empty(@user()->phone))
+                    <div class="design17-contact-item">
+                        <i class="bi bi-telephone-fill"></i>
+                        {{ @user()->phone }}
+                    </div>
+                @endif
 
-                <div class="design17-footer-mid-divider"></div>
+                @if(!empty(@user()->phone) && !empty(@user()->website_domain))
+                    <div class="design17-footer-mid-divider"></div>
+                @endif
 
-                <div class="design17-contact-item">
-                    <i class="bi bi-globe"></i>
-                    {{ @user()->website_domain ?? ' ' }}
-                </div>
+                @if(!empty(@user()->website_domain))
+                    <div class="design17-contact-item">
+                        <i class="bi bi-globe"></i>
+                        {{ @user()->website_domain }}
+                    </div>
+                @endif
 
             </div>
 
